@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Agent contract — Example Brand Design System</title>
+    <title>DESIGN.md — Example Brand Design System</title>
     <meta
       name="description"
-      content="The full DESIGN.md agent contract: normative tokens, rules, and directives for generating UI in this design system."
+      content="The full DESIGN.md contract: normative tokens, rules, and agent directives for generating UI in this design system."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -33,20 +33,26 @@
           <a href="typography.html">Typography</a>
           <a href="layout.html">Layout</a>
           <a href="components.html">Components</a>
-          <a href="contract.html" aria-current="page">Agent contract</a>
+          <a href="design-md.html" aria-current="page">DESIGN.md</a>
         </nav>
-        <p class="kit-sidebar__foot">MIT licensed. Replace Example Brand with your own.</p>
+        <div class="kit-credit">
+          <p>A <strong>Roots &amp; Fruit</strong> system</p>
+          <a href="https://github.com/Roots-and-Fruit/design-system-template"
+            >Want to create your own design system?</a
+          >
+        </div>
       </aside>
 
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head">
             <p class="cds-meta">Source of truth</p>
-            <h1>Agent contract</h1>
+            <h1>DESIGN.md</h1>
             <p class="cds-lede">
-              <code>DESIGN.md</code> is canonical. The copy below is embedded by
-              the sync script so this page works even when opened straight from
-              disk. Edit the markdown file, then re-run the script.
+              The file an agent reads before it chooses anything. Front matter
+              carries the values, prose carries the rules. The copy below is
+              embedded by the sync script so this page works even when opened
+              straight from disk.
             </p>
           </header>
 
@@ -337,7 +343,7 @@ Keep the token names. Change the values, then the prose.
 3. This file — front matter values, then Overview, Colors, Typography, and
    Do&#39;s and Don&#39;ts in your own words.
 4. `assets/` — your marks, replacing the placeholder.
-5. Run `sync-design-md-embed.ps1` so `contract.html` carries this contract.
+5. Run `sync-design-md-embed.ps1` so `design-md.html` carries this contract.
 
 Anything you do not customise stays a visible placeholder rather than a silent
 default, which is intentional.

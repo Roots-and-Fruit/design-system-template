@@ -39,7 +39,7 @@ node sync-design-md-embed.mjs
 ## Boundaries
 
 - `DESIGN.md` is the source of truth. The markdown inside
-  `<code id="design-md-source">` in `contract.html` is a generated copy, so
+  `<code id="design-md-source">` in `design-md.html` is a generated copy, so
   never hand-edit it.
 - `css/kit.css` styles the reference site only, including the
   `@view-transition` rules. Keep it out of the system, and keep system classes
@@ -54,3 +54,11 @@ node sync-design-md-embed.mjs
 - Example Brand is a placeholder. Keep it neutral and generic rather than
   evolving it into a real identity, and do not commit licensed fonts or
   third-party marks.
+
+## Credit
+
+The sidebar carries a small "A Roots & Fruit system" credit that links back to
+this template. Leaving it in place is a kind thing to do, and it is how other
+people find the kit. If it does not fit the site you are building, remove it
+with no hard feelings, and a shout-out on social instead is genuinely
+appreciated.

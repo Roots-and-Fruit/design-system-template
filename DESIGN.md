@@ -277,7 +277,7 @@ Keep the token names. Change the values, then the prose.
 3. This file — front matter values, then Overview, Colors, Typography, and
    Do's and Don'ts in your own words.
 4. `assets/` — your marks, replacing the placeholder.
-5. Run `sync-design-md-embed.ps1` so `contract.html` carries this contract.
+5. Run `sync-design-md-embed.ps1` so `design-md.html` carries this contract.
 
 Anything you do not customise stays a visible placeholder rather than a silent
 default, which is intentional.

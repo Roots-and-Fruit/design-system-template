@@ -191,17 +191,37 @@
   font-weight: var(--cds-weight-bold);
 }
 
-.kit-sidebar__foot {
-  margin: 0;
+.kit-credit {
   margin-block-start: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-1);
   font-size: var(--cds-text-sm);
   line-height: var(--cds-leading-ui);
+}
+
+.kit-credit p {
+  margin: 0;
   color: var(--cds-ink-soft);
+}
+
+.kit-credit strong {
+  font-weight: var(--cds-weight-bold);
+  color: var(--cds-ink-muted);
+}
+
+.kit-credit a {
+  font-weight: var(--cds-weight-semibold);
+  text-decoration: none;
+}
+
+.kit-credit a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 60rem) {
   .kit-sidebar__subtitle,
-  .kit-sidebar__foot {
+  .kit-credit {
     display: none;
   }
 
@@ -335,7 +355,7 @@
   text-align: center;
 }
 
-/* —— Agent contract embed —— */
+/* —— DESIGN.md embed —— */
 .kit-contract {
   max-block-size: 40rem;
   overflow: auto;

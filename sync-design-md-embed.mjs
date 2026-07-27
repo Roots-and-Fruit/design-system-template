@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Embed DESIGN.md into the Agent contract page (contract.html).
+// Embed DESIGN.md into the reference site page that displays it (design-md.html).
 //
 // DESIGN.md stays canonical; the HTML copy exists so the page works when opened
 // straight from disk (no server, no fetch). Re-run after every DESIGN.md edit.
@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url";
 
 const root = dirname(fileURLToPath(import.meta.url));
 const mdPath = join(root, "DESIGN.md");
-const htmlPath = join(root, "contract.html");
+const htmlPath = join(root, "design-md.html");
 
 const escapeHtml = (value) =>
   value
@@ -29,7 +29,7 @@ const md = `${raw.replace(/\r\n?/g, "\n").trimEnd()}\n`;
 
 const html = await readFile(htmlPath, "utf8");
 if (!html.includes('id="design-md-source"')) {
-  throw new Error('contract.html is missing <code id="design-md-source">');
+  throw new Error('design-md.html is missing <code id="design-md-source">');
 }
 
 const updated = html.replace(
@@ -38,4 +38,4 @@ const updated = html.replace(
 );
 
 await writeFile(htmlPath, updated, "utf8");
-console.log(`Embedded DESIGN.md into contract.html (${md.split("\n").length} lines).`);
+console.log(`Embedded DESIGN.md into design-md.html (${md.split("\n").length} lines).`);

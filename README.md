@@ -9,7 +9,7 @@ on first clone. Replace the values, keep the structure, and you have your own
 system.
 
 **Reference site:** one page per section (Overview, Colors, Typography, Layout,
-Components, Agent contract). Open `index.html` in a browser, or serve the folder:
+Components, DESIGN.md). Open `index.html` in a browser, or serve the folder:
 
 ```bash
 npx --yes serve .
@@ -37,9 +37,9 @@ rules in words, including the things a generator should never do.
 | `css/layouts.css` | Stack, Center, Cluster, Grid |
 | `css/components.css` | Buttons, pills, alerts, surfaces, forms, tables, code, prose |
 | `css/kit.css` | Chrome for the reference site only. Not part of the system |
-| `index.html` and friends | Reference site: Overview, Colors, Typography, Layout, Components, Agent contract |
+| `index.html` and friends | Reference site: Overview, Colors, Typography, Layout, Components, DESIGN.md |
 | `assets/` | Placeholder mark, plus a place for your logos |
-| `sync-design-md-embed.ps1` / `.mjs` | Copies `DESIGN.md` into `contract.html` |
+| `sync-design-md-embed.ps1` / `.mjs` | Copies `DESIGN.md` into `design-md.html` |
 
 Use it in a page:
 
@@ -63,7 +63,7 @@ is the only file that touches `body`, headings, links, and `code`.
    That prose is what agents follow when a request is ambiguous.
 4. **Assets.** Replace `assets/mark.svg` and add your logos under
    `assets/logos/`.
-5. **Sync.** Run the sync script so `contract.html` carries the current
+5. **Sync.** Run the sync script so `design-md.html` carries the current
    contract:
 
 ```powershell
