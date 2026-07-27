@@ -1,0 +1,62 @@
+{
+  "$comment": "Fork surface. Agents: edit this file, then run `npm run customize` (node scripts/apply-brand.mjs). Do not hand-edit the generated regions in css/tokens.css or the DESIGN.md front-matter colour/name/type stacks — the script overwrites them. Prose below the front matter in DESIGN.md is still yours to rewrite.",
+  "name": "Example Brand",
+  "tagline": "Design system",
+  "description": "Core design system contract for Example Brand. Normative for marketing pages, product UI, dashboards, and admin chrome. This file is a template: replace the values and the brand-specific prose with your own, keep the token names, and prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.",
+  "placeholder": true,
+  "fonts": {
+    "displayName": "PT Serif",
+    "bodyName": "Lato",
+    "monoName": "JetBrains Mono",
+    "displayStack": "\"PT Serif\", Georgia, \"Times New Roman\", serif",
+    "bodyStack": "\"Lato\", system-ui, -apple-system, \"Segoe UI\", sans-serif",
+    "monoStack": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Consolas, monospace",
+    "googleImport": "https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap",
+    "weightRegular": 400,
+    "weightSemibold": 700,
+    "weightBold": 700
+  },
+  "colors": {
+    "paper": "#f1f5f9",
+    "paper-deep": "#e2e8f0",
+    "surface": "#ffffff",
+    "panel": "#e2e8f0",
+    "panel-deep": "#cbd5e1",
+    "panel-soft": "#f8fafc",
+    "ink": "#1e293b",
+    "ink-deep": "#0f172a",
+    "ink-muted": "#64748b",
+    "ink-soft": "#94a3b8",
+    "rule": "rgba(15, 23, 42, 0.12)",
+    "primary": "#0891b2",
+    "primary-deep": "#0e7490",
+    "primary-soft": "#cffafe",
+    "on-primary": "#ffffff",
+    "accent": "#e11d48",
+    "accent-soft": "#ffe4e6",
+    "on-accent": "#ffffff",
+    "primary-1": "#ecfeff",
+    "primary-2": "#a5f3fc",
+    "primary-3": "#06b6d4",
+    "primary-5": "#155e75",
+    "success": "#059669",
+    "success-soft": "#d1fae5",
+    "warning": "#d97706",
+    "warning-soft": "#ffedd5",
+    "danger": "#dc2626",
+    "danger-soft": "#fee2e2",
+    "surface-dark": "#0f172a",
+    "on-dark": "#f1f5f9",
+    "on-dark-muted": "rgba(241, 245, 249, 0.78)"
+  },
+  "rounded": {
+    "sm": "0.5rem",
+    "md": "0.75rem",
+    "lg": "1.125rem",
+    "pill": "999px"
+  },
+  "knobs": {
+    "buttonRadius": "var(--cds-radius-pill)",
+    "headingFont": "var(--cds-font-display)"
+  }
+}

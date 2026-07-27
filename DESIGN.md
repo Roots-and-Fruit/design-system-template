@@ -2,10 +2,7 @@
 version: 1.0.0
 name: Example Brand
 description: >-
-  Core design system contract for Example Brand. Normative for marketing pages,
-  product UI, dashboards, and admin chrome. This file is a template: replace the
-  values and the brand-specific prose with your own, keep the token names, and
-  prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.
+  Core design system contract for Example Brand. Normative for marketing pages, product UI, dashboards, and admin chrome. This file is a template: replace the values and the brand-specific prose with your own, keep the token names, and prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.
 colors:
   primary: "#0891b2"
   primary-deep: "#0e7490"
@@ -270,14 +267,16 @@ Surfaces this system must serve equally well:
 
 ## Make it yours
 
-Keep the token names. Change the values, then the prose.
+Keep the token names. Change the values via `brand.json`, then the prose.
 
-1. `css/tokens.css` — palette, font stacks, size ladder, radius, space ratio.
-2. `css/fonts.css` — your webfont source.
-3. This file — front matter values, then Overview, Colors, Typography, and
-   Do's and Don'ts in your own words.
-4. `assets/` — your marks, replacing the placeholder.
-5. Run `sync-design-md-embed.ps1` so `design-md.html` carries this contract.
+1. Edit `brand.json` (name, colours, fonts, radii). Set `placeholder` to false.
+2. Run `npm run customize` (applies tokens, fonts, this file's front matter,
+   HTML stamps, and the `design-md.html` embed).
+3. Rewrite Overview, Colors, Typography, and Do's and Don'ts below in your own
+   words. Do not hand-edit the generated colour / typography / rounded front
+   matter — customize overwrites those blocks.
+4. Replace `assets/` marks. Run customize again after prose edits.
+5. See `customize.html` and `AGENTS.md` Job B for the full agent checklist.
 
 Anything you do not customise stays a visible placeholder rather than a silent
 default, which is intentional.

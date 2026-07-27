@@ -1,0 +1,12 @@
+{
+  "name": "design-system-template",
+  "private": true,
+  "description": "Forkable core design system template. Edit brand.json, then npm run customize.",
+  "scripts": {
+    "customize": "node scripts/apply-brand.mjs",
+    "sync:design-md": "node sync-design-md-embed.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

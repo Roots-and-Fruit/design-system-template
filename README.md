@@ -30,16 +30,20 @@ rules in words, including the things a generator should never do.
 
 | File | Role |
 | --- | --- |
-| `DESIGN.md` | Canonical contract. Front matter holds the values, prose holds the rules |
+| `brand.json` | **Fork surface.** Name, colours, fonts, radii — edit this first |
+| `scripts/apply-brand.mjs` | Applies `brand.json` across tokens, DESIGN.md front matter, HTML stamps |
+| `DESIGN.md` | Canonical contract. Front matter (partly generated), prose holds the rules |
 | `css/cds.css` | Single entry point: fonts, tokens, base, layouts, components |
-| `css/tokens.css` | Palette, type ladder, space scale, radius, shadows, knobs |
+| `css/tokens.css` | Tokens; `@@brand` region is generated, scale/space/shadows below are hand-edited |
 | `css/base.css` | Element-level defaults. Skip this file when integrating into an existing site |
 | `css/layouts.css` | Stack, Center, Cluster, Grid |
 | `css/components.css` | Buttons, pills, alerts, surfaces, forms, tables, code, prose |
 | `css/kit.css` | Chrome for the reference site only. Not part of the system |
-| `index.html` and friends | Reference site: Overview, Colors, Typography, Layout, Components, DESIGN.md |
+| `customize.html` | Agent/human checklist for forking |
+| `index.html` and friends | Reference site pages |
+| `js/kit-swatches.js` | Fills colour chip labels from computed CSS variables |
 | `assets/` | Placeholder mark, plus a place for your logos |
-| `sync-design-md-embed.ps1` / `.mjs` | Copies `DESIGN.md` into `design-md.html` |
+| `sync-design-md-embed.ps1` / `.mjs` | Copies `DESIGN.md` into `design-md.html` (also run by customize) |
 
 Use it in a page:
 
@@ -53,26 +57,26 @@ is the only file that touches `body`, headings, links, and `code`.
 
 ## Make it yours
 
-1. **Tokens.** Edit `css/tokens.css`: palette, font stacks, size ladder, radius,
-   space ratio. Keep the token names. Roles like `--cds-primary` survive a
-   rebrand, so renaming them to brand words means editing the whole kit.
-2. **Fonts.** Point `css/fonts.css` at your webfont source and update the three
-   font stacks in `tokens.css`.
-3. **Contract.** Update the `DESIGN.md` front matter to match your tokens, then
-   rewrite Overview, Colors, Typography, and Do's and Don'ts in your own words.
-   That prose is what agents follow when a request is ambiguous.
-4. **Assets.** Replace `assets/mark.svg` and add your logos under
-   `assets/logos/`.
-5. **Sync.** Run the sync script so `design-md.html` carries the current
-   contract:
+Forks are meant to be applied by an agent. The mechanical path is one config
+file and one command; the prose still needs a real brand voice.
 
-```powershell
-.\sync-design-md-embed.ps1
-```
+1. **Edit `brand.json`.** Name, tagline, colours, font stacks, Google Fonts
+   import, radii. Set `"placeholder": false`. Keep the `--cds-*` token *names*
+   in CSS — only the values change.
+2. **Apply.** From the repo root (Node 18+, no install):
 
 ```bash
-node sync-design-md-embed.mjs
+npm run customize
 ```
+
+   That updates the generated token region, fonts import, `DESIGN.md` front
+   matter, sidebar/title stamps, and the DESIGN.md page embed.
+3. **Rewrite `DESIGN.md` prose** (Overview, Colors notes, Typography, Do's and
+   Don'ts). Run `npm run customize` again afterward so the embed matches.
+4. **Assets.** Replace `assets/mark.svg` and add logos under `assets/logos/`.
+
+Full checklist for agents: open **`customize.html`** in the reference site, or
+read **Job B** in `AGENTS.md`.
 
 Optional lint of the contract front matter:
 
@@ -84,6 +88,9 @@ Keep errors at zero. Some warnings are expected: the linter cannot see which
 tokens your CSS uses, so structural values like `rule` and `paper-deep` read as
 unreferenced, and it measures transparent buttons against nothing rather than
 against the page wash.
+
+**No build to view.** Serving or opening the HTML never requires `npm run
+customize`. That script is only for applying a fork.
 
 ### Two knobs worth knowing
 

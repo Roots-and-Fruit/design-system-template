@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Colors — Example Brand Design System</title>
+    <title data-brand-title="Colors">Colors — Example Brand Design System</title>
     <meta
       name="description"
       content="Colour roles, semantic states, and the primary ramp for the design system template."
@@ -23,9 +23,9 @@
               <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
               <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
             </svg>
-            <span>Example Brand</span>
+            <span data-brand="name">Example Brand</span>
           </a>
-          <p class="kit-sidebar__subtitle">Design system</p>
+          <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
         <nav class="kit-nav" aria-label="Design system sections">
           <a href="index.html">Overview</a>
@@ -34,6 +34,7 @@
           <a href="layout.html">Layout</a>
           <a href="components.html">Components</a>
           <a href="design-md.html">DESIGN.md</a>
+          <a href="customize.html">Customize</a>
         </nav>
         <div class="kit-credit">
           <p class="kit-credit__line">
@@ -86,27 +87,27 @@
             <h2>Brand</h2>
             <div class="cds-grid cds-grid--tight">
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-primary); color: var(--cds-on-primary)">#0891b2</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-primary" style="background: var(--cds-primary); color: var(--cds-on-primary)"></div>
                 <span class="kit-swatch__name">primary</span>
                 <span class="kit-swatch__note">Links, primary action, subheads</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-primary-deep); color: var(--cds-on-primary)">#0e7490</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-primary-deep" style="background: var(--cds-primary-deep); color: var(--cds-on-primary)"></div>
                 <span class="kit-swatch__name">primary-deep</span>
                 <span class="kit-swatch__note">Hover and pressed</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-primary-soft)">#cffafe</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-primary-soft" style="background: var(--cds-primary-soft)"></div>
                 <span class="kit-swatch__name">primary-soft</span>
                 <span class="kit-swatch__note">Soft fills, chips, selected</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-accent); color: var(--cds-on-accent)">#e11d48</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-accent" style="background: var(--cds-accent); color: var(--cds-on-accent)"></div>
                 <span class="kit-swatch__name">accent</span>
                 <span class="kit-swatch__note">One CTA per view; contrasts with primary</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-surface-dark); color: var(--cds-on-dark)">#0f172a</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-surface-dark" style="background: var(--cds-surface-dark); color: var(--cds-on-dark)"></div>
                 <span class="kit-swatch__name">surface-dark</span>
                 <span class="kit-swatch__note">Dark callout cards, hero bands</span>
               </div>
@@ -117,42 +118,42 @@
             <h2>Paper and ink</h2>
             <div class="cds-grid cds-grid--tight">
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-paper)">#f1f5f9</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-paper" style="background: var(--cds-paper)"></div>
                 <span class="kit-swatch__name">paper</span>
                 <span class="kit-swatch__note">Default page wash</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-paper-deep)">#e2e8f0</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-paper-deep" style="background: var(--cds-paper-deep)"></div>
                 <span class="kit-swatch__name">paper-deep</span>
                 <span class="kit-swatch__note">Alternating bands</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-surface)">#ffffff</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-surface" style="background: var(--cds-surface)"></div>
                 <span class="kit-swatch__name">surface</span>
                 <span class="kit-swatch__note">Cards, inputs</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-panel)">#e2e8f0</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-panel" style="background: var(--cds-panel)"></div>
                 <span class="kit-swatch__name">panel</span>
                 <span class="kit-swatch__note">Grouping without a shadow</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-panel-soft)">#f8fafc</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-panel-soft" style="background: var(--cds-panel-soft)"></div>
                 <span class="kit-swatch__name">panel-soft</span>
                 <span class="kit-swatch__note">Notes, code paper, table heads</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-ink); color: #fff">#1e293b</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-ink" style="background: var(--cds-ink); color: #fff"></div>
                 <span class="kit-swatch__name">ink</span>
                 <span class="kit-swatch__note">Body text</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-ink-deep); color: #fff">#0f172a</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-ink-deep" style="background: var(--cds-ink-deep); color: #fff"></div>
                 <span class="kit-swatch__name">ink-deep</span>
                 <span class="kit-swatch__note">Headings, ink on accent fills</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-ink-muted); color: #fff">#64748b</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-ink-muted" style="background: var(--cds-ink-muted); color: #fff"></div>
                 <span class="kit-swatch__name">ink-muted</span>
                 <span class="kit-swatch__note">Captions, helper text</span>
               </div>
@@ -167,20 +168,20 @@
             </p>
             <div class="cds-grid cds-grid--tight">
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-success); color: #fff">#059669</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-success" style="background: var(--cds-success); color: #fff"></div>
                 <span class="kit-swatch__name">success</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-warning); color: var(--cds-ink-deep)">#d97706</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-warning" style="background: var(--cds-warning); color: var(--cds-ink-deep)"></div>
                 <span class="kit-swatch__name">warning</span>
                 <span class="kit-swatch__note">Warm state colour, not brand</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-danger); color: #fff">#dc2626</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-danger" style="background: var(--cds-danger); color: #fff"></div>
                 <span class="kit-swatch__name">danger</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-info); color: #fff">#0891b2</div>
+                <div class="kit-swatch__chip" data-swatch="--cds-info" style="background: var(--cds-info); color: #fff"></div>
                 <span class="kit-swatch__name">info</span>
                 <span class="kit-swatch__note">Aliased to primary in the demo</span>
               </div>
@@ -201,7 +202,7 @@
               <span style="background: var(--cds-primary-4)"></span>
               <span style="background: var(--cds-primary-5)"></span>
             </div>
-            <p class="kit-caption">--cds-primary-1 … --cds-primary-5</p>
+            <p class="kit-caption">--cds-primary-1 â€¦ --cds-primary-5</p>
           </section>
 
           <section class="kit-section">
@@ -254,5 +255,6 @@
         </div>
       </main>
     </div>
+      <script src="js/kit-swatches.js"></script>
   </body>
 </html>

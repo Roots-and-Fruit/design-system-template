@@ -7,10 +7,11 @@
      Lato           — body, UI, tables
      JetBrains Mono — code only
 
-   Swapping families:
-   1. Replace the @import below with your own webfont source.
-   2. Update --cds-font-display / --cds-font-body / --cds-font-mono in tokens.css.
-   3. Update the typography block in DESIGN.md, then run sync-design-md-embed.ps1.
+   Swapping families (preferred):
+   1. Set fonts.* and fonts.googleImport in brand.json.
+   2. Run `npm run customize` — it rewrites this @import and the token stacks.
+
+   Manual fallback: replace the @import below, then keep brand.json in sync.
 
    Licensed fonts: if your family is not free to redistribute, do NOT commit the
    binaries to a public repo. Load them from a host you control and keep a
