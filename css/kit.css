@@ -191,13 +191,90 @@
   font-weight: var(--cds-weight-bold);
 }
 
-.kit-credit {
+/* —— Make it your own (above credits) —— */
+.kit-yours {
   margin-block-start: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--cds-space-2);
+  padding: var(--cds-space-2) var(--cds-space-3);
+  border-radius: var(--cds-radius-sm);
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink-muted);
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.kit-yours svg {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+  flex: none;
+}
+
+.kit-yours:hover {
+  color: var(--cds-primary-deep);
+  background: var(--cds-primary-soft);
+}
+
+.kit-yours[aria-current="page"] {
+  color: var(--cds-primary-deep);
+  background: var(--cds-primary-soft);
+  font-weight: var(--cds-weight-bold);
+}
+
+.kit-credit {
   display: flex;
   flex-direction: column;
   gap: var(--cds-space-1);
   font-size: var(--cds-text-sm);
   line-height: var(--cds-leading-ui);
+}
+
+/* Fake editor chrome for the agent prompt on Make it your own */
+.kit-prompt {
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+  overflow: hidden;
+  background: var(--cds-ink-deep);
+  box-shadow: var(--cds-shadow);
+}
+
+.kit-prompt__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.85rem;
+  background: color-mix(in srgb, var(--cds-ink-deep) 92%, white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.kit-prompt__chrome span {
+  inline-size: 0.65rem;
+  block-size: 0.65rem;
+  border-radius: 999px;
+  background: #ff5f57;
+}
+
+.kit-prompt__chrome span:nth-child(2) {
+  background: #febc2e;
+}
+
+.kit-prompt__chrome span:nth-child(3) {
+  background: #28c840;
+}
+
+.kit-prompt__body {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #e2e8f0;
+  padding: var(--cds-space-4) var(--cds-space-5);
+}
+
+.kit-prompt__body code {
+  color: inherit;
 }
 
 .kit-credit__line {
@@ -232,6 +309,12 @@
   .kit-sidebar__subtitle,
   .kit-credit {
     display: none;
+  }
+
+  .kit-yours {
+    margin-block-start: 0;
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   .kit-nav {

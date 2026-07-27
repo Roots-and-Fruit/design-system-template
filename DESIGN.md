@@ -276,7 +276,7 @@ Keep the token names. Change the values via `brand.json`, then the prose.
    words. Do not hand-edit the generated colour / typography / rounded front
    matter — customize overwrites those blocks.
 4. Replace `assets/` marks. Run customize again after prose edits.
-5. See `customize.html` and `AGENTS.md` Job B for the full agent checklist.
+5. See `CUSTOMIZE.md` and `AGENTS.md` Job B (entry UI: `customize.html`).
 
 Anything you do not customise stays a visible placeholder rather than a silent
 default, which is intentional.

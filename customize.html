@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title data-brand-title="Customize">Customize — Example Brand Design System</title>
+    <title data-brand-title="Make it your own">Make it your own — Example Brand Design System</title>
     <meta
       name="description"
-      content="Agent-oriented checklist for forking this design system template and applying a real brand."
+      content="Tell your agent to walk through the customization checklist and make this design system your brand."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -34,8 +34,18 @@
           <a href="layout.html">Layout</a>
           <a href="components.html">Components</a>
           <a href="design-md.html">DESIGN.md</a>
-          <a href="customize.html" aria-current="page">Customize</a>
         </nav>
+        <a class="kit-yours" href="customize.html" aria-current="page">
+          <!-- Lucide palette -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+          </svg>
+          <span>Make it your own</span>
+        </a>
         <div class="kit-credit">
           <p class="kit-credit__line">
             <svg class="kit-credit__mark" viewBox="0 0 227 222" aria-hidden="true" focusable="false">
@@ -59,154 +69,80 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head">
-            <p class="cds-meta">For agents and humans</p>
-            <h1>Customize</h1>
+            <p class="cds-meta">For you and your agent</p>
+            <h1>Make it your own</h1>
             <p class="cds-lede">
-              Forks should be applied by an agent reading this page and
-              <code>AGENTS.md</code>. Mechanical values live in one file.
-              Prose still needs a real brand voice.
+              This kit ships as Example Brand on purpose. The fastest way to
+              replace it is to hand the checklist to an agent and answer a few
+              short questions.
             </p>
           </header>
 
-          <div class="cds-alert cds-alert--note">
-            <strong>Start here</strong>
-            Edit <code>brand.json</code>, run <code>npm run customize</code>,
-            then finish the checklist below. Do not hand-edit the generated
-            region in <code>css/tokens.css</code> or the colour blocks in the
-            <code>DESIGN.md</code> front matter â€” the script overwrites them.
-          </div>
+          <section class="kit-section">
+            <h2>Start here</h2>
+            <p class="cds-prose" style="margin: 0">Simply tell your Agent:</p>
+            <div class="kit-prompt">
+              <div class="kit-prompt__chrome" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <pre class="cds-code kit-prompt__body"><code>Walk me through this project's customization checklist</code></pre>
+            </div>
+            <p class="cds-prose">
+              The agent should open <code>CUSTOMIZE.md</code> and
+              <code>AGENTS.md</code> (Job B), interview you for logos, colours,
+              and type, then apply <code>brand.json</code> with
+              <code>npm run customize</code>.
+            </p>
+          </section>
 
           <section class="kit-section">
-            <h2>Agent path (preferred)</h2>
+            <h2>What you will be asked</h2>
             <div class="cds-table-wrap">
               <table class="cds-table">
                 <thead>
                   <tr>
-                    <th scope="col">Step</th>
-                    <th scope="col">Do this</th>
-                    <th scope="col">Done when</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">You bring</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>
-                      Open <code>brand.json</code>. Set
-                      <code>name</code>, <code>tagline</code>,
-                      <code>description</code>, <code>colors</code>,
-                      <code>fonts</code>, <code>rounded</code>. Set
-                      <code>placeholder</code> to <code>false</code>.
-                    </td>
-                    <td>Values match the real brand</td>
+                    <td>Logos</td>
+                    <td>Files into <code>assets/</code> and <code>assets/logos/</code></td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td>
-                      Run <code>npm run customize</code> (or
-                      <code>node scripts/apply-brand.mjs</code>). No npm
-                      install required.
-                    </td>
-                    <td>
-                      Script exits 0; tokens, fonts import, DESIGN.md front
-                      matter, sidebar name, and embed are updated
-                    </td>
+                    <td>Name and feel</td>
+                    <td>Brand name plus one or two sentences of voice</td>
                   </tr>
                   <tr>
                     <td>3</td>
-                    <td>
-                      Rewrite <code>DESIGN.md</code> prose: Overview, Colors
-                      pairing notes if needed, Typography voice, Do&rsquo;s and
-                      Don&rsquo;ts. Keep token <em>names</em>.
-                    </td>
-                    <td>No &ldquo;Example Brand&rdquo; in the prose</td>
+                    <td>Colours</td>
+                    <td>An existing palette, or a vibe and one must-use colour</td>
                   </tr>
                   <tr>
                     <td>4</td>
-                    <td>
-                      Run <code>npm run customize</code> again (or
-                      <code>npm run sync:design-md</code>) so
-                      <code>design-md.html</code> carries the new prose.
-                    </td>
-                    <td>DESIGN.md page shows the new copy</td>
+                    <td>Fonts</td>
+                    <td>Brand type, or permission to keep / pick open fonts</td>
                   </tr>
                   <tr>
                     <td>5</td>
-                    <td>
-                      Replace <code>assets/mark.svg</code> and add logos under
-                      <code>assets/logos/</code>. Update the inlined mark in
-                      each page&rsquo;s sidebar if you want the chrome to match.
-                    </td>
-                    <td>Placeholder geometry is gone</td>
+                    <td>Shape (optional)</td>
+                    <td>Pill vs square buttons; serif vs sans headings</td>
                   </tr>
                   <tr>
                     <td>6</td>
-                    <td>
-                      Optional:
-                      <code>npx -p "@google/design.md" designmd lint DESIGN.md</code>
-                    </td>
-                    <td>Errors at zero</td>
+                    <td>Apply</td>
+                    <td>Agent runs customize and rewrites <code>DESIGN.md</code> prose</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-          </section>
-
-          <section class="kit-section">
-            <h2>Source of truth map</h2>
-            <div class="cds-table-wrap">
-              <table class="cds-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Concern</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Generated / derived</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Name, colours, font stacks, radii</td>
-                    <td><code>brand.json</code></td>
-                    <td>
-                      <code>css/tokens.css</code> (@@brand region),
-                      <code>css/fonts.css</code> import,
-                      <code>DESIGN.md</code> front matter,
-                      <code>[data-brand]</code> HTML stamps
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Rules, voice, do&rsquo;s and don&rsquo;ts</td>
-                    <td><code>DESIGN.md</code> prose</td>
-                    <td><code>design-md.html</code> embed after sync</td>
-                  </tr>
-                  <tr>
-                    <td>Size ladder, space scale, shadows</td>
-                    <td><code>css/tokens.css</code> below @@brand</td>
-                    <td>â€”</td>
-                  </tr>
-                  <tr>
-                    <td>Components and layouts</td>
-                    <td><code>css/components.css</code>, <code>layouts.css</code></td>
-                    <td>Specimens on the reference pages</td>
-                  </tr>
-                  <tr>
-                    <td>Colour chip hex labels</td>
-                    <td>â€”</td>
-                    <td>
-                      Computed live from CSS variables via
-                      <code>js/kit-swatches.js</code>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section class="kit-section">
-            <h2>What viewing does not require</h2>
             <p class="cds-prose">
-              Opening <code>index.html</code> or running
-              <code>npx serve .</code> never needs a build step. The customize
-              script is only for applying a fork. Keep it that way.
+              Full wording for agents lives in <code>CUSTOMIZE.md</code> next to
+              <code>brand.json</code> in this repo.
             </p>
           </section>
 

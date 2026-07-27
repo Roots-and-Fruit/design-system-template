@@ -6,7 +6,7 @@ job you are doing first.
 | Job | When | Open first |
 | --- | --- | --- |
 | **A — Build UI** | Implementing screens with this system | `DESIGN.md` |
-| **B — Customize a fork** | Applying a real brand to a clone | `brand.json` + `customize.html` |
+| **B — Customize a fork** | Applying a real brand to a clone | `CUSTOMIZE.md` |
 | **C — Change the template** | Editing the kit itself (components, docs chrome) | this file, then the matching CSS/HTML |
 
 Most fork work is **Job B**. Do not skip the customize script and hand-edit
@@ -29,12 +29,17 @@ generated regions.
 
 ## Job B: customize a fork for a real brand
 
-This is the path almost every fork should take. Humans and agents both follow
-the checklist on `customize.html`; this section is the machine-readable twin.
+When the user says anything like "Walk me through this project's customization
+checklist" or "make this my brand", this job is active.
 
-1. **Edit `brand.json` only** for name, tagline, description, colours, font
-   stacks / Google Fonts import, radii, and knobs. Set `"placeholder": false`.
-2. **Run the apply script** (zero install):
+1. **Open `CUSTOMIZE.md`.** It is the bare-minimum interview. Walk the human
+   through it top to bottom (logos → name/feel → colours → fonts → optional
+   shape knobs → apply). Ask; do not invent a logo or palette when they have
+   not answered.
+2. **Write answers into `brand.json`.** Set `"placeholder": false`. Keep
+   `--cds-*` token *names*; only values change. Accent must contrast with
+   primary; do not alias accent to warning or danger.
+3. **Run the apply script** (zero install):
 
 ```bash
 npm run customize
@@ -48,16 +53,16 @@ node scripts/apply-brand.mjs
    `css/fonts.css`, regenerates the `DESIGN.md` front matter (name, colours,
    type stacks, radii), stamps `[data-brand]` fields in the HTML pages, and
    syncs `design-md.html`.
-3. **Rewrite `DESIGN.md` prose** below the front matter (Overview, pairing
-   notes if the harmony changed, Typography voice, Do's and Don'ts). Keep token
-   names. Do not hand-edit the colour / typography / rounded front-matter blocks
-   the script owns — your next customize run will overwrite them.
-4. **Run `npm run customize` again** (or `npm run sync:design-md`) after prose
-   edits so the embed matches.
-5. **Replace assets** under `assets/`. The sidebar mark is inlined in each HTML
-   page; update those copies if the chrome should show the new mark.
-6. **Stop when** `placeholder` is false, leftover `"Example Brand"` strings are
-   gone from prose (the script reports leftovers), and specimens look right.
+4. **Rewrite `DESIGN.md` prose** below the front matter so it no longer
+   describes Example Brand. Do not hand-edit the colour / typography / rounded
+   front-matter blocks the script owns.
+5. **Wire assets** from `assets/` / `assets/logos/` into the reference chrome
+   (sidebar mark is inlined per page; favicon points at `assets/mark.svg`).
+6. **Run `npm run customize` again** after prose edits. Confirm the sidebar
+   name, Colors chips, and Typography families match the brand.
+
+Human-facing entry: `customize.html` ("Make it your own") with a copy-paste
+prompt. Procedural detail: this Job B + `CUSTOMIZE.md`.
 
 Source of truth map:
 
@@ -85,14 +90,16 @@ Edit in this order so the pieces stay in sync:
 
 ## Boundaries
 
-- `brand.json` is the fork surface. The `@@brand` region in `css/tokens.css` is
-  generated — never hand-edit it.
+- `CUSTOMIZE.md` is the fork interview. `brand.json` is the mechanical fork
+  surface. The `@@brand` region in `css/tokens.css` is generated — never
+  hand-edit it.
 - `DESIGN.md` prose is the source of truth for rules. The markdown inside
   `<code id="design-md-source">` in `design-md.html` is a generated copy.
 - `css/kit.css` and `js/kit-swatches.js` are reference-site chrome only.
 - The sidebar markup is duplicated across pages on purpose (no build step).
-  Brand **strings** are stamped via `[data-brand]`; structural nav changes still
-  need every HTML file updated (or a small patch script).
+  Brand **strings** are stamped via `[data-brand]`. The "Make it your own"
+  link (`.kit-yours`) sits above the credit on every page; keep that placement
+  if you edit nav chrome.
 - `css/base.css` is the only file allowed to style bare tags.
 - Prefixes: system `cds-`, reference chrome `kit-`.
 - Example Brand is a placeholder. Do not evolve it into a real identity inside

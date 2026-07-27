@@ -39,7 +39,8 @@ rules in words, including the things a generator should never do.
 | `css/layouts.css` | Stack, Center, Cluster, Grid |
 | `css/components.css` | Buttons, pills, alerts, surfaces, forms, tables, code, prose |
 | `css/kit.css` | Chrome for the reference site only. Not part of the system |
-| `customize.html` | Agent/human checklist for forking |
+| `customize.html` | "Make it your own" — prompt to hand an agent |
+| `CUSTOMIZE.md` | Bare-minimum interview checklist agents walk through |
 | `index.html` and friends | Reference site pages |
 | `js/kit-swatches.js` | Fills colour chip labels from computed CSS variables |
 | `assets/` | Placeholder mark, plus a place for your logos |
@@ -75,8 +76,8 @@ npm run customize
    Don'ts). Run `npm run customize` again afterward so the embed matches.
 4. **Assets.** Replace `assets/mark.svg` and add logos under `assets/logos/`.
 
-Full checklist for agents: open **`customize.html`** in the reference site, or
-read **Job B** in `AGENTS.md`.
+Start from **Make it your own** in the reference site (`customize.html`), or
+have an agent open **`CUSTOMIZE.md`** and follow **Job B** in `AGENTS.md`.
 
 Optional lint of the contract front matter:
 
