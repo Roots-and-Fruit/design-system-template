@@ -74,6 +74,11 @@ Optional lint of the contract front matter:
 npx -p "@google/design.md" designmd lint DESIGN.md
 ```
 
+Keep errors at zero. Some warnings are expected: the linter cannot see which
+tokens your CSS uses, so structural values like `rule` and `paper-deep` read as
+unreferenced, and it measures transparent buttons against nothing rather than
+against the page wash.
+
 ### Two knobs worth knowing
 
 Button shape and heading font are single variables in `tokens.css`, so a large

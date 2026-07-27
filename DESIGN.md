@@ -140,7 +140,6 @@ components:
   button-outline:
     backgroundColor: transparent
     textColor: "{colors.primary}"
-    borderColor: "{colors.primary}"
     rounded: "{rounded.pill}"
     padding: 0.7rem 1.15rem
   button-accent:
@@ -208,6 +207,21 @@ components:
   pill-active:
     backgroundColor: "{colors.primary-soft}"
     textColor: "{colors.primary-deep}"
+    rounded: "{rounded.pill}"
+    padding: 0.25rem 0.65rem
+  pill-success:
+    backgroundColor: "{colors.success-soft}"
+    textColor: "{colors.success}"
+    rounded: "{rounded.pill}"
+    padding: 0.25rem 0.65rem
+  pill-warning:
+    backgroundColor: "{colors.warning-soft}"
+    textColor: "{colors.ink-deep}"
+    rounded: "{rounded.pill}"
+    padding: 0.25rem 0.65rem
+  pill-danger:
+    backgroundColor: "{colors.danger-soft}"
+    textColor: "{colors.danger}"
     rounded: "{rounded.pill}"
     padding: 0.25rem 0.65rem
   table-header:
@@ -403,7 +417,8 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 **Buttons**
 - `button-primary` (`.cds-btn--primary`): the main action. One per section.
 - `button-secondary` (`.cds-btn--secondary`): panel fill for secondary actions.
-- `button-outline` (`.cds-btn--outline`): low-emphasis outlined action.
+- `button-outline` (`.cds-btn--outline`): low-emphasis action, transparent fill
+  with a `primary` border and `primary` label.
 - `button-accent` (`.cds-btn--accent`): at most one high-stakes CTA per view
   (Buy, Book, Submit final). Dark ink on the accent fill, never white. Hover
   lightens toward paper so contrast improves.
@@ -425,6 +440,11 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 - `surface-panel`: grouping without a card shadow
 - `surface-dark`: one dark callout per section at most; muted white body copy
 - Do not wrap every block in a shadowed card
+
+**Pills**
+- `pill`: default panel fill, for compact status and tags
+- `pill-active` (`.cds-pill--active` or `.cds-pill.is-active`): selected state
+- `pill-success` / `pill-warning` / `pill-danger`: soft semantic fills, state only
 
 **Feedback**
 - Pills for compact status, alerts for full-sentence messages
