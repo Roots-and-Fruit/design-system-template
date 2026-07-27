@@ -12,43 +12,45 @@
 
 :root {
   /* —— Paper & ink ——————————————————————————————————————————————————— */
-  --cds-paper: #f4f6f8; /* default page wash */
-  --cds-paper-deep: #e9edf2; /* alternating page bands */
+  --cds-paper: #f1f5f9; /* default page wash (cool slate) */
+  --cds-paper-deep: #e2e8f0; /* alternating page bands */
   --cds-surface: #ffffff; /* cards, inputs, lifted modules */
-  --cds-panel: #dfe5ec; /* grouping without a card shadow */
-  --cds-panel-deep: #cdd6e0; /* panel borders, pressed states */
-  --cds-panel-soft: #eef1f5; /* quietest fill (notes, code paper) */
+  --cds-panel: #e2e8f0; /* grouping without a card shadow */
+  --cds-panel-deep: #cbd5e1; /* panel borders, pressed states */
+  --cds-panel-soft: #f8fafc; /* quietest fill (notes, code paper) */
 
-  --cds-ink: #1a1d24; /* body text */
-  --cds-ink-deep: #0f1218; /* headings, text on light accent fills */
-  --cds-ink-muted: #565f6b; /* captions, helper text, secondary copy */
-  --cds-ink-soft: #8a929c; /* meta only — never body copy */
-  --cds-rule: rgba(26, 29, 36, 0.14); /* hairlines and quiet borders */
+  --cds-ink: #1e293b; /* body text */
+  --cds-ink-deep: #0f172a; /* headings, text on light accent fills */
+  --cds-ink-muted: #64748b; /* captions, helper text, secondary copy */
+  --cds-ink-soft: #94a3b8; /* meta only — never body copy */
+  --cds-rule: rgba(15, 23, 42, 0.12); /* hairlines and quiet borders */
 
   /* —— Brand accents ——————————————————————————————————————————————— */
-  --cds-primary: #2f5f8a; /* links, primary action, accent subheads */
-  --cds-primary-deep: #234a6d; /* primary hover / pressed */
-  --cds-primary-soft: #d9e6f2; /* soft fills, chips, selected states */
+  /* Cyan from a dark kit, deepened so white label text stays AA on fills. */
+  --cds-primary: #0891b2; /* links, primary action, accent subheads */
+  --cds-primary-deep: #0e7490; /* primary hover / pressed */
+  --cds-primary-soft: #cffafe; /* soft fills, chips, selected states */
   --cds-on-primary: #ffffff; /* text on primary fills */
 
-  --cds-accent: #c9781e; /* rare high-stakes CTA, emphasis rules */
-  --cds-accent-soft: #f7e5cd; /* accent wash */
+  --cds-accent: #d97706; /* rare high-stakes CTA, emphasis rules */
+  --cds-accent-soft: #ffedd5; /* accent wash */
   --cds-on-accent: var(--cds-ink-deep); /* dark ink on accent — not white */
 
-  /* Primary ramp — charts, illustrations, progressive emphasis. */
-  --cds-primary-1: #d3e2ef;
-  --cds-primary-2: #9dbdd8;
-  --cds-primary-3: #6592b8;
+  /* Primary ramp — charts, illustrations, progressive emphasis.
+     Step 3 is the brighter cyan (#06b6d4) from the inspiration kit. */
+  --cds-primary-1: #ecfeff;
+  --cds-primary-2: #a5f3fc;
+  --cds-primary-3: #06b6d4;
   --cds-primary-4: var(--cds-primary);
-  --cds-primary-5: #1e3f5d;
+  --cds-primary-5: #155e75;
 
   /* —— Semantic ————————————————————————————————————————————————————— */
-  --cds-success: #2f7d55;
-  --cds-success-bg: #dcefe4;
+  --cds-success: #059669;
+  --cds-success-bg: #d1fae5;
   --cds-warning: var(--cds-accent);
   --cds-warning-bg: var(--cds-accent-soft);
-  --cds-danger: #a33b2b;
-  --cds-danger-bg: #f6e0dc;
+  --cds-danger: #dc2626;
+  --cds-danger-bg: #fee2e2;
   --cds-info: var(--cds-primary); /* alias while primary reads informational.
                                      If your primary is warm or playful, give
                                      info its own cool hue here. */
@@ -61,13 +63,13 @@
   --cds-chart-4: var(--cds-ink-muted);
 
   /* —— Dark surface —————————————————————————————————————————————————— */
-  --cds-surface-dark: #1e3f5d;
-  --cds-on-dark: #ffffff;
-  --cds-on-dark-muted: rgba(255, 255, 255, 0.78);
+  --cds-surface-dark: #0f172a;
+  --cds-on-dark: #f1f5f9;
+  --cds-on-dark-muted: rgba(241, 245, 249, 0.78);
 
   /* —— Type ————————————————————————————————————————————————————————— */
-  --cds-font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --cds-font-body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cds-font-display: "PT Serif", Georgia, "Times New Roman", serif;
+  --cds-font-body: "Lato", system-ui, -apple-system, "Segoe UI", sans-serif;
   --cds-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
 
   /* Size ladder. `sm` is the demo floor: raise or lower it here rather than
@@ -87,8 +89,9 @@
   --cds-leading-callout: 1.5;
   --cds-leading-ui: 1.35;
 
+  /* Lato has no 600 cut on Google Fonts, so semibold maps to 700. */
   --cds-weight-regular: 400;
-  --cds-weight-semibold: 600;
+  --cds-weight-semibold: 700;
   --cds-weight-bold: 700;
 
   --cds-tracking-display: -0.015em;
@@ -112,13 +115,13 @@
   --cds-gutter: var(--cds-space-5);
 
   /* —— Shape & depth ———————————————————————————————————————————————— */
-  --cds-radius-sm: 0.375rem;
-  --cds-radius: 0.625rem;
-  --cds-radius-lg: 1rem;
+  --cds-radius-sm: 0.5rem;
+  --cds-radius: 0.75rem;
+  --cds-radius-lg: 1.125rem;
   --cds-radius-pill: 999px;
 
-  --cds-shadow: 0 2px 12px rgba(26, 29, 36, 0.06);
-  --cds-shadow-md: 0 8px 28px rgba(26, 29, 36, 0.1);
+  --cds-shadow: 0 2px 14px rgba(15, 23, 42, 0.06);
+  --cds-shadow-md: 0 10px 32px rgba(15, 23, 42, 0.1);
   --cds-focus: 0 0 0 3px color-mix(in srgb, var(--cds-primary) 38%, transparent);
 
   /* —— Knobs ———————————————————————————————————————————————————————— */

@@ -72,12 +72,12 @@
             <h2>Families</h2>
             <div class="cds-grid" style="--cds-grid-min: 17rem">
               <div class="cds-surface">
-                <h3>Source Serif 4</h3>
+                <h3>PT Serif</h3>
                 <p>Display and titles. Tracking tightens slightly at large sizes.</p>
                 <p class="kit-caption">--cds-font-display</p>
               </div>
               <div class="cds-surface">
-                <h3 style="font-family: var(--cds-font-body)">Source Sans 3</h3>
+                <h3 style="font-family: var(--cds-font-body)">Lato</h3>
                 <p>Body copy, UI labels, tables, forms, and meta.</p>
                 <p class="kit-caption">--cds-font-body</p>
               </div>
@@ -104,7 +104,7 @@
                 Section heading
               </p>
               <span class="kit-caption">2xl · 36px · leading-display</span>
-              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-xl); line-height: var(--cds-leading-snug); letter-spacing: var(--cds-tracking-display); font-weight: 600; margin: 0; color: var(--cds-primary)">
+              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-xl); line-height: var(--cds-leading-snug); letter-spacing: var(--cds-tracking-display); font-weight: 700; margin: 0; color: var(--cds-primary)">
                 Accent subhead
               </p>
               <span class="kit-caption">xl · 28px · leading-snug · primary</span>
@@ -197,15 +197,16 @@
                   </thead>
                   <tbody>
                     <tr><td><code>regular</code></td><td>400</td><td>Body copy</td></tr>
-                    <tr><td><code>semibold</code></td><td>600</td><td>Labels, buttons, subheads</td></tr>
+                    <tr><td><code>semibold</code></td><td>700</td><td>Labels, buttons, subheads (maps to bold in the demo)</td></tr>
                     <tr><td><code>bold</code></td><td>700</td><td>Display titles, meta</td></tr>
                   </tbody>
                 </table>
               </div>
             </div>
             <p class="cds-prose">
-              Three weights only. Prefer semibold before bold for UI chrome, and
-              do not introduce 500 or 800 without adding a token for it.
+              The demo uses 400 and 700 because Lato has no 600 cut on Google
+              Fonts. Prefer the emphasis weight for UI chrome, and do not
+              introduce 500 or 800 without adding a token for it.
             </p>
           </section>
 

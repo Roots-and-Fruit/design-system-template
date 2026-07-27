@@ -7,82 +7,82 @@ description: >-
   values and the brand-specific prose with your own, keep the token names, and
   prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.
 colors:
-  primary: "#2f5f8a"
-  primary-deep: "#234a6d"
-  primary-soft: "#d9e6f2"
-  accent: "#c9781e"
-  accent-soft: "#f7e5cd"
-  paper: "#f4f6f8"
-  paper-deep: "#e9edf2"
+  primary: "#0891b2"
+  primary-deep: "#0e7490"
+  primary-soft: "#cffafe"
+  accent: "#d97706"
+  accent-soft: "#ffedd5"
+  paper: "#f1f5f9"
+  paper-deep: "#e2e8f0"
   surface: "#ffffff"
-  panel: "#dfe5ec"
-  panel-deep: "#cdd6e0"
-  panel-soft: "#eef1f5"
-  ink: "#1a1d24"
-  ink-deep: "#0f1218"
-  ink-muted: "#565f6b"
-  ink-soft: "#8a929c"
-  rule: "rgba(26, 29, 36, 0.14)"
-  success: "#2f7d55"
-  success-soft: "#dcefe4"
-  warning: "#c9781e"
-  warning-soft: "#f7e5cd"
-  danger: "#a33b2b"
-  danger-soft: "#f6e0dc"
-  info: "#2f5f8a"
-  info-soft: "#d9e6f2"
-  surface-dark: "#1e3f5d"
+  panel: "#e2e8f0"
+  panel-deep: "#cbd5e1"
+  panel-soft: "#f8fafc"
+  ink: "#1e293b"
+  ink-deep: "#0f172a"
+  ink-muted: "#64748b"
+  ink-soft: "#94a3b8"
+  rule: "rgba(15, 23, 42, 0.12)"
+  success: "#059669"
+  success-soft: "#d1fae5"
+  warning: "#d97706"
+  warning-soft: "#ffedd5"
+  danger: "#dc2626"
+  danger-soft: "#fee2e2"
+  info: "#0891b2"
+  info-soft: "#cffafe"
+  surface-dark: "#0f172a"
   on-primary: "#ffffff"
-  on-accent: "#0f1218"
-  on-dark: "#ffffff"
-  on-dark-muted: "rgba(255, 255, 255, 0.78)"
+  on-accent: "#0f172a"
+  on-dark: "#f1f5f9"
+  on-dark-muted: "rgba(241, 245, 249, 0.78)"
 typography:
   display-xl:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
+    fontFamily: PT Serif, Georgia, Times New Roman, serif
     fontSize: 3.5rem
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: -0.015em
   display-lg:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
+    fontFamily: PT Serif, Georgia, Times New Roman, serif
     fontSize: 3rem
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: -0.015em
   display-md:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
+    fontFamily: PT Serif, Georgia, Times New Roman, serif
     fontSize: 2.25rem
     fontWeight: 700
     lineHeight: 1.1
     letterSpacing: -0.015em
   display-sm:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
+    fontFamily: PT Serif, Georgia, Times New Roman, serif
     fontSize: 1.75rem
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.15
     letterSpacing: -0.015em
   body-lg:
-    fontFamily: Source Sans 3, system-ui, sans-serif
+    fontFamily: Lato, system-ui, sans-serif
     fontSize: 1.375rem
     fontWeight: 400
     lineHeight: 1.5
   body-md:
-    fontFamily: Source Sans 3, system-ui, sans-serif
+    fontFamily: Lato, system-ui, sans-serif
     fontSize: 1.125rem
     fontWeight: 400
     lineHeight: 1.6
   body-sm:
-    fontFamily: Source Sans 3, system-ui, sans-serif
+    fontFamily: Lato, system-ui, sans-serif
     fontSize: 1rem
     fontWeight: 400
     lineHeight: 1.35
   label:
-    fontFamily: Source Sans 3, system-ui, sans-serif
+    fontFamily: Lato, system-ui, sans-serif
     fontSize: 1rem
-    fontWeight: 600
+    fontWeight: 700
     lineHeight: 1.35
   meta:
-    fontFamily: Source Sans 3, system-ui, sans-serif
+    fontFamily: Lato, system-ui, sans-serif
     fontSize: 1rem
     fontWeight: 700
     lineHeight: 1.35
@@ -93,9 +93,9 @@ typography:
     fontWeight: 400
     lineHeight: 1.55
 rounded:
-  sm: 0.375rem
-  md: 0.625rem
-  lg: 1rem
+  sm: 0.5rem
+  md: 0.75rem
+  lg: 1.125rem
   pill: 999px
 spacing:
   1: 0.25rem
@@ -248,8 +248,8 @@ system renders and reads as a finished thing on first clone. Replace this
 section with your own brand in two or three sentences: who it serves, how it
 should feel, and what it must never look like.
 
-The demo identity is deliberately plain: cool paper, near-black ink, one
-slate-blue primary, and a single amber accent used sparingly. Serif for voice,
+The demo identity is light and easy on the eyes: cool slate paper, navy ink,
+one cyan primary, and a single amber accent used sparingly. Serif for voice,
 sans for clarity.
 
 This file is normative. Agents and generators must read it before choosing
@@ -321,9 +321,10 @@ Rules:
 ## Typography
 
 Three families, one job each:
-- **Display serif** (`Source Serif 4`): titles, section headings, accent
-  subheads. Tracking `--cds-tracking-display`.
-- **Body sans** (`Source Sans 3`): body copy, UI labels, tables, forms, meta.
+- **Display serif** (`PT Serif`): titles, section headings, accent subheads.
+  Tracking `--cds-tracking-display`.
+- **Body sans** (`Lato`): body copy, UI labels, tables, forms, meta. The demo
+  maps semibold to 700 because Lato has no 600 cut on Google Fonts.
 - **Mono** (`JetBrains Mono`): code only, never marketing body copy.
 
 Size ladder (`--cds-text-*`):
@@ -346,7 +347,8 @@ display, `--cds-leading-snug` (1.15) for short titles, `--cds-leading-body`
 (1.6) for reading, `--cds-leading-callout` (1.5) for contained copy, and
 `--cds-leading-ui` (1.35) for compact UI.
 
-Weights are 400, 600, and 700 only. Prefer semibold before bold for UI chrome,
+Weights are 400 and 700 in the demo (Lato has no 600 cut). Prefer the
+  emphasis weight for UI chrome before inventing a third weight,
 and do not introduce 500 or 800 without adding a token for it.
 
 Rules:

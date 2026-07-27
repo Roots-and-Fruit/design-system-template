@@ -137,7 +137,7 @@ human readable.
 MIT. The kit, the placeholder mark, and the sample palette are free to use and
 modify. The brand you build with it is yours.
 
-Demo fonts (Source Serif 4, Source Sans 3, JetBrains Mono) are open licensed and
+Demo fonts (PT Serif, Lato, JetBrains Mono) are open licensed and
 loaded from Google Fonts. If you swap in a licensed family, do not commit the
 binaries to a public repository. Load them from a host you control and keep a
 system fallback in the stack.
