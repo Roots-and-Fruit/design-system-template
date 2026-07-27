@@ -89,8 +89,8 @@ colors:
   primary: &quot;#0891b2&quot;
   primary-deep: &quot;#0e7490&quot;
   primary-soft: &quot;#cffafe&quot;
-  accent: &quot;#4f46e5&quot;
-  accent-soft: &quot;#e0e7ff&quot;
+  accent: &quot;#e11d48&quot;
+  accent-soft: &quot;#ffe4e6&quot;
   paper: &quot;#f1f5f9&quot;
   paper-deep: &quot;#e2e8f0&quot;
   surface: &quot;#ffffff&quot;
@@ -328,8 +328,8 @@ section with your own brand in two or three sentences: who it serves, how it
 should feel, and what it must never look like.
 
 The demo identity is light and easy on the eyes: cool slate paper, navy ink,
-one cyan primary, and a single indigo accent used sparingly. Serif for voice,
-sans for clarity.
+one cyan primary, and a single rose accent used sparingly for contrast. Serif
+for voice, sans for clarity.
 
 This file is normative. Agents and generators must read it before choosing
 colour, type, radius, or components, and must map values to the CSS custom
@@ -384,15 +384,18 @@ Semantic roles. Use these names in reasoning; hex values live in front matter.
 | Success / Warning / Danger / Info | semantic | Status only, not decoration |
 
 **How primary and accent relate.** Brand colours need a deliberate relationship,
-not a second random favourite. The common options:
+not a second random favourite. For this kit, **accent must contrast with
+primary** so a rare high-stakes CTA can cut through a cyan-led page. The common
+options:
 
-- **Analogous** (neighbours on the wheel): calm and cohesive. The demo uses
-  this: cyan primary + indigo accent, both cool.
-- **Complementary** (opposites): maximum pop. Cyan&#39;s opposite is warm orange,
-  which is why that pair feels loud and why orange is reserved for `warning`
-  here instead of brand accent.
-- **Split-complementary / triadic**: more energy than analogous, less clash
-  than a straight complement. Useful when you need a third brand hue.
+- **Complementary / near-complementary** (opposites or near-opposites): maximum
+  pop. The demo uses this: cyan primary + rose accent. Warm amber stays on
+  `warning`, and red stays on `danger`, so the brand CTA does not look like a
+  status colour.
+- **Analogous** (neighbours on the wheel): calm and cohesive, but a weak choice
+  for accent if the job of accent is to stand out.
+- **Split-complementary / triadic**: more energy than analogous, slightly less
+  clash than a straight complement. Useful when you need a third brand hue.
 
 Product systems also separate **brand roles** (primary, secondary/accent) from
 **semantic roles** (success, warning, danger, info). Do not let a brand accent
@@ -405,6 +408,8 @@ interactive primer:
 
 Rules:
 - Default stack is `paper` background, `ink` text, `primary` for interaction
+- `accent` must read as a contrast to `primary` (complementary or near-
+  complementary). Do not pick a neighbour hue and call it accent
 - Text on a filled surface uses its paired `on-*` token: `on-primary` on primary
   fills, `on-accent` on accent fills, `on-dark` on `surface-dark`. Recheck AA
   whenever you change an accent hue

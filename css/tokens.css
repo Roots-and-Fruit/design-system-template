@@ -32,11 +32,11 @@
   --cds-primary-soft: #cffafe; /* soft fills, chips, selected states */
   --cds-on-primary: #ffffff; /* text on primary fills */
 
-  /* Accent sits next to primary on the colour wheel (analogous / cool family),
-     not opposite it. Complementary warm orange is reserved for warning. */
-  --cds-accent: #4f46e5; /* rare high-stakes CTA, emphasis rules */
-  --cds-accent-soft: #e0e7ff; /* accent wash */
-  --cds-on-accent: #ffffff; /* light label on indigo — check AA if you recolour */
+  /* Accent contrasts with primary (near-complementary). Rose sits opposite
+     cyan on the wheel without colliding with amber warning or red danger. */
+  --cds-accent: #e11d48; /* rare high-stakes CTA, emphasis rules */
+  --cds-accent-soft: #ffe4e6; /* accent wash */
+  --cds-on-accent: #ffffff; /* light label — check AA if you recolour */
 
   /* Primary ramp — charts, illustrations, progressive emphasis.
      Step 3 is the brighter cyan (#06b6d4) from the inspiration kit. */
