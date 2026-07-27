@@ -57,8 +57,12 @@ node sync-design-md-embed.mjs
 
 ## Credit
 
-The sidebar carries a small "A Roots & Fruit system" credit that links back to
-this template. Leaving it in place is a kind thing to do, and it is how other
-people find the kit. If it does not fit the site you are building, remove it
-with no hard feelings, and a shout-out on social instead is genuinely
-appreciated.
+The sidebar carries a small "A Roots & Fruit system" credit with the Roots &
+Fruit mark inlined, linking back to this template. Leaving it in place is a kind
+thing to do, and it is how other people find the kit. If it does not fit the
+site you are building, remove it with no hard feelings, and a shout-out on
+social instead is genuinely appreciated.
+
+That mark is the one intentionally brand-specific asset in the repo. It is
+attribution, so do not restyle it with `--cds-*` colours or treat it as part of
+Example Brand.

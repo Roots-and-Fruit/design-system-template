@@ -200,9 +200,18 @@
   line-height: var(--cds-leading-ui);
 }
 
-.kit-credit p {
+.kit-credit__line {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--cds-space-2);
   color: var(--cds-ink-soft);
+}
+
+.kit-credit__mark {
+  inline-size: 1.25rem;
+  block-size: auto;
+  flex: none;
 }
 
 .kit-credit strong {
