@@ -68,6 +68,21 @@
             </p>
           </header>
 
+          <div class="cds-alert cds-alert--note">
+            <strong>Primary and accent are related on purpose</strong>
+            The demo pairs cyan with indigo (analogous / cool neighbours) so the
+            brand stays cohesive. Warm orange is reserved for
+            <code>warning</code>, not brand accent — cyan's complementary
+            opposite is orange, and that pair is loud by design. Brand roles and
+            status roles stay separate; see
+            <a href="https://m3.material.io/styles/color/system/roles"
+              >Material Design 3 colour roles</a
+            >
+            and the
+            <a href="https://color.adobe.com/create/color-wheel">Adobe Color wheel</a>
+            for harmony types.
+          </div>
+
           <section class="kit-section">
             <h2>Brand</h2>
             <div class="cds-grid cds-grid--tight">
@@ -87,9 +102,9 @@
                 <span class="kit-swatch__note">Soft fills, chips, selected</span>
               </div>
               <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-accent); color: var(--cds-on-accent)">#d97706</div>
+                <div class="kit-swatch__chip" style="background: var(--cds-accent); color: var(--cds-on-accent)">#4f46e5</div>
                 <span class="kit-swatch__name">accent</span>
-                <span class="kit-swatch__note">One CTA per view, dark ink label</span>
+                <span class="kit-swatch__note">One CTA per view; cool, next to primary</span>
               </div>
               <div class="kit-swatch">
                 <div class="kit-swatch__chip" style="background: var(--cds-surface-dark); color: var(--cds-on-dark)">#0f172a</div>
@@ -159,7 +174,7 @@
               <div class="kit-swatch">
                 <div class="kit-swatch__chip" style="background: var(--cds-warning); color: var(--cds-ink-deep)">#d97706</div>
                 <span class="kit-swatch__name">warning</span>
-                <span class="kit-swatch__note">Shares the accent hue</span>
+                <span class="kit-swatch__note">Warm state colour, not brand</span>
               </div>
               <div class="kit-swatch">
                 <div class="kit-swatch__chip" style="background: var(--cds-danger); color: #fff">#dc2626</div>
@@ -196,8 +211,7 @@
               <strong>Contrast is a gate, not a preference</strong>
               Body text needs WCAG AA (4.5:1). Display sizes may use AA Large
               (3:1). Text on a filled surface uses its paired
-              <code>on-*</code> token, which means dark ink on the accent fill,
-              never white.
+              <code>on-*</code> token. Recheck contrast if you change a fill.
             </div>
             <div class="cds-table-wrap">
               <table class="cds-table">

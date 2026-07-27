@@ -32,9 +32,11 @@
   --cds-primary-soft: #cffafe; /* soft fills, chips, selected states */
   --cds-on-primary: #ffffff; /* text on primary fills */
 
-  --cds-accent: #d97706; /* rare high-stakes CTA, emphasis rules */
-  --cds-accent-soft: #ffedd5; /* accent wash */
-  --cds-on-accent: var(--cds-ink-deep); /* dark ink on accent — not white */
+  /* Accent sits next to primary on the colour wheel (analogous / cool family),
+     not opposite it. Complementary warm orange is reserved for warning. */
+  --cds-accent: #4f46e5; /* rare high-stakes CTA, emphasis rules */
+  --cds-accent-soft: #e0e7ff; /* accent wash */
+  --cds-on-accent: #ffffff; /* light label on indigo — check AA if you recolour */
 
   /* Primary ramp — charts, illustrations, progressive emphasis.
      Step 3 is the brighter cyan (#06b6d4) from the inspiration kit. */
@@ -47,8 +49,8 @@
   /* —— Semantic ————————————————————————————————————————————————————— */
   --cds-success: #059669;
   --cds-success-bg: #d1fae5;
-  --cds-warning: var(--cds-accent);
-  --cds-warning-bg: var(--cds-accent-soft);
+  --cds-warning: #d97706; /* warm on purpose — state, not brand */
+  --cds-warning-bg: #ffedd5;
   --cds-danger: #dc2626;
   --cds-danger-bg: #fee2e2;
   --cds-info: var(--cds-primary); /* alias while primary reads informational.

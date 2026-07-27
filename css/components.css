@@ -116,8 +116,8 @@
 }
 
 .cds-btn--accent:hover:not(:disabled) {
-  /* Lighten rather than darken so the dark-ink label keeps its contrast. */
-  background: color-mix(in srgb, var(--cds-accent) 85%, var(--cds-paper));
+  /* Deepen so a light on-accent label keeps its contrast. */
+  background: color-mix(in srgb, var(--cds-accent) 82%, black);
   color: var(--cds-on-accent);
 }
 

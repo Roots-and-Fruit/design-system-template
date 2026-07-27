@@ -10,8 +10,8 @@ colors:
   primary: "#0891b2"
   primary-deep: "#0e7490"
   primary-soft: "#cffafe"
-  accent: "#d97706"
-  accent-soft: "#ffedd5"
+  accent: "#4f46e5"
+  accent-soft: "#e0e7ff"
   paper: "#f1f5f9"
   paper-deep: "#e2e8f0"
   surface: "#ffffff"
@@ -33,7 +33,7 @@ colors:
   info-soft: "#cffafe"
   surface-dark: "#0f172a"
   on-primary: "#ffffff"
-  on-accent: "#0f172a"
+  on-accent: "#ffffff"
   on-dark: "#f1f5f9"
   on-dark-muted: "rgba(241, 245, 249, 0.78)"
 typography:
@@ -249,7 +249,7 @@ section with your own brand in two or three sentences: who it serves, how it
 should feel, and what it must never look like.
 
 The demo identity is light and easy on the eyes: cool slate paper, navy ink,
-one cyan primary, and a single amber accent used sparingly. Serif for voice,
+one cyan primary, and a single indigo accent used sparingly. Serif for voice,
 sans for clarity.
 
 This file is normative. Agents and generators must read it before choosing
@@ -304,12 +304,34 @@ Semantic roles. Use these names in reasoning; hex values live in front matter.
 | Surface dark | `surface-dark` | Dark callout cards and hero bands |
 | Success / Warning / Danger / Info | semantic | Status only, not decoration |
 
+**How primary and accent relate.** Brand colours need a deliberate relationship,
+not a second random favourite. The common options:
+
+- **Analogous** (neighbours on the wheel): calm and cohesive. The demo uses
+  this: cyan primary + indigo accent, both cool.
+- **Complementary** (opposites): maximum pop. Cyan's opposite is warm orange,
+  which is why that pair feels loud and why orange is reserved for `warning`
+  here instead of brand accent.
+- **Split-complementary / triadic**: more energy than analogous, less clash
+  than a straight complement. Useful when you need a third brand hue.
+
+Product systems also separate **brand roles** (primary, secondary/accent) from
+**semantic roles** (success, warning, danger, info). Do not let a brand accent
+double as a status colour. Material Design 3's colour roles are a clear,
+current reference for that split:
+[m3.material.io/styles/color/system/roles](https://m3.material.io/styles/color/system/roles).
+For the classic harmony types themselves, Adobe Color's wheel is a solid
+interactive primer:
+[color.adobe.com/create/color-wheel](https://color.adobe.com/create/color-wheel).
+
 Rules:
 - Default stack is `paper` background, `ink` text, `primary` for interaction
 - Text on a filled surface uses its paired `on-*` token: `on-primary` on primary
-  fills, `on-accent` (dark ink) on accent fills, `on-dark` on `surface-dark`
+  fills, `on-accent` on accent fills, `on-dark` on `surface-dark`. Recheck AA
+  whenever you change an accent hue
 - Never promote `accent` into a second theme colour or a large background fill
-- Semantic colours describe state; do not borrow `danger` red for emphasis
+- Semantic colours describe state; do not borrow `danger` or `warning` for brand
+  emphasis, and do not alias `accent` to `warning`
 - Check WCAG AA (4.5:1) for body text and AA Large (3:1) for display sizes
   before shipping any text-on-colour pair
 - The `primary-1`…`primary-5` ramp is for charts, illustrations, and
@@ -422,8 +444,8 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 - `button-outline` (`.cds-btn--outline`): low-emphasis action, transparent fill
   with a `primary` border and `primary` label.
 - `button-accent` (`.cds-btn--accent`): at most one high-stakes CTA per view
-  (Buy, Book, Submit final). Dark ink on the accent fill, never white. Hover
-  lightens toward paper so contrast improves.
+  (Buy, Book, Submit final). Use `on-accent` for the label. Hover deepens the
+  fill so a light label keeps its contrast.
 - `button-ghost` (`.cds-btn--ghost`): text-like dismissal or tertiary nav.
 - Disabled reduces opacity. Do not invent a separate grey system.
 
