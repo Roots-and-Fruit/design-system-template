@@ -1,0 +1,125 @@
+# Design System Template
+
+A forkable core design system: one token layer, four layout primitives, a small
+component set, a browsable reference page, and a normative `DESIGN.md` contract
+that coding agents can follow.
+
+It ships with a placeholder brand called **Example Brand** so everything renders
+on first clone. Replace the values, keep the structure, and you have your own
+system.
+
+**Reference page:** open `index.html` in a browser, or serve the folder:
+
+```bash
+npx --yes serve .
+```
+
+## Why this exists
+
+Most brand kits are a PDF and a folder of logos, which an agent cannot use. This
+template puts the same information where tools can read it: CSS custom
+properties for implementation, and a single markdown contract that states the
+rules in words, including the things a generator should never do.
+
+## What is inside
+
+| File | Role |
+| --- | --- |
+| `DESIGN.md` | Canonical contract. Front matter holds the values, prose holds the rules |
+| `css/cds.css` | Single entry point: fonts, tokens, base, layouts, components |
+| `css/tokens.css` | Palette, type ladder, space scale, radius, shadows, knobs |
+| `css/base.css` | Element-level defaults. Skip this file when integrating into an existing site |
+| `css/layouts.css` | Stack, Center, Cluster, Grid |
+| `css/components.css` | Buttons, pills, alerts, surfaces, forms, tables, code, prose |
+| `css/kit.css` | Chrome for the reference page only. Not part of the system |
+| `index.html` | Human reference with specimens and the embedded contract |
+| `assets/` | Placeholder mark, plus a place for your logos |
+| `sync-design-md-embed.ps1` / `.mjs` | Copies `DESIGN.md` into the reference page |
+
+Use it in a page:
+
+```html
+<link rel="stylesheet" href="css/cds.css">
+```
+
+Adopting the kit inside a site that already styles bare tags? Import
+`tokens.css`, `layouts.css`, and `components.css` and leave out `base.css`, which
+is the only file that touches `body`, headings, links, and `code`.
+
+## Make it yours
+
+1. **Tokens.** Edit `css/tokens.css`: palette, font stacks, size ladder, radius,
+   space ratio. Keep the token names. Roles like `--cds-primary` survive a
+   rebrand, so renaming them to brand words means editing the whole kit.
+2. **Fonts.** Point `css/fonts.css` at your webfont source and update the three
+   font stacks in `tokens.css`.
+3. **Contract.** Update the `DESIGN.md` front matter to match your tokens, then
+   rewrite Overview, Colors, Typography, and Do's and Don'ts in your own words.
+   That prose is what agents follow when a request is ambiguous.
+4. **Assets.** Replace `assets/mark.svg` and add your logos under
+   `assets/logos/`.
+5. **Sync.** Run the sync script so `index.html` carries the current contract:
+
+```powershell
+.\sync-design-md-embed.ps1
+```
+
+```bash
+node sync-design-md-embed.mjs
+```
+
+Optional lint of the contract front matter:
+
+```bash
+npx -p "@google/design.md" designmd lint DESIGN.md
+```
+
+### Two knobs worth knowing
+
+Button shape and heading font are single variables in `tokens.css`, so a large
+part of the system's personality changes in one line:
+
+```css
+--cds-button-radius: var(--cds-radius); /* squarer than the default pill */
+--cds-heading-font: var(--cds-font-body); /* sans headings, no serif voice */
+```
+
+### Renaming the prefix
+
+Every class and variable is prefixed `cds-`. To rename it, find and replace
+`cds-` across `css/`, `index.html`, and `DESIGN.md`.
+
+## Working with agents
+
+Point your agent at `DESIGN.md` before it writes UI. The contract ends with
+directives that make it behave: prefer tokens over raw hex, validate contrast,
+flag conflicts instead of silently deviating, and say so when the system has not
+been customised yet and still reads "Example Brand".
+
+Anything not covered by the contract (modals, tabs, toasts, dark mode) is out of
+scope until you add it. That is deliberate: an agent improvising inside known
+constraints is safer than an agent inventing a second visual language.
+
+## Design notes
+
+The layout primitives follow the intrinsic-layout ideas in *Every Layout* by
+Heydon Pickering and Andy Bell: a few axioms and composable pieces rather than a
+breakpoint for every block. Reading width is capped in `ch` so the measure
+tracks font size, space comes from one ratio, and line-height is set per role
+instead of one global number.
+
+The contract format follows the [design.md](https://github.com/google/design.md)
+convention, so the front matter is machine readable while the prose stays
+human readable.
+
+## License
+
+MIT. The kit, the placeholder mark, and the sample palette are free to use and
+modify. The brand you build with it is yours.
+
+Demo fonts (Source Serif 4, Source Sans 3, JetBrains Mono) are open licensed and
+loaded from Google Fonts. If you swap in a licensed family, do not commit the
+binaries to a public repository. Load them from a host you control and keep a
+system fallback in the stack.
+
+Maintained by [Roots & Fruit](https://rootsandfruit.com).

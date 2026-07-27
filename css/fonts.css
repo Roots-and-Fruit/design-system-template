@@ -1,0 +1,20 @@
+/* Design System Template — fonts
+   ---------------------------------------------------------------------------
+   The demo brand uses three open-licensed families from Google Fonts so the
+   kit works the moment you clone it:
+
+     Source Serif 4  — display / titles
+     Source Sans 3   — body, UI, tables
+     JetBrains Mono  — code only
+
+   Swapping families:
+   1. Replace the @import below with your own webfont source.
+   2. Update --cds-font-display / --cds-font-body / --cds-font-mono in tokens.css.
+   3. Update the typography block in DESIGN.md, then run sync-design-md-embed.ps1.
+
+   Licensed fonts: if your family is not free to redistribute, do NOT commit the
+   binaries to a public repo. Load them from a host you control and keep a
+   system fallback in the stack so local/offline opens still render.
+   --------------------------------------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap");

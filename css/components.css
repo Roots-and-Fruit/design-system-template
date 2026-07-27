@@ -1,0 +1,467 @@
+/* Design System Template — components
+   ---------------------------------------------------------------------------
+   Every class is prefixed `cds-` so the kit can be dropped into an existing
+   site without fighting its `.btn` or `.alert`. To rebrand the prefix, do a
+   whole-repo find and replace on `cds-` (CSS, index.html, DESIGN.md).
+
+   Components read tokens only. If you need a new value, add a token rather
+   than hard-coding a hex or px here.
+   --------------------------------------------------------------------------- */
+
+/* —— Prose: long-form reading ——————————————————————————————————————— */
+.cds-prose {
+  box-sizing: content-box;
+  max-inline-size: var(--cds-measure);
+  font-size: var(--cds-text-md);
+  line-height: var(--cds-leading-body);
+}
+
+.cds-prose > p {
+  margin-block: 0 var(--cds-space-5);
+  margin-inline: 0;
+}
+
+.cds-prose > p:last-child {
+  margin-block-end: 0;
+}
+
+.cds-prose > :is(h1, h2, h3, h4) {
+  margin-block: var(--cds-space-6) var(--cds-space-4);
+  margin-inline: 0;
+}
+
+.cds-prose > :is(h1, h2, h3, h4):first-child {
+  margin-block-start: 0;
+}
+
+.cds-prose strong {
+  font-weight: var(--cds-weight-semibold);
+}
+
+.cds-lede {
+  font-size: var(--cds-text-lg);
+  line-height: var(--cds-leading-callout);
+  color: var(--cds-ink-muted);
+  max-inline-size: var(--cds-measure);
+}
+
+.cds-meta {
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-bold);
+  letter-spacing: var(--cds-tracking-meta);
+  text-transform: uppercase;
+  color: var(--cds-ink-muted);
+}
+
+/* —— Buttons ——————————————————————————————————————————————————————— */
+.cds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-family: var(--cds-font-body);
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-button-weight);
+  line-height: 1.2;
+  padding: 0.7rem 1.15rem;
+  border: 1.5px solid transparent;
+  border-radius: var(--cds-button-radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.cds-btn:disabled,
+.cds-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.cds-btn--primary {
+  background: var(--cds-primary);
+  color: var(--cds-on-primary);
+}
+
+.cds-btn--primary:hover:not(:disabled) {
+  background: var(--cds-primary-deep);
+  color: var(--cds-on-primary);
+}
+
+.cds-btn--secondary {
+  background: var(--cds-panel);
+  color: var(--cds-ink);
+  border-color: var(--cds-panel-deep);
+}
+
+.cds-btn--secondary:hover:not(:disabled) {
+  background: var(--cds-panel-deep);
+  color: var(--cds-ink);
+}
+
+.cds-btn--outline {
+  background: transparent;
+  color: var(--cds-primary);
+  border-color: var(--cds-primary);
+}
+
+.cds-btn--outline:hover:not(:disabled) {
+  background: var(--cds-primary-soft);
+  color: var(--cds-primary-deep);
+}
+
+/* One high-stakes CTA per view (Buy, Book, Submit final). */
+.cds-btn--accent {
+  background: var(--cds-accent);
+  color: var(--cds-on-accent);
+}
+
+.cds-btn--accent:hover:not(:disabled) {
+  /* Lighten rather than darken so the dark-ink label keeps its contrast. */
+  background: color-mix(in srgb, var(--cds-accent) 85%, var(--cds-paper));
+  color: var(--cds-on-accent);
+}
+
+.cds-btn--ghost {
+  background: transparent;
+  color: var(--cds-ink-muted);
+  padding-inline: 0.65rem;
+}
+
+.cds-btn--ghost:hover:not(:disabled) {
+  background: var(--cds-primary-soft);
+  color: var(--cds-primary-deep);
+}
+
+/* —— Pills ————————————————————————————————————————————————————————— */
+.cds-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--cds-radius-pill);
+  background: var(--cds-panel);
+  color: var(--cds-ink);
+}
+
+/* Selected chip: soft fill + deep text. Solid primary + ink fails contrast. */
+.cds-pill--active,
+.cds-pill.is-active {
+  background: var(--cds-primary-soft);
+  color: var(--cds-primary-deep);
+}
+
+.cds-pill--success {
+  background: var(--cds-success-bg);
+  color: var(--cds-success);
+}
+
+.cds-pill--warning {
+  background: var(--cds-warning-bg);
+  color: var(--cds-ink-deep);
+}
+
+.cds-pill--danger {
+  background: var(--cds-danger-bg);
+  color: var(--cds-danger);
+}
+
+/* —— Alerts ———————————————————————————————————————————————————————— */
+/* flow-root, not grid/flex: mixed text and inline <code> must stay in flow. */
+.cds-alert {
+  display: flow-root;
+  padding-block: var(--cds-space-3);
+  padding-inline: var(--cds-space-4);
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+  font-size: var(--cds-text-sm);
+  line-height: var(--cds-leading-callout);
+}
+
+.cds-alert strong {
+  display: block;
+  margin-block-end: var(--cds-space-1);
+  font-family: var(--cds-heading-font);
+  font-size: var(--cds-text-md);
+  letter-spacing: -0.01em;
+}
+
+.cds-alert--info {
+  background: var(--cds-info-bg);
+  border-color: color-mix(in srgb, var(--cds-info) 25%, transparent);
+}
+
+.cds-alert--success {
+  background: var(--cds-success-bg);
+  border-color: color-mix(in srgb, var(--cds-success) 30%, transparent);
+}
+
+.cds-alert--warning {
+  background: var(--cds-warning-bg);
+  border-color: color-mix(in srgb, var(--cds-warning) 35%, transparent);
+}
+
+.cds-alert--danger {
+  background: var(--cds-danger-bg);
+  border-color: color-mix(in srgb, var(--cds-danger) 30%, transparent);
+}
+
+/* Guidance, not status: a how-to aside rather than a system message. */
+.cds-alert--note {
+  background: var(--cds-panel-soft);
+  border: 0;
+  border-inline-start: 3px solid var(--cds-primary);
+  border-radius: 0 var(--cds-radius-sm) var(--cds-radius-sm) 0;
+  padding: var(--cds-space-5);
+  color: var(--cds-ink-muted);
+}
+
+.cds-alert--note strong {
+  color: var(--cds-ink);
+}
+
+/* —— Surfaces —————————————————————————————————————————————————————— */
+.cds-surface {
+  background: var(--cds-surface);
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+  padding: var(--cds-space-5);
+  box-shadow: var(--cds-shadow);
+}
+
+.cds-surface > :is(h3, h4) {
+  margin-block: 0 var(--cds-space-2);
+}
+
+.cds-surface > p {
+  margin-block: 0 var(--cds-space-4);
+  color: var(--cds-ink-muted);
+  font-size: var(--cds-text-sm);
+}
+
+.cds-surface > p:last-child {
+  margin-block-end: 0;
+}
+
+.cds-surface--panel {
+  background: var(--cds-panel);
+  box-shadow: none;
+}
+
+.cds-surface--soft {
+  background: var(--cds-paper-deep);
+  box-shadow: none;
+}
+
+.cds-surface--dark {
+  background: var(--cds-surface-dark);
+  color: var(--cds-on-dark);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.cds-surface--dark > :is(h3, h4) {
+  color: var(--cds-on-dark);
+}
+
+.cds-surface--dark > p,
+.cds-surface--dark li {
+  color: var(--cds-on-dark-muted);
+}
+
+.cds-surface--dark .cds-btn--primary {
+  background: var(--cds-surface);
+  color: var(--cds-primary-deep);
+}
+
+/* —— Forms ————————————————————————————————————————————————————————— */
+.cds-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.cds-field label {
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink);
+}
+
+.cds-field .cds-hint {
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+}
+
+.cds-field .cds-error {
+  font-size: var(--cds-text-sm);
+  color: var(--cds-danger);
+}
+
+.cds-input,
+.cds-select,
+.cds-textarea {
+  font: inherit;
+  color: var(--cds-ink);
+  background: var(--cds-surface);
+  border: 1.5px solid color-mix(in srgb, var(--cds-ink) 18%, transparent);
+  border-radius: var(--cds-radius-sm);
+  padding-block: 0.6rem;
+  padding-inline: 0.8rem;
+  display: block;
+  inline-size: 100%;
+}
+
+.cds-textarea {
+  min-block-size: 6rem;
+  resize: vertical;
+}
+
+.cds-input:hover,
+.cds-select:hover,
+.cds-textarea:hover {
+  border-color: color-mix(in srgb, var(--cds-ink) 32%, transparent);
+}
+
+.cds-input:focus-visible,
+.cds-select:focus-visible,
+.cds-textarea:focus-visible {
+  border-color: var(--cds-primary);
+  box-shadow: var(--cds-focus);
+}
+
+/* Errors carry a message, never colour alone. */
+.cds-field--error .cds-input,
+.cds-field--error .cds-select,
+.cds-field--error .cds-textarea {
+  border-color: var(--cds-danger);
+}
+
+.cds-check {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+}
+
+.cds-check input {
+  margin-block-start: 0.2rem;
+  accent-color: var(--cds-primary);
+}
+
+/* —— Tables ———————————————————————————————————————————————————————— */
+.cds-table-wrap {
+  overflow-x: auto;
+  background: var(--cds-surface);
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+}
+
+.cds-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--cds-text-sm);
+}
+
+.cds-table th,
+.cds-table td {
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--cds-rule);
+}
+
+.cds-table th {
+  font-family: var(--cds-heading-font);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink);
+  background: var(--cds-panel-soft);
+}
+
+.cds-table td {
+  color: var(--cds-ink-muted);
+}
+
+.cds-table tr:last-child td {
+  border-bottom: 0;
+}
+
+/* —— Code block ———————————————————————————————————————————————————— */
+/* Soft-wrap by default: snippets should not hide content behind a scrollbar. */
+.cds-code {
+  margin: 0;
+  padding: var(--cds-space-4);
+  background: var(--cds-panel-soft);
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+  font-family: var(--cds-font-mono);
+  font-size: var(--cds-text-sm);
+  line-height: 1.55;
+  color: var(--cds-ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.cds-code code {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+/* —— Text accents —————————————————————————————————————————————————— */
+.cds-text-muted {
+  color: var(--cds-ink-muted);
+}
+
+.cds-text-primary {
+  color: var(--cds-primary-deep);
+}
+
+.cds-text-accent {
+  color: var(--cds-accent);
+}
+
+.cds-text-danger {
+  color: var(--cds-danger);
+}
+
+/* —— Feedback —————————————————————————————————————————————————————— */
+.cds-spinner {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border: 2.5px solid var(--cds-primary-soft);
+  border-top-color: var(--cds-primary);
+  border-radius: 50%;
+  animation: cds-spin 0.7s linear infinite;
+}
+
+@keyframes cds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cds-spinner {
+    animation-duration: 2.4s;
+  }
+}
+
+/* Determinate progress only. Use the spinner when percent is unknown. */
+.cds-progress {
+  block-size: 0.4rem;
+  /* inline-size so the bar still has width as a flex child. */
+  inline-size: 100%;
+  max-inline-size: 16rem;
+  background: var(--cds-panel);
+  border-radius: var(--cds-radius-pill);
+  overflow: hidden;
+}
+
+.cds-progress > span {
+  display: block;
+  block-size: 100%;
+  background: var(--cds-primary);
+  border-radius: inherit;
+}

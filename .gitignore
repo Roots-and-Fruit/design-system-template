@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+node_modules/
+
+# Maintainer-only notes: internal routing, not part of the public template.
+HUB-CONTEXT.md

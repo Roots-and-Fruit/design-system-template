@@ -1,0 +1,74 @@
+/* Design System Template — layout primitives
+   ---------------------------------------------------------------------------
+   Four composable primitives instead of a breakpoint for every block. The
+   approach follows the intrinsic-layout ideas in Every Layout (Pickering &
+   Bell): suggest sizes, compose with `gap`, let content decide when to wrap.
+
+   Prefer composing these over writing one-off margin stacks.
+   --------------------------------------------------------------------------- */
+
+/* —— Stack: vertical rhythm owned by gap ——————————————————————————— */
+.cds-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--cds-stack-space, var(--cds-space-5));
+}
+
+.cds-stack > * {
+  margin-block: 0;
+}
+
+.cds-stack--sm {
+  --cds-stack-space: var(--cds-space-3);
+}
+
+.cds-stack--md {
+  --cds-stack-space: var(--cds-space-5);
+}
+
+.cds-stack--lg {
+  --cds-stack-space: var(--cds-space-7);
+}
+
+/* —— Center: measured reading column ——————————————————————————————— */
+/* content-box so the `ch` measure describes text, not text + padding. */
+.cds-center {
+  box-sizing: content-box;
+  max-inline-size: var(--cds-measure);
+  margin-inline: auto;
+  padding-inline: var(--cds-center-gutter, 0);
+}
+
+.cds-center--gutter {
+  --cds-center-gutter: var(--cds-space-5);
+}
+
+/* —— Cluster: wrapping horizontal group ————————————————————————————— */
+.cds-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cds-cluster-space, var(--cds-space-3));
+}
+
+.cds-cluster--center {
+  justify-content: center;
+}
+
+.cds-cluster--between {
+  justify-content: space-between;
+}
+
+/* —— Grid: responsive tiles with no media queries —————————————————— */
+/* Tiles grow to fill the row and wrap when they cannot hold --cds-grid-min. */
+.cds-grid {
+  display: grid;
+  gap: var(--cds-grid-space, var(--cds-space-5));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min, 16rem), 100%), 1fr));
+}
+
+.cds-grid--tight {
+  --cds-grid-min: 11rem;
+  --cds-grid-space: var(--cds-space-3);
+}

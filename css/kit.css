@@ -1,0 +1,224 @@
+/* Design System Template — reference page chrome
+   ---------------------------------------------------------------------------
+   Styles for index.html only: the shell, sidebar nav, swatch grids, and
+   specimen frames. Nothing here is part of the design system, so you can
+   ignore this file when adopting the kit (and delete it if you drop the
+   reference page). Prefix is `kit-` to keep it clearly separate from `cds-`.
+   --------------------------------------------------------------------------- */
+
+.kit-shell {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  gap: var(--cds-space-7);
+  max-inline-size: 78rem;
+  margin-inline: auto;
+  padding: var(--cds-space-6) var(--cds-space-5) var(--cds-space-8);
+}
+
+@media (max-width: 60rem) {
+  .kit-shell {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--cds-space-5);
+  }
+}
+
+/* —— Sidebar —— */
+.kit-sidebar {
+  position: sticky;
+  top: var(--cds-space-5);
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-4);
+}
+
+@media (max-width: 60rem) {
+  .kit-sidebar {
+    position: static;
+  }
+}
+
+.kit-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--cds-space-3);
+  color: var(--cds-primary);
+  text-decoration: none;
+}
+
+.kit-brand svg {
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  flex: none;
+}
+
+.kit-brand strong {
+  font-family: var(--cds-heading-font);
+  font-size: var(--cds-text-lg);
+  font-weight: var(--cds-weight-bold);
+  letter-spacing: var(--cds-tracking-display);
+  color: var(--cds-ink-deep);
+  line-height: var(--cds-leading-snug);
+}
+
+.kit-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  border-inline-start: 1px solid var(--cds-rule);
+}
+
+@media (max-width: 60rem) {
+  .kit-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-inline-start: 0;
+    gap: var(--cds-space-2);
+  }
+}
+
+.kit-nav a {
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink-muted);
+  text-decoration: none;
+  padding: 0.35rem var(--cds-space-4);
+  border-inline-start: 2px solid transparent;
+  margin-inline-start: -1px;
+}
+
+.kit-nav a:hover {
+  color: var(--cds-primary-deep);
+  border-inline-start-color: var(--cds-primary);
+  background: var(--cds-primary-soft);
+}
+
+@media (max-width: 60rem) {
+  .kit-nav a {
+    border: 1px solid var(--cds-rule);
+    border-radius: var(--cds-radius-pill);
+    padding-inline: var(--cds-space-3);
+    margin-inline-start: 0;
+  }
+}
+
+/* —— Main —— */
+.kit-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-8);
+  min-inline-size: 0;
+}
+
+.kit-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-5);
+  scroll-margin-top: var(--cds-space-5);
+}
+
+.kit-section > header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-3);
+}
+
+.kit-section h2 {
+  margin: 0;
+}
+
+.kit-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-4);
+}
+
+.kit-block h3,
+.kit-block h4 {
+  margin: 0;
+}
+
+.kit-hero h1 {
+  margin: 0;
+  font-size: var(--cds-text-4xl);
+}
+
+@media (max-width: 40rem) {
+  .kit-hero h1 {
+    font-size: var(--cds-text-2xl);
+  }
+}
+
+/* —— Swatches —— */
+.kit-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-2);
+}
+
+.kit-swatch__chip {
+  block-size: 4.5rem;
+  border-radius: var(--cds-radius);
+  border: 1px solid var(--cds-rule);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--cds-space-2);
+  font-family: var(--cds-font-mono);
+  font-size: 0.8rem;
+}
+
+.kit-swatch__name {
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink);
+}
+
+.kit-swatch__note {
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+  line-height: var(--cds-leading-ui);
+}
+
+/* —— Specimen frames —— */
+.kit-specimen {
+  border: 1px dashed color-mix(in srgb, var(--cds-primary) 35%, transparent);
+  border-radius: var(--cds-radius);
+  padding: var(--cds-space-5);
+  background: var(--cds-surface);
+}
+
+.kit-specimen--soft {
+  background: var(--cds-paper-deep);
+}
+
+.kit-caption {
+  font-family: var(--cds-font-mono);
+  font-size: 0.85rem;
+  color: var(--cds-ink-muted);
+}
+
+.kit-demo-box {
+  background: var(--cds-primary-soft);
+  border-radius: var(--cds-radius-sm);
+  padding: var(--cds-space-3) var(--cds-space-4);
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-primary-deep);
+  text-align: center;
+}
+
+/* —— Agent contract embed —— */
+.kit-contract {
+  max-block-size: 34rem;
+  overflow: auto;
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+/* —— Footer —— */
+.kit-footer {
+  border-top: 1px solid var(--cds-rule);
+  padding-top: var(--cds-space-5);
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+}

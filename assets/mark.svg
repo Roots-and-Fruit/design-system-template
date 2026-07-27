@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="mark-title">
+  <title id="mark-title">Placeholder mark</title>
+  <!-- Placeholder only: replace with your own mark. Uses currentColor so it
+       inherits from context. Circle, square, triangle = "not a real logo yet". -->
+  <g id="mark" fill="currentColor">
+    <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
+    <circle cx="23" cy="23" r="9" />
+    <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
+    <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+/* Design System Template — single entry point.
+   Import this one file to get the whole kit:
+
+     <link rel="stylesheet" href="css/cds.css">
+
+   Integrating into a site that already styles bare tags? Skip this file and
+   import tokens.css + layouts.css + components.css (leaving out base.css). */
+
+@import url("fonts.css");
+@import url("tokens.css");
+@import url("base.css");
+@import url("layouts.css");
+@import url("components.css");

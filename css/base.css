@@ -1,0 +1,93 @@
+/* Design System Template — base
+   ---------------------------------------------------------------------------
+   Element-level defaults. This is the only file that styles bare tags, so you
+   can skip it (import tokens + layouts + components instead of cds.css) when
+   dropping the kit into a site that already owns its element styles.
+   --------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--cds-font-body);
+  font-size: var(--cds-text-md);
+  line-height: var(--cds-leading-body);
+  color: var(--cds-ink);
+  background: var(--cds-paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--cds-heading-font);
+  font-weight: var(--cds-weight-bold);
+  line-height: var(--cds-leading-display);
+  letter-spacing: var(--cds-tracking-display);
+  color: var(--cds-ink-deep);
+}
+
+h1 {
+  font-size: var(--cds-text-3xl);
+}
+
+h2 {
+  font-size: var(--cds-text-2xl);
+}
+
+h3 {
+  font-size: var(--cds-text-xl);
+  line-height: var(--cds-leading-snug);
+}
+
+h4 {
+  font-size: var(--cds-text-lg);
+  line-height: var(--cds-leading-snug);
+  font-weight: var(--cds-weight-semibold);
+}
+
+a {
+  color: var(--cds-primary);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--cds-primary-deep);
+}
+
+/* Never remove focus affordances. Restyle them instead. */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--cds-focus);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--cds-rule);
+  margin-block: var(--cds-space-6);
+}
+
+small {
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+}
+
+/* Inline code stays quiet: paper fill, no border, no size jump. */
+:not(pre) > code {
+  font-family: var(--cds-font-mono);
+  font-size: 0.92em;
+  color: var(--cds-primary-deep);
+  background: var(--cds-panel-soft);
+  border-radius: var(--cds-radius-sm);
+  padding: 0.08em 0.35em;
+}
+
+img,
+svg {
+  max-width: 100%;
+}

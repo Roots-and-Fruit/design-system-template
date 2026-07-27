@@ -1,0 +1,5 @@
+# The sync script normalises DESIGN.md to LF before embedding it in index.html.
+# Checking out CRLF would make that embed differ per platform, so keep text LF.
+* text=auto eol=lf
+*.png binary
+*.woff2 binary
