@@ -1,41 +1,101 @@
----
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent contract — Example Brand Design System</title>
+    <meta
+      name="description"
+      content="The full DESIGN.md agent contract: normative tokens, rules, and directives for generating UI in this design system."
+    />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/cds.css" />
+    <link rel="stylesheet" href="css/kit.css" />
+  </head>
+  <body>
+    <div class="kit-shell">
+      <aside class="kit-sidebar">
+        <div class="kit-sidebar__brand">
+          <a class="kit-brand" href="index.html">
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
+              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
+              <circle cx="23" cy="23" r="9" />
+              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
+              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
+            </svg>
+            <span>Example Brand</span>
+          </a>
+          <p class="kit-sidebar__subtitle">Design system</p>
+        </div>
+        <nav class="kit-nav" aria-label="Design system sections">
+          <a href="index.html">Overview</a>
+          <a href="colors.html">Colors</a>
+          <a href="typography.html">Typography</a>
+          <a href="layout.html">Layout</a>
+          <a href="components.html">Components</a>
+          <a href="contract.html" aria-current="page">Agent contract</a>
+        </nav>
+        <p class="kit-sidebar__foot">MIT licensed. Replace Example Brand with your own.</p>
+      </aside>
+
+      <main class="kit-main">
+        <div class="kit-main__inner cds-stack cds-stack--lg">
+          <header class="kit-page-head">
+            <p class="cds-meta">Source of truth</p>
+            <h1>Agent contract</h1>
+            <p class="cds-lede">
+              <code>DESIGN.md</code> is canonical. The copy below is embedded by
+              the sync script so this page works even when opened straight from
+              disk. Edit the markdown file, then re-run the script.
+            </p>
+          </header>
+
+          <div class="cds-alert cds-alert--note">
+            <strong>Never hand-edit this copy</strong>
+            Change <code>DESIGN.md</code>, then run
+            <code>sync-design-md-embed.ps1</code> (or
+            <code>node sync-design-md-embed.mjs</code>). The block below is
+            generated output.
+          </div>
+
+          <pre class="cds-code kit-contract"><code id="design-md-source">---
 version: 1.0.0
 name: Example Brand
-description: >-
+description: &gt;-
   Core design system contract for Example Brand. Normative for marketing pages,
   product UI, dashboards, and admin chrome. This file is a template: replace the
   values and the brand-specific prose with your own, keep the token names, and
   prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.
 colors:
-  primary: "#2f5f8a"
-  primary-deep: "#234a6d"
-  primary-soft: "#d9e6f2"
-  accent: "#c9781e"
-  accent-soft: "#f7e5cd"
-  paper: "#f4f6f8"
-  paper-deep: "#e9edf2"
-  surface: "#ffffff"
-  panel: "#dfe5ec"
-  panel-deep: "#cdd6e0"
-  panel-soft: "#eef1f5"
-  ink: "#1a1d24"
-  ink-deep: "#0f1218"
-  ink-muted: "#565f6b"
-  ink-soft: "#8a929c"
-  rule: "rgba(26, 29, 36, 0.14)"
-  success: "#2f7d55"
-  success-soft: "#dcefe4"
-  warning: "#c9781e"
-  warning-soft: "#f7e5cd"
-  danger: "#a33b2b"
-  danger-soft: "#f6e0dc"
-  info: "#2f5f8a"
-  info-soft: "#d9e6f2"
-  surface-dark: "#1e3f5d"
-  on-primary: "#ffffff"
-  on-accent: "#0f1218"
-  on-dark: "#ffffff"
-  on-dark-muted: "rgba(255, 255, 255, 0.78)"
+  primary: &quot;#2f5f8a&quot;
+  primary-deep: &quot;#234a6d&quot;
+  primary-soft: &quot;#d9e6f2&quot;
+  accent: &quot;#c9781e&quot;
+  accent-soft: &quot;#f7e5cd&quot;
+  paper: &quot;#f4f6f8&quot;
+  paper-deep: &quot;#e9edf2&quot;
+  surface: &quot;#ffffff&quot;
+  panel: &quot;#dfe5ec&quot;
+  panel-deep: &quot;#cdd6e0&quot;
+  panel-soft: &quot;#eef1f5&quot;
+  ink: &quot;#1a1d24&quot;
+  ink-deep: &quot;#0f1218&quot;
+  ink-muted: &quot;#565f6b&quot;
+  ink-soft: &quot;#8a929c&quot;
+  rule: &quot;rgba(26, 29, 36, 0.14)&quot;
+  success: &quot;#2f7d55&quot;
+  success-soft: &quot;#dcefe4&quot;
+  warning: &quot;#c9781e&quot;
+  warning-soft: &quot;#f7e5cd&quot;
+  danger: &quot;#a33b2b&quot;
+  danger-soft: &quot;#f6e0dc&quot;
+  info: &quot;#2f5f8a&quot;
+  info-soft: &quot;#d9e6f2&quot;
+  surface-dark: &quot;#1e3f5d&quot;
+  on-primary: &quot;#ffffff&quot;
+  on-accent: &quot;#0f1218&quot;
+  on-dark: &quot;#ffffff&quot;
+  on-dark-muted: &quot;rgba(255, 255, 255, 0.78)&quot;
 typography:
   display-xl:
     fontFamily: Source Serif 4, Georgia, Times New Roman, serif
@@ -108,137 +168,137 @@ spacing:
   8: 5.0625rem
 components:
   page:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
+    backgroundColor: &quot;{colors.paper}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    typography: &quot;{typography.body-md}&quot;
   heading:
-    textColor: "{colors.ink-deep}"
-    typography: "{typography.display-md}"
+    textColor: &quot;{colors.ink-deep}&quot;
+    typography: &quot;{typography.display-md}&quot;
   subhead:
-    textColor: "{colors.primary}"
-    typography: "{typography.display-sm}"
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.display-sm}&quot;
   body:
-    textColor: "{colors.ink}"
-    typography: "{typography.body-md}"
+    textColor: &quot;{colors.ink}&quot;
+    typography: &quot;{typography.body-md}&quot;
   muted:
-    textColor: "{colors.ink-muted}"
-    typography: "{typography.body-sm}"
+    textColor: &quot;{colors.ink-muted}&quot;
+    typography: &quot;{typography.body-sm}&quot;
   link:
-    textColor: "{colors.primary}"
-    typography: "{typography.label}"
+    textColor: &quot;{colors.primary}&quot;
+    typography: &quot;{typography.label}&quot;
   button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-primary}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.primary}&quot;
+    textColor: &quot;{colors.on-primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.7rem 1.15rem
-    typography: "{typography.label}"
+    typography: &quot;{typography.label}&quot;
   button-secondary:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.panel}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.7rem 1.15rem
   button-outline:
     backgroundColor: transparent
-    textColor: "{colors.primary}"
-    rounded: "{rounded.pill}"
+    textColor: &quot;{colors.primary}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.7rem 1.15rem
   button-accent:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.on-accent}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.accent}&quot;
+    textColor: &quot;{colors.on-accent}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.7rem 1.15rem
   button-ghost:
     backgroundColor: transparent
-    textColor: "{colors.ink-muted}"
-    rounded: "{rounded.pill}"
+    textColor: &quot;{colors.ink-muted}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.7rem 0.65rem
   input:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.sm}&quot;
     padding: 0.6rem 0.8rem
-    typography: "{typography.body-md}"
+    typography: &quot;{typography.body-md}&quot;
   surface:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.surface}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 1.5rem
   surface-panel:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.panel}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 1.5rem
   surface-dark:
-    backgroundColor: "{colors.surface-dark}"
-    textColor: "{colors.on-dark}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.surface-dark}&quot;
+    textColor: &quot;{colors.on-dark}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 1.5rem
   alert-info:
-    backgroundColor: "{colors.info-soft}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.info-soft}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 0.75rem 1rem
   alert-success:
-    backgroundColor: "{colors.success-soft}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.success-soft}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 0.75rem 1rem
   alert-warning:
-    backgroundColor: "{colors.warning-soft}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.warning-soft}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 0.75rem 1rem
   alert-danger:
-    backgroundColor: "{colors.danger-soft}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.danger-soft}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 0.75rem 1rem
   alert-note:
-    backgroundColor: "{colors.panel-soft}"
-    textColor: "{colors.ink-muted}"
-    rounded: "{rounded.sm}"
+    backgroundColor: &quot;{colors.panel-soft}&quot;
+    textColor: &quot;{colors.ink-muted}&quot;
+    rounded: &quot;{rounded.sm}&quot;
     padding: 1.5rem
   pill:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.panel}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.25rem 0.65rem
-    typography: "{typography.label}"
+    typography: &quot;{typography.label}&quot;
   pill-active:
-    backgroundColor: "{colors.primary-soft}"
-    textColor: "{colors.primary-deep}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.primary-soft}&quot;
+    textColor: &quot;{colors.primary-deep}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.25rem 0.65rem
   pill-success:
-    backgroundColor: "{colors.success-soft}"
-    textColor: "{colors.success}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.success-soft}&quot;
+    textColor: &quot;{colors.success}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.25rem 0.65rem
   pill-warning:
-    backgroundColor: "{colors.warning-soft}"
-    textColor: "{colors.ink-deep}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.warning-soft}&quot;
+    textColor: &quot;{colors.ink-deep}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.25rem 0.65rem
   pill-danger:
-    backgroundColor: "{colors.danger-soft}"
-    textColor: "{colors.danger}"
-    rounded: "{rounded.pill}"
+    backgroundColor: &quot;{colors.danger-soft}&quot;
+    textColor: &quot;{colors.danger}&quot;
+    rounded: &quot;{rounded.pill}&quot;
     padding: 0.25rem 0.65rem
   table-header:
-    backgroundColor: "{colors.panel-soft}"
-    textColor: "{colors.ink}"
-    typography: "{typography.label}"
+    backgroundColor: &quot;{colors.panel-soft}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    typography: &quot;{typography.label}&quot;
   code-inline:
-    backgroundColor: "{colors.panel-soft}"
-    textColor: "{colors.primary-deep}"
-    rounded: "{rounded.sm}"
+    backgroundColor: &quot;{colors.panel-soft}&quot;
+    textColor: &quot;{colors.primary-deep}&quot;
+    rounded: &quot;{rounded.sm}&quot;
     padding: 0.08em 0.35em
   code-block:
-    backgroundColor: "{colors.panel-soft}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    backgroundColor: &quot;{colors.panel-soft}&quot;
+    textColor: &quot;{colors.ink}&quot;
+    rounded: &quot;{rounded.md}&quot;
     padding: 1rem
-    typography: "{typography.code}"
+    typography: &quot;{typography.code}&quot;
 ---
 
 ## Overview
@@ -275,7 +335,7 @@ Keep the token names. Change the values, then the prose.
 1. `css/tokens.css` — palette, font stacks, size ladder, radius, space ratio.
 2. `css/fonts.css` — your webfont source.
 3. This file — front matter values, then Overview, Colors, Typography, and
-   Do's and Don'ts in your own words.
+   Do&#39;s and Don&#39;ts in your own words.
 4. `assets/` — your marks, replacing the placeholder.
 5. Run `sync-design-md-embed.ps1` so `contract.html` carries this contract.
 
@@ -361,7 +421,7 @@ Rules:
 ## Layout
 
 Composable primitives beat a breakpoint for every block. The approach follows
-the intrinsic-layout ideas in *Every Layout* (Pickering & Bell).
+the intrinsic-layout ideas in *Every Layout* (Pickering &amp; Bell).
 
 Axioms:
 - **Measure:** no reading line exceeds `--cds-measure`. Flow text is capped;
@@ -388,7 +448,7 @@ Hierarchy:
 - Do not mix ad-hoc child margins with a parent `.cds-stack` gap
 - `--cds-max` may wrap shells and specimen grids; paragraphs still obey measure
 
-## Elevation & depth
+## Elevation &amp; depth
 
 Depth is quiet.
 - Default surfaces: 1px `rule` border with an optional light shadow
@@ -461,7 +521,7 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 - Do not add shadows, outlines, recolours, or stretch transforms to mark files
 - Prefer SVG on screen; keep raster exports for hosts that require them
 
-## Do's and Don'ts
+## Do&#39;s and Don&#39;ts
 
 **Do**
 - Start from `paper` plus `ink` plus `primary`
@@ -471,17 +531,17 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 - Reuse `css/cds.css` (or tokens plus components) instead of new one-off CSS
 - Add a token when you need a new value
 
-**Don't**
-- Don't invent hex values, font stacks, or spacing that bypass the tokens
-- Don't make the accent a theme colour or a page background
-- Don't ship more than one primary button, or more than one accent CTA, per view
-- Don't use pure black or pure white as the default page wash
-- Don't use semantic status colours as decoration
-- Don't remove focus indicators
-- Don't set paragraph measure in `px`
-- Don't introduce a third display family or a fourth type role
-- Don't create a dark-mode palette unless it is asked for and tokenised here
-- Don't leave the placeholder brand name in shipped work
+**Don&#39;t**
+- Don&#39;t invent hex values, font stacks, or spacing that bypass the tokens
+- Don&#39;t make the accent a theme colour or a page background
+- Don&#39;t ship more than one primary button, or more than one accent CTA, per view
+- Don&#39;t use pure black or pure white as the default page wash
+- Don&#39;t use semantic status colours as decoration
+- Don&#39;t remove focus indicators
+- Don&#39;t set paragraph measure in `px`
+- Don&#39;t introduce a third display family or a fourth type role
+- Don&#39;t create a dark-mode palette unless it is asked for and tokenised here
+- Don&#39;t leave the placeholder brand name in shipped work
 
 ## Agent directives
 
@@ -490,7 +550,7 @@ When generating or editing UI for this brand:
 1. Read this file before choosing colour, type, radius, or components.
 2. Prefer token names and `{colors.*}` references in reasoning; emit `--cds-*`
    custom properties in code.
-3. If a request conflicts with Do's and Don'ts, follow this file and say so
+3. If a request conflicts with Do&#39;s and Don&#39;ts, follow this file and say so
    briefly rather than silently deviating.
 4. Validate text and background pairs against WCAG AA for body copy.
 5. Self-check after UI work: correct page wash, display family on titles, one
@@ -499,5 +559,16 @@ When generating or editing UI for this brand:
 7. Patterns not covered here (modals, tabs, toasts, dark mode) are out of scope
    until they are added. Improvise with existing tokens and keep the same
    constraints instead of inventing a new visual language.
-8. If this file still reads "Example Brand", say so before generating brand
+8. If this file still reads &quot;Example Brand&quot;, say so before generating brand
    work: the system has not been customised yet.
+</code></pre>
+
+          <nav class="kit-pager" aria-label="Pagination">
+            <a href="components.html">&larr; Components</a>
+            <a href="index.html">Back to overview &rarr;</a>
+          </nav>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

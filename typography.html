@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Typography — Example Brand Design System</title>
+    <meta
+      name="description"
+      content="Type families, the size ladder, optical line-height, and reading measure for the design system template."
+    />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/cds.css" />
+    <link rel="stylesheet" href="css/kit.css" />
+  </head>
+  <body>
+    <div class="kit-shell">
+      <aside class="kit-sidebar">
+        <div class="kit-sidebar__brand">
+          <a class="kit-brand" href="index.html">
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
+              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
+              <circle cx="23" cy="23" r="9" />
+              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
+              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
+            </svg>
+            <span>Example Brand</span>
+          </a>
+          <p class="kit-sidebar__subtitle">Design system</p>
+        </div>
+        <nav class="kit-nav" aria-label="Design system sections">
+          <a href="index.html">Overview</a>
+          <a href="colors.html">Colors</a>
+          <a href="typography.html" aria-current="page">Typography</a>
+          <a href="layout.html">Layout</a>
+          <a href="components.html">Components</a>
+          <a href="contract.html">Agent contract</a>
+        </nav>
+        <p class="kit-sidebar__foot">MIT licensed. Replace Example Brand with your own.</p>
+      </aside>
+
+      <main class="kit-main">
+        <div class="kit-main__inner cds-stack cds-stack--lg">
+          <header class="kit-page-head">
+            <p class="cds-meta">Foundations</p>
+            <h1>Typography</h1>
+            <p class="cds-lede">
+              A display serif for voice, a body sans for clarity, and mono for
+              code. Sizes come from one ladder, and line-height is set per role
+              rather than globally.
+            </p>
+          </header>
+
+          <section class="kit-section">
+            <h2>Families</h2>
+            <div class="cds-grid" style="--cds-grid-min: 17rem">
+              <div class="cds-surface">
+                <h3>Source Serif 4</h3>
+                <p>Display and titles. Tracking tightens slightly at large sizes.</p>
+                <p class="kit-caption">--cds-font-display</p>
+              </div>
+              <div class="cds-surface">
+                <h3 style="font-family: var(--cds-font-body)">Source Sans 3</h3>
+                <p>Body copy, UI labels, tables, forms, and meta.</p>
+                <p class="kit-caption">--cds-font-body</p>
+              </div>
+              <div class="cds-surface">
+                <h3 style="font-family: var(--cds-font-mono); font-size: var(--cds-text-md)">JetBrains Mono</h3>
+                <p>Code only. Never marketing body copy.</p>
+                <p class="kit-caption">--cds-font-mono</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section">
+            <h2>Display ladder</h2>
+            <div class="kit-specimen cds-stack cds-stack--sm">
+              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-4xl); line-height: var(--cds-leading-display); letter-spacing: var(--cds-tracking-display); font-weight: 700; margin: 0">
+                Hero display
+              </p>
+              <span class="kit-caption">4xl · 56px · leading-display</span>
+              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-3xl); line-height: var(--cds-leading-display); letter-spacing: var(--cds-tracking-display); font-weight: 700; margin: 0">
+                Page title
+              </p>
+              <span class="kit-caption">3xl · 48px · leading-display</span>
+              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-2xl); line-height: var(--cds-leading-display); letter-spacing: var(--cds-tracking-display); font-weight: 700; margin: 0">
+                Section heading
+              </p>
+              <span class="kit-caption">2xl · 36px · leading-display</span>
+              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-xl); line-height: var(--cds-leading-snug); letter-spacing: var(--cds-tracking-display); font-weight: 600; margin: 0; color: var(--cds-primary)">
+                Accent subhead
+              </p>
+              <span class="kit-caption">xl · 28px · leading-snug · primary</span>
+            </div>
+          </section>
+
+          <section class="kit-section">
+            <h2>Reading</h2>
+            <div class="kit-specimen">
+              <div class="cds-prose">
+                <p class="cds-lede">
+                  A short lead runs at 22px with callout leading. It sets up the
+                  section without competing with the heading above it.
+                </p>
+                <p>
+                  Body copy runs at 18px with 1.6 leading and is capped at 62
+                  characters per line, because the measure is set in
+                  <code>ch</code> rather than pixels. That means the reading
+                  width tracks the font size instead of drifting when someone
+                  bumps the type scale. Emphasis uses
+                  <strong>semibold</strong> before it reaches for bold.
+                </p>
+                <p class="cds-text-muted" style="font-size: var(--cds-text-sm)">
+                  Muted 16px text handles captions, table cells, and helper
+                  copy. It is the floor: nothing readable goes smaller.
+                </p>
+              </div>
+            </div>
+            <p class="kit-caption">.cds-prose · measure 62ch · content-box</p>
+          </section>
+
+          <section class="kit-section">
+            <h2>Size roles</h2>
+            <div class="cds-table-wrap">
+              <table class="cds-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Token</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>sm</code></td><td>16px</td><td>Compact UI, labels, table cells</td></tr>
+                  <tr><td><code>md</code></td><td>18px</td><td>Default body and long-form</td></tr>
+                  <tr><td><code>lg</code></td><td>22px</td><td>Short lead</td></tr>
+                  <tr><td><code>xl</code></td><td>28px</td><td>Small display, card titles</td></tr>
+                  <tr><td><code>2xl</code></td><td>36px</td><td>Medium display</td></tr>
+                  <tr><td><code>3xl</code></td><td>48px</td><td>Large display, page titles</td></tr>
+                  <tr><td><code>4xl</code></td><td>56px</td><td>Hero display</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="cds-prose">
+              <code>sm</code> is the demo floor. If your product genuinely needs
+              denser chrome, lower the floor in <code>tokens.css</code> once
+              rather than sprinkling one-off sizes through components.
+            </p>
+          </section>
+
+          <section class="kit-section">
+            <h2>Line-height and weight</h2>
+            <div class="cds-grid" style="--cds-grid-min: 19rem">
+              <div class="cds-table-wrap">
+                <table class="cds-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Leading token</th>
+                      <th scope="col">Value</th>
+                      <th scope="col">Use</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><code>display</code></td><td>1.1</td><td>2xl to 4xl titles</td></tr>
+                    <tr><td><code>snug</code></td><td>1.15</td><td>xl and short titles</td></tr>
+                    <tr><td><code>body</code></td><td>1.6</td><td>md and lg reading</td></tr>
+                    <tr><td><code>callout</code></td><td>1.5</td><td>Alerts, contained copy</td></tr>
+                    <tr><td><code>ui</code></td><td>1.35</td><td>Compact sm chrome</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="cds-table-wrap">
+                <table class="cds-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Weight</th>
+                      <th scope="col">Value</th>
+                      <th scope="col">Use</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><code>regular</code></td><td>400</td><td>Body copy</td></tr>
+                    <tr><td><code>semibold</code></td><td>600</td><td>Labels, buttons, subheads</td></tr>
+                    <tr><td><code>bold</code></td><td>700</td><td>Display titles, meta</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <p class="cds-prose">
+              Three weights only. Prefer semibold before bold for UI chrome, and
+              do not introduce 500 or 800 without adding a token for it.
+            </p>
+          </section>
+
+          <nav class="kit-pager" aria-label="Pagination">
+            <a href="colors.html">&larr; Colors</a>
+            <a href="layout.html">Next: Layout &rarr;</a>
+          </nav>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

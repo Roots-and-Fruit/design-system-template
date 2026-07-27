@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Example Brand — Design System</title>
+    <title>Overview — Example Brand Design System</title>
     <meta
       name="description"
-      content="Reference page for a brand-agnostic core design system template: tokens, layout primitives, components, and the agent contract."
+      content="A brand-agnostic core design system template: tokens, layout primitives, components, and a normative DESIGN.md contract for coding agents."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -15,37 +15,40 @@
   <body>
     <div class="kit-shell">
       <aside class="kit-sidebar">
-        <a class="kit-brand" href="#top">
-          <!-- Inlined copy of assets/mark.svg: external <use> is blocked on file:// -->
-          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
-            <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
-            <circle cx="23" cy="23" r="9" />
-            <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
-            <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
-          </svg>
-          <strong>Example<br />Brand</strong>
-        </a>
-        <nav class="kit-nav" aria-label="Sections">
-          <a href="#start">Start here</a>
-          <a href="#colors">Colors</a>
-          <a href="#type">Typography</a>
-          <a href="#layout">Layout</a>
-          <a href="#components">Components</a>
-          <a href="#contract">Agent contract</a>
+        <div class="kit-sidebar__brand">
+          <a class="kit-brand" href="index.html">
+            <!-- Inlined copy of assets/mark.svg: external <use> is blocked on file:// -->
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
+              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
+              <circle cx="23" cy="23" r="9" />
+              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
+              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
+            </svg>
+            <span>Example Brand</span>
+          </a>
+          <p class="kit-sidebar__subtitle">Design system</p>
+        </div>
+        <nav class="kit-nav" aria-label="Design system sections">
+          <a href="index.html" aria-current="page">Overview</a>
+          <a href="colors.html">Colors</a>
+          <a href="typography.html">Typography</a>
+          <a href="layout.html">Layout</a>
+          <a href="components.html">Components</a>
+          <a href="contract.html">Agent contract</a>
         </nav>
+        <p class="kit-sidebar__foot">MIT licensed. Replace Example Brand with your own.</p>
       </aside>
 
-      <main class="kit-main" id="top">
-        <!-- ——————————————————————————— Start here ——————————————————————————— -->
-        <section class="kit-section kit-hero" id="start">
-          <header>
+      <main class="kit-main">
+        <div class="kit-main__inner cds-stack cds-stack--lg">
+          <header class="kit-page-head kit-page-head--hero">
             <p class="cds-meta">Design system template</p>
             <h1>A design system you can actually hand to an agent.</h1>
             <p class="cds-lede">
               Tokens, layout primitives, components, and a normative
-              <code>DESIGN.md</code> contract. Everything on this page is the
-              placeholder brand called Example Brand. Replace the values, keep
-              the structure, and you have your own core design system.
+              <code>DESIGN.md</code> contract. Everything here is the placeholder
+              brand called Example Brand. Replace the values, keep the structure,
+              and you have your own core design system.
             </p>
           </header>
 
@@ -57,6 +60,7 @@
                 shape, and component behaviour. Agents read it before they
                 choose anything.
               </p>
+              <a class="cds-btn cds-btn--outline" href="contract.html">Read it</a>
             </div>
             <div class="cds-surface">
               <h3>One token layer</h3>
@@ -64,6 +68,7 @@
                 Roles, not poetry. <code>--cds-primary</code> survives a
                 rebrand; <code>--cds-seafoam</code> does not.
               </p>
+              <a class="cds-btn cds-btn--outline" href="colors.html">See tokens</a>
             </div>
             <div class="cds-surface">
               <h3>Four primitives</h3>
@@ -71,951 +76,74 @@
                 Stack, Center, Cluster, and Grid cover most layouts without a
                 breakpoint for every block.
               </p>
+              <a class="cds-btn cds-btn--outline" href="layout.html">See layout</a>
             </div>
           </div>
 
-          <div class="kit-block">
-            <h3>Use it</h3>
+          <section class="kit-section">
+            <h2>Use it</h2>
             <pre class="cds-code"><code>&lt;link rel="stylesheet" href="css/cds.css"&gt;</code></pre>
             <p class="cds-prose">
-              Adopting the kit inside a site that already styles bare tags?
-              Import <code>tokens.css</code>, <code>layouts.css</code>, and
-              <code>components.css</code> and leave out
-              <code>base.css</code>.
+              That single import pulls in fonts, tokens, base element styles,
+              layout primitives, and components. Adopting the kit inside a site
+              that already styles bare tags? Import <code>tokens.css</code>,
+              <code>layouts.css</code>, and <code>components.css</code> and leave
+              out <code>base.css</code>, which is the only file that touches
+              <code>body</code>, headings, links, and <code>code</code>.
             </p>
-          </div>
+          </section>
 
-          <div class="kit-block">
-            <h3>Make it yours</h3>
+          <section class="kit-section">
+            <h2>Make it yours</h2>
             <div class="cds-alert cds-alert--note">
               <strong>Five files, in this order</strong>
               Palette and type in <code>css/tokens.css</code>. Webfont source in
               <code>css/fonts.css</code>. Values and prose in
               <code>DESIGN.md</code>. Your marks in <code>assets/</code>. Then
-              run <code>sync-design-md-embed.ps1</code> so this page carries the
-              current contract.
+              run <code>sync-design-md-embed.ps1</code> so the Agent contract
+              page carries the current contract.
             </div>
-          </div>
-        </section>
-
-        <!-- ——————————————————————————— Colors ——————————————————————————— -->
-        <section class="kit-section" id="colors">
-          <header>
-            <h2>Colors</h2>
-            <p class="cds-lede">
-              Roles first. The page wash, ink, and one primary carry almost
-              everything; the accent stays rare and semantic colours describe
-              state only.
-            </p>
-          </header>
-
-          <div class="kit-block">
-            <h3>Brand</h3>
-            <div class="cds-grid cds-grid--tight">
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-primary); color: var(--cds-on-primary)">#2f5f8a</div>
-                <span class="kit-swatch__name">primary</span>
-                <span class="kit-swatch__note">Links, primary action, subheads</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-primary-deep); color: var(--cds-on-primary)">#234a6d</div>
-                <span class="kit-swatch__name">primary-deep</span>
-                <span class="kit-swatch__note">Hover and pressed</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-primary-soft)">#d9e6f2</div>
-                <span class="kit-swatch__name">primary-soft</span>
-                <span class="kit-swatch__note">Soft fills, chips, selected</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-accent); color: var(--cds-on-accent)">#c9781e</div>
-                <span class="kit-swatch__name">accent</span>
-                <span class="kit-swatch__note">One CTA per view, dark ink label</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-surface-dark); color: var(--cds-on-dark)">#1e3f5d</div>
-                <span class="kit-swatch__name">surface-dark</span>
-                <span class="kit-swatch__note">Dark callout cards, hero bands</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="kit-block">
-            <h3>Paper and ink</h3>
-            <div class="cds-grid cds-grid--tight">
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-paper)">#f4f6f8</div>
-                <span class="kit-swatch__name">paper</span>
-                <span class="kit-swatch__note">Default page wash</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-paper-deep)">#e9edf2</div>
-                <span class="kit-swatch__name">paper-deep</span>
-                <span class="kit-swatch__note">Alternating bands</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-surface)">#ffffff</div>
-                <span class="kit-swatch__name">surface</span>
-                <span class="kit-swatch__note">Cards, inputs</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-panel)">#dfe5ec</div>
-                <span class="kit-swatch__name">panel</span>
-                <span class="kit-swatch__note">Grouping without a shadow</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-ink); color: #fff">#1a1d24</div>
-                <span class="kit-swatch__name">ink</span>
-                <span class="kit-swatch__note">Body text</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-ink-muted); color: #fff">#565f6b</div>
-                <span class="kit-swatch__name">ink-muted</span>
-                <span class="kit-swatch__note">Captions, helper text</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="kit-block">
-            <h3>Semantic</h3>
-            <div class="cds-grid cds-grid--tight">
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-success); color: #fff">#2f7d55</div>
-                <span class="kit-swatch__name">success</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-warning); color: var(--cds-ink-deep)">#c9781e</div>
-                <span class="kit-swatch__name">warning</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-danger); color: #fff">#a33b2b</div>
-                <span class="kit-swatch__name">danger</span>
-              </div>
-              <div class="kit-swatch">
-                <div class="kit-swatch__chip" style="background: var(--cds-info); color: #fff">#2f5f8a</div>
-                <span class="kit-swatch__name">info</span>
-                <span class="kit-swatch__note">Aliased to primary in the demo</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="cds-alert cds-alert--warning">
-            <strong>Contrast is a gate, not a preference</strong>
-            Body text needs WCAG AA (4.5:1). Display sizes may use AA Large
-            (3:1). Text on the accent fill uses dark ink, never white.
-          </div>
-        </section>
-
-        <!-- ——————————————————————————— Typography ——————————————————————————— -->
-        <section class="kit-section" id="type">
-          <header>
-            <h2>Typography</h2>
-            <p class="cds-lede">
-              A display serif for voice, a body sans for clarity, and mono for
-              code. Sizes come from one ladder; line-height is set per role
-              rather than globally.
-            </p>
-          </header>
-
-          <div class="kit-block">
-            <h3>Display ladder</h3>
-            <div class="kit-specimen cds-stack cds-stack--sm">
-              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-4xl); line-height: var(--cds-leading-display); letter-spacing: var(--cds-tracking-display); font-weight: 700; margin: 0">
-                Hero display
-              </p>
-              <span class="kit-caption">4xl · 56px · leading-display</span>
-              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-2xl); line-height: var(--cds-leading-display); letter-spacing: var(--cds-tracking-display); font-weight: 700; margin: 0">
-                Section heading
-              </p>
-              <span class="kit-caption">2xl · 36px · leading-display</span>
-              <p style="font-family: var(--cds-heading-font); font-size: var(--cds-text-xl); line-height: var(--cds-leading-snug); letter-spacing: var(--cds-tracking-display); font-weight: 600; margin: 0; color: var(--cds-primary)">
-                Accent subhead
-              </p>
-              <span class="kit-caption">xl · 28px · leading-snug · primary</span>
-            </div>
-          </div>
-
-          <div class="kit-block">
-            <h3>Reading</h3>
-            <div class="kit-specimen">
-              <div class="cds-prose">
-                <p class="cds-lede">
-                  A short lead runs at 22px with callout leading. It sets up the
-                  section without competing with the heading above it.
-                </p>
-                <p>
-                  Body copy runs at 18px with 1.6 leading and is capped at 62
-                  characters per line, because the measure is set in
-                  <code>ch</code> rather than pixels. That means the reading
-                  width tracks the font size instead of drifting when someone
-                  bumps the type scale. Emphasis uses
-                  <strong>semibold</strong> before it reaches for bold.
-                </p>
-                <p class="cds-text-muted" style="font-size: var(--cds-text-sm)">
-                  Muted 16px text handles captions, table cells, and helper
-                  copy. It is the floor: nothing readable goes smaller.
-                </p>
-              </div>
-            </div>
-            <p class="kit-caption">.cds-prose · measure 62ch · content-box</p>
-          </div>
-
-          <div class="kit-block">
-            <h3>Roles</h3>
             <div class="cds-table-wrap">
               <table class="cds-table">
                 <thead>
                   <tr>
-                    <th scope="col">Token</th>
-                    <th scope="col">Size</th>
+                    <th scope="col">File</th>
                     <th scope="col">Role</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><code>sm</code></td><td>16px</td><td>Compact UI, labels, table cells</td></tr>
-                  <tr><td><code>md</code></td><td>18px</td><td>Default body and long-form</td></tr>
-                  <tr><td><code>lg</code></td><td>22px</td><td>Short lead</td></tr>
-                  <tr><td><code>xl</code></td><td>28px</td><td>Small display, card titles</td></tr>
-                  <tr><td><code>2xl</code></td><td>36px</td><td>Medium display</td></tr>
-                  <tr><td><code>3xl</code> / <code>4xl</code></td><td>48 / 56px</td><td>Large and hero display</td></tr>
+                  <tr><td><code>DESIGN.md</code></td><td>Canonical contract: front matter holds values, prose holds rules</td></tr>
+                  <tr><td><code>css/tokens.css</code></td><td>Palette, type ladder, space scale, radius, shadows, knobs</td></tr>
+                  <tr><td><code>css/base.css</code></td><td>Element defaults. The one file you can skip</td></tr>
+                  <tr><td><code>css/layouts.css</code></td><td>Stack, Center, Cluster, Grid</td></tr>
+                  <tr><td><code>css/components.css</code></td><td>Buttons, pills, alerts, surfaces, forms, tables, code, prose</td></tr>
+                  <tr><td><code>css/kit.css</code></td><td>These reference pages only. Not part of the system</td></tr>
                 </tbody>
               </table>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- ——————————————————————————— Layout ——————————————————————————— -->
-        <section class="kit-section" id="layout">
-          <header>
-            <h2>Layout</h2>
-            <p class="cds-lede">
-              Four primitives, one space ratio, and a measure axiom. Compose
-              these instead of writing bespoke margin stacks.
+          <section class="kit-section">
+            <h2>Two knobs worth knowing</h2>
+            <p class="cds-prose">
+              Button shape and heading font are single variables, so a large part
+              of the system's personality changes in one line of
+              <code>tokens.css</code>.
             </p>
-          </header>
+            <pre class="cds-code"><code>--cds-button-radius: var(--cds-radius);   /* squarer than the default pill */
+--cds-heading-font: var(--cds-font-body); /* sans headings, no serif voice */</code></pre>
+          </section>
 
-          <div class="cds-grid" style="--cds-grid-min: 20rem">
-            <div class="kit-block">
-              <h3>Stack</h3>
-              <div class="kit-specimen cds-stack cds-stack--sm">
-                <div class="kit-demo-box">Vertical rhythm</div>
-                <div class="kit-demo-box">owned by gap</div>
-                <div class="kit-demo-box">not child margins</div>
-              </div>
-              <p class="kit-caption">.cds-stack · --sm / --md / --lg</p>
-            </div>
+          <nav class="kit-pager" aria-label="Pagination">
+            <span class="kit-pager__spacer"></span>
+            <a href="colors.html">Next: Colors &rarr;</a>
+          </nav>
 
-            <div class="kit-block">
-              <h3>Cluster</h3>
-              <div class="kit-specimen cds-cluster">
-                <span class="cds-pill">Wraps</span>
-                <span class="cds-pill cds-pill--active">when it must</span>
-                <span class="cds-pill">even gap</span>
-                <span class="cds-pill">no media query</span>
-              </div>
-              <p class="kit-caption">.cds-cluster · --center / --between</p>
-            </div>
-
-            <div class="kit-block">
-              <h3>Grid</h3>
-              <div class="kit-specimen cds-grid cds-grid--tight">
-                <div class="kit-demo-box">Tile</div>
-                <div class="kit-demo-box">Tile</div>
-                <div class="kit-demo-box">Tile</div>
-                <div class="kit-demo-box">Tile</div>
-              </div>
-              <p class="kit-caption">.cds-grid · wraps at --cds-grid-min</p>
-            </div>
-
-            <div class="kit-block">
-              <h3>Center</h3>
-              <div class="kit-specimen kit-specimen--soft">
-                <div class="cds-center">
-                  <p style="margin: 0; font-size: var(--cds-text-sm)">
-                    A centred column stops at the measure, so the reading line
-                    stays honest even when the shell is wide.
-                  </p>
-                </div>
-              </div>
-              <p class="kit-caption">.cds-center · --gutter</p>
-            </div>
-          </div>
-
-          <div class="kit-block">
-            <h3>Space scale</h3>
-            <div class="cds-table-wrap">
-              <table class="cds-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Step</th>
-                    <th scope="col">Value</th>
-                    <th scope="col">Use</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td><code>1</code>–<code>3</code></td><td>4 / 8 / 12px</td><td>Chrome only: control padding, tight gaps</td></tr>
-                  <tr><td><code>4</code></td><td>16px</td><td>Base step, seeds the ratio</td></tr>
-                  <tr><td><code>5</code></td><td>24px</td><td>Default stack gap, card padding</td></tr>
-                  <tr><td><code>6</code>–<code>8</code></td><td>36 / 54 / 81px</td><td>Section rhythm, page bands</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="kit-caption">--cds-ratio 1.5 · steps 5–8 multiply</p>
-          </div>
-        </section>
-
-        <!-- ——————————————————————————— Components ——————————————————————————— -->
-        <section class="kit-section" id="components">
-          <header>
-            <h2>Components</h2>
-            <p class="cds-lede">
-              Every class is prefixed <code>cds-</code> so the kit can sit
-              beside an existing stylesheet without fighting its
-              <code>.btn</code>.
-            </p>
-          </header>
-
-          <div class="kit-block">
-            <h3>Buttons</h3>
-            <div class="kit-specimen cds-cluster">
-              <button type="button" class="cds-btn cds-btn--primary">Primary</button>
-              <button type="button" class="cds-btn cds-btn--secondary">Secondary</button>
-              <button type="button" class="cds-btn cds-btn--outline">Outline</button>
-              <button type="button" class="cds-btn cds-btn--accent">Book a call</button>
-              <button type="button" class="cds-btn cds-btn--ghost">Ghost</button>
-              <button type="button" class="cds-btn cds-btn--primary" disabled>Disabled</button>
-            </div>
-            <p class="kit-caption">One primary per section · at most one accent CTA per view</p>
-          </div>
-
-          <div class="kit-block">
-            <h3>Surfaces</h3>
-            <div class="cds-grid" style="--cds-grid-min: 17rem">
-              <div class="cds-surface">
-                <h3>Surface</h3>
-                <p>Default module on the page wash: one hairline border and a light shadow.</p>
-                <button type="button" class="cds-btn cds-btn--outline">Details</button>
-              </div>
-              <div class="cds-surface cds-surface--panel">
-                <h3>Panel</h3>
-                <p>Grouping without a card shadow. Good for sidebars and filter rails.</p>
-              </div>
-              <div class="cds-surface cds-surface--dark">
-                <h3>Dark callout</h3>
-                <p>One per section at most. Muted white body copy, and CTAs keep dark ink on the accent fill.</p>
-                <button type="button" class="cds-btn cds-btn--accent">Start now</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="kit-block">
-            <h3>Feedback</h3>
-            <div class="kit-specimen cds-stack cds-stack--sm">
-              <div class="cds-alert cds-alert--info">
-                <strong>Info</strong>
-                Neutral context for something the reader should know.
-              </div>
-              <div class="cds-alert cds-alert--success">
-                <strong>Success</strong>
-                The action completed. Say what changed, not just that it worked.
-              </div>
-              <div class="cds-alert cds-alert--warning">
-                <strong>Warning</strong>
-                Something needs attention before it becomes a problem.
-              </div>
-              <div class="cds-alert cds-alert--danger">
-                <strong>Danger</strong>
-                It failed or it destroys data. Pair with a way out.
-              </div>
-              <div class="cds-alert cds-alert--note">
-                <strong>Note</strong>
-                Guidance rather than status: a how-to aside that sits in the
-                flow of a document.
-              </div>
-              <div class="cds-cluster">
-                <span class="cds-pill">Default</span>
-                <span class="cds-pill cds-pill--active">Selected</span>
-                <span class="cds-pill cds-pill--success">Live</span>
-                <span class="cds-pill cds-pill--warning">Review</span>
-                <span class="cds-pill cds-pill--danger">Blocked</span>
-                <span class="cds-spinner" role="status" aria-label="Loading"></span>
-                <span class="cds-progress"><span style="inline-size: 62%"></span></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="kit-block">
-            <h3>Forms</h3>
-            <div class="kit-specimen cds-grid" style="--cds-grid-min: 15rem">
-              <div class="cds-field">
-                <label for="demo-name">Full name</label>
-                <input class="cds-input" id="demo-name" type="text" placeholder="Ada Lovelace" />
-                <span class="cds-hint">Labels above, hints below.</span>
-              </div>
-              <div class="cds-field">
-                <label for="demo-plan">Plan</label>
-                <select class="cds-select" id="demo-plan">
-                  <option>Starter</option>
-                  <option>Team</option>
-                </select>
-                <span class="cds-hint">Native controls, brand focus ring.</span>
-              </div>
-              <div class="cds-field cds-field--error">
-                <label for="demo-email">Email</label>
-                <input class="cds-input" id="demo-email" type="email" value="ada@" aria-describedby="demo-email-error" />
-                <span class="cds-error" id="demo-email-error">Enter a full email address.</span>
-              </div>
-            </div>
-            <p class="kit-caption">Errors carry a message, never colour alone</p>
-          </div>
-
-          <div class="kit-block">
-            <h3>Data and code</h3>
-            <div class="cds-table-wrap">
-              <table class="cds-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Surface</th>
-                    <th scope="col">Primary action</th>
-                    <th scope="col">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>Marketing page</td><td>Accent CTA</td><td><span class="cds-pill cds-pill--success">Live</span></td></tr>
-                  <tr><td>Product dashboard</td><td>Primary button</td><td><span class="cds-pill cds-pill--active">In review</span></td></tr>
-                  <tr><td>Admin chrome</td><td>Outline button</td><td><span class="cds-pill">Draft</span></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <pre class="cds-code"><code>.hero {
-  background: var(--cds-paper);
-  padding-block: var(--cds-space-8);
-}</code></pre>
-          </div>
-        </section>
-
-        <!-- ——————————————————————————— Contract ——————————————————————————— -->
-        <section class="kit-section" id="contract">
-          <header>
-            <h2>Agent contract</h2>
-            <p class="cds-lede">
-              <code>DESIGN.md</code> is canonical. The copy below is embedded by
-              <code>sync-design-md-embed.ps1</code> so this page works when
-              opened straight from disk. Edit the markdown file, then re-run the
-              script.
-            </p>
-          </header>
-          <pre class="cds-code kit-contract"><code id="design-md-source">---
-version: 1.0.0
-name: Example Brand
-description: &gt;-
-  Core design system contract for Example Brand. Normative for marketing pages,
-  product UI, dashboards, and admin chrome. This file is a template: replace the
-  values and the brand-specific prose with your own, keep the token names, and
-  prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.
-colors:
-  primary: &quot;#2f5f8a&quot;
-  primary-deep: &quot;#234a6d&quot;
-  primary-soft: &quot;#d9e6f2&quot;
-  accent: &quot;#c9781e&quot;
-  accent-soft: &quot;#f7e5cd&quot;
-  paper: &quot;#f4f6f8&quot;
-  paper-deep: &quot;#e9edf2&quot;
-  surface: &quot;#ffffff&quot;
-  panel: &quot;#dfe5ec&quot;
-  panel-deep: &quot;#cdd6e0&quot;
-  panel-soft: &quot;#eef1f5&quot;
-  ink: &quot;#1a1d24&quot;
-  ink-deep: &quot;#0f1218&quot;
-  ink-muted: &quot;#565f6b&quot;
-  ink-soft: &quot;#8a929c&quot;
-  rule: &quot;rgba(26, 29, 36, 0.14)&quot;
-  success: &quot;#2f7d55&quot;
-  success-soft: &quot;#dcefe4&quot;
-  warning: &quot;#c9781e&quot;
-  warning-soft: &quot;#f7e5cd&quot;
-  danger: &quot;#a33b2b&quot;
-  danger-soft: &quot;#f6e0dc&quot;
-  info: &quot;#2f5f8a&quot;
-  info-soft: &quot;#d9e6f2&quot;
-  surface-dark: &quot;#1e3f5d&quot;
-  on-primary: &quot;#ffffff&quot;
-  on-accent: &quot;#0f1218&quot;
-  on-dark: &quot;#ffffff&quot;
-  on-dark-muted: &quot;rgba(255, 255, 255, 0.78)&quot;
-typography:
-  display-xl:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
-    fontSize: 3.5rem
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: -0.015em
-  display-lg:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
-    fontSize: 3rem
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: -0.015em
-  display-md:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
-    fontSize: 2.25rem
-    fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: -0.015em
-  display-sm:
-    fontFamily: Source Serif 4, Georgia, Times New Roman, serif
-    fontSize: 1.75rem
-    fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: -0.015em
-  body-lg:
-    fontFamily: Source Sans 3, system-ui, sans-serif
-    fontSize: 1.375rem
-    fontWeight: 400
-    lineHeight: 1.5
-  body-md:
-    fontFamily: Source Sans 3, system-ui, sans-serif
-    fontSize: 1.125rem
-    fontWeight: 400
-    lineHeight: 1.6
-  body-sm:
-    fontFamily: Source Sans 3, system-ui, sans-serif
-    fontSize: 1rem
-    fontWeight: 400
-    lineHeight: 1.35
-  label:
-    fontFamily: Source Sans 3, system-ui, sans-serif
-    fontSize: 1rem
-    fontWeight: 600
-    lineHeight: 1.35
-  meta:
-    fontFamily: Source Sans 3, system-ui, sans-serif
-    fontSize: 1rem
-    fontWeight: 700
-    lineHeight: 1.35
-    letterSpacing: 0.06em
-  code:
-    fontFamily: JetBrains Mono, ui-monospace, Consolas, monospace
-    fontSize: 1rem
-    fontWeight: 400
-    lineHeight: 1.55
-rounded:
-  sm: 0.375rem
-  md: 0.625rem
-  lg: 1rem
-  pill: 999px
-spacing:
-  1: 0.25rem
-  2: 0.5rem
-  3: 0.75rem
-  4: 1rem
-  5: 1.5rem
-  6: 2.25rem
-  7: 3.375rem
-  8: 5.0625rem
-components:
-  page:
-    backgroundColor: &quot;{colors.paper}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    typography: &quot;{typography.body-md}&quot;
-  heading:
-    textColor: &quot;{colors.ink-deep}&quot;
-    typography: &quot;{typography.display-md}&quot;
-  subhead:
-    textColor: &quot;{colors.primary}&quot;
-    typography: &quot;{typography.display-sm}&quot;
-  body:
-    textColor: &quot;{colors.ink}&quot;
-    typography: &quot;{typography.body-md}&quot;
-  muted:
-    textColor: &quot;{colors.ink-muted}&quot;
-    typography: &quot;{typography.body-sm}&quot;
-  link:
-    textColor: &quot;{colors.primary}&quot;
-    typography: &quot;{typography.label}&quot;
-  button-primary:
-    backgroundColor: &quot;{colors.primary}&quot;
-    textColor: &quot;{colors.on-primary}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.7rem 1.15rem
-    typography: &quot;{typography.label}&quot;
-  button-secondary:
-    backgroundColor: &quot;{colors.panel}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.7rem 1.15rem
-  button-outline:
-    backgroundColor: transparent
-    textColor: &quot;{colors.primary}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.7rem 1.15rem
-  button-accent:
-    backgroundColor: &quot;{colors.accent}&quot;
-    textColor: &quot;{colors.on-accent}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.7rem 1.15rem
-  button-ghost:
-    backgroundColor: transparent
-    textColor: &quot;{colors.ink-muted}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.7rem 0.65rem
-  input:
-    backgroundColor: &quot;{colors.surface}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.sm}&quot;
-    padding: 0.6rem 0.8rem
-    typography: &quot;{typography.body-md}&quot;
-  surface:
-    backgroundColor: &quot;{colors.surface}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 1.5rem
-  surface-panel:
-    backgroundColor: &quot;{colors.panel}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 1.5rem
-  surface-dark:
-    backgroundColor: &quot;{colors.surface-dark}&quot;
-    textColor: &quot;{colors.on-dark}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 1.5rem
-  alert-info:
-    backgroundColor: &quot;{colors.info-soft}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 0.75rem 1rem
-  alert-success:
-    backgroundColor: &quot;{colors.success-soft}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 0.75rem 1rem
-  alert-warning:
-    backgroundColor: &quot;{colors.warning-soft}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 0.75rem 1rem
-  alert-danger:
-    backgroundColor: &quot;{colors.danger-soft}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 0.75rem 1rem
-  alert-note:
-    backgroundColor: &quot;{colors.panel-soft}&quot;
-    textColor: &quot;{colors.ink-muted}&quot;
-    rounded: &quot;{rounded.sm}&quot;
-    padding: 1.5rem
-  pill:
-    backgroundColor: &quot;{colors.panel}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.25rem 0.65rem
-    typography: &quot;{typography.label}&quot;
-  pill-active:
-    backgroundColor: &quot;{colors.primary-soft}&quot;
-    textColor: &quot;{colors.primary-deep}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.25rem 0.65rem
-  pill-success:
-    backgroundColor: &quot;{colors.success-soft}&quot;
-    textColor: &quot;{colors.success}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.25rem 0.65rem
-  pill-warning:
-    backgroundColor: &quot;{colors.warning-soft}&quot;
-    textColor: &quot;{colors.ink-deep}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.25rem 0.65rem
-  pill-danger:
-    backgroundColor: &quot;{colors.danger-soft}&quot;
-    textColor: &quot;{colors.danger}&quot;
-    rounded: &quot;{rounded.pill}&quot;
-    padding: 0.25rem 0.65rem
-  table-header:
-    backgroundColor: &quot;{colors.panel-soft}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    typography: &quot;{typography.label}&quot;
-  code-inline:
-    backgroundColor: &quot;{colors.panel-soft}&quot;
-    textColor: &quot;{colors.primary-deep}&quot;
-    rounded: &quot;{rounded.sm}&quot;
-    padding: 0.08em 0.35em
-  code-block:
-    backgroundColor: &quot;{colors.panel-soft}&quot;
-    textColor: &quot;{colors.ink}&quot;
-    rounded: &quot;{rounded.md}&quot;
-    padding: 1rem
-    typography: &quot;{typography.code}&quot;
----
-
-## Overview
-
-Example Brand is the placeholder identity shipped with this template so the
-system renders and reads as a finished thing on first clone. Replace this
-section with your own brand in two or three sentences: who it serves, how it
-should feel, and what it must never look like.
-
-The demo identity is deliberately plain: cool paper, near-black ink, one
-slate-blue primary, and a single amber accent used sparingly. Serif for voice,
-sans for clarity.
-
-This file is normative. Agents and generators must read it before choosing
-colour, type, radius, or components, and must map values to the CSS custom
-properties in `css/tokens.css` (`--cds-*`) rather than inventing parallel ones.
-The human reference is `index.html`.
-
-Brand feel (replace with yours):
-- Calm, structured, legible; depth stays quiet
-- One primary interactive colour; the accent is rare and intentional
-- Air over density: prefer another section over a crowded one
-
-Surfaces this system must serve equally well:
-1. Marketing and website pages
-2. Product UI (boards, forms, dashboards)
-3. Compact admin or plugin chrome
-4. Documents and reports
-
-## Make it yours
-
-Keep the token names. Change the values, then the prose.
-
-1. `css/tokens.css` — palette, font stacks, size ladder, radius, space ratio.
-2. `css/fonts.css` — your webfont source.
-3. This file — front matter values, then Overview, Colors, Typography, and
-   Do&#39;s and Don&#39;ts in your own words.
-4. `assets/` — your marks, replacing the placeholder.
-5. Run `sync-design-md-embed.ps1` so `index.html` carries the current contract.
-
-Anything you do not customise stays a visible placeholder rather than a silent
-default, which is intentional.
-
-## Colors
-
-Semantic roles. Use these names in reasoning; hex values live in front matter.
-
-| Role | Token | Use |
-| --- | --- | --- |
-| Page wash | `paper` | Default background |
-| Wash deep | `paper-deep` | Alternating page bands |
-| Surface | `surface` | Cards, inputs, lifted modules |
-| Panel | `panel` | Grouping without a card shadow |
-| Panel soft | `panel-soft` | Quietest fill: notes, code paper, table headers |
-| Ink | `ink` | Body text |
-| Ink deep | `ink-deep` | Headings, text on light accent fills |
-| Ink muted | `ink-muted` | Captions, helper text, secondary copy |
-| Ink soft | `ink-soft` | Meta only, never body copy |
-| Primary | `primary` | Links, primary action, accent subheads |
-| Primary deep | `primary-deep` | Primary hover and pressed |
-| Primary soft | `primary-soft` | Soft fills, chips, selected states |
-| Accent | `accent` | Rare high-stakes CTA, emphasis rules |
-| Surface dark | `surface-dark` | Dark callout cards and hero bands |
-| Success / Warning / Danger / Info | semantic | Status only, not decoration |
-
-Rules:
-- Default stack is `paper` background, `ink` text, `primary` for interaction
-- Text on a filled surface uses its paired `on-*` token: `on-primary` on primary
-  fills, `on-accent` (dark ink) on accent fills, `on-dark` on `surface-dark`
-- Never promote `accent` into a second theme colour or a large background fill
-- Semantic colours describe state; do not borrow `danger` red for emphasis
-- Check WCAG AA (4.5:1) for body text and AA Large (3:1) for display sizes
-  before shipping any text-on-colour pair
-- The `primary-1`…`primary-5` ramp is for charts, illustrations, and
-  progressive emphasis, not random decoration
-- `info` ships as an alias of `primary` because the demo primary reads
-  informational. If your primary is warm or playful, give `info` its own cool
-  hue in `tokens.css`
-
-## Typography
-
-Three families, one job each:
-- **Display serif** (`Source Serif 4`): titles, section headings, accent
-  subheads. Tracking `--cds-tracking-display`.
-- **Body sans** (`Source Sans 3`): body copy, UI labels, tables, forms, meta.
-- **Mono** (`JetBrains Mono`): code only, never marketing body copy.
-
-Size ladder (`--cds-text-*`):
-
-| Token | Size | Role |
-| --- | --- | --- |
-| `sm` | 16px | Compact UI, labels, table cells |
-| `md` | 18px | Default body and long-form |
-| `lg` | 22px | Short lead or intro emphasis |
-| `xl` | 28px | Small display, card titles |
-| `2xl` | 36px | Medium display |
-| `3xl` | 48px | Large display |
-| `4xl` | 56px | Hero display |
-
-`sm` is the demo floor. If your product genuinely needs denser chrome, lower the
-floor in `tokens.css` once rather than sprinkling one-off sizes in components.
-
-Line-height is optical, per role: `--cds-leading-display` (1.1) for large
-display, `--cds-leading-snug` (1.15) for short titles, `--cds-leading-body`
-(1.6) for reading, `--cds-leading-callout` (1.5) for contained copy, and
-`--cds-leading-ui` (1.35) for compact UI.
-
-Weights are 400, 600, and 700 only. Prefer semibold before bold for UI chrome,
-and do not introduce 500 or 800 without adding a token for it.
-
-Rules:
-- Set reading width with `--cds-measure` in `ch`, never a fixed `px` width
-- Display serif carries titles; body sans carries paragraphs
-- Sentence case by default; uppercase is for short meta eyebrows with
-  `--cds-tracking-meta`
-- One display family and one body family. A third display font is a redesign,
-  not a variation
-- Do not rely on fluid viewport type alone to fix readability
-
-## Layout
-
-Composable primitives beat a breakpoint for every block. The approach follows
-the intrinsic-layout ideas in *Every Layout* (Pickering &amp; Bell).
-
-Axioms:
-- **Measure:** no reading line exceeds `--cds-measure`. Flow text is capped;
-  structural shells are not.
-- **Suggestion over prescription:** prefer `max-inline-size`, `min-block-size`,
-  `gap`, and `flex-basis` over fixed `width` and `height`.
-- **One space ratio:** `--cds-ratio` (1.5) seeds space from `1rem` (step 4).
-  Steps 5 to 8 multiply by the ratio; steps 1 to 3 are chrome-only.
-- **Boxes:** global `border-box`, logical properties, and `content-box` on
-  reading columns so `ch` measures text rather than text plus padding.
-
-Primitives in `css/layouts.css`:
-
-| Class | Job |
-| --- | --- |
-| `.cds-stack` | Vertical rhythm owned by `gap`. Variants `--sm`, `--md`, `--lg` |
-| `.cds-center` | Centred reading column at `--cds-measure`, optional `--gutter` |
-| `.cds-cluster` | Wrapping horizontal group for buttons, pills, tags |
-| `.cds-grid` | Auto-fitting tiles that wrap at `--cds-grid-min`, no media query |
-
-Hierarchy:
-- One job per section: a heading, a short supporting line, then content
-- Space major blocks with `.cds-stack` or steps 5 to 7
-- Do not mix ad-hoc child margins with a parent `.cds-stack` gap
-- `--cds-max` may wrap shells and specimen grids; paragraphs still obey measure
-
-## Elevation &amp; depth
-
-Depth is quiet.
-- Default surfaces: 1px `rule` border with an optional light shadow
-- Stronger lift only when something genuinely floats (`--cds-shadow-md`)
-- Prefer a border plus a background shift (`surface`, `panel`, `paper-deep`)
-  over stacked shadows
-- No neon glow, no multi-layer coloured shadows, no glass blur as a brand device
-
-## Shapes
-
-Radii: `rounded.sm` for inputs and small controls, `rounded.md` for surfaces and
-alerts, `rounded.lg` for large media frames, `rounded.pill` for buttons and
-chips.
-
-Button shape is a single knob: `--cds-button-radius`. Set it to
-`var(--cds-radius)` for a squarer system. Do not mix sharp chrome and pill
-buttons in the same view unless the exception is documented here.
-
-Focus ring: a soft primary halo (`--cds-focus`). Restyle it if you must, but
-never remove it.
-
-## Components
-
-Class names live in `css/components.css`, all prefixed `cds-`.
-
-**Buttons**
-- `button-primary` (`.cds-btn--primary`): the main action. One per section.
-- `button-secondary` (`.cds-btn--secondary`): panel fill for secondary actions.
-- `button-outline` (`.cds-btn--outline`): low-emphasis action, transparent fill
-  with a `primary` border and `primary` label.
-- `button-accent` (`.cds-btn--accent`): at most one high-stakes CTA per view
-  (Buy, Book, Submit final). Dark ink on the accent fill, never white. Hover
-  lightens toward paper so contrast improves.
-- `button-ghost` (`.cds-btn--ghost`): text-like dismissal or tertiary nav.
-- Disabled reduces opacity. Do not invent a separate grey system.
-
-**Links**
-- `primary`, semibold when inline in prose. Never default browser blue.
-
-**Forms**
-- Labels sit above fields; hints and errors sit below
-- Inputs: surface fill, soft ink border, `rounded.sm`, primary focus ring
-- Errors pair a `danger` border with a text message, never colour alone
-- Selected chips use `pill-active` (soft fill, deep text), not solid `primary`
-  with `ink`
-
-**Surfaces**
-- `surface`: default module on the page wash
-- `surface-panel`: grouping without a card shadow
-- `surface-dark`: one dark callout per section at most; muted white body copy
-- Do not wrap every block in a shadowed card
-
-**Pills**
-- `pill`: default panel fill, for compact status and tags
-- `pill-active` (`.cds-pill--active` or `.cds-pill.is-active`): selected state
-- `pill-success` / `pill-warning` / `pill-danger`: soft semantic fills, state only
-
-**Feedback**
-- Pills for compact status, alerts for full-sentence messages
-- `alert-note` (`.cds-alert--note`) is guidance, not status
-- Spinner for indeterminate waits, progress bar only when percent is known
-
-**Code**
-- Inline `code` stays quiet: `panel-soft` paper, `primary-deep` text, no border
-- Block `.cds-code` soft-wraps; snippets never hide content behind a scrollbar
-
-**Brand assets**
-- Marks live in `assets/`. Use the wordmark when naming the brand and the icon
-  for favicons, avatars, and tight badges
-- Do not add shadows, outlines, recolours, or stretch transforms to mark files
-- Prefer SVG on screen; keep raster exports for hosts that require them
-
-## Do&#39;s and Don&#39;ts
-
-**Do**
-- Start from `paper` plus `ink` plus `primary`
-- Keep the accent rare and singular
-- Use the space, size, and radius scales exactly
-- Check contrast for body text before shipping
-- Reuse `css/cds.css` (or tokens plus components) instead of new one-off CSS
-- Add a token when you need a new value
-
-**Don&#39;t**
-- Don&#39;t invent hex values, font stacks, or spacing that bypass the tokens
-- Don&#39;t make the accent a theme colour or a page background
-- Don&#39;t ship more than one primary button, or more than one accent CTA, per view
-- Don&#39;t use pure black or pure white as the default page wash
-- Don&#39;t use semantic status colours as decoration
-- Don&#39;t remove focus indicators
-- Don&#39;t set paragraph measure in `px`
-- Don&#39;t introduce a third display family or a fourth type role
-- Don&#39;t create a dark-mode palette unless it is asked for and tokenised here
-- Don&#39;t leave the placeholder brand name in shipped work
-
-## Agent directives
-
-When generating or editing UI for this brand:
-
-1. Read this file before choosing colour, type, radius, or components.
-2. Prefer token names and `{colors.*}` references in reasoning; emit `--cds-*`
-   custom properties in code.
-3. If a request conflicts with Do&#39;s and Don&#39;ts, follow this file and say so
-   briefly rather than silently deviating.
-4. Validate text and background pairs against WCAG AA for body copy.
-5. Self-check after UI work: correct page wash, display family on titles, one
-   primary action, accent used at most once, focus rings intact.
-6. Use the mark files in `assets/`; never regenerate a lookalike.
-7. Patterns not covered here (modals, tabs, toasts, dark mode) are out of scope
-   until they are added. Improvise with existing tokens and keep the same
-   constraints instead of inventing a new visual language.
-8. If this file still reads &quot;Example Brand&quot;, say so before generating brand
-   work: the system has not been customised yet.
-</code></pre>
-        </section>
-
-        <footer class="kit-footer">
-          Design System Template — replace Example Brand with your own. Kit and
-          placeholder assets are MIT licensed; the brand you build with it is
-          yours.
-        </footer>
+          <footer class="kit-footer">
+            Design System Template. The kit and placeholder assets are MIT
+            licensed; the brand you build with it is yours.
+          </footer>
+        </div>
       </main>
     </div>
   </body>

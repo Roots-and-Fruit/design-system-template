@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Colors — Example Brand Design System</title>
+    <meta
+      name="description"
+      content="Colour roles, semantic states, and the primary ramp for the design system template."
+    />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/cds.css" />
+    <link rel="stylesheet" href="css/kit.css" />
+  </head>
+  <body>
+    <div class="kit-shell">
+      <aside class="kit-sidebar">
+        <div class="kit-sidebar__brand">
+          <a class="kit-brand" href="index.html">
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
+              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
+              <circle cx="23" cy="23" r="9" />
+              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
+              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
+            </svg>
+            <span>Example Brand</span>
+          </a>
+          <p class="kit-sidebar__subtitle">Design system</p>
+        </div>
+        <nav class="kit-nav" aria-label="Design system sections">
+          <a href="index.html">Overview</a>
+          <a href="colors.html" aria-current="page">Colors</a>
+          <a href="typography.html">Typography</a>
+          <a href="layout.html">Layout</a>
+          <a href="components.html">Components</a>
+          <a href="contract.html">Agent contract</a>
+        </nav>
+        <p class="kit-sidebar__foot">MIT licensed. Replace Example Brand with your own.</p>
+      </aside>
+
+      <main class="kit-main">
+        <div class="kit-main__inner cds-stack cds-stack--lg">
+          <header class="kit-page-head">
+            <p class="cds-meta">Foundations</p>
+            <h1>Colors</h1>
+            <p class="cds-lede">
+              Roles first. The page wash, ink, and one primary carry almost
+              everything. The accent stays rare, and semantic colours describe
+              state rather than decorate.
+            </p>
+          </header>
+
+          <section class="kit-section">
+            <h2>Brand</h2>
+            <div class="cds-grid cds-grid--tight">
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-primary); color: var(--cds-on-primary)">#2f5f8a</div>
+                <span class="kit-swatch__name">primary</span>
+                <span class="kit-swatch__note">Links, primary action, subheads</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-primary-deep); color: var(--cds-on-primary)">#234a6d</div>
+                <span class="kit-swatch__name">primary-deep</span>
+                <span class="kit-swatch__note">Hover and pressed</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-primary-soft)">#d9e6f2</div>
+                <span class="kit-swatch__name">primary-soft</span>
+                <span class="kit-swatch__note">Soft fills, chips, selected</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-accent); color: var(--cds-on-accent)">#c9781e</div>
+                <span class="kit-swatch__name">accent</span>
+                <span class="kit-swatch__note">One CTA per view, dark ink label</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-surface-dark); color: var(--cds-on-dark)">#1e3f5d</div>
+                <span class="kit-swatch__name">surface-dark</span>
+                <span class="kit-swatch__note">Dark callout cards, hero bands</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section">
+            <h2>Paper and ink</h2>
+            <div class="cds-grid cds-grid--tight">
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-paper)">#f4f6f8</div>
+                <span class="kit-swatch__name">paper</span>
+                <span class="kit-swatch__note">Default page wash</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-paper-deep)">#e9edf2</div>
+                <span class="kit-swatch__name">paper-deep</span>
+                <span class="kit-swatch__note">Alternating bands</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-surface)">#ffffff</div>
+                <span class="kit-swatch__name">surface</span>
+                <span class="kit-swatch__note">Cards, inputs</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-panel)">#dfe5ec</div>
+                <span class="kit-swatch__name">panel</span>
+                <span class="kit-swatch__note">Grouping without a shadow</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-panel-soft)">#eef1f5</div>
+                <span class="kit-swatch__name">panel-soft</span>
+                <span class="kit-swatch__note">Notes, code paper, table heads</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-ink); color: #fff">#1a1d24</div>
+                <span class="kit-swatch__name">ink</span>
+                <span class="kit-swatch__note">Body text</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-ink-deep); color: #fff">#0f1218</div>
+                <span class="kit-swatch__name">ink-deep</span>
+                <span class="kit-swatch__note">Headings, ink on accent fills</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-ink-muted); color: #fff">#565f6b</div>
+                <span class="kit-swatch__name">ink-muted</span>
+                <span class="kit-swatch__note">Captions, helper text</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section">
+            <h2>Semantic</h2>
+            <p class="cds-prose">
+              State only. Do not borrow <code>danger</code> red for emphasis or
+              <code>success</code> green for brand decoration.
+            </p>
+            <div class="cds-grid cds-grid--tight">
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-success); color: #fff">#2f7d55</div>
+                <span class="kit-swatch__name">success</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-warning); color: var(--cds-ink-deep)">#c9781e</div>
+                <span class="kit-swatch__name">warning</span>
+                <span class="kit-swatch__note">Shares the accent hue</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-danger); color: #fff">#a33b2b</div>
+                <span class="kit-swatch__name">danger</span>
+              </div>
+              <div class="kit-swatch">
+                <div class="kit-swatch__chip" style="background: var(--cds-info); color: #fff">#2f5f8a</div>
+                <span class="kit-swatch__name">info</span>
+                <span class="kit-swatch__note">Aliased to primary in the demo</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section">
+            <h2>Primary ramp</h2>
+            <p class="cds-prose">
+              Five steps for charts, illustrations, and progressive emphasis. Use
+              it deliberately, not as general decoration, and keep chart series
+              far enough apart to stay legible at small sizes.
+            </p>
+            <div class="kit-ramp" aria-hidden="true">
+              <span style="background: var(--cds-primary-1)"></span>
+              <span style="background: var(--cds-primary-2)"></span>
+              <span style="background: var(--cds-primary-3)"></span>
+              <span style="background: var(--cds-primary-4)"></span>
+              <span style="background: var(--cds-primary-5)"></span>
+            </div>
+            <p class="kit-caption">--cds-primary-1 … --cds-primary-5</p>
+          </section>
+
+          <section class="kit-section">
+            <h2>Pairing rules</h2>
+            <div class="cds-alert cds-alert--warning">
+              <strong>Contrast is a gate, not a preference</strong>
+              Body text needs WCAG AA (4.5:1). Display sizes may use AA Large
+              (3:1). Text on a filled surface uses its paired
+              <code>on-*</code> token, which means dark ink on the accent fill,
+              never white.
+            </div>
+            <div class="cds-table-wrap">
+              <table class="cds-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Fill</th>
+                    <th scope="col">Text token</th>
+                    <th scope="col">Sample</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>primary</code></td>
+                    <td><code>on-primary</code></td>
+                    <td><span style="background: var(--cds-primary); color: var(--cds-on-primary); padding: 0.15rem 0.5rem; border-radius: var(--cds-radius-sm)">Sign in</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>accent</code></td>
+                    <td><code>on-accent</code></td>
+                    <td><span style="background: var(--cds-accent); color: var(--cds-on-accent); padding: 0.15rem 0.5rem; border-radius: var(--cds-radius-sm)">Book a call</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>surface-dark</code></td>
+                    <td><code>on-dark</code></td>
+                    <td><span style="background: var(--cds-surface-dark); color: var(--cds-on-dark); padding: 0.15rem 0.5rem; border-radius: var(--cds-radius-sm)">Callout title</span></td>
+                  </tr>
+                  <tr>
+                    <td><code>primary-soft</code></td>
+                    <td><code>primary-deep</code></td>
+                    <td><span style="background: var(--cds-primary-soft); color: var(--cds-primary-deep); padding: 0.15rem 0.5rem; border-radius: var(--cds-radius-sm)">Selected</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <nav class="kit-pager" aria-label="Pagination">
+            <a href="index.html">&larr; Overview</a>
+            <a href="typography.html">Next: Typography &rarr;</a>
+          </nav>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

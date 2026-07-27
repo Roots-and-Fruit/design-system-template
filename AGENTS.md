@@ -22,7 +22,9 @@ jobs land here, so work out which one you are doing first.
 Edit in this order so the pieces stay in sync:
 
 1. `css/tokens.css`, then `css/layouts.css` or `css/components.css`.
-2. `index.html` when a pattern is new or its specimen is now wrong.
+2. The matching reference page when a pattern is new or its specimen is now
+   wrong: `colors.html`, `typography.html`, `layout.html`, or
+   `components.html`.
 3. `DESIGN.md`: front matter values first, then the prose rules.
 4. Run the sync script so the embedded contract matches the markdown:
 
@@ -37,10 +39,14 @@ node sync-design-md-embed.mjs
 ## Boundaries
 
 - `DESIGN.md` is the source of truth. The markdown inside
-  `<code id="design-md-source">` in `index.html` is a generated copy, so never
-  hand-edit it.
-- `css/kit.css` styles the reference page only. Keep it out of the system, and
-  keep system classes out of it.
+  `<code id="design-md-source">` in `contract.html` is a generated copy, so
+  never hand-edit it.
+- `css/kit.css` styles the reference site only, including the
+  `@view-transition` rules. Keep it out of the system, and keep system classes
+  out of it.
+- The sidebar markup is duplicated across pages on purpose: no build step, no
+  JavaScript. When you change nav links, change all six pages and keep
+  `aria-current="page"` on the current one.
 - `css/base.css` is the only file allowed to style bare tags, because adopters
   need to be able to skip it.
 - Component classes are prefixed `cds-`, reference-page classes `kit-`. Do not

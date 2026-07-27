@@ -8,11 +8,16 @@ It ships with a placeholder brand called **Example Brand** so everything renders
 on first clone. Replace the values, keep the structure, and you have your own
 system.
 
-**Reference page:** open `index.html` in a browser, or serve the folder:
+**Reference site:** one page per section (Overview, Colors, Typography, Layout,
+Components, Agent contract). Open `index.html` in a browser, or serve the folder:
 
 ```bash
 npx --yes serve .
 ```
+
+Serving it also enables the cross-document
+[View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)
+between pages, which need a real origin rather than `file://`.
 
 ## Why this exists
 
@@ -31,10 +36,10 @@ rules in words, including the things a generator should never do.
 | `css/base.css` | Element-level defaults. Skip this file when integrating into an existing site |
 | `css/layouts.css` | Stack, Center, Cluster, Grid |
 | `css/components.css` | Buttons, pills, alerts, surfaces, forms, tables, code, prose |
-| `css/kit.css` | Chrome for the reference page only. Not part of the system |
-| `index.html` | Human reference with specimens and the embedded contract |
+| `css/kit.css` | Chrome for the reference site only. Not part of the system |
+| `index.html` and friends | Reference site: Overview, Colors, Typography, Layout, Components, Agent contract |
 | `assets/` | Placeholder mark, plus a place for your logos |
-| `sync-design-md-embed.ps1` / `.mjs` | Copies `DESIGN.md` into the reference page |
+| `sync-design-md-embed.ps1` / `.mjs` | Copies `DESIGN.md` into `contract.html` |
 
 Use it in a page:
 
@@ -58,7 +63,8 @@ is the only file that touches `body`, headings, links, and `code`.
    That prose is what agents follow when a request is ambiguous.
 4. **Assets.** Replace `assets/mark.svg` and add your logos under
    `assets/logos/`.
-5. **Sync.** Run the sync script so `index.html` carries the current contract:
+5. **Sync.** Run the sync script so `contract.html` carries the current
+   contract:
 
 ```powershell
 .\sync-design-md-embed.ps1
@@ -92,7 +98,16 @@ part of the system's personality changes in one line:
 ### Renaming the prefix
 
 Every class and variable is prefixed `cds-`. To rename it, find and replace
-`cds-` across `css/`, `index.html`, and `DESIGN.md`.
+`cds-` across `css/`, the HTML pages, and `DESIGN.md`.
+
+### The reference site
+
+Each section is a separate HTML file with a shared sidebar, so pages are
+linkable and the markup for one section stays readable. Navigation between them
+opts into cross-document view transitions with `@view-transition` in
+`css/kit.css`: the sidebar holds still while content cross-fades and lifts.
+Browsers without support simply navigate, and the animation is disabled under
+`prefers-reduced-motion`. There is no JavaScript and no build step.
 
 ## Working with agents
 
