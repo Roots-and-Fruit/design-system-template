@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-brand-title="Media Kit">Media Kit — Example Brand Design System</title>
+    <meta name="description" content="Partner-facing logo pack, usage rules, and pasteable brand copy." />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/cds.css" />
+    <link rel="stylesheet" href="css/kit.css" />
+  </head>
+  <body>
+    <div class="kit-shell">
+      <aside class="kit-sidebar">
+        <div class="kit-sidebar__brand">
+          <a class="kit-brand" href="index.html">
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
+              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
+              <circle cx="23" cy="23" r="9" />
+              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
+              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
+            </svg>
+            <span data-brand="name">Example Brand</span>
+          </a>
+          <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
+        </div>
+                <nav class="kit-nav" aria-label="Design system sections">
+          <a href="index.html">Overview</a>
+          <a href="media-kit.html" aria-current="page">Media Kit</a>
+          <a href="colors.html">Colors</a>
+          <a href="typography.html">Typography</a>
+          <a href="layout.html">Layout</a>
+          <a href="components.html">Components</a>
+          <a href="design-md.html">DESIGN.md</a>
+        </nav>
+        <a class="kit-yours" href="customize.html">
+          <!-- Lucide palette -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+          </svg>
+          <span>Make it your own</span>
+        </a>
+
+        <div class="kit-credit">
+          <p class="kit-credit__line">
+            <!-- Roots & Fruit mark: part of the credit, not part of the system. -->
+            <svg class="kit-credit__mark" viewBox="0 0 227 222" aria-hidden="true" focusable="false">
+              <path fill="#B4B865" d="M4.21125 77.5705C12.5801 88.0863 48.7496 81.0849 72.0102 61.8993C96.2827 41.8797 105.787 18.3456 102.012 3.9872C99.3868 -6.00898 54.575 5.49141 32.2033 25.6068C14.4672 41.5515 -4.15764 67.0547 4.21125 77.5705Z" />
+              <path fill="#62744D" d="M6.4677 95.2245C11.8282 93.5288 22.932 91.7784 29.0582 91.2862C31.9983 91.04 32.2034 91.6007 29.2497 94.6501C24.026 100.024 12.8401 111.88 5.42843 117.528C2.98066 119.388 1.43543 117.405 1.32603 115.285C0.5329 111.224 0.820068 105.248 1.21663 101.706C1.95506 98.1098 3.21313 96.2774 6.4677 95.2518V95.2245Z" />
+              <path fill="#62744D" d="M12.9632 129.835C19.7731 112.646 54.4247 87.7444 69.9318 76.5722C72.0377 75.0543 78.7382 71.5536 80.1878 73.9467C86.0132 83.519 74.0478 113.425 68.6463 125.623C62.7115 139.038 51.7445 165.936 41.7346 177.97C39.9432 180.13 37.1673 178.421 35.1298 176.479C25.0379 166.839 18.2963 156.473 14.8229 149.171C12.717 144.74 10.912 134.977 12.9495 129.835H12.9632Z" />
+              <path fill="#89866D" d="M74.1162 135.578C75.9896 131.367 79.6681 129.985 81.1587 137.192C84.1944 151.906 82.9364 178.271 82.5808 189.251C82.4304 193.914 80.051 202.092 74.5128 200.82C70.5335 199.904 64.1474 196.307 61.0159 193.832C57.1733 190.81 56.2708 185.409 56.8998 181.785C58.6092 171.912 70.0001 144.809 74.1162 135.578Z" />
+              <path fill="#505A49" d="M99.5784 66.6855C104.255 53.8313 114.019 53.1613 124.671 60.108C136.049 67.5196 143.542 77.9807 144.691 97.1663C145.512 110.759 143.31 130.136 140.452 158.087C139.057 171.679 140.302 191.002 142.517 204.088C143.16 207.849 127.543 216.573 119.831 220.635C117.164 222.043 113.992 222.112 111.243 220.867C103.435 217.312 88.9806 210.31 90.2523 204.649C99.6878 162.887 88.7208 143.25 88.7891 124.406C88.8985 94.6912 92.1531 87.0334 99.5511 66.6992L99.5784 66.6855Z" />
+              <path fill="#89866D" d="M155.097 105.549C155.467 93.0775 149.122 76.0389 164.82 99.4089C176.567 116.885 180.313 172.308 179.042 185.258C178.796 187.733 174.064 191.344 164.068 196.061C153.224 201.176 148.643 203.514 148.862 183.33C148.944 175.467 154.332 131.202 155.097 105.549Z" />
+              <path fill="#62744D" d="M157.887 63.4856C165.066 74.8082 177.114 99.6688 181.189 115.012C185.701 131.982 187.534 156.897 188.067 169.847C188.313 176.042 189.352 178.134 192.88 174.948C201.208 167.413 210.808 155.352 217.194 135.811C219.724 128.085 218.302 114.984 212.121 105.781C200.511 88.4966 179.561 68.5179 162.728 60.8191C155.152 57.3594 157.518 62.8976 157.887 63.4856Z" />
+              <path fill="#B4B865" d="M148.397 2.94792C131.618 -2.04333 128.815 0.97877 127.447 10.0998C125.013 26.3589 135.037 33.415 142.736 36.0543C169.784 45.3393 180.286 53.9134 197.038 69.9947C211.916 84.2711 229.337 115.791 226.589 91.5187C224.072 69.311 216.114 53.298 199.403 35.4252C185.25 20.2874 164.437 7.72037 148.383 2.94792H148.397Z" />
+            </svg>
+            <span>A <strong>Roots &amp; Fruit</strong> system</span>
+          </p>
+          <a href="https://github.com/Roots-and-Fruit/design-system-template"
+            >Want to create your own design system?</a
+          >
+        </div>
+      </aside>
+
+            <main class="kit-main">
+        <div class="kit-main__inner cds-stack cds-stack--lg">
+          <header class="kit-page-head">
+            <p class="cds-meta">For partners and press</p>
+            <h1>Media Kit</h1>
+            <p class="cds-lede">
+              For sponsors, partners, and anyone adding
+              <span data-brand="name">Example Brand</span>
+              to a website blurb or event page. Download a logo, follow the short
+              rules, and paste the copy if you need a description.
+            </p>
+          </header>
+
+          <section class="kit-section cds-stack cds-stack--md">
+            <h2>Logo pack</h2>
+            <p class="cds-prose">
+              These three wordmarks cover almost every partner placement. Prefer SVG
+              on the web; use PNG when a host requires raster. Replace the placeholder
+              files under <code>assets/logos/</code> when you customise the kit.
+            </p>
+            <div class="kit-logo-grid">
+              <figure class="kit-logo-tile">
+                <div class="kit-logo-tile__stage">
+                  <img src="assets/logos/wordmark.svg" alt="Wordmark for light backgrounds" />
+                </div>
+                <figcaption class="kit-logo-tile__meta">
+                  <strong>Full color</strong>
+                  <code>assets/logos/wordmark.svg</code>
+                  <span>Default on white, paper, or light backgrounds.</span>
+                  <div class="kit-logo-tile__downloads cds-stack cds-stack--sm">
+                    <span class="cds-text-muted">Download as:</span>
+                    <div class="cds-cluster">
+                      <a class="cds-btn cds-btn--outline cds-btn--sm" href="assets/logos/wordmark.svg" download="wordmark.svg">SVG</a>
+                      <a class="cds-btn cds-btn--outline cds-btn--sm" href="assets/logos/wordmark.png" download="wordmark.png">PNG</a>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+              <figure class="kit-logo-tile">
+                <div class="kit-logo-tile__stage kit-logo-tile__stage--ink">
+                  <img src="assets/logos/wordmark-white.svg" alt="White wordmark for dark backgrounds" />
+                </div>
+                <figcaption class="kit-logo-tile__meta">
+                  <strong>Flat white</strong>
+                  <code>assets/logos/wordmark-white.svg</code>
+                  <span>Monotone reverse for dark panels, photography, or dark sections.</span>
+                  <div class="kit-logo-tile__downloads cds-stack cds-stack--sm">
+                    <span class="cds-text-muted">Download as:</span>
+                    <div class="cds-cluster">
+                      <a class="cds-btn cds-btn--outline cds-btn--sm" href="assets/logos/wordmark-white.svg" download="wordmark-white.svg">SVG</a>
+                      <a class="cds-btn cds-btn--outline cds-btn--sm" href="assets/logos/wordmark-white.png" download="wordmark-white.png">PNG</a>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+              <figure class="kit-logo-tile">
+                <div class="kit-logo-tile__stage">
+                  <img src="assets/logos/wordmark-mono.svg" alt="Mono black wordmark" />
+                </div>
+                <figcaption class="kit-logo-tile__meta">
+                  <strong>Flat black</strong>
+                  <code>assets/logos/wordmark-mono.svg</code>
+                  <span>One-color print, mono layouts, or when color is not available.</span>
+                  <div class="kit-logo-tile__downloads cds-stack cds-stack--sm">
+                    <span class="cds-text-muted">Download as:</span>
+                    <div class="cds-cluster">
+                      <a class="cds-btn cds-btn--outline cds-btn--sm" href="assets/logos/wordmark-mono.svg" download="wordmark-mono.svg">SVG</a>
+                      <a class="cds-btn cds-btn--outline cds-btn--sm" href="assets/logos/wordmark-mono.png" download="wordmark-mono.png">PNG</a>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="kit-section cds-stack cds-stack--md">
+            <h2>Usage</h2>
+            <p class="cds-prose">
+              Four common mistakes, each with a good example and a bad one. If it looks
+              like the bad side, do not ship it.
+            </p>
+            <div class="kit-usage-grid">
+              <article class="kit-usage-card">
+                <h3 class="kit-usage-card__title">Clear space</h3>
+                <div class="kit-usage-pair">
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--success">Good</span>
+                    <div class="kit-usage-example__stage kit-usage-example__stage--airy">
+                      <img src="assets/logos/wordmark.svg" alt="" />
+                    </div>
+                    <p class="kit-usage-example__note">Leave room around the mark so it can breathe.</p>
+                  </div>
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--danger">Bad</span>
+                    <div class="kit-usage-example__stage kit-usage-example__stage--crowded" aria-hidden="true">
+                      <img src="assets/logos/wordmark.svg" alt="" />
+                      <span class="kit-usage-crowd-label">Partner Co</span>
+                    </div>
+                    <p class="kit-usage-example__note">Do not crowd the logo with other names or edges.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="kit-usage-card">
+                <h3 class="kit-usage-card__title">Proportions</h3>
+                <div class="kit-usage-pair">
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--success">Good</span>
+                    <div class="kit-usage-example__stage">
+                      <img src="assets/logos/wordmark.svg" alt="" />
+                    </div>
+                    <p class="kit-usage-example__note">Scale evenly. Keep the natural wordmark shape.</p>
+                  </div>
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--danger">Bad</span>
+                    <div class="kit-usage-example__stage kit-usage-example__stage--stretch" aria-hidden="true">
+                      <img src="assets/logos/wordmark.svg" alt="" />
+                    </div>
+                    <p class="kit-usage-example__note">Do not stretch, squash, rotate, or add effects.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="kit-usage-card">
+                <h3 class="kit-usage-card__title">Contrast</h3>
+                <div class="kit-usage-pair">
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--success">Good</span>
+                    <div class="kit-usage-example__stage kit-usage-example__stage--ink">
+                      <img src="assets/logos/wordmark-white.svg" alt="" />
+                    </div>
+                    <p class="kit-usage-example__note">Flat white mark on a dark field.</p>
+                  </div>
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--danger">Bad</span>
+                    <div class="kit-usage-example__stage" aria-hidden="true">
+                      <img src="assets/logos/wordmark-white.svg" alt="" />
+                    </div>
+                    <p class="kit-usage-example__note">Do not put a light mark on a light background.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="kit-usage-card">
+                <h3 class="kit-usage-card__title">Do not invent a mark</h3>
+                <div class="kit-usage-pair">
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--success">Good</span>
+                    <div class="kit-usage-example__stage">
+                      <img src="assets/logos/wordmark.svg" alt="" />
+                    </div>
+                    <p class="kit-usage-example__note">Use the official wordmark as provided.</p>
+                  </div>
+                  <div class="kit-usage-example">
+                    <span class="cds-pill cds-pill--danger">Bad</span>
+                    <div class="kit-usage-example__stage kit-usage-example__stage--invent" aria-hidden="true">
+                      <img src="assets/mark.svg" alt="" class="kit-usage-invent-icon" />
+                      <span class="kit-usage-invent-type" data-brand="name">Example Brand</span>
+                    </div>
+                    <p class="kit-usage-example__note">Do not retype the name or recolor the mark.</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="kit-section cds-stack cds-stack--md">
+            <h2>Name &amp; copy</h2>
+            <div class="cds-table-wrap">
+              <table class="cds-table">
+                <tbody>
+                  <tr>
+                    <th scope="row">Official name</th>
+                    <td data-brand="name">Example Brand</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Short</th>
+                    <td><span data-brand="shortName">EB</span> <span class="cds-text-muted">(fine in tight UI; prefer the full name in sentences)</span></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Website</th>
+                    <td><a class="cds-text-primary" data-brand="website" href="https://example.com/">https://example.com/</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="kit-caption">Pasteable description</p>
+            <div class="kit-code">
+              <div class="kit-code__chrome">
+                <div class="kit-code__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <button type="button" class="kit-code__copy" data-kit-copy aria-label="Copy description">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 8.25V6A2.25 2.25 0 0014.25 3.75H6A2.25 2.25 0 003.75 6v8.25A2.25 2.25 0 006 16.5h2.25m8.25-8.25H18A2.25 2.25 0 0120.25 10.5V18A2.25 2.25 0 0118 20.25h-7.5A2.25 2.25 0 018.25 18v-1.5m8.25-8.25h-6A2.25 2.25 0 008.25 10.5v6" />
+                  </svg>
+                </button>
+              </div>
+              <pre class="cds-code kit-code__body"><code data-brand="boilerplate">Example Brand helps teams ship clear, consistent product and marketing surfaces from one shared design contract.</code></pre>
+            </div>
+
+            <p class="kit-caption">One-liner</p>
+            <div class="kit-code">
+              <div class="kit-code__chrome">
+                <div class="kit-code__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <button type="button" class="kit-code__copy" data-kit-copy aria-label="Copy one-liner">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 8.25V6A2.25 2.25 0 0014.25 3.75H6A2.25 2.25 0 003.75 6v8.25A2.25 2.25 0 006 16.5h2.25m8.25-8.25H18A2.25 2.25 0 0120.25 10.5V18A2.25 2.25 0 0118 20.25h-7.5A2.25 2.25 0 018.25 18v-1.5m8.25-8.25h-6A2.25 2.25 0 008.25 10.5v6" />
+                  </svg>
+                </button>
+              </div>
+              <pre class="cds-code kit-code__body"><code data-brand="oneLiner">A clear design system for product and marketing teams.</code></pre>
+            </div>
+          </section>
+
+          <section class="kit-section cds-stack cds-stack--md">
+            <h2>Permission &amp; contact</h2>
+            <p class="cds-prose">
+              You may use these logos to identify
+              <span data-brand="name">Example Brand</span>
+              as a partner, sponsor, speaker, or featured brand, as long as the
+              usage rules above are followed and the mark is not altered. For
+              anything else, email
+              <a class="cds-text-primary" data-brand="contactEmail" href="mailto:hello@example.com">hello@example.com</a>.
+            </p>
+            <div class="cds-alert cds-alert--note">
+              <strong>Customising this kit?</strong>
+              Drop your real marks into <code>assets/logos/</code>, fill the Media Kit
+              fields in <code>brand.json</code>, and run <code>npm run customize</code>.
+            </div>
+          </section>
+
+          <nav class="kit-pager" aria-label="Pagination">
+            <a href="index.html">&larr; Prev: Overview</a>
+            <a href="colors.html">Next: Colors &rarr;</a>
+          </nav>
+
+          <footer class="kit-footer">
+            Design System Template. The kit and placeholder assets are MIT
+            licensed; the brand you build with it is yours.
+          </footer>
+        </div>
+      </main>
+    </div>
+      <script src="js/kit-swatches.js"></script>
+      <script src="js/kit-copy.js"></script>
+  </body>
+</html>

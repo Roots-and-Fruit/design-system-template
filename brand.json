@@ -4,6 +4,13 @@
   "tagline": "Design system",
   "description": "Core design system contract for Example Brand. Normative for marketing pages, product UI, dashboards, and admin chrome. This file is a template: replace the values and the brand-specific prose with your own, keep the token names, and prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.",
   "placeholder": true,
+  "mediaKit": {
+    "shortName": "EB",
+    "website": "https://example.com/",
+    "contactEmail": "hello@example.com",
+    "boilerplate": "Example Brand helps teams ship clear, consistent product and marketing surfaces from one shared design contract.",
+    "oneLiner": "A clear design system for product and marketing teams."
+  },
   "fonts": {
     "displayName": "PT Serif",
     "bodyName": "Lato",

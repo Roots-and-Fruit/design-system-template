@@ -447,12 +447,322 @@
   text-align: center;
 }
 
+/* —— Copyable code / paste blocks (Media Kit, DESIGN.md) —— */
+.kit-code {
+  margin: 0 0 var(--cds-space-5);
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+  background: var(--cds-panel-soft);
+  box-shadow: var(--cds-shadow);
+  overflow: hidden;
+}
+
+.kit-code__chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cds-space-3);
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--cds-rule);
+  background: var(--cds-surface);
+}
+
+.kit-code__dots {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.kit-code__dots span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  display: block;
+  background: #ff5f56;
+  box-shadow: inset 0 0 0 0.5px #e0443e;
+}
+
+.kit-code__dots span:nth-child(2) {
+  background: #ffbd2e;
+  box-shadow: inset 0 0 0 0.5px #dea123;
+}
+
+.kit-code__dots span:nth-child(3) {
+  background: #27c93f;
+  box-shadow: inset 0 0 0 0.5px #1aab29;
+}
+
+.kit-code__copy {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--cds-ink-soft);
+  cursor: pointer;
+  padding: 0.2rem 0.35rem;
+  border-radius: var(--cds-radius-sm);
+  line-height: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--cds-font-body);
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+}
+
+.kit-code__copy:hover {
+  color: var(--cds-ink-muted);
+  background: color-mix(in srgb, var(--cds-ink) 6%, transparent);
+}
+
+.kit-code__copy:focus-visible {
+  box-shadow: var(--cds-focus);
+}
+
+.kit-code__copy::after {
+  content: "Copied";
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  line-height: 1;
+  color: var(--cds-primary-deep);
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.2s ease, opacity 0.2s ease, margin 0.2s ease;
+}
+
+.kit-code__copy[data-copied]::after {
+  max-width: 4.5rem;
+  opacity: 1;
+  margin-inline-start: 0.25rem;
+}
+
+.kit-code .cds-code,
+.kit-code__body {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* —— Media Kit logo tiles + usage —— */
+.kit-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--cds-space-4);
+}
+
+.kit-logo-tile {
+  margin: 0;
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+  overflow: hidden;
+  background: var(--cds-surface);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.kit-logo-tile__stage {
+  display: grid;
+  place-items: center;
+  min-height: 8.5rem;
+  padding: var(--cds-space-5);
+  background: var(--cds-paper);
+}
+
+.kit-logo-tile__stage--ink {
+  background: var(--cds-surface-dark);
+}
+
+.kit-logo-tile__stage img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 3.5rem;
+}
+
+.kit-logo-tile__meta {
+  padding: 0.85rem 1rem 1rem;
+  border-top: 1px solid var(--cds-rule);
+  font-size: var(--cds-text-sm);
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.25rem;
+}
+
+.kit-logo-tile__meta strong {
+  font-family: var(--cds-heading-font);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink);
+}
+
+.kit-logo-tile__meta > code {
+  font-family: var(--cds-font-mono);
+  font-size: 0.78rem;
+  color: var(--cds-ink-muted);
+  overflow-wrap: anywhere;
+}
+
+.kit-logo-tile__meta > span {
+  color: var(--cds-ink-soft);
+  flex: 1;
+}
+
+.kit-logo-tile__downloads {
+  margin-top: var(--cds-space-3);
+  padding-top: var(--cds-space-3);
+  border-top: 1px solid var(--cds-rule);
+}
+
+.kit-usage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cds-space-4);
+}
+
+@media (max-width: 48rem) {
+  .kit-usage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kit-usage-card {
+  margin: 0;
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+  background: var(--cds-surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.kit-usage-card__title {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--cds-rule);
+  font-family: var(--cds-heading-font);
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink);
+}
+
+.kit-usage-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--cds-rule);
+  flex: 1;
+}
+
+.kit-usage-example {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cds-space-2);
+  padding: var(--cds-space-3);
+  background: var(--cds-surface);
+  min-width: 0;
+}
+
+.kit-usage-example .cds-pill {
+  align-self: flex-start;
+}
+
+.kit-usage-example__stage {
+  display: grid;
+  place-items: center;
+  min-height: 6.5rem;
+  padding: var(--cds-space-4);
+  border-radius: var(--cds-radius-sm);
+  overflow: hidden;
+  background: var(--cds-paper);
+}
+
+.kit-usage-example__stage--ink {
+  background: var(--cds-surface-dark);
+}
+
+.kit-usage-example__stage img {
+  display: block;
+  max-width: 100%;
+  max-height: 2.5rem;
+  height: auto;
+  width: auto;
+}
+
+.kit-usage-example__stage--airy {
+  padding: var(--cds-space-5);
+}
+
+.kit-usage-example__stage--crowded {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.2rem;
+  padding: 0.35rem 0.4rem;
+}
+
+.kit-usage-example__stage--crowded img {
+  max-height: 1.9rem;
+  max-width: 55%;
+}
+
+.kit-usage-crowd-label {
+  font-size: 0.7rem;
+  font-weight: var(--cds-weight-bold);
+  color: var(--cds-ink);
+  white-space: nowrap;
+}
+
+.kit-usage-example__stage--stretch img {
+  transform: scaleX(1.55);
+  max-width: none;
+  width: 8.5rem;
+}
+
+.kit-usage-example__stage--invent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.kit-usage-invent-icon {
+  max-height: 2.1rem !important;
+  max-width: 2.1rem !important;
+  filter: hue-rotate(200deg) saturate(1.5);
+}
+
+.kit-usage-invent-type {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #7c3aed;
+  white-space: nowrap;
+}
+
+.kit-usage-example__note {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--cds-ink-soft);
+}
+
 /* —— DESIGN.md embed —— */
 .kit-contract {
   max-block-size: 40rem;
   overflow: auto;
   white-space: pre;
   overflow-wrap: normal;
+}
+
+.kit-code .kit-contract {
+  max-block-size: 40rem;
 }
 
 /* —— Pager —— */

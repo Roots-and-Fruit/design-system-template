@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -29,6 +29,8 @@
         </div>
         <nav class="kit-nav" aria-label="Design system sections">
           <a href="index.html">Overview</a>
+          
+          <a href="media-kit.html">Media Kit</a>
           <a href="colors.html">Colors</a>
           <a href="typography.html">Typography</a>
           <a href="layout.html">Layout</a>
@@ -89,7 +91,16 @@
             generated output.
           </div>
 
-          <pre class="cds-code kit-contract"><code id="design-md-source">---
+          <div class="kit-code" id="design-md-block">
+            <div class="kit-code__chrome">
+              <div class="kit-code__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <button type="button" class="kit-code__copy" data-kit-copy aria-label="Copy DESIGN.md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 8.25V6A2.25 2.25 0 0014.25 3.75H6A2.25 2.25 0 003.75 6v8.25A2.25 2.25 0 006 16.5h2.25m8.25-8.25H18A2.25 2.25 0 0120.25 10.5V18A2.25 2.25 0 0118 20.25h-7.5A2.25 2.25 0 018.25 18v-1.5m8.25-8.25h-6A2.25 2.25 0 008.25 10.5v6" />
+                </svg>
+              </button>
+            </div>
+            <pre class="cds-code kit-code__body kit-contract"><code id="design-md-source">---
 version: 1.0.0
 name: Example Brand
 description: &gt;-
@@ -542,6 +553,10 @@ Class names live in `css/components.css`, all prefixed `cds-`.
   (Buy, Book, Submit final). Use `on-accent` for the label. Hover deepens the
   fill so a light label keeps its contrast.
 - `button-ghost` (`.cds-btn--ghost`): text-like dismissal or tertiary nav.
+- `button-sm` (`.cds-btn--sm`): compact control size for cards, toolbars, and
+  download rows. Compose with a colour variant (e.g. `.cds-btn--outline.cds-btn--sm`).
+  Keeps the button radius knob; uses denser padding and a 14px control label
+  (not a new body type-scale step).
 - Disabled reduces opacity. Do not invent a separate grey system.
 
 **Links**
@@ -621,6 +636,7 @@ When generating or editing UI for this brand:
 8. If this file still reads &quot;Example Brand&quot;, say so before generating brand
    work: the system has not been customised yet.
 </code></pre>
+          </div>
 
           <nav class="kit-pager" aria-label="Pagination">
             <a href="components.html">&larr; Components</a>
@@ -629,5 +645,6 @@ When generating or editing UI for this brand:
         </div>
       </main>
     </div>
+      <script src="js/kit-copy.js"></script>
   </body>
 </html>

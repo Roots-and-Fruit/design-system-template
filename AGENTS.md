@@ -7,7 +7,7 @@ job you are doing first.
 | --- | --- | --- |
 | **A — Build UI** | Implementing screens with this system | `DESIGN.md` |
 | **B — Customize a fork** | Applying a real brand to a clone | `CUSTOMIZE.md` |
-| **C — Change the template** | Editing the kit itself (components, docs chrome) | this file, then the matching CSS/HTML |
+| **C — Change the template** | Editing the kit itself (components, docs chrome, Media Kit) | this file, then the matching CSS/HTML |
 
 Most fork work is **Job B**. Do not skip the customize script and hand-edit
 generated regions.

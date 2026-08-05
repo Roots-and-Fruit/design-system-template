@@ -18,14 +18,19 @@ Put every variety you have in:
 assets/
   mark.svg                 # square icon (favicon, sidebar, tight badges)
   logos/
-    wordmark.svg           # full lockup for light backgrounds
-    wordmark-dark.svg      # lockup for dark backgrounds (if you have one)
-    wordmark-mono.svg      # single-colour fallback (if you have one)
+    wordmark.svg           # full lockup for light backgrounds (+ PNG)
+    wordmark-white.svg     # monotone reverse for dark backgrounds (+ PNG)
+    wordmark-mono.svg      # single-colour black fallback (+ PNG)
 ```
 
 Tell the agent which file is the default mark and which is the wordmark. If you
 only have a PNG or PDF, say so and let the agent place what it can and note the
-gap. Do not invent a logo.
+gap. Do not invent a logo. The Media Kit page downloads whatever sits in those
+paths.
+
+Also fill `brand.json` → `mediaKit` when you have it: `shortName`, `website`,
+`contactEmail`, `boilerplate`, and `oneLiner`. The customize script stamps those
+onto `media-kit.html`.
 
 ## 2. Brand name and one-line feel
 

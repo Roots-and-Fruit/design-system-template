@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 96" role="img" aria-labelledby="wm-title">
+  <title id="wm-title">Example Brand wordmark (placeholder)</title>
+  <!-- Placeholder lockup: replace when customising. Primary cyan + ink. -->
+  <g fill="#0891b2">
+    <rect x="8" y="16" width="64" height="64" rx="14" opacity="0.12" />
+    <circle cx="30" cy="38" r="10" />
+    <rect x="42" y="28" width="18" height="18" rx="4" opacity="0.55" />
+    <path d="M40 52 L52 70 H28 Z" opacity="0.75" />
+  </g>
+  <text x="92" y="58" font-family="Lato, system-ui, sans-serif" font-size="34" font-weight="700" fill="#1e293b">Example Brand</text>
+</svg>

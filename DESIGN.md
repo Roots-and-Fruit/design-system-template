@@ -451,6 +451,10 @@ Class names live in `css/components.css`, all prefixed `cds-`.
   (Buy, Book, Submit final). Use `on-accent` for the label. Hover deepens the
   fill so a light label keeps its contrast.
 - `button-ghost` (`.cds-btn--ghost`): text-like dismissal or tertiary nav.
+- `button-sm` (`.cds-btn--sm`): compact control size for cards, toolbars, and
+  download rows. Compose with a colour variant (e.g. `.cds-btn--outline.cds-btn--sm`).
+  Keeps the button radius knob; uses denser padding and a 14px control label
+  (not a new body type-scale step).
 - Disabled reduces opacity. Do not invent a separate grey system.
 
 **Links**

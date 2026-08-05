@@ -77,6 +77,21 @@
   cursor: not-allowed;
 }
 
+/* Size modifier — compose with a colour variant (e.g. .cds-btn--outline.cds-btn--sm).
+   Keeps the button radius knob. Uses a denser control size (14px), not a new type step. */
+.cds-btn.cds-btn--sm {
+  font-size: 0.875rem;
+  line-height: 1.25;
+  padding: 0.28rem 0.7rem;
+  gap: 0.25rem;
+  border-width: 1px;
+}
+
+.cds-btn.cds-btn--sm.cds-btn--ghost {
+  padding-block: 0.28rem;
+  padding-inline: 0.5rem;
+}
+
 .cds-btn--primary {
   background: var(--cds-primary);
   color: var(--cds-on-primary);

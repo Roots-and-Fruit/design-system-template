@@ -310,6 +310,33 @@ function stampHtml(brand) {
     stamp("font-body", brand.fonts.bodyName);
     stamp("font-mono", brand.fonts.monoName);
 
+    const mk = brand.mediaKit || {};
+    if (mk.shortName) stamp("shortName", mk.shortName);
+    if (mk.boilerplate) stamp("boilerplate", mk.boilerplate);
+    if (mk.oneLiner) stamp("oneLiner", mk.oneLiner);
+    if (mk.website) {
+      stamp("website", mk.website);
+      const webHref = html.replace(
+        /(<[^>]*\bdata-brand="website"[^>]*\bhref=")[^"]*(")/g,
+        (_, a, b) => {
+          changed = true;
+          return `${a}${mk.website}${b}`;
+        },
+      );
+      html = webHref;
+    }
+    if (mk.contactEmail) {
+      stamp("contactEmail", mk.contactEmail);
+      const mailHref = html.replace(
+        /(<[^>]*\bdata-brand="contactEmail"[^>]*\bhref=")[^"]*(")/g,
+        (_, a, b) => {
+          changed = true;
+          return `${a}mailto:${mk.contactEmail}${b}`;
+        },
+      );
+      html = mailHref;
+    }
+
     html = html.replace(
       /<title([^>]*)\bdata-brand-title="([^"]+)"([^>]*)>[\s\S]*?<\/title>/g,
       (_, a, page, b) => {
