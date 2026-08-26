@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title data-brand-title="Overview">Overview — Example Brand Design System</title>
+    <title data-brand-title="Start">Start — Example Brand Design System</title>
     <meta
       name="description"
-      content="A brand-agnostic core design system template: tokens, layout primitives, components, and a normative DESIGN.md contract for coding agents."
+      content="Live demo of the Design Kit: color, type, layout, eight sections, then a real marketing page. Example Brand is the placeholder identity."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -28,15 +28,18 @@
           </a>
           <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-        <nav class="kit-nav" aria-label="Design system sections">
-          <a href="index.html" aria-current="page">Overview</a>
-          
-          <a href="media-kit.html">Media Kit</a>
-          <a href="colors.html">Colors</a>
-          <a href="typography.html">Typography</a>
+                <nav class="kit-nav" aria-label="What the system does">
+          <a href="index.html" aria-current="page">Start</a>
+          <a href="colors.html">Color</a>
+          <a href="typography.html">Type</a>
           <a href="layout.html">Layout</a>
-          <a href="components.html">Components</a>
-          <a href="design-md.html">DESIGN.md</a>
+          <a href="sections.html">Sections</a>
+          <a href="the-site.html">The site</a>
+        </nav>
+        <nav class="kit-nav kit-nav--more" aria-label="Builder pages">
+          <a href="components.html">Pieces</a>
+          <a href="media-kit.html">Assets</a>
+          <a href="design-md.html">Contract</a>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -74,41 +77,42 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head kit-page-head--hero">
-            <p class="cds-meta">Design system template</p>
-            <h1>A design system you can actually hand to an agent.</h1>
+            <p class="cds-meta">Step 1 of 6</p>
+            <h1>This is a live demo of the system.</h1>
             <p class="cds-lede">
-              Tokens, layout primitives, components, and a normative
-              <code>DESIGN.md</code> contract. Everything here is the placeholder
-              brand called Example Brand. Replace the values, keep the structure,
-              and you have your own core design system.
+              Example Brand is the placeholder identity. The nav on the left is
+              the walk: color, type, layout, then eight section jobs, then a
+              real page composed from those jobs. Same tokens. No second theme.
             </p>
           </header>
 
           <div class="cds-grid">
             <div class="cds-surface">
-              <h3>One contract</h3>
+              <p class="cds-meta">2</p>
+              <h3>Color is a job</h3>
               <p>
-                <code>DESIGN.md</code> is the source of truth for colour, type,
-                shape, and component behaviour. Agents read it before they
-                choose anything.
+                Primary, paper, ink. Not seafoam. A rebrand changes values, not
+                names.
               </p>
-              <a class="cds-btn cds-btn--outline" href="design-md.html">Read it</a>
+              <a class="cds-btn cds-btn--outline" href="colors.html">Color</a>
             </div>
-            <div class="cds-surface">
-              <h3>One token layer</h3>
+            <div class="cds-surface cds-surface--tint">
+              <p class="cds-meta">3–4</p>
+              <h3>Type and layout</h3>
               <p>
-                Roles, not poetry. <code>--cds-primary</code> survives a
-                rebrand; <code>--cds-seafoam</code> does not.
+                One display family, one body family, five primitives. Washes
+                reach the edge. Copy stays on a column.
               </p>
-              <a class="cds-btn cds-btn--outline" href="colors.html">See tokens</a>
+              <a class="cds-btn cds-btn--outline" href="typography.html">Type</a>
             </div>
-            <div class="cds-surface">
-              <h3>Four primitives</h3>
+            <div class="cds-surface cds-surface--dark">
+              <p class="cds-meta">6</p>
+              <h3>Then a real page</h3>
               <p>
-                Stack, Center, Cluster, and Grid cover most layouts without a
-                breakpoint for every block.
+                The last item is not another specimen. It is a marketing page
+                built from the catalog.
               </p>
-              <a class="cds-btn cds-btn--outline" href="layout.html">See layout</a>
+              <a class="cds-btn cds-btn--outline" href="the-site.html">The site</a>
             </div>
           </div>
 
@@ -146,7 +150,7 @@
                   <tr><td><code>DESIGN.md</code></td><td>Canonical contract: front matter holds values, prose holds rules</td></tr>
                   <tr><td><code>css/tokens.css</code></td><td>Palette, type ladder, space scale, radius, shadows, knobs</td></tr>
                   <tr><td><code>css/base.css</code></td><td>Element defaults. The one file you can skip</td></tr>
-                  <tr><td><code>css/layouts.css</code></td><td>Stack, Center, Cluster, Grid</td></tr>
+                  <tr><td><code>css/layouts.css</code></td><td>Stack, Center, Cluster, Grid, Split</td></tr>
                   <tr><td><code>css/components.css</code></td><td>Buttons, pills, alerts, surfaces, forms, tables, code, prose</td></tr>
                   <tr><td><code>brand.json</code></td><td>Fork surface — edit this, then <code>npm run customize</code></td></tr>
                   <tr><td><code>css/kit.css</code></td><td>These reference pages only. Not part of the system</td></tr>
@@ -166,9 +170,9 @@
 --cds-heading-font: var(--cds-font-body); /* sans headings, no serif voice */</code></pre>
           </section>
 
-          <nav class="kit-pager" aria-label="Pagination">
+                    <nav class="kit-pager" aria-label="Pagination">
             <span class="kit-pager__spacer"></span>
-            <a href="media-kit.html">Next: Media Kit &rarr;</a>
+            <a href="colors.html">Next: Color &rarr;</a>
           </nav>
 
           <footer class="kit-footer">

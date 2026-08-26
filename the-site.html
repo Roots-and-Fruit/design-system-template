@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-brand-title="The site">The site — Example Brand</title>
+    <meta
+      name="description"
+      content="A live marketing page composed from the Design Kit section catalog. This is the payoff: the system as a site."
+    />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/cds.css" />
+    <style>
+      .demo-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--cds-space-3);
+        padding: var(--cds-space-3) var(--cds-space-5);
+        background: var(--cds-paper-deep);
+        border-block-end: 1px solid var(--cds-rule);
+      }
+      .demo-bar p {
+        margin: 0;
+        font-size: var(--cds-text-sm);
+        color: var(--cds-ink-muted);
+      }
+      .site-header,
+      .site-footer,
+      .site-band,
+      .site-wide {
+        padding-inline: var(--cds-space-5);
+      }
+      .site-header,
+      .site-wide,
+      .site-band > * {
+        max-inline-size: 60rem;
+        margin-inline: auto;
+      }
+      .site-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--cds-space-4);
+        padding-block: var(--cds-space-5);
+        border-block-end: 1px solid var(--cds-rule);
+      }
+      .site-brand {
+        display: flex;
+        align-items: center;
+        gap: var(--cds-space-2);
+        text-decoration: none;
+        color: inherit;
+      }
+      .site-brand img {
+        inline-size: 2.5rem;
+        block-size: 2.5rem;
+      }
+      .site-brand strong {
+        display: block;
+        font-family: var(--cds-font-display);
+        font-size: var(--cds-text-md);
+        color: var(--cds-ink-deep);
+      }
+      .site-brand span {
+        display: block;
+        font-size: var(--cds-text-sm);
+        color: var(--cds-ink-muted);
+      }
+      .site-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--cds-space-4);
+        font-size: var(--cds-text-sm);
+        font-weight: var(--cds-weight-semibold);
+      }
+      .site-nav a {
+        color: var(--cds-ink);
+        text-decoration: none;
+      }
+      .site-hero {
+        padding-block: var(--cds-space-7) var(--cds-space-6);
+      }
+      .site-proof {
+        background: var(--cds-paper-deep);
+        padding-block: var(--cds-space-6);
+      }
+      .site-wide {
+        padding-block: var(--cds-space-6);
+      }
+      .site-split-band {
+        background: var(--cds-paper-deep);
+        padding-block: var(--cds-space-6);
+      }
+      .site-footer {
+        background: var(--cds-paper-deep);
+        padding-block: var(--cds-space-6);
+      }
+      .site-footer .site-wide {
+        padding-block: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-bar">
+      <p>This page is the payoff. Same tokens, same eight jobs, no extra CSS theme.</p>
+      <a class="cds-btn cds-btn--outline cds-btn--sm" href="index.html">Walk the system</a>
+    </div>
+
+    <header class="site-header">
+      <a class="site-brand" href="index.html">
+        <img src="assets/mark.svg" alt="" width="40" height="40" />
+        <span>
+          <strong data-brand="name">Example Brand</strong>
+          <span data-brand="tagline">Design system</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="colors.html">Color</a>
+        <a href="typography.html">Type</a>
+        <a href="layout.html">Layout</a>
+        <a href="sections.html">Sections</a>
+        <a href="the-site.html" aria-current="page">The site</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="site-wide site-hero">
+        <div class="cds-split">
+          <div class="cds-stack">
+            <span class="cds-pill">A live page, not a mock</span>
+            <h1>A system you can hand to an agent</h1>
+            <p class="cds-lede">
+              Colors, type, and a few sections. Authors compose. They do not
+              design a new layout for every URL.
+            </p>
+            <div class="cds-cluster">
+              <a class="cds-btn cds-btn--primary" href="sections.html">See the jobs</a>
+            </div>
+            <div class="cds-cluster">
+              <p class="cds-meta">Eight sections</p>
+              <p class="cds-meta">One contract</p>
+            </div>
+          </div>
+          <img
+            src="https://via.assets.so/img.jpg?w=800&amp;h=600&amp;bg=e5e7eb&amp;f=png"
+            alt="Placeholder"
+            width="800"
+            height="600"
+          />
+        </div>
+      </div>
+
+      <div class="site-proof">
+        <div class="cds-grid--five cds-grid--center">
+          <div class="cds-stack cds-stack--sm">
+            <h3>100k</h3>
+            <p class="cds-meta">Teams</p>
+          </div>
+          <div class="cds-stack cds-stack--sm">
+            <h3>4.9</h3>
+            <p class="cds-meta">Average rating</p>
+          </div>
+          <div class="cds-stack cds-stack--sm">
+            <h3>14</h3>
+            <p class="cds-meta">Day guarantee</p>
+          </div>
+          <div class="cds-stack cds-stack--sm">
+            <h3>40</h3>
+            <p class="cds-meta">Countries</p>
+          </div>
+          <div class="cds-stack cds-stack--sm">
+            <h3>8</h3>
+            <p class="cds-meta">Years</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-wide">
+        <h2>Popular starts</h2>
+        <p>Three tiles. Title, one line, a picture, a link. Not a catalog of nine.</p>
+        <div class="cds-grid" style="--cds-grid-min: 16rem">
+          <div class="cds-surface">
+            <img
+              src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png"
+              alt=""
+              width="480"
+              height="300"
+            />
+            <h3>Locked palette</h3>
+            <p>Authors paint from semantic names. They do not pick a new hex.</p>
+            <a class="cds-btn cds-btn--outline cds-btn--sm" href="colors.html">See tokens</a>
+          </div>
+          <div class="cds-surface cds-surface--tint">
+            <img
+              src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png"
+              alt=""
+              width="480"
+              height="300"
+            />
+            <h3>Type scale</h3>
+            <p>Display serif for titles. Body sans for reading. No third family.</p>
+            <a class="cds-btn cds-btn--outline cds-btn--sm" href="typography.html">See type</a>
+          </div>
+          <div class="cds-surface cds-surface--dark">
+            <img
+              src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png"
+              alt=""
+              width="480"
+              height="300"
+            />
+            <h3>One contract</h3>
+            <p>DESIGN.md is the source of truth. Agents read it before they choose.</p>
+            <a class="cds-btn cds-btn--outline cds-btn--sm" href="design-md.html">Read it</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-wide">
+        <div class="cds-alert cds-alert--info">
+          <strong>Heads up.</strong>
+          This is a status note, not a hero. The fill is the tone.
+        </div>
+      </div>
+
+      <div class="site-split-band">
+        <div class="cds-split">
+          <div class="cds-stack">
+            <h2>Get the whole toolkit</h2>
+            <p class="cds-lede">
+              Copy plus media. The image is a placeholder. The split is the section.
+            </p>
+            <div class="cds-cluster">
+              <a class="cds-btn cds-btn--outline" href="layout.html">See layout</a>
+            </div>
+          </div>
+          <img
+            src="https://via.assets.so/img.jpg?w=800&amp;h=600&amp;bg=e5e7eb&amp;f=png"
+            alt="Placeholder"
+            width="800"
+            height="600"
+          />
+        </div>
+      </div>
+
+      <div class="site-wide">
+        <h2>Why teams stay</h2>
+        <p>Three reasons. Same card job. No fourth leftover tile.</p>
+        <div class="cds-grid" style="--cds-grid-min: 16rem">
+          <div class="cds-surface">
+            <h3>A team behind it</h3>
+            <p>Built and kept by people who ship the product, not a ticket queue.</p>
+          </div>
+          <div class="cds-surface">
+            <h3>Help that answers</h3>
+            <p>Fast replies from the same people who wrote the code.</p>
+          </div>
+          <div class="cds-surface">
+            <h3>A way out</h3>
+            <p>Try it. If it is not right, the guarantee is the way out.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-wide">
+        <div class="cds-surface cds-stack cds-stack--sm">
+          <p class="cds-lede">
+            The setup was straightforward. When we needed a related fix, the team
+            answered immediately.
+          </p>
+          <p class="cds-meta">Store owner</p>
+        </div>
+      </div>
+
+      <div class="site-wide">
+        <h2>Find your starting point</h2>
+        <p>A path chooser is three tiles.</p>
+        <div class="cds-grid" style="--cds-grid-min: 16rem">
+          <div class="cds-surface">
+            <h3>New here</h3>
+            <p>Walk color, type, and layout. Then come back here.</p>
+            <a class="cds-btn cds-btn--outline cds-btn--sm" href="index.html">Start</a>
+          </div>
+          <div class="cds-surface">
+            <h3>Building</h3>
+            <p>Eight section jobs. Compose. Do not invent a ninth.</p>
+            <a class="cds-btn cds-btn--outline cds-btn--sm" href="sections.html">Sections</a>
+          </div>
+          <div class="cds-surface">
+            <h3>Forking</h3>
+            <p>Replace the values. Keep the names. The walk still holds.</p>
+            <a class="cds-btn cds-btn--outline cds-btn--sm" href="customize.html">Make it yours</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cds-surface cds-surface--dark cds-stack" style="border-radius: 0">
+        <div class="site-wide" style="padding-block: var(--cds-space-7)">
+          <p class="cds-meta">Note</p>
+          <h2>One callout is enough</h2>
+          <p>Use this strip once per view. Do not turn accent into a page wash.</p>
+          <div class="cds-cluster">
+            <a class="cds-btn cds-btn--accent" href="customize.html">Make it your own</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-wide cds-cluster" style="justify-content: space-between">
+        <a class="site-brand" href="index.html">
+          <img src="assets/mark.svg" alt="" width="40" height="40" />
+          <span>
+            <strong data-brand="name">Example Brand</strong>
+            <span data-brand="tagline">Design system</span>
+          </span>
+        </a>
+        <p class="cds-meta">A Roots &amp; Fruit system. MIT kit. Your brand stays yours.</p>
+      </div>
+    </footer>
+  </body>
+</html>

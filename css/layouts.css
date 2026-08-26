@@ -1,6 +1,6 @@
 /* Design System Template — layout primitives
    ---------------------------------------------------------------------------
-   Four composable primitives instead of a breakpoint for every block. The
+   Five composable primitives instead of a breakpoint for every block. The
    approach follows the intrinsic-layout ideas in Every Layout (Pickering &
    Bell): suggest sizes, compose with `gap`, let content decide when to wrap.
 
@@ -71,4 +71,55 @@
 .cds-grid--tight {
   --cds-grid-min: 11rem;
   --cds-grid-space: var(--cds-space-3);
+}
+
+/* Center each tile's content in its track. Proof stats, not cards. */
+.cds-grid--center {
+  justify-items: center;
+  text-align: center;
+}
+
+.cds-grid--center > * {
+  text-align: center;
+}
+
+/* Five even tracks on wide. Do not auto-fit: five wrapping to four-plus-one is a leftover tile. */
+.cds-grid--five {
+  display: grid;
+  gap: var(--cds-grid-space, var(--cds-space-3));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  justify-items: center;
+  text-align: center;
+}
+
+.cds-grid--five > * {
+  text-align: center;
+}
+
+@media (max-width: 40rem) {
+  .cds-grid--five {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* —— Split: two tracks that wrap ——————————————————————————————————— */
+/* Each child grows. When a track cannot hold --cds-split-min, it wraps. */
+.cds-split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cds-split-space, var(--cds-space-6));
+}
+
+.cds-split > * {
+  flex-grow: 1;
+  flex-basis: var(--cds-split-min, 18rem);
+  min-inline-size: min(100%, var(--cds-split-min, 18rem));
+}
+
+.cds-split img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--cds-radius-lg);
 }

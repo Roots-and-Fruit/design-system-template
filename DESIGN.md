@@ -136,7 +136,7 @@ components:
     padding: 0.7rem 1.15rem
   button-outline:
     backgroundColor: transparent
-    textColor: "{colors.primary}"
+    textColor: "{colors.primary-deep}"
     rounded: "{rounded.pill}"
     padding: 0.7rem 1.15rem
   button-accent:
@@ -225,6 +225,14 @@ components:
     backgroundColor: "{colors.panel-soft}"
     textColor: "{colors.ink}"
     typography: "{typography.label}"
+  details:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.md}"
+  details-summary:
+    backgroundColor: "{colors.panel-soft}"
+    textColor: "{colors.ink-deep}"
+    typography: "{typography.label}"
+    padding: 0.7rem 1rem
   code-inline:
     backgroundColor: "{colors.panel-soft}"
     textColor: "{colors.primary-deep}"
@@ -236,6 +244,16 @@ components:
     rounded: "{rounded.md}"
     padding: 1rem
     typography: "{typography.code}"
+layout:
+  measure: 62ch
+  content-size: 40rem
+  wide-size: 60rem
+  gutter: "{spacing.5}"
+elevation:
+  sm: "0 2px 14px rgba(15, 23, 42, 0.06)"
+  md: "0 10px 32px rgba(15, 23, 42, 0.1)"
+focus:
+  ring: "0 0 0 3px color-mix(in srgb, {colors.primary} 38%, transparent)"
 ---
 
 ## Overview
@@ -265,6 +283,25 @@ Surfaces this system must serve equally well:
 3. Compact admin or plugin chrome
 4. Documents and reports
 
+## Token layers
+
+Tokens come in three layers. Keep these names when a brand forks. Only values change.
+
+1. **Primitives** may be hue-named (`cyan-500`, a green ramp). Charts, illustrations, and raw scales live here. Authors do not pick from this layer in a theme.
+2. **Semantic tokens** are jobs: `primary`, `ink`, `ink-deep`, `paper`, `accent`. The `colors:` map in this file is that layer. Compilers and WordPress presets use these names.
+3. **Component tokens** bind a job to a control: `button-primary`, `on-primary`. Hierarchy words (`primary`, `secondary`) belong on components, not on leftover brand colours.
+
+Do not put a hue in the semantic map (`green`, `cream`, `orange`). A fork may alias primitives in CSS (`--cds-primary` pointing at a private green). Authors, `theme.json` slugs, and other brands only see the job names.
+
+`ink-deep` is a rank of ink, not a colour. Do not use `secondary` or `tertiary` as colour names — they collide with `button-secondary`. Muted text is `ink-muted`. A rare second punch is `accent`.
+
+## WordPress
+
+WordPress is a projection of this file, not a second system. The contract is
+[`WORDPRESS.md`](WORDPRESS.md). The compiler writes `wordpress/cds/`. Keep the
+`layout`, `elevation`, and `focus` front-matter groups — customize does not
+own them.
+
 ## Make it yours
 
 Keep the token names. Change the values via `brand.json`, then the prose.
@@ -273,8 +310,9 @@ Keep the token names. Change the values via `brand.json`, then the prose.
 2. Run `npm run customize` (applies tokens, fonts, this file's front matter,
    HTML stamps, and the `design-md.html` embed).
 3. Rewrite Overview, Colors, Typography, and Do's and Don'ts below in your own
-   words. Do not hand-edit the generated colour / typography / rounded front
-   matter — customize overwrites those blocks.
+   words. Leave **Token layers** and **WordPress** as-is. Do not hand-edit the
+   generated colour / typography / rounded front matter — customize overwrites
+   those blocks.
 4. Replace `assets/` marks. Run customize again after prose edits.
 5. See `CUSTOMIZE.md` and `AGENTS.md` Job B (entry UI: `customize.html`).
 
@@ -333,6 +371,8 @@ Rules:
 - Text on a filled surface uses its paired `on-*` token: `on-primary` on primary
   fills, `on-accent` on accent fills, `on-dark` on `surface-dark`. Recheck AA
   whenever you change an accent hue
+- Soft brand fills use `primary-soft` with `ink` (not `ink-muted`). Solid
+  `primary` plus `on-primary` is for buttons, not card bodies, in this demo
 - Never promote `accent` into a second theme colour or a large background fill
 - Semantic colours describe state; do not borrow `danger` or `warning` for brand
   emphasis, and do not alias `accent` to `warning`
@@ -409,12 +449,47 @@ Primitives in `css/layouts.css`:
 | `.cds-center` | Centred reading column at `--cds-measure`, optional `--gutter` |
 | `.cds-cluster` | Wrapping horizontal group for buttons, pills, tags |
 | `.cds-grid` | Auto-fitting tiles that wrap at `--cds-grid-min`, no media query |
+| `.cds-grid--center` | Center each tile in its track. Proof stats. Not cards. |
+| `.cds-grid--five` | Five even tracks. Proof. Stacks to one column when the row cannot hold five. Not auto-fit. |
+| `.cds-split` | Two tracks that wrap. Copy plus media. No breakpoint soup |
 
 Hierarchy:
 - One job per section: a heading, a short supporting line, then content
 - Space major blocks with `.cds-stack` or steps 5 to 7
 - Do not mix ad-hoc child margins with a parent `.cds-stack` gap
 - `--cds-max` may wrap shells and specimen grids; paragraphs still obey measure
+
+## Sections
+
+Marketing pages are stacks of these jobs. Specimens: `sections.html`. WordPress
+projects the same names as patterns in `wordpress/cds/patterns/`. Do not invent
+a ninth section. A path chooser is a three-tile card grid. Header and footer
+are template parts, not sections.
+
+| Section | Job | Wash | CTA | Not |
+| --- | --- | --- | --- | --- |
+| Hero | Pill, display title, lede, one primary. Optional proof cluster. Media on the right via `.cds-split`. A text stack is still legal | `paper` | One primary | A whole page, a Split section (wrong wash) |
+| Proof | Three or five stats, centered in even tracks, or a logo cluster. No leftover tile | `paper-deep` (viewport wash; numbers sit on `wide`) | None | A feature grid, four tiles wrapping to three, five auto-fitting to four-plus-one, left-aligned stats |
+| Card grid | Three paired fills in `.cds-grid` (surface, `primary-soft` tint, dark). Title, one line, optional meta and a link | `paper` | Outline or text link, not a second primary | A dashboard, three identical whites |
+| Split | Copy plus media via `.cds-split` (WordPress: `core/columns`) | `paper-deep` (viewport wash; split sits on `wide`) | One primary, optional | A blog layout |
+| Quote | One attribution. Surface or a row | `paper` | None | A reviews carousel |
+| Dark band | Callout strip. `on-dark` title | `surface-dark` (viewport wash; copy on the measure) | One accent max | A second theme |
+| CTA | Short `display-sm` plus one button | `panel` | Primary or accent, not both | Two buttons fighting |
+| Alert | Status note. Tone is the fill | soft status or `primary-soft` | None | A hero |
+
+Page recipes compose sections. `landing` is hero, optional proof, and one card
+grid or split. The hero holds the primary. Use the CTA section when the page
+has no hero button. `article` is measured prose on paper, not this catalog.
+
+If a request needs a section that is not in this table, say so and compose from
+what is here. Do not add a class or a pattern to cover a one-off.
+
+Washes (`paper-deep`, `surface-dark`) are viewport bands. Inner marketing
+copy sits on `wide` (the same column as the header). Article prose stays on
+the measure / `content`. Do not wrap `post-content` in a second constrained
+group; `alignfull` cannot escape it. Do not mix `content` and `wide` on one
+landing. Do not leave a leftover tile in a proof strip or card grid. Three
+items, three tracks. Five items, five tracks (`.cds-grid--five`). Four items only as two by two or four across on `wide`. Do not auto-fit five into four-plus-one.
 
 ## Elevation & depth
 
@@ -446,7 +521,12 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 - `button-primary` (`.cds-btn--primary`): the main action. One per section.
 - `button-secondary` (`.cds-btn--secondary`): panel fill for secondary actions.
 - `button-outline` (`.cds-btn--outline`): low-emphasis action, transparent fill
-  with a `primary` border and `primary` label.
+  with a `primary-deep` border and label so body-size type meets WCAG AA on
+  `paper` and `surface`. Hover fills `primary-soft`. That hover is invisible on
+  a `primary-soft` tile, so `.cds-surface--tint` inverts to `primary-deep` /
+  `on-primary`. On `surface-dark`, rest is `on-dark` outline; hover fills
+  `surface` with a `primary-deep` label (same pairing as the dark primary
+  button). Hover fill must read as a different colour from the tile.
 - `button-accent` (`.cds-btn--accent`): at most one high-stakes CTA per view
   (Buy, Book, Submit final). Use `on-accent` for the label. Hover deepens the
   fill so a light label keeps its contrast.
@@ -469,19 +549,33 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 
 **Surfaces**
 - `surface`: default module on the page wash
-- `surface-panel`: grouping without a card shadow
+- `surface-panel`: grouping without a card shadow; body stays `ink` (muted fails AA)
+- `surface-tint` (`.cds-surface--tint`): `primary-soft` fill, `ink` body. Soft brand paint, not a second theme
 - `surface-dark`: one dark callout per section at most; muted white body copy
 - Do not wrap every block in a shadowed card
+- Do not fill a card with solid `primary` or `accent`; those fills fail AA with `on-*` at body size in this demo
 
 **Pills**
-- `pill`: default panel fill, for compact status and tags
+- `pill`: default panel fill, for compact status, tags, and the hero eyebrow
 - `pill-active` (`.cds-pill--active` or `.cds-pill.is-active`): selected state
-- `pill-success` / `pill-warning` / `pill-danger`: soft semantic fills, state only
+- `pill-success` / `pill-warning` / `pill-danger`: soft semantic fills, state only. Not the hero eyebrow.
 
 **Feedback**
 - Pills for compact status, alerts for full-sentence messages
 - `alert-note` (`.cds-alert--note`) is guidance, not status
 - Spinner for indeterminate waits, progress bar only when percent is known
+
+**Tables**
+- `.cds-table-wrap` is the frame: surface fill, `rule` border, `rounded.md`
+- Header row is `table-header`: `panel-soft`, label weight, left-aligned
+- Cells use `body-sm` and muted ink. Hairline row rules only, no grid of
+  cell borders. Last row drops the bottom rule so it does not double the frame
+
+**Details**
+- `.cds-details` is a disclosure, not a card stack. Same frame as the table
+- Summary is the control: label weight, `ink-deep`, a kit chevron (not the
+  browser triangle). Open state paints the summary `panel-soft` and a hairline
+- Body copy inside stays `ink`. Do not nest a second surface
 
 **Code**
 - Inline `code` stays quiet: `panel-soft` paper, `primary-deep` text, no border
@@ -502,6 +596,7 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 - Check contrast for body text before shipping
 - Reuse `css/cds.css` (or tokens plus components) instead of new one-off CSS
 - Add a token when you need a new value
+- Compose marketing pages from the section catalog, not from a new layout
 
 **Don't**
 - Don't invent hex values, font stacks, or spacing that bypass the tokens
@@ -521,7 +616,9 @@ When generating or editing UI for this brand:
 
 1. Read this file before choosing colour, type, radius, or components.
 2. Prefer token names and `{colors.*}` references in reasoning; emit `--cds-*`
-   custom properties in code.
+   custom properties in code. Semantic names (`paper`, `primary`, `accent`)
+   are the public layer — see Token layers. Do not expose hue names as
+   author-facing slugs.
 3. If a request conflicts with Do's and Don'ts, follow this file and say so
    briefly rather than silently deviating.
 4. Validate text and background pairs against WCAG AA for body copy.
@@ -533,3 +630,14 @@ When generating or editing UI for this brand:
    constraints instead of inventing a new visual language.
 8. If this file still reads "Example Brand", say so before generating brand
    work: the system has not been customised yet.
+9. For a WordPress theme, follow [`WORDPRESS.md`](WORDPRESS.md). Do not invent
+   palette slugs, picker unlocks, or recipes the compiler does not emit.
+10. Marketing pages start from the section catalog above. Compose those jobs.
+    Do not invent a layout, a card class, or a ninth section. Do not wrap
+    `post-content` in a second constrained group. Do not leave a leftover tile.
+    Do not mix `content` and `wide` on one landing. Proof stats are centered.
+    Proof is three or five even tracks, never a leftover tile. Marketing hero is
+    a split: pill, title, lede, one primary, optional proof cluster, media.
+    Card-grid tiles use three paired fills. Body and outline labels must meet
+    WCAG AA against the tile. Outline hover on tint and dark must fill a colour
+    that is not the tile. Do not ship three identical whites.

@@ -11,9 +11,12 @@
  *   - DESIGN.md        (front-matter name, description, colors, type stacks, radii)
  *   - *.html           ([data-brand] stamps + <title data-brand-title>)
  *   - design-md.html   (via sync-design-md-embed.mjs)
+ *   - wordpress/       (theme.json + design-tokens.json)
  *
  * Does NOT rewrite DESIGN.md prose below the front matter (except the three
- * typography family names in backticks). Agents must still describe the brand.
+ * typography family names in backticks). Keeps `spacing:` through the end of
+ * the front matter (`components`, `layout`, `elevation`, `focus`). Agents
+ * must still describe the brand.
  *
  * Viewing the reference site never requires this script.
  */
@@ -357,16 +360,24 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
-function syncEmbed() {
-  const result = spawnSync(process.execPath, [join(root, "sync-design-md-embed.mjs")], {
+function runNode(rel, label) {
+  const result = spawnSync(process.execPath, [join(root, rel)], {
     cwd: root,
     encoding: "utf8",
   });
   if (result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
   if (result.status !== 0) {
-    throw new Error("sync-design-md-embed.mjs failed");
+    throw new Error(`${label} failed`);
   }
+}
+
+function syncEmbed() {
+  runNode("sync-design-md-embed.mjs", "sync-design-md-embed.mjs");
+}
+
+function compileWordpress() {
+  runNode("scripts/compile-wordpress.mjs", "compile-wordpress.mjs");
 }
 
 function reportLeftovers(brand) {
@@ -404,5 +415,6 @@ applyFonts(brand);
 applyDesignMd(brand);
 stampHtml(brand);
 syncEmbed();
+compileWordpress();
 reportLeftovers(brand);
 console.log("Done. Open customize.html for the remaining checklist (prose, assets).");

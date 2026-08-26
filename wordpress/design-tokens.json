@@ -1,0 +1,122 @@
+{
+  "$comment": "Generated Layer B registry. Feed to register_design_token(). Do not edit.",
+  "source": {
+    "design": "DESIGN.md",
+    "tokens": "css/tokens.css",
+    "brand": "Example Brand"
+  },
+  "tokens": [
+    {
+      "id": "cds/on-primary",
+      "label": "On primary",
+      "type": "color",
+      "default": "#ffffff",
+      "scope": "global",
+      "custom_key": "cdsOnPrimary"
+    },
+    {
+      "id": "cds/on-accent",
+      "label": "On accent",
+      "type": "color",
+      "default": "#ffffff",
+      "scope": "global",
+      "custom_key": "cdsOnAccent"
+    },
+    {
+      "id": "cds/on-dark",
+      "label": "On dark",
+      "type": "color",
+      "default": "#f1f5f9",
+      "scope": "global",
+      "custom_key": "cdsOnDark"
+    },
+    {
+      "id": "cds/on-dark-muted",
+      "label": "On dark muted",
+      "type": "color",
+      "default": "rgba(241, 245, 249, 0.78)",
+      "scope": "global",
+      "custom_key": "cdsOnDarkMuted"
+    },
+    {
+      "id": "cds/rule",
+      "label": "Rule",
+      "type": "color",
+      "default": "rgba(15, 23, 42, 0.12)",
+      "scope": "global",
+      "custom_key": "cdsRule"
+    },
+    {
+      "id": "cds/button-radius",
+      "label": "Button radius",
+      "type": "border-radius",
+      "default": "999px",
+      "scope": "global",
+      "custom_key": "cdsButtonRadius"
+    },
+    {
+      "id": "cds/button-padding-block",
+      "label": "Button padding block",
+      "type": "spacing",
+      "default": "0.7rem",
+      "scope": "global",
+      "custom_key": "cdsButtonPaddingBlock"
+    },
+    {
+      "id": "cds/button-padding-inline",
+      "label": "Button padding inline",
+      "type": "spacing",
+      "default": "1.15rem",
+      "scope": "global",
+      "custom_key": "cdsButtonPaddingInline"
+    },
+    {
+      "id": "cds/input-radius",
+      "label": "Input radius",
+      "type": "border-radius",
+      "default": "0.5rem",
+      "scope": "global",
+      "custom_key": "cdsInputRadius"
+    },
+    {
+      "id": "cds/surface-radius",
+      "label": "Surface radius",
+      "type": "border-radius",
+      "default": "0.75rem",
+      "scope": "global",
+      "custom_key": "cdsSurfaceRadius"
+    },
+    {
+      "id": "cds/surface-padding",
+      "label": "Surface padding",
+      "type": "spacing",
+      "default": "1.5rem",
+      "scope": "global",
+      "custom_key": "cdsSurfacePadding"
+    },
+    {
+      "id": "cds/layout-content-size",
+      "label": "Content size",
+      "type": "spacing",
+      "default": "40rem",
+      "scope": "global",
+      "custom_key": "cdsLayoutContentSize"
+    },
+    {
+      "id": "cds/layout-wide-size",
+      "label": "Wide size",
+      "type": "spacing",
+      "default": "60rem",
+      "scope": "global",
+      "custom_key": "cdsLayoutWideSize"
+    },
+    {
+      "id": "cds/focus-ring",
+      "label": "Focus ring",
+      "type": "text",
+      "default": "0 0 0 3px color-mix(in srgb, #0891b2 38%, transparent)",
+      "scope": "global",
+      "custom_key": "cdsFocusRing"
+    }
+  ]
+}

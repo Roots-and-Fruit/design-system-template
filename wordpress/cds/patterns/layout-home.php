@@ -1,0 +1,271 @@
+<?php
+/**
+ * Title: Layout home
+ * Slug: cds/layout-home
+ * Categories: cds
+ * Inserter: false
+ * Description: Probe composition. Same jobs as a marketing home, not a ninth section.
+ * Viewport Width: 960
+ */
+?>
+<!-- wp:pattern {"slug":"cds/hero"} /-->
+
+<!-- wp:pattern {"slug":"cds/proof"} /-->
+
+<!-- wp:group {"align":"wide","layout":{"type":"constrained","contentSize":"60rem"}} -->
+<div class="wp-block-group alignwide">
+	<!-- wp:heading {"level":2,"fontSize":"display-sm"} -->
+	<h2 class="wp-block-heading has-display-sm-font-size">Popular starts</h2>
+	<!-- /wp:heading -->
+
+	<!-- wp:paragraph -->
+	<p>Three tiles. Title, one line, a picture, a link. Not a catalog of nine.</p>
+	<!-- /wp:paragraph -->
+
+	<!-- wp:group {"layout":{"type":"grid","columnCount":3}} -->
+	<div class="wp-block-group">
+		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-surface">
+			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
+			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="480" height="300"/></figure>
+			<!-- /wp:image -->
+
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">Locked palette</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Authors paint from semantic names. They do not pick a new hex.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-cds-outline"} -->
+				<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button">See tokens</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"is-style-cds-tint","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-tint">
+			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
+			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="480" height="300"/></figure>
+			<!-- /wp:image -->
+
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">Type scale</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Display serif for titles. Body sans for reading. No third family.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-cds-outline"} -->
+				<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button">See type</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"is-style-cds-dark","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-dark">
+			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
+			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="480" height="300"/></figure>
+			<!-- /wp:image -->
+
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">One contract</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>DESIGN.md is the source of truth. Agents read it before they choose.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-cds-outline"} -->
+				<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button">Read it</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"cds/alert"} /-->
+
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|space-6","bottom":"var:preset|spacing|space-6"}}},"backgroundColor":"paper-deep","layout":{"type":"constrained","contentSize":"60rem"}} -->
+<div class="wp-block-group alignfull has-paper-deep-background-color has-background" style="padding-top:var(--wp--preset--spacing--space-6);padding-bottom:var(--wp--preset--spacing--space-6)">
+	<!-- wp:columns {"verticalAlignment":"center","className":"is-style-cds-split"} -->
+	<div class="wp-block-columns are-vertically-aligned-center is-style-cds-split">
+		<!-- wp:column {"verticalAlignment":"center"} -->
+		<div class="wp-block-column is-vertically-aligned-center">
+			<!-- wp:heading {"level":2,"fontSize":"display-sm"} -->
+			<h2 class="wp-block-heading has-display-sm-font-size">Get the whole toolkit</h2>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph {"fontSize":"body-lg"} -->
+			<p class="has-body-lg-font-size">Copy plus media. The image is a placeholder. The split is the section.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-cds-outline"} -->
+				<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button">See what is in it</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:column -->
+
+		<!-- wp:column {"verticalAlignment":"center"} -->
+		<div class="wp-block-column is-vertically-aligned-center">
+			<!-- wp:image {"width":"800px","height":"600px","sizeSlug":"full","linkDestination":"none"} -->
+			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=800&amp;h=600&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="800" height="600"/></figure>
+			<!-- /wp:image -->
+		</div>
+		<!-- /wp:column -->
+	</div>
+	<!-- /wp:columns -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","layout":{"type":"constrained","contentSize":"60rem"}} -->
+<div class="wp-block-group alignwide">
+	<!-- wp:heading {"level":2,"fontSize":"display-sm"} -->
+	<h2 class="wp-block-heading has-display-sm-font-size">Why teams stay</h2>
+	<!-- /wp:heading -->
+
+	<!-- wp:paragraph -->
+	<p>Three reasons. Same card job. No fourth leftover tile.</p>
+	<!-- /wp:paragraph -->
+
+	<!-- wp:group {"layout":{"type":"grid","columnCount":3}} -->
+	<div class="wp-block-group">
+		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-surface">
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">A team behind it</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Built and kept by people who ship the product, not a ticket queue.</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-surface">
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">Help that answers</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Fast replies from the same people who wrote the code.</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-surface">
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">A way out</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Try it. If it is not right, the guarantee is the way out.</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"cds/quote"} /-->
+
+<!-- wp:group {"align":"wide","layout":{"type":"constrained","contentSize":"60rem"}} -->
+<div class="wp-block-group alignwide">
+	<!-- wp:heading {"level":2,"fontSize":"display-sm"} -->
+	<h2 class="wp-block-heading has-display-sm-font-size">Find your starting point</h2>
+	<!-- /wp:heading -->
+
+	<!-- wp:paragraph -->
+	<p>A path chooser is three tiles.</p>
+	<!-- /wp:paragraph -->
+
+	<!-- wp:group {"layout":{"type":"grid","columnCount":3}} -->
+	<div class="wp-block-group">
+		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-surface">
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">New here</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Browse the catalog and pick a start.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-cds-outline"} -->
+				<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button">Browse</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-surface">
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">Not sure</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Say the job. We point at the section that does it.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-cds-outline"} -->
+				<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button">Ask</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
+		<div class="wp-block-group is-style-cds-surface">
+			<!-- wp:heading {"level":3} -->
+			<h3 class="wp-block-heading">Already in</h3>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph -->
+			<p>Open the thing you already have and keep going.</p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:buttons -->
+			<div class="wp-block-buttons">
+				<!-- wp:button {"className":"is-style-cds-outline"} -->
+				<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button">Continue</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"cds/dark-band"} /-->

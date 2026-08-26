@@ -115,8 +115,8 @@
 
 .cds-btn--outline {
   background: transparent;
-  color: var(--cds-primary);
-  border-color: var(--cds-primary);
+  color: var(--cds-primary-deep);
+  border-color: var(--cds-primary-deep);
 }
 
 .cds-btn--outline:hover:not(:disabled) {
@@ -264,9 +264,29 @@
   box-shadow: none;
 }
 
+.cds-surface--panel > p {
+  color: var(--cds-ink);
+}
+
 .cds-surface--soft {
   background: var(--cds-paper-deep);
   box-shadow: none;
+}
+
+.cds-surface--tint {
+  background: var(--cds-primary-soft);
+}
+
+.cds-surface--tint > p {
+  color: var(--cds-ink);
+}
+
+/* Default outline hover is primary-soft; that is the tile. Invert to a deep fill. */
+.cds-surface--tint .cds-btn--outline:hover:not(:disabled),
+.cds-surface--tint .cds-btn--outline:focus-visible {
+  background: var(--cds-primary-deep);
+  color: var(--cds-on-primary);
+  border-color: var(--cds-primary-deep);
 }
 
 .cds-surface--dark {
@@ -288,6 +308,18 @@
 .cds-surface--dark .cds-btn--primary {
   background: var(--cds-surface);
   color: var(--cds-primary-deep);
+}
+
+.cds-surface--dark .cds-btn--outline {
+  color: var(--cds-on-dark);
+  border-color: var(--cds-on-dark);
+}
+
+.cds-surface--dark .cds-btn--outline:hover:not(:disabled),
+.cds-surface--dark .cds-btn--outline:focus-visible {
+  background: var(--cds-surface);
+  color: var(--cds-primary-deep);
+  border-color: var(--cds-surface);
 }
 
 /* —— Forms ————————————————————————————————————————————————————————— */
@@ -398,6 +430,69 @@
 
 .cds-table tr:last-child td {
   border-bottom: 0;
+}
+
+/* —— Details / disclosure ————————————————————————————————————————— */
+.cds-details {
+  background: var(--cds-surface);
+  border: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius);
+}
+
+.cds-details > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--cds-space-2);
+  margin: 0;
+  padding: 0.7rem 1rem;
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  line-height: var(--cds-leading-ui);
+  color: var(--cds-ink-deep);
+  cursor: pointer;
+  list-style: none;
+  border-radius: var(--cds-radius);
+}
+
+.cds-details > summary::-webkit-details-marker,
+.cds-details > summary::marker {
+  display: none;
+  content: "";
+}
+
+.cds-details > summary::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  flex: 0 0 auto;
+  border-inline-end: 2px solid var(--cds-ink);
+  border-block-end: 2px solid var(--cds-ink);
+  transform: rotate(-45deg);
+  translate: 0 -0.05rem;
+}
+
+.cds-details[open] > summary {
+  border-bottom: 1px solid var(--cds-rule);
+  border-radius: var(--cds-radius) var(--cds-radius) 0 0;
+  background: var(--cds-panel-soft);
+}
+
+.cds-details[open] > summary::before {
+  transform: rotate(45deg);
+  translate: 0 0.05rem;
+}
+
+.cds-details > summary:focus-visible {
+  outline: none;
+  box-shadow: var(--cds-focus);
+}
+
+.cds-details > :not(summary) {
+  margin: 0;
+  padding: 0.7rem 1rem 1rem;
+  color: var(--cds-ink);
+  font-size: var(--cds-text-sm);
+  line-height: var(--cds-leading-body);
 }
 
 /* —— Code block ———————————————————————————————————————————————————— */

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-brand-title="Sections">Sections — Example Brand Design System</title>
+    <meta
+      name="description"
+      content="The marketing section catalog: hero, proof, card grid, split, quote, dark band, CTA, and alert."
+    />
+    <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/cds.css" />
+    <link rel="stylesheet" href="css/kit.css" />
+  </head>
+  <body>
+    <div class="kit-shell">
+      <aside class="kit-sidebar">
+        <div class="kit-sidebar__brand">
+          <a class="kit-brand" href="index.html">
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
+              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
+              <circle cx="23" cy="23" r="9" />
+              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
+              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
+            </svg>
+            <span data-brand="name">Example Brand</span>
+          </a>
+          <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
+        </div>
+                <nav class="kit-nav" aria-label="What the system does">
+          <a href="index.html">Start</a>
+          <a href="colors.html">Color</a>
+          <a href="typography.html">Type</a>
+          <a href="layout.html">Layout</a>
+          <a href="sections.html" aria-current="page">Sections</a>
+          <a href="the-site.html">The site</a>
+        </nav>
+        <nav class="kit-nav kit-nav--more" aria-label="Builder pages">
+          <a href="components.html">Pieces</a>
+          <a href="media-kit.html">Assets</a>
+          <a href="design-md.html">Contract</a>
+        </nav>
+        <a class="kit-yours" href="customize.html">
+          <!-- Lucide palette -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+          </svg>
+          <span>Make it your own</span>
+        </a>
+
+        <div class="kit-credit">
+          <p class="kit-credit__line">
+            <!-- Roots & Fruit mark: part of the credit, not part of the system. -->
+            <svg class="kit-credit__mark" viewBox="0 0 227 222" aria-hidden="true" focusable="false">
+              <path fill="#B4B865" d="M4.21125 77.5705C12.5801 88.0863 48.7496 81.0849 72.0102 61.8993C96.2827 41.8797 105.787 18.3456 102.012 3.9872C99.3868 -6.00898 54.575 5.49141 32.2033 25.6068C14.4672 41.5515 -4.15764 67.0547 4.21125 77.5705Z" />
+              <path fill="#62744D" d="M6.4677 95.2245C11.8282 93.5288 22.932 91.7784 29.0582 91.2862C31.9983 91.04 32.2034 91.6007 29.2497 94.6501C24.026 100.024 12.8401 111.88 5.42843 117.528C2.98066 119.388 1.43543 117.405 1.32603 115.285C0.5329 111.224 0.820068 105.248 1.21663 101.706C1.95506 98.1098 3.21313 96.2774 6.4677 95.2518V95.2245Z" />
+              <path fill="#62744D" d="M12.9632 129.835C19.7731 112.646 54.4247 87.7444 69.9318 76.5722C72.0377 75.0543 78.7382 71.5536 80.1878 73.9467C86.0132 83.519 74.0478 113.425 68.6463 125.623C62.7115 139.038 51.7445 165.936 41.7346 177.97C39.9432 180.13 37.1673 178.421 35.1298 176.479C25.0379 166.839 18.2963 156.473 14.8229 149.171C12.717 144.74 10.912 134.977 12.9495 129.835H12.9632Z" />
+              <path fill="#89866D" d="M74.1162 135.578C75.9896 131.367 79.6681 129.985 81.1587 137.192C84.1944 151.906 82.9364 178.271 82.5808 189.251C82.4304 193.914 80.051 202.092 74.5128 200.82C70.5335 199.904 64.1474 196.307 61.0159 193.832C57.1733 190.81 56.2708 185.409 56.8998 181.785C58.6092 171.912 70.0001 144.809 74.1162 135.578Z" />
+              <path fill="#505A49" d="M99.5784 66.6855C104.255 53.8313 114.019 53.1613 124.671 60.108C136.049 67.5196 143.542 77.9807 144.691 97.1663C145.512 110.759 143.31 130.136 140.452 158.087C139.057 171.679 140.302 191.002 142.517 204.088C143.16 207.849 127.543 216.573 119.831 220.635C117.164 222.043 113.992 222.112 111.243 220.867C103.435 217.312 88.9806 210.31 90.2523 204.649C99.6878 162.887 88.7208 143.25 88.7891 124.406C88.8985 94.6912 92.1531 87.0334 99.5511 66.6992L99.5784 66.6855Z" />
+              <path fill="#89866D" d="M155.097 105.549C155.467 93.0775 149.122 76.0389 164.82 99.4089C176.567 116.885 180.313 172.308 179.042 185.258C178.796 187.733 174.064 191.344 164.068 196.061C153.224 201.176 148.643 203.514 148.862 183.33C148.944 175.467 154.332 131.202 155.097 105.549Z" />
+              <path fill="#62744D" d="M157.887 63.4856C165.066 74.8082 177.114 99.6688 181.189 115.012C185.701 131.982 187.534 156.897 188.067 169.847C188.313 176.042 189.352 178.134 192.88 174.948C201.208 167.413 210.808 155.352 217.194 135.811C219.724 128.085 218.302 114.984 212.121 105.781C200.511 88.4966 179.561 68.5179 162.728 60.8191C155.152 57.3594 157.518 62.8976 157.887 63.4856Z" />
+              <path fill="#B4B865" d="M148.397 2.94792C131.618 -2.04333 128.815 0.97877 127.447 10.0998C125.013 26.3589 135.037 33.415 142.736 36.0543C169.784 45.3393 180.286 53.9134 197.038 69.9947C211.916 84.2711 229.337 115.791 226.589 91.5187C224.072 69.311 216.114 53.298 199.403 35.4252C185.25 20.2874 164.437 7.72037 148.383 2.94792H148.397Z" />
+            </svg>
+            <span>A <strong>Roots &amp; Fruit</strong> system</span>
+          </p>
+          <a href="https://github.com/Roots-and-Fruit/design-system-template"
+            >Want to create your own design system?</a
+          >
+        </div>
+      </aside>
+
+      <main class="kit-main">
+        <div class="kit-main__inner cds-stack cds-stack--lg">
+          <header class="kit-page-head">
+            <p class="cds-meta">Step 5 of 6</p>
+            <h1>Sections</h1>
+            <p class="cds-lede">
+              Eight jobs. Compose a marketing page from these. Do not invent a
+              ninth. Next is not another specimen. It is the page.
+            </p>
+          </header>
+
+          <section class="kit-section" id="hero">
+            <h2>Hero</h2>
+            <p class="cds-prose">Pill, display title, lede, one primary, a small proof cluster, media on the right. Paper. A stack without media is still legal. Not a page.</p>
+            <div class="kit-specimen">
+              <div class="cds-split">
+                <div class="cds-stack">
+                  <span class="cds-pill">Trusted by teams like yours</span>
+                  <h3>A system you can hand to an agent</h3>
+                  <p class="cds-lede">Colors, type, and a few sections. Authors compose. They do not design.</p>
+                  <div class="cds-cluster">
+                    <button type="button" class="cds-btn cds-btn--primary">See how it works</button>
+                  </div>
+                  <div class="cds-cluster">
+                    <p class="cds-meta">4.9 average rating</p>
+                    <p class="cds-meta">14-day guarantee</p>
+                  </div>
+                </div>
+                <img src="https://via.assets.so/img.jpg?w=800&amp;h=600&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="800" height="600" />
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section" id="proof">
+            <h2>Proof</h2>
+            <p class="cds-prose">Five stats, centered in even tracks, or three. Paper-deep wash. No leftover tile. No CTA. A logo row is the same job.</p>
+            <div class="kit-specimen" style="background: var(--cds-paper-deep)">
+              <div class="cds-grid--five cds-grid--center">
+                <div class="cds-stack cds-stack--sm">
+                  <h3>100k</h3>
+                  <p class="cds-meta">Teams</p>
+                </div>
+                <div class="cds-stack cds-stack--sm">
+                  <h3>4.9</h3>
+                  <p class="cds-meta">Average rating</p>
+                </div>
+                <div class="cds-stack cds-stack--sm">
+                  <h3>14</h3>
+                  <p class="cds-meta">Day guarantee</p>
+                </div>
+                <div class="cds-stack cds-stack--sm">
+                  <h3>40</h3>
+                  <p class="cds-meta">Countries</p>
+                </div>
+                <div class="cds-stack cds-stack--sm">
+                  <h3>8</h3>
+                  <p class="cds-meta">Years</p>
+                </div>
+              </div>
+            </div>
+            <p class="kit-caption">Three-up uses .cds-grid--center with three children. Never auto-fit four or five into a leftover tile. Logo row is a .cds-cluster of marks.</p>
+          </section>
+
+          <section class="kit-section" id="card-grid">
+            <h2>Card grid</h2>
+            <p class="cds-prose">Three paired fills: surface, primary-soft tint, and dark. Title, one line, optional link. Not a dashboard. A path chooser is three of these.</p>
+            <div class="cds-grid" style="--cds-grid-min: 16rem">
+              <div class="cds-surface">
+                <h3>Locked palette</h3>
+                <p>Authors paint from semantic names. They do not pick a new hex.</p>
+                <a class="cds-btn cds-btn--outline cds-btn--sm" href="colors.html">See tokens</a>
+              </div>
+              <div class="cds-surface cds-surface--tint">
+                <h3>Type scale</h3>
+                <p>Display serif for titles. Body sans for reading. No third family.</p>
+                <a class="cds-btn cds-btn--outline cds-btn--sm" href="typography.html">See type</a>
+              </div>
+              <div class="cds-surface cds-surface--dark">
+                <h3>One contract</h3>
+                <p>DESIGN.md is the source of truth. Agents read it before they choose.</p>
+                <a class="cds-btn cds-btn--outline cds-btn--sm" href="design-md.html">Read it</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section" id="split">
+            <h2>Split</h2>
+            <p class="cds-prose">Copy plus media. .cds-split wraps when a track cannot hold the min. WordPress maps this to core/columns.</p>
+            <div class="kit-specimen" style="background: var(--cds-paper-deep)">
+              <div class="cds-split">
+                <div class="cds-stack">
+                  <h3>What the kit gives you</h3>
+                  <p class="cds-lede">A locked palette, a type scale, and starts for the jobs on this page.</p>
+                  <div class="cds-cluster">
+                    <button type="button" class="cds-btn cds-btn--primary">See the catalog</button>
+                  </div>
+                </div>
+                <img src="assets/mark.svg" alt="Example Brand mark" width="240" height="240" />
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section" id="quote">
+            <h2>Quote</h2>
+            <p class="cds-prose">One attribution. Surface or a row. Not a reviews carousel.</p>
+            <div class="cds-surface cds-stack cds-stack--sm">
+              <p class="cds-lede">The setup was straightforward. When we needed a related fix, the team answered immediately.</p>
+              <p class="cds-meta">Store owner</p>
+            </div>
+          </section>
+
+          <section class="kit-section" id="dark-band">
+            <h2>Dark band</h2>
+            <p class="cds-prose">Callout strip. On-dark title. One accent button max. Not a second theme.</p>
+            <div class="cds-surface cds-surface--dark cds-stack">
+              <p class="cds-meta">Note</p>
+              <h3>One callout is enough</h3>
+              <p>Use this strip once per view. Do not turn accent into a page wash.</p>
+              <div class="cds-cluster">
+                <button type="button" class="cds-btn cds-btn--accent">Act now</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section" id="cta">
+            <h2>CTA</h2>
+            <p class="cds-prose">Short display title plus one button. Primary or accent, not both.</p>
+            <div class="cds-surface cds-surface--panel cds-stack">
+              <h3>Ready when you are</h3>
+              <div class="cds-cluster">
+                <button type="button" class="cds-btn cds-btn--primary">Continue</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="kit-section" id="alert">
+            <h2>Alert</h2>
+            <p class="cds-prose">Status note. Tone is the fill. Never a hero.</p>
+            <div class="cds-alert cds-alert--info">
+              <strong>Heads up.</strong>
+              This is a status note, not a hero. Swap the fill if the tone changes.
+            </div>
+          </section>
+
+          <section class="kit-section">
+            <h2>A landing is a stack</h2>
+            <p class="cds-prose">
+              Hero, optional proof, one card grid or split, then one CTA.
+              That is the page recipe. Article is measured prose. It is not this catalog.
+            </p>
+            <div class="cds-table-wrap">
+              <table class="cds-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Page</th>
+                    <th scope="col">Sections</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>landing</code></td><td>Hero, proof, card grid or split. Hero holds the primary</td></tr>
+                  <tr><td><code>article</code></td><td>Measured prose on paper. Not these jobs</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+                    <nav class="kit-pager" aria-label="Pagination">
+            <a href="layout.html">&larr; Layout</a>
+            <a href="the-site.html">Next: The site &rarr;</a>
+          </nav>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

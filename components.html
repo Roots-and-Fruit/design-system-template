@@ -27,15 +27,18 @@
           </a>
           <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-        <nav class="kit-nav" aria-label="Design system sections">
-          <a href="index.html">Overview</a>
-          
-          <a href="media-kit.html">Media Kit</a>
-          <a href="colors.html">Colors</a>
-          <a href="typography.html">Typography</a>
+                <nav class="kit-nav" aria-label="What the system does">
+          <a href="index.html">Start</a>
+          <a href="colors.html">Color</a>
+          <a href="typography.html">Type</a>
           <a href="layout.html">Layout</a>
-          <a href="components.html" aria-current="page">Components</a>
-          <a href="design-md.html">DESIGN.md</a>
+          <a href="sections.html">Sections</a>
+          <a href="the-site.html">The site</a>
+        </nav>
+        <nav class="kit-nav kit-nav--more" aria-label="Builder pages">
+          <a href="components.html" aria-current="page">Pieces</a>
+          <a href="media-kit.html">Assets</a>
+          <a href="design-md.html">Contract</a>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -140,6 +143,11 @@
                 <h3>Soft</h3>
                 <p>Deeper page wash for alternating bands inside a long document.</p>
               </div>
+              <div class="cds-surface cds-surface--tint">
+                <h3>Tint</h3>
+                <p>Primary-soft fill with ink body. Soft brand paint, not a second theme.</p>
+                <button type="button" class="cds-btn cds-btn--outline">Details</button>
+              </div>
               <div class="cds-surface cds-surface--dark">
                 <h3>Dark callout</h3>
                 <p>One per section at most. Muted white body copy, and CTAs keep dark ink on the accent fill.</p>
@@ -232,6 +240,7 @@
 
           <section class="kit-section">
             <h2>Data and code</h2>
+            <div class="cds-stack">
             <div class="cds-table-wrap">
               <table class="cds-table">
                 <thead>
@@ -248,6 +257,11 @@
                 </tbody>
               </table>
             </div>
+            <details class="cds-details">
+              <summary>What is this row for?</summary>
+              <p>Disclosure. Summary is the control. The answer stays in the kit type, inside the same frame as the table.</p>
+            </details>
+            </div>
             <pre class="cds-code"><code>.hero {
   background: var(--cds-paper);
   padding-block: var(--cds-space-8);
@@ -259,9 +273,9 @@
             </p>
           </section>
 
-          <nav class="kit-pager" aria-label="Pagination">
-            <a href="layout.html">&larr; Layout</a>
-            <a href="design-md.html">Next: DESIGN.md &rarr;</a>
+                    <nav class="kit-pager" aria-label="Pagination">
+            <a href="sections.html">&larr; Sections</a>
+            <a href="design-md.html">Next: Contract &rarr;</a>
           </nav>
         </div>
       </main>

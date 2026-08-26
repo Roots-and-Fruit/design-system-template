@@ -40,11 +40,11 @@ That is the whole mechanical path. The checklist your agent follows lives in [`C
 
 ## What you get
 
-A browsable reference site with colors, type, layout, and components. A single stylesheet you can drop into a project. Role-named design tokens (primary, accent, paper, ink) so a rebrand does not mean renaming everything. Four layout building blocks that adapt without a breakpoint for every block. And a normative `DESIGN.md` file so agents prefer your rules over their own taste.
+A browsable demo: Start, Color, Type, Layout, Sections, then **The site**, a real marketing page composed from those jobs. Builder pages (pieces, assets, the contract) sit under that walk. A single stylesheet you can drop into a project. Role-named design tokens so a rebrand does not mean renaming everything. Five layout building blocks. A closed catalog of eight marketing sections. And a normative `DESIGN.md` file so agents prefer your rules over their own taste.
 
 ## Try the demo
 
-[Live reference site](https://roots-and-fruit.github.io/design-system-template/) · [Make it your own](https://roots-and-fruit.github.io/design-system-template/customize.html)
+[Start the walk](https://roots-and-fruit.github.io/design-system-template/) · [The site (payoff)](https://roots-and-fruit.github.io/design-system-template/the-site.html) · [Make it your own](https://roots-and-fruit.github.io/design-system-template/customize.html)
 
 Or open the folder locally:
 
@@ -64,7 +64,7 @@ Already have styles for headings and links? Import `tokens.css`, `layouts.css`, 
 
 ## For agents
 
-Point your agent at [`AGENTS.md`](AGENTS.md). Job B is the customize path: read [`CUSTOMIZE.md`](CUSTOMIZE.md), fill [`brand.json`](brand.json), run `npm run customize`, then rewrite the prose in `DESIGN.md` so it sounds like the real brand.
+Point your agent at [`AGENTS.md`](AGENTS.md). Job B is the customize path: read [`CUSTOMIZE.md`](CUSTOMIZE.md), fill [`brand.json`](brand.json), run `npm run customize`, then rewrite the prose in `DESIGN.md` so it sounds like the real brand. WordPress is a projection: [`WORDPRESS.md`](WORDPRESS.md).
 
 You do not need a build step to view the site. The customize command is only for applying a fork.
 

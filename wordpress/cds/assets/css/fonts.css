@@ -1,0 +1,21 @@
+/* Design System Template — fonts
+   ---------------------------------------------------------------------------
+   The demo brand uses three open-licensed families from Google Fonts so the
+   kit works the moment you clone it:
+
+     PT Serif       — display / titles
+     Lato           — body, UI, tables
+     JetBrains Mono — code only
+
+   Swapping families (preferred):
+   1. Set fonts.* and fonts.googleImport in brand.json.
+   2. Run `npm run customize` — it rewrites this @import and the token stacks.
+
+   Manual fallback: replace the @import below, then keep brand.json in sync.
+
+   Licensed fonts: if your family is not free to redistribute, do NOT commit the
+   binaries to a public repo. Load them from a host you control and keep a
+   system fallback in the stack so local/offline opens still render.
+   --------------------------------------------------------------------------- */
+
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Lato:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap");

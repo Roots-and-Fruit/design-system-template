@@ -8,6 +8,7 @@ job you are doing first.
 | **A — Build UI** | Implementing screens with this system | `DESIGN.md` |
 | **B — Customize a fork** | Applying a real brand to a clone | `CUSTOMIZE.md` |
 | **C — Change the template** | Editing the kit itself (components, docs chrome, Media Kit) | this file, then the matching CSS/HTML |
+| **D — WordPress projection** | Compiler, theme, recipes, probe | [`WORDPRESS.md`](WORDPRESS.md), then [`wordpress/HANDOFF.md`](wordpress/HANDOFF.md) |
 
 Most fork work is **Job B**. Do not skip the customize script and hand-edit
 generated regions.
@@ -19,7 +20,8 @@ generated regions.
    personal taste.
 2. Implement with the CSS custom properties in `css/tokens.css` (`--cds-*`) and
    the classes in `css/layouts.css` and `css/components.css`. Do not introduce
-   parallel hex values, font stacks, or spacing.
+   parallel hex values, font stacks, or spacing. Tokens are primitive →
+   semantic → component (see `DESIGN.md` → Token layers).
 3. If a request conflicts with the Do's and Don'ts, follow the file and say so
    briefly.
 4. Check text and background pairs against WCAG AA for body copy.
@@ -71,6 +73,7 @@ Source of truth map:
 | Name, colours, fonts, radii | `brand.json` | tokens `@@brand` region, fonts import, DESIGN.md front matter, HTML stamps |
 | Rules and voice | `DESIGN.md` prose | `design-md.html` after sync |
 | Size / space / shadows | `css/tokens.css` below `@@brand` | — |
+| WordPress projection | [`WORDPRESS.md`](WORDPRESS.md) + `DESIGN.md` + `css/tokens.css` | `wordpress/cds/` |
 | Colour chip labels | — | `js/kit-swatches.js` from computed CSS |
 
 Viewing the reference site never requires a build. Customize is optional
@@ -86,7 +89,18 @@ Edit in this order so the pieces stay in sync:
 3. Update the matching reference page when a specimen is wrong.
 4. Update `DESIGN.md` prose / component front-matter entries the script does not
    own (`spacing`, `components`).
-5. Run `npm run customize` or `npm run sync:design-md`.
+5. Run `npm run customize` or `npm run sync:design-md`. After token or contract
+   changes that WordPress should see, run `npm run compile:wordpress` (customize
+   already does this). The thin theme lives in `wordpress/cds/`. Copy it with
+   `node scripts/sync-theme.mjs --dest <wp-content/themes/cds>`. After a visual
+   change, run `npm run test:wp` against a live site (`CDS_WP_BASE_URL`).
+
+## Job D: WordPress projection
+
+The kit is the system. WordPress is a generated theme, not a second design
+system. Open [`WORDPRESS.md`](WORDPRESS.md), then
+[`wordpress/HANDOFF.md`](wordpress/HANDOFF.md) (what is done, what is next,
+hard stops). Do not start from the hub draft under `website/agent/docs/`.
 
 ## Boundaries
 
