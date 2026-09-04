@@ -90,7 +90,7 @@
       "id": "cds/surface-padding",
       "label": "Surface padding",
       "type": "spacing",
-      "default": "1.5rem",
+      "default": "2.25rem",
       "scope": "global",
       "custom_key": "cdsSurfacePadding"
     },

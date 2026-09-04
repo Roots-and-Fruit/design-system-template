@@ -122,7 +122,7 @@ components:
     typography: "{typography.body-sm}"
   link:
     textColor: "{colors.primary}"
-    typography: "{typography.label}"
+    typography: "{typography.body-md}"
   button-primary:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
@@ -159,17 +159,25 @@ components:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.ink}"
     rounded: "{rounded.md}"
-    padding: 1.5rem
+    padding: 2.25rem
   surface-panel:
     backgroundColor: "{colors.panel}"
     textColor: "{colors.ink}"
     rounded: "{rounded.md}"
-    padding: 1.5rem
+    padding: 2.25rem
+  surface-soft:
+    backgroundColor: "{colors.paper-deep}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.md}"
+    padding: 2.25rem
   surface-dark:
     backgroundColor: "{colors.surface-dark}"
     textColor: "{colors.on-dark}"
     rounded: "{rounded.md}"
-    padding: 1.5rem
+    padding: 2.25rem
+  lede:
+    textColor: "{colors.ink-muted}"
+    typography: "{typography.body-lg}"
   alert-info:
     backgroundColor: "{colors.info-soft}"
     textColor: "{colors.ink}"
@@ -249,6 +257,7 @@ layout:
   content-size: 40rem
   wide-size: 60rem
   gutter: "{spacing.5}"
+  inset: "{spacing.6}"
 elevation:
   sm: "0 2px 14px rgba(15, 23, 42, 0.06)"
   md: "0 10px 32px rgba(15, 23, 42, 0.1)"
@@ -271,7 +280,7 @@ This file is normative. Agents and generators must read it before choosing
 colour, type, radius, or components, and must map values to the CSS custom
 properties in `css/tokens.css` (`--cds-*`) rather than inventing parallel ones.
 The human reference site starts at `index.html` and walks Color → Type →
-Layout → Pieces → Pages → The site.
+Layout → Pieces → Pages → The site. Assets and Design.md sit under that walk.
 
 Brand feel (replace with yours):
 - Calm, structured, legible; depth stays quiet
@@ -289,20 +298,32 @@ Surfaces this system must serve equally well:
 Three layers, in order. The reference walk follows them.
 
 1. **Design tokens** — primitive, semantic, and component. Color and type are this layer. See Token layers.
-2. **Every Layout** — intrinsic primitives in `css/layouts.css` (Stack, Cluster, Center, Grid, Split). Mixed marketing copy uses `.cds-copy` (Gestalt proximity), not an even stack. See Layout.
+2. **Every Layout** — intrinsic primitives in `css/layouts.css` (Stack, Cluster, Center, Grid, Split) plus Copy. Mixed marketing copy uses `.cds-copy` (Gestalt proximity), not an even stack. See Layout.
 3. **Compose** — Pieces are those tokens on those primitives. Pages are Pieces composed into landing jobs. The site is one page from that list.
 
-Walk: Start → Color → Type → Layout → Pieces → Pages → The site. Do not treat Pieces and Pages as two catalogs. A control’s look lives under Components; a page job may include that control.
+Walk: Start → Color → Type → Layout → Pieces → Pages → The site. Assets and Design.md sit under that walk. Do not treat Pieces and Pages as two catalogs. A control’s look lives under Components; a page job may include that control.
 
 ## Token layers
 
 Tokens come in three layers. Keep these names when a brand forks. Only values change.
 
-1. **Primitives** may be hue-named (`cyan-500`, a green ramp). Charts, illustrations, and raw scales live here. Authors do not pick from this layer in a theme.
-2. **Semantic tokens** are jobs: `primary`, `ink`, `ink-deep`, `paper`, `accent`. The `colors:` map in this file is that layer. Compilers and WordPress presets use these names.
-3. **Component tokens** bind a job to a control: `button-primary`, `on-primary`. Hierarchy words (`primary`, `secondary`) belong on components, not on leftover brand colours.
+1. **Primitives** in this kit are the `--cds-primary-1`…`--cds-primary-5` ramp (and `--cds-chart-1`…`4`, which alias brand jobs). There is no separate hue-named scale file (`cyan-500` and friends). A fork may add private primitives in CSS. Authors do not pick from this layer in a theme.
+2. **Semantic tokens** are jobs: `primary`, `ink`, `ink-deep`, `paper`, `accent`. The `colors:` map in this file is that layer. Pairing colours (`on-primary`, `on-accent`, `on-dark`) sit here too. Compilers and WordPress presets use these names.
+3. **Component tokens** are the `components:` recipes in this file (`button-primary`, `surface`). Hierarchy words (`primary`, `secondary`) belong on components, not on leftover brand colours.
 
 Do not put a hue in the semantic map (`green`, `cream`, `orange`). A fork may alias primitives in CSS (`--cds-primary` pointing at a private green). Authors, `theme.json` slugs, and other brands only see the job names.
+
+YAML names in this file are not always the CSS custom-property names. Map them before grepping `tokens.css`:
+
+| This file | CSS |
+| --- | --- |
+| `success-soft` / `warning-soft` / `danger-soft` / `info-soft` | `--cds-success-bg` (and `warning-bg`, `danger-bg`, `info-bg`) |
+| `rounded.md` | `--cds-radius` (no `-md` suffix). `sm`, `lg`, and `pill` keep their suffix |
+| `elevation.sm` / `elevation.md` | `--cds-shadow` / `--cds-shadow-md` |
+| `focus.ring` | `--cds-focus` |
+| `layout.wide-size` | `--cds-max` |
+| `layout.inset` | `--cds-inset` (equals `--cds-space-6`) |
+| `layout.content-size` | WordPress `theme.json` `contentSize` only. Not a `--cds-*` variable |
 
 `ink-deep` is a rank of ink, not a colour. Do not use `secondary` or `tertiary` as colour names — they collide with `button-secondary`. Muted text is `ink-muted`. A rare second punch is `accent`.
 
@@ -311,7 +332,8 @@ Do not put a hue in the semantic map (`green`, `cream`, `orange`). A fork may al
 WordPress is a projection of this file, not a second system. The contract is
 [`WORDPRESS.md`](WORDPRESS.md). The compiler writes `wordpress/cds/`. Keep the
 `layout`, `elevation`, and `focus` front-matter groups — customize does not
-own them.
+own them. `layout.content-size` (40rem) is the article `contentSize`. Landing
+columns use `wide-size` / `--cds-max` (60rem). Neither is a reading `ch`.
 
 ## Make it yours
 
@@ -340,7 +362,9 @@ Semantic roles. Use these names in reasoning; hex values live in front matter.
 | Wash deep | `paper-deep` | Alternating page bands |
 | Surface | `surface` | Cards, inputs, lifted modules |
 | Panel | `panel` | Grouping without a card shadow |
+| Panel deep | `panel-deep` | Stronger panel, secondary button border and hover |
 | Panel soft | `panel-soft` | Quietest fill: notes, code paper, table headers |
+| Rule | `rule` | Hairline borders |
 | Ink | `ink` | Body text |
 | Ink deep | `ink-deep` | Headings, text on light accent fills |
 | Ink muted | `ink-muted` | Captions, helper text, secondary copy |
@@ -349,6 +373,8 @@ Semantic roles. Use these names in reasoning; hex values live in front matter.
 | Primary deep | `primary-deep` | Primary hover and pressed |
 | Primary soft | `primary-soft` | Soft fills, chips, selected states |
 | Accent | `accent` | Rare high-stakes CTA, emphasis rules |
+| Accent soft | `accent-soft` | Soft accent fills, never a page wash |
+| On primary / on accent / on dark | `on-*` | Text on those fills. `on-dark-muted` is body on `surface-dark` |
 | Surface dark | `surface-dark` | Dark callout cards and hero bands |
 | Success / Warning / Danger / Info | semantic | Status only, not decoration |
 
@@ -392,7 +418,9 @@ Rules:
   accessibility matrix scored from these tokens; button labels need AA, not
   AA Large. Include hover (`primary-deep` + `on-primary`)
 - The `primary-1`…`primary-5` ramp is for charts, illustrations, and
-  progressive emphasis, not random decoration
+  progressive emphasis, not random decoration. `--cds-primary-4` aliases
+  `primary`. `--cds-chart-1`…`4` alias `primary`, `accent`, `success`, and
+  `ink-muted`.
 - `info` ships as an alias of `primary` because the demo primary reads
   informational. If your primary is warm or playful, set `info` and
   `info-soft` in `brand.json` and run customize. Do not hand-edit the
@@ -421,6 +449,17 @@ Size ladder (`--cds-text-*`):
 
 `sm` is the demo floor. If your product genuinely needs denser chrome, lower the
 floor in `tokens.css` once rather than sprinkling one-off sizes in components.
+
+`css/base.css` is the only file that styles bare tags. Default headings: `h1`
+is `3xl`, `h2` is `2xl`, `h3` is `xl`, `h4` is `lg`. Hero `display-xl` (`4xl`)
+is opt-in, not the default `h1`. Skip `base.css` when dropping the kit into a
+host that already owns element styles; import tokens, layouts, and components
+instead.
+
+`.cds-lede` is short intro emphasis: `lg` size, callout leading, `ink-muted`,
+capped at the measure. `.cds-prose` is the article column: measure, `md` body,
+stack rhythm on nested paragraphs and headings. `.cds-meta` is the uppercase
+eyebrow (tracking `--cds-tracking-meta`).
 
 Line-height is optical, per role: `--cds-leading-display` (1.1) for large
 display, `--cds-leading-snug` (1.15) for short titles, `--cds-leading-body`
@@ -465,12 +504,12 @@ Primitives in `css/layouts.css`:
 | --- | --- |
 | `.cds-stack` | Even vertical gap. Only when every child is the same kind of thing (stats, tiles). Variants `--sm`, `--md`, `--lg` |
 | `.cds-copy` | Mixed marketing column. Eyebrow hugs the title; title hugs the lede; the button gets more air; proof meta tucks under the action |
-| `.cds-center` | Centred reading column at `--cds-measure`, optional `--gutter` |
-| `.cds-cluster` | Wrapping horizontal group for buttons, pills, tags |
-| `.cds-grid` | Auto-fitting tiles that wrap at `--cds-grid-min`, no media query |
+| `.cds-center` | Centred reading column at `--cds-measure`. `.cds-center--gutter` adds `--cds-space-5` inline padding |
+| `.cds-cluster` | Wrapping horizontal group for buttons, pills, tags. `--center` and `--between` for alignment |
+| `.cds-grid` | Auto-fitting tiles that wrap at `--cds-grid-min`, no media query. `--tight` uses a smaller min and gap |
 | `.cds-grid--center` | Center each tile in its track. Proof stats. Not cards. |
 | `.cds-grid--five` | Five even tracks. Proof. Stacks to one column when the row cannot hold five. Not auto-fit. |
-| `.cds-split` | Two tracks that wrap. Copy plus media. No breakpoint soup |
+| `.cds-split` | Two tracks that wrap. Copy plus media. `align-items: start`. No breakpoint soup |
 
 Hierarchy:
 - One job per section: a heading, a short supporting line, then content
@@ -478,6 +517,8 @@ Hierarchy:
 - Do not mix ad-hoc child margins with a parent `.cds-stack` gap
 - Hero, Split, CTA, and Dark band copy columns use `.cds-copy`, not a bare `.cds-stack`
 - `--cds-max` may wrap shells and specimen grids; paragraphs still obey measure
+- `layout.content-size` is the WordPress article column (40rem). Do not look
+  for `--cds-content-size` in CSS
 
 ## Pages
 
@@ -492,7 +533,7 @@ is a three-tile card grid. Header and footer are template parts, not page jobs.
 | Proof | Three or five stats, centered in even tracks, or a logo cluster. No leftover tile | `paper-deep` (viewport wash; numbers sit on `wide`) | None | A feature grid, four tiles wrapping to three, five auto-fitting to four-plus-one, left-aligned stats |
 | Card grid | Three paired fills in `.cds-grid` (surface, `primary-soft` tint, dark). Title, one line, optional meta and a link | `paper` | Outline or text link, not a second primary | A dashboard, three identical whites |
 | Split | Copy plus media via `.cds-split` (WordPress: `core/columns`) | `paper-deep` (viewport wash; split sits on `wide`) | One primary, optional | A blog layout |
-| Quote | One attribution. Surface or a row | `paper` | None | A reviews carousel |
+| Quote | One attribution. Compose `.cds-surface` plus `.cds-lede` plus `.cds-meta`. There is no `.cds-quote` class | `paper` | None | A reviews carousel, a blockquote restyle |
 | Dark band | Callout strip. `on-dark` title | `surface-dark` (viewport wash; copy on the measure) | One accent max | A second theme |
 | CTA | Short `display-sm` plus one button | `panel` | Primary or accent, not both | Two buttons fighting |
 | Alert | One status note on a landing. Look and tones live under Components (`.cds-alert`). Never a hero | soft status or `primary-soft` | None | A hero, a restated alert system |
@@ -523,8 +564,8 @@ Depth is quiet.
 ## Shapes
 
 Radii: `rounded.sm` for inputs and small controls, `rounded.md` for surfaces and
-alerts, `rounded.lg` for large media frames, `rounded.pill` for buttons and
-chips.
+alerts (`--cds-radius` in CSS, no `-md` suffix), `rounded.lg` for large media
+frames, `rounded.pill` for buttons and chips.
 
 Button shape is a single knob: `--cds-button-radius`. Set it to
 `var(--cds-radius)` for a squarer system. Do not mix sharp chrome and pill
@@ -551,14 +592,25 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
   (Buy, Book, Submit final). Use `on-accent` for the label. Hover deepens the
   fill so a light label keeps its contrast.
 - `button-ghost` (`.cds-btn--ghost`): text-like dismissal or tertiary nav.
+  Hover fills `primary-soft` with a `primary-deep` label.
 - `button-sm` (`.cds-btn--sm`): compact control size for cards, toolbars, and
   download rows. Compose with a colour variant (e.g. `.cds-btn--outline.cds-btn--sm`).
   Keeps the button radius knob; uses denser padding and a 14px control label
   (not a new body type-scale step).
-- Disabled reduces opacity. Do not invent a separate grey system.
+- Disabled reduces opacity (0.45). Do not invent a separate grey system.
+- Buttons fade colour on hover (`0.15s`). That is CSS, not a motion token. The
+  spinner respects `prefers-reduced-motion` by slowing, not stopping.
 
 **Links**
-- `primary`, semibold when inline in prose. Never default browser blue.
+- Default `a` in `base.css` is `primary` at body weight, with `primary-deep`
+  on hover. Not semibold. Label weight is for buttons, field labels, and meta.
+
+**Prose**
+- `.cds-lede`: intro line. `lg`, muted, measure.
+- `.cds-prose`: article column. Measure, `md` body, heading and paragraph rhythm.
+- `.cds-meta`: uppercase eyebrow. Use it for kicker lines, not body copy.
+- `.cds-text-muted` / `--primary` / `--accent` / `--danger`: colour utilities
+  when a class is enough and a new component is not.
 
 **Forms**
 - Labels sit above fields; hints and errors sit below
@@ -568,8 +620,11 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
   with `ink`
 
 **Surfaces**
-- `surface`: default module on the page wash
+- `surface`: default module on the page wash. Padding is `--cds-inset` (step 6),
+  not the 1.5rem recipe that used to sit in this file
 - `surface-panel`: grouping without a card shadow; body stays `ink` (muted fails AA)
+- `surface-soft` (`.cds-surface--soft`): `paper-deep` fill, no shadow. Alternating
+  bands inside a long document
 - `surface-tint` (`.cds-surface--tint`): `primary-soft` fill, `ink` body. Soft brand paint, not a second theme
 - `surface-dark`: one dark callout per section at most; muted white body copy
 - Do not wrap every block in a shadowed card
@@ -587,7 +642,7 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
 
 **Tables**
 - `.cds-table-wrap` is the frame: surface fill, `rule` border, `rounded.md`
-- Header row is `table-header`: `panel-soft`, label weight, left-aligned
+- Header row is `table-header`: `panel-soft`, heading family, left-aligned
 - Cells use `body-sm` and muted ink. Hairline row rules only, no grid of
   cell borders. Last row drops the bottom rule so it does not double the frame
 
@@ -599,7 +654,8 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
 
 **Code**
 - Inline `code` stays quiet: `panel-soft` paper, `primary-deep` text, no border
-- Block `.cds-code` soft-wraps; snippets never hide content behind a scrollbar
+- Block `.cds-code` has a `rule` border, soft-wraps, and never hides content
+  behind a scrollbar
 
 **Brand assets**
 - Marks live in `assets/`. Use the wordmark when naming the brand and the icon
@@ -656,7 +712,7 @@ When generating or editing UI for this brand:
    palette slugs, picker unlocks, or recipes the compiler does not emit.
 10. Marketing pages start from the page jobs above. Compose those jobs.
     Hero, Split, CTA, and Dark band copy columns use `.cds-copy`. Do not put
-    mixed copy in a bare `.cds-stack`.     Do not invent a layout, a card class, or
+    mixed copy in a bare `.cds-stack`. Do not invent a layout, a card class, or
     a ninth page job. Do not wrap
     `post-content` in a second constrained group. Do not leave a leftover tile.
     Do not mix `content` and `wide` on one landing. Proof stats are centered.
