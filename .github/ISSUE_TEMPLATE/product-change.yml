@@ -1,0 +1,71 @@
+name: Product change
+description: A user-facing change. Start with the pitch, then who it is for, then how to build it.
+title: "[Who] can …"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Write this as a product change, not a dump of files to edit. Open with the elevator pitch: currently vs after this issue. The next four sections describe the user. The last section should be detailed enough that a developer or agent can start in the right layer without a second discovery pass.
+
+  - type: textarea
+    id: tldr
+    attributes:
+      label: TL;DR
+      description: |
+        The elevator pitch. Two sentences: what is true today, then what will be true when this issue is done. Start the first with “Currently,” and the second with “By addressing this issue,” so a reader never has to guess before vs after. Someone who reads only this section should know whether to open the rest.
+      placeholder: Currently, tokens live as CSS variables and DESIGN.md front matter, so a Figma file or another compiler has nothing parseable to read. By addressing this issue, we keep one token data file that CSS, WordPress, and later design tools compile from.
+    validations:
+      required: true
+
+  - type: textarea
+    id: who
+    attributes:
+      label: Who this is for
+      description: Name the person and the moment they are in (reader, editor, site owner) and what they are trying to do. This keeps the issue attached to a human job. If you cannot name them, you are still describing a system change, not a product change.
+      placeholder: A designer forking this kit who needs the live site, WordPress, and Figma to share the same colour names.
+    validations:
+      required: true
+
+  - type: textarea
+    id: experience
+    attributes:
+      label: How this impacts the product experience
+      description: What changes in the live product once this ships. A page, a tooltip, a setting, a search snippet, a workflow. Be specific enough that two people would picture the same screen. If the impact is only "better schema" or "more maintainable code," rewrite until a user would notice it.
+      placeholder: Color and Type still render from compiled CSS. Forks edit one data file; customize no longer treats CSS as the source of truth.
+    validations:
+      required: true
+
+  - type: textarea
+    id: done
+    attributes:
+      label: What Done looks like
+      description: The check that closes the issue. A URL to open, a setting to flip, view-source to inspect, a visitor path that now works. Include important negatives (caps, things this issue will not change). This is how you know the experience landed, not merely that a PR merged.
+      placeholder: Open tokens.json (or the chosen file), change primary, run customize, and see the Color page, DESIGN.md front matter, and theme.json update. Do not rename semantic token jobs in this issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: urgency
+    attributes:
+      label: Urgency
+      description: Why this is ahead of other open issues, or say it can wait. Cost of delay only. "Nothing is decaying; do it when touching this surface" is a valid answer. This is for sequencing, not persuasion.
+      placeholder: Figma and dark mode both need a data source. Shipping either against CSS-only tokens means doing this work twice.
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical
+    attributes:
+      label: How to solve this technically
+      description: |
+        Enough for a developer or agent to start without reverse-engineering the plugin. Include current behavior, intended change, likely files or surfaces, data already in the product to reuse, contracts that must not break, and out of scope.
+
+        This should not be a full implementation plan or a file-by-file patch. It should be heavier than a sticky note. If someone still has to guess whether this is markup, schema, settings, or a new field, this section is too thin.
+      placeholder: |
+        Current: brand.json feeds customize; css/tokens.css and DESIGN.md front matter are generated; wordpress/cds/design-tokens.json is a WordPress Layer B slice.
+        Change: one DTCG-shaped (or equivalent) token file as SoR; compilers emit CSS, DESIGN.md values, and WP JSON.
+        Surface: scripts/apply-brand.mjs, scripts/compile-wordpress.mjs, css/tokens.css.
+        Do not: invent a second palette; do not rename semantic jobs (primary, ink, paper).
+    validations:
+      required: true

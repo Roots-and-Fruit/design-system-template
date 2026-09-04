@@ -7,8 +7,8 @@
  * Viewport Width: 720
  */
 ?>
-<!-- wp:group {"align":"wide","className":"is-style-cds-panel","layout":{"type":"constrained","contentSize":"60rem"}} -->
-<div class="wp-block-group alignwide is-style-cds-panel">
+<!-- wp:group {"align":"wide","className":"is-style-cds-panel cds-copy","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"60rem"}} -->
+<div class="wp-block-group alignwide is-style-cds-panel cds-copy">
 	<!-- wp:heading {"level":2,"fontSize":"display-sm"} -->
 	<h2 class="wp-block-heading has-display-sm-font-size">Ready when you are</h2>
 	<!-- /wp:heading -->

@@ -1,0 +1,97 @@
+/* The Site demo — layout contract for forks
+   ---------------------------------------------------------------------------
+   Washes (proof, split, callout, footer) paint full-bleed. Inner `.site-wide`
+   is the 60rem column. Do not put max-inline-size on the wash itself.
+   This file is reference-site chrome (kit-), not a product theme.
+   --------------------------------------------------------------------------- */
+
+.demo-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cds-space-3);
+  padding: var(--cds-space-3) var(--cds-space-5);
+  background: var(--cds-paper-deep);
+  border-block-end: 1px solid var(--cds-rule);
+}
+
+.demo-bar p {
+  margin: 0;
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+}
+
+.site-header,
+.site-footer,
+.site-band,
+.site-wide {
+  padding-inline: var(--cds-space-5);
+}
+
+.site-header,
+.site-wide,
+.site-band > * {
+  max-inline-size: 60rem;
+  margin-inline: auto;
+}
+
+.cds-split > img,
+.cds-surface > img {
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  border-radius: var(--cds-radius);
+}
+
+.cds-split > img {
+  aspect-ratio: 4 / 3;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cds-space-4);
+  padding-block: var(--cds-space-5);
+  border-block-end: 1px solid var(--cds-rule);
+}
+
+.site-hero {
+  padding-block: var(--cds-space-7) var(--cds-space-6);
+}
+
+.site-proof,
+.site-split-band,
+.site-footer {
+  background: var(--cds-paper-deep);
+  padding-block: var(--cds-space-6);
+}
+
+.site-wide {
+  padding-block: var(--cds-space-6);
+}
+
+.site-footer .site-wide,
+.site-proof .site-wide,
+.site-split-band .site-wide,
+.site-callout .site-wide {
+  padding-block: 0;
+}
+
+.site-callout {
+  background: var(--cds-surface-dark);
+  color: var(--cds-on-dark);
+  padding-block: var(--cds-space-7);
+}
+
+.site-callout h2 {
+  color: var(--cds-on-dark);
+}
+
+.site-callout p,
+.site-callout .cds-meta {
+  color: var(--cds-on-dark-muted);
+}

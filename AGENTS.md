@@ -40,7 +40,9 @@ checklist" or "make this my brand", this job is active.
    not answered.
 2. **Write answers into `brand.json`.** Set `"placeholder": false`. Keep
    `--cds-*` token *names*; only values change. Accent must contrast with
-   primary; do not alias accent to warning or danger.
+   primary; do not alias accent to warning or danger. If primary is not
+   informational, set `colors.info` and `colors.info-soft` — do not leave
+   `info` aliased to a warm primary.
 3. **Run the apply script** (zero install):
 
 ```bash
@@ -62,6 +64,9 @@ node scripts/apply-brand.mjs
    (sidebar mark is inlined per page; favicon points at `assets/mark.svg`).
 6. **Run `npm run customize` again** after prose edits. Confirm the sidebar
    name, Colors chips, and Typography families match the brand.
+7. **Post-customize walk.** Color: accessibility matrix — primary button rest
+   and hover both pass AA (4.5:1). The Site: washes sit on `wide`, callout
+   type is readable on dark. Stop. Logo is a separate pass.
 
 Human-facing entry: `customize.html` ("Make it your own") with a copy-paste
 prompt. Procedural detail: this Job B + `CUSTOMIZE.md`.
@@ -86,7 +91,8 @@ Edit in this order so the pieces stay in sync:
 1. If the value is forkable, put it in `brand.json` and run `npm run customize`.
 2. Otherwise edit `css/tokens.css` (below `@@brand`), `layouts.css`, or
    `components.css`.
-3. Update the matching reference page when a specimen is wrong.
+3. Update the matching reference page when a specimen is wrong. The Site
+   column / wash contract lives in `css/kit-site.css`.
 4. Update `DESIGN.md` prose / component front-matter entries the script does not
    own (`spacing`, `components`).
 5. Run `npm run customize` or `npm run sync:design-md`. After token or contract
@@ -109,7 +115,8 @@ hard stops). Do not start from the hub draft under `website/agent/docs/`.
   hand-edit it.
 - `DESIGN.md` prose is the source of truth for rules. The markdown inside
   `<code id="design-md-source">` in `design-md.html` is a generated copy.
-- `css/kit.css` and `js/kit-swatches.js` are reference-site chrome only.
+- `css/kit.css`, `css/kit-site.css`, and `js/kit-swatches.js` are
+  reference-site chrome only.
 - The sidebar markup is duplicated across pages on purpose (no build step).
   Brand **strings** are stamped via `[data-brand]`. The "Make it your own"
   link (`.kit-yours`) sits above the credit on every page; keep that placement

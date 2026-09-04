@@ -99,8 +99,8 @@ function applyTokens(brand) {
   --cds-warning-bg: ${c["warning-soft"]};
   --cds-danger: ${c.danger};
   --cds-danger-bg: ${c["danger-soft"]};
-  --cds-info: var(--cds-primary);
-  --cds-info-bg: var(--cds-primary-soft);
+  --cds-info: ${c.info || "var(--cds-primary)"};
+  --cds-info-bg: ${c["info-soft"] || "var(--cds-primary-soft)"};
 
   --cds-chart-1: var(--cds-primary);
   --cds-chart-2: var(--cds-accent);
@@ -195,8 +195,8 @@ colors:
   warning-soft: ${yamlQuote(c["warning-soft"])}
   danger: ${yamlQuote(c.danger)}
   danger-soft: ${yamlQuote(c["danger-soft"])}
-  info: ${yamlQuote(c.primary)}
-  info-soft: ${yamlQuote(c["primary-soft"])}
+  info: ${yamlQuote(c.info || c.primary)}
+  info-soft: ${yamlQuote(c["info-soft"] || c["primary-soft"])}
   surface-dark: ${yamlQuote(c["surface-dark"])}
   on-primary: ${yamlQuote(c["on-primary"])}
   on-accent: ${yamlQuote(c["on-accent"])}

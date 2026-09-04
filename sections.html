@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title data-brand-title="Sections">Sections — Example Brand Design System</title>
+    <title data-brand-title="Pages">Pages — Example Brand Design System</title>
     <meta
       name="description"
-      content="The marketing section catalog: hero, proof, card grid, split, quote, dark band, CTA, and alert."
+      content="Landing jobs composed from Pieces: hero, proof, card grid, split, quote, dark band, CTA, and alert."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -27,18 +27,18 @@
           </a>
           <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-                <nav class="kit-nav" aria-label="What the system does">
+                                <nav class="kit-nav" aria-label="What the system does">
           <a href="index.html">Start</a>
           <a href="colors.html">Color</a>
           <a href="typography.html">Type</a>
           <a href="layout.html">Layout</a>
-          <a href="sections.html" aria-current="page">Sections</a>
+          <a href="components.html">Pieces</a>
+          <a href="sections.html" aria-current="page">Pages</a>
           <a href="the-site.html">The site</a>
         </nav>
-        <nav class="kit-nav kit-nav--more" aria-label="Builder pages">
-          <a href="components.html">Pieces</a>
+        <nav class="kit-nav kit-nav--more" aria-label="More">
           <a href="media-kit.html">Assets</a>
-          <a href="design-md.html">Contract</a>
+          <a href="design-md.html">Design.md</a>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -76,20 +76,20 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head">
-            <p class="cds-meta">Step 5 of 6</p>
-            <h1>Sections</h1>
+            <p class="cds-meta">Step 6 of 7</p>
+            <h1>Pages</h1>
             <p class="cds-lede">
-              Eight jobs. Compose a marketing page from these. Do not invent a
-              ninth. Next is not another specimen. It is the page.
+              Eight jobs, composed from Pieces. A hero is Copy, Cluster, and Split,
+              not a new component. Do not invent a ninth. Next is the page.
             </p>
           </header>
 
           <section class="kit-section" id="hero">
             <h2>Hero</h2>
-            <p class="cds-prose">Pill, display title, lede, one primary, a small proof cluster, media on the right. Paper. A stack without media is still legal. Not a page.</p>
+            <p class="cds-prose">Pill, display title, lede, one primary, a small proof cluster, media on the right. Paper. Copy column is .cds-copy (proximity, not an even stack). A column without media is still legal. Not a page.</p>
             <div class="kit-specimen">
               <div class="cds-split">
-                <div class="cds-stack">
+                <div class="cds-copy">
                   <span class="cds-pill">Trusted by teams like yours</span>
                   <h3>A system you can hand to an agent</h3>
                   <p class="cds-lede">Colors, type, and a few sections. Authors compose. They do not design.</p>
@@ -101,7 +101,7 @@
                     <p class="cds-meta">14-day guarantee</p>
                   </div>
                 </div>
-                <img src="https://via.assets.so/img.jpg?w=800&amp;h=600&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="800" height="600" />
+                <img src="assets/media/hero.jpg" alt="Mountain landscape" width="800" height="600" />
               </div>
             </div>
           </section>
@@ -163,7 +163,7 @@
             <p class="cds-prose">Copy plus media. .cds-split wraps when a track cannot hold the min. WordPress maps this to core/columns.</p>
             <div class="kit-specimen" style="background: var(--cds-paper-deep)">
               <div class="cds-split">
-                <div class="cds-stack">
+                <div class="cds-copy">
                   <h3>What the kit gives you</h3>
                   <p class="cds-lede">A locked palette, a type scale, and starts for the jobs on this page.</p>
                   <div class="cds-cluster">
@@ -187,7 +187,7 @@
           <section class="kit-section" id="dark-band">
             <h2>Dark band</h2>
             <p class="cds-prose">Callout strip. On-dark title. One accent button max. Not a second theme.</p>
-            <div class="cds-surface cds-surface--dark cds-stack">
+            <div class="cds-surface cds-surface--dark cds-copy">
               <p class="cds-meta">Note</p>
               <h3>One callout is enough</h3>
               <p>Use this strip once per view. Do not turn accent into a page wash.</p>
@@ -200,7 +200,7 @@
           <section class="kit-section" id="cta">
             <h2>CTA</h2>
             <p class="cds-prose">Short display title plus one button. Primary or accent, not both.</p>
-            <div class="cds-surface cds-surface--panel cds-stack">
+            <div class="cds-surface cds-surface--panel cds-copy">
               <h3>Ready when you are</h3>
               <div class="cds-cluster">
                 <button type="button" class="cds-btn cds-btn--primary">Continue</button>
@@ -210,7 +210,7 @@
 
           <section class="kit-section" id="alert">
             <h2>Alert</h2>
-            <p class="cds-prose">Status note. Tone is the fill. Never a hero.</p>
+            <p class="cds-prose">One status note on a landing. Tones and look live on <a href="components.html#alerts">Pieces</a>. Never a hero.</p>
             <div class="cds-alert cds-alert--info">
               <strong>Heads up.</strong>
               This is a status note, not a hero. Swap the fill if the tone changes.
@@ -228,7 +228,7 @@
                 <thead>
                   <tr>
                     <th scope="col">Page</th>
-                    <th scope="col">Sections</th>
+                    <th scope="col">Jobs</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -239,8 +239,8 @@
             </div>
           </section>
 
-                    <nav class="kit-pager" aria-label="Pagination">
-            <a href="layout.html">&larr; Layout</a>
+                                        <nav class="kit-pager" aria-label="Pagination">
+            <a href="components.html">&larr; Pieces</a>
             <a href="the-site.html">Next: The site &rarr;</a>
           </nav>
         </div>

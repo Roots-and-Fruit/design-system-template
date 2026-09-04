@@ -11,8 +11,8 @@
 <div class="wp-block-group alignfull has-paper-deep-background-color has-background" style="padding-top:var(--wp--preset--spacing--space-6);padding-bottom:var(--wp--preset--spacing--space-6)">
 	<!-- wp:columns {"verticalAlignment":"center","className":"is-style-cds-split"} -->
 	<div class="wp-block-columns are-vertically-aligned-center is-style-cds-split">
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
+		<!-- wp:column {"verticalAlignment":"center","className":"cds-copy","style":{"spacing":{"blockGap":"0"}}} -->
+		<div class="wp-block-column is-vertically-aligned-center cds-copy">
 			<!-- wp:heading {"level":2,"fontSize":"display-sm"} -->
 			<h2 class="wp-block-heading has-display-sm-font-size">What the kit gives you</h2>
 			<!-- /wp:heading -->

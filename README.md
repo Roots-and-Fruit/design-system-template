@@ -40,7 +40,7 @@ That is the whole mechanical path. The checklist your agent follows lives in [`C
 
 ## What you get
 
-A browsable demo: Start, Color, Type, Layout, Sections, then **The site**, a real marketing page composed from those jobs. Builder pages (pieces, assets, the contract) sit under that walk. A single stylesheet you can drop into a project. Role-named design tokens so a rebrand does not mean renaming everything. Five layout building blocks. A closed catalog of eight marketing sections. And a normative `DESIGN.md` file so agents prefer your rules over their own taste.
+A browsable demo: Start, Color, Type, Layout, Pieces, Pages, then **The site**. Assets and Design.md sit under that walk. A single stylesheet you can drop into a project. Role-named design tokens so a rebrand does not mean renaming everything. Layout primitives from Every Layout, plus Copy for proximity. Eight landing jobs composed from those pieces. And a normative `DESIGN.md` file so agents prefer your rules over their own taste.
 
 ## Try the demo
 

@@ -55,12 +55,12 @@
         {
           "slug": "primary",
           "name": "Primary",
-          "color": "#0891b2"
+          "color": "#0e7490"
         },
         {
           "slug": "primary-deep",
           "name": "Primary deep",
-          "color": "#0e7490"
+          "color": "#155e75"
         },
         {
           "slug": "primary-soft",
@@ -293,7 +293,7 @@
       "rule": "rgba(15, 23, 42, 0.12)",
       "ink-soft": "#94a3b8",
       "panel-deep": "#cbd5e1",
-      "info": "#0891b2",
+      "info": "#0e7490",
       "info-soft": "#cffafe",
       "line-height": {
         "display": "1.1",
@@ -329,7 +329,7 @@
         "padding": "1.5rem"
       },
       "focus": {
-        "ring": "0 0 0 3px color-mix(in srgb, #0891b2 38%, transparent)"
+        "ring": "0 0 0 3px color-mix(in srgb, #0e7490 38%, transparent)"
       }
     }
   },

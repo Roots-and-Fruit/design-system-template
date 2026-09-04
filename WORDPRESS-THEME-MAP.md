@@ -256,7 +256,7 @@ These are the blocks that make the design language feel authoritative on day one
 | --- | --- |
 | Alert variants | Patterns (Group + heading + paragraph) or a small block later |
 | Pills / chips | Patterns or button styles |
-| Stack / Center / Cluster / Grid / Split / Prose | Theme CSS classes (`.cds-stack`, `.cds-split`, etc.) and/or Group layout + patterns. Split → `core/columns` style `cds-split`. |
+| Stack / Copy / Center / Cluster / Grid / Split / Prose | Theme CSS classes (`.cds-stack`, `.cds-copy`, `.cds-split`, etc.) and/or Group layout + patterns. Split → `core/columns` style `cds-split`. Mixed copy columns use `.cds-copy` with `blockGap: 0`. |
 | Form controls beyond Search | Plugin form CSS consuming `--cds-*` |
 
 ---

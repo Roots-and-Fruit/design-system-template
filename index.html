@@ -6,7 +6,7 @@
     <title data-brand-title="Start">Start — Example Brand Design System</title>
     <meta
       name="description"
-      content="Live demo of the Design Kit: color, type, layout, eight sections, then a real marketing page. Example Brand is the placeholder identity."
+      content="Live demo of the Design Kit: color, type, layout, pieces, page jobs, then a real marketing page. Example Brand is the placeholder identity."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -28,18 +28,18 @@
           </a>
           <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-                <nav class="kit-nav" aria-label="What the system does">
+                                <nav class="kit-nav" aria-label="What the system does">
           <a href="index.html" aria-current="page">Start</a>
           <a href="colors.html">Color</a>
           <a href="typography.html">Type</a>
           <a href="layout.html">Layout</a>
-          <a href="sections.html">Sections</a>
+          <a href="components.html">Pieces</a>
+          <a href="sections.html">Pages</a>
           <a href="the-site.html">The site</a>
         </nav>
-        <nav class="kit-nav kit-nav--more" aria-label="Builder pages">
-          <a href="components.html">Pieces</a>
+        <nav class="kit-nav kit-nav--more" aria-label="More">
           <a href="media-kit.html">Assets</a>
-          <a href="design-md.html">Contract</a>
+          <a href="design-md.html">Design.md</a>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -77,17 +77,18 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head kit-page-head--hero">
-            <p class="cds-meta">Step 1 of 6</p>
+            <p class="cds-meta">Step 1 of 7</p>
             <h1>This is a live demo of the system.</h1>
             <p class="cds-lede">
-              Example Brand is the placeholder identity. The nav on the left is
-              the walk: color, type, layout, then eight section jobs, then a
-              real page composed from those jobs. Same tokens. No second theme.
+              Tokens, then Every Layout, then proximity. Color and type are the
+              tokens. Layout is the primitives. Pieces put those on controls.
+              Pages compose the controls into landing jobs. Then a real page.
+              Same tokens. No second theme.
             </p>
           </header>
 
           <div class="cds-grid">
-            <div class="cds-surface">
+            <div class="cds-surface cds-copy">
               <p class="cds-meta">2</p>
               <h3>Color is a job</h3>
               <p>
@@ -96,21 +97,21 @@
               </p>
               <a class="cds-btn cds-btn--outline" href="colors.html">Color</a>
             </div>
-            <div class="cds-surface cds-surface--tint">
+            <div class="cds-surface cds-surface--tint cds-copy">
               <p class="cds-meta">3–4</p>
               <h3>Type and layout</h3>
               <p>
-                One display family, one body family, five primitives. Washes
+                One display family, one body family, six primitives. Washes
                 reach the edge. Copy stays on a column.
               </p>
               <a class="cds-btn cds-btn--outline" href="typography.html">Type</a>
             </div>
-            <div class="cds-surface cds-surface--dark">
-              <p class="cds-meta">6</p>
+            <div class="cds-surface cds-surface--dark cds-copy">
+              <p class="cds-meta">7</p>
               <h3>Then a real page</h3>
               <p>
                 The last item is not another specimen. It is a marketing page
-                built from the catalog.
+                built from the page jobs.
               </p>
               <a class="cds-btn cds-btn--outline" href="the-site.html">The site</a>
             </div>
@@ -150,7 +151,7 @@
                   <tr><td><code>DESIGN.md</code></td><td>Canonical contract: front matter holds values, prose holds rules</td></tr>
                   <tr><td><code>css/tokens.css</code></td><td>Palette, type ladder, space scale, radius, shadows, knobs</td></tr>
                   <tr><td><code>css/base.css</code></td><td>Element defaults. The one file you can skip</td></tr>
-                  <tr><td><code>css/layouts.css</code></td><td>Stack, Center, Cluster, Grid, Split</td></tr>
+                  <tr><td><code>css/layouts.css</code></td><td>Stack, Copy, Center, Cluster, Grid, Split</td></tr>
                   <tr><td><code>css/components.css</code></td><td>Buttons, pills, alerts, surfaces, forms, tables, code, prose</td></tr>
                   <tr><td><code>brand.json</code></td><td>Fork surface — edit this, then <code>npm run customize</code></td></tr>
                   <tr><td><code>css/kit.css</code></td><td>These reference pages only. Not part of the system</td></tr>
@@ -170,7 +171,7 @@
 --cds-heading-font: var(--cds-font-body); /* sans headings, no serif voice */</code></pre>
           </section>
 
-                    <nav class="kit-pager" aria-label="Pagination">
+                                        <nav class="kit-pager" aria-label="Pagination">
             <span class="kit-pager__spacer"></span>
             <a href="colors.html">Next: Color &rarr;</a>
           </nav>

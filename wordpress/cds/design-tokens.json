@@ -114,7 +114,7 @@
       "id": "cds/focus-ring",
       "label": "Focus ring",
       "type": "text",
-      "default": "0 0 0 3px color-mix(in srgb, #0891b2 38%, transparent)",
+      "default": "0 0 0 3px color-mix(in srgb, #0e7490 38%, transparent)",
       "scope": "global",
       "custom_key": "cdsFocusRing"
     }

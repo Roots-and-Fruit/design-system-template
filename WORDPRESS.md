@@ -89,6 +89,7 @@ or five centered tracks. Do not auto-fit four or five tiles into a leftover.
 **Visual locks (`npm run test:wp`):** these are layout facts, not a screenshot
 suite. Fail the build if they drift. A landing wash is wider than the hero and
 reaches the viewport. Hero is two tracks (copy plus media) with a pill eyebrow.
+The copy column is `.cds-copy` (proximity, not an even stack gap).
 Hero and proof stats share `wideSize`. Proof has five tracks and five children.
 Proof numbers are centered in their track. Card-grid
 tiles use three different fills; heading, body, and outline label meet WCAG AA

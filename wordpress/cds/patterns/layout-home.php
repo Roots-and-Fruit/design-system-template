@@ -7,6 +7,10 @@
  * Description: Probe composition. Same jobs as a marketing home, not a ninth section.
  * Viewport Width: 960
  */
+$cds_media_card_1 = esc_url( get_theme_file_uri( 'assets/media/card-1.jpg' ) );
+$cds_media_card_2 = esc_url( get_theme_file_uri( 'assets/media/card-2.jpg' ) );
+$cds_media_card_3 = esc_url( get_theme_file_uri( 'assets/media/card-3.jpg' ) );
+$cds_media_split  = esc_url( get_theme_file_uri( 'assets/media/split.jpg' ) );
 ?>
 <!-- wp:pattern {"slug":"cds/hero"} /-->
 
@@ -27,7 +31,7 @@
 		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group is-style-cds-surface">
 			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="480" height="300"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_card_1; ?>" alt="" width="480" height="300"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3} -->
@@ -51,7 +55,7 @@
 		<!-- wp:group {"className":"is-style-cds-tint","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group is-style-cds-tint">
 			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="480" height="300"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_card_2; ?>" alt="" width="480" height="300"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3} -->
@@ -75,7 +79,7 @@
 		<!-- wp:group {"className":"is-style-cds-dark","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group is-style-cds-dark">
 			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=480&amp;h=300&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="480" height="300"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_card_3; ?>" alt="" width="480" height="300"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3} -->
@@ -129,7 +133,7 @@
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"width":"800px","height":"600px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=800&amp;h=600&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="800" height="600"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_split; ?>" alt="Water and late-day light" width="800" height="600"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

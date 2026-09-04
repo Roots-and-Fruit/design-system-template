@@ -6,13 +6,14 @@
  * Description: Pill, display title, lede, one primary, optional proof cluster, media. Not a page.
  * Viewport Width: 960
  */
+$cds_media_hero = esc_url( get_theme_file_uri( 'assets/media/hero.jpg' ) );
 ?>
 <!-- wp:group {"align":"wide","className":"cds-hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|space-7","bottom":"var:preset|spacing|space-6"}}},"layout":{"type":"constrained","contentSize":"60rem"}} -->
 <div class="wp-block-group alignwide cds-hero" style="padding-top:var(--wp--preset--spacing--space-7);padding-bottom:var(--wp--preset--spacing--space-6)">
 	<!-- wp:columns {"verticalAlignment":"center","className":"is-style-cds-split"} -->
 	<div class="wp-block-columns are-vertically-aligned-center is-style-cds-split">
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
+		<!-- wp:column {"verticalAlignment":"center","className":"cds-copy","style":{"spacing":{"blockGap":"0"}}} -->
+		<div class="wp-block-column is-vertically-aligned-center cds-copy">
 			<!-- wp:paragraph {"className":"is-style-cds-pill"} -->
 			<p class="is-style-cds-pill">Trusted by teams like yours</p>
 			<!-- /wp:paragraph -->
@@ -50,7 +51,7 @@
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"width":"800px","height":"600px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="https://via.assets.so/img.jpg?w=800&amp;h=600&amp;bg=e5e7eb&amp;f=png" alt="Placeholder" width="800" height="600"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_hero; ?>" alt="Mountain landscape" width="800" height="600"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

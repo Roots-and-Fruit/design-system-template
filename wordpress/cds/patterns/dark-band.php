@@ -7,8 +7,8 @@
  * Viewport Width: 960
  */
 ?>
-<!-- wp:group {"align":"full","className":"is-style-cds-dark","style":{"spacing":{"padding":{"top":"var:preset|spacing|space-7","bottom":"var:preset|spacing|space-7"}}},"layout":{"type":"constrained","contentSize":"60rem"}} -->
-<div class="wp-block-group alignfull is-style-cds-dark" style="padding-top:var(--wp--preset--spacing--space-7);padding-bottom:var(--wp--preset--spacing--space-7)">
+<!-- wp:group {"align":"full","className":"is-style-cds-dark cds-copy","style":{"spacing":{"padding":{"top":"var:preset|spacing|space-7","bottom":"var:preset|spacing|space-7"},"blockGap":"0"}},"layout":{"type":"constrained","contentSize":"60rem"}} -->
+<div class="wp-block-group alignfull is-style-cds-dark cds-copy" style="padding-top:var(--wp--preset--spacing--space-7);padding-bottom:var(--wp--preset--spacing--space-7)">
 	<!-- wp:paragraph {"fontSize":"meta","textColor":"accent-soft"} -->
 	<p class="has-accent-soft-color has-text-color has-meta-font-size">Note</p>
 	<!-- /wp:paragraph -->

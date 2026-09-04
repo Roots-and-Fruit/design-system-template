@@ -241,7 +241,7 @@
   background: var(--cds-surface);
   border: 1px solid var(--cds-rule);
   border-radius: var(--cds-radius);
-  padding: var(--cds-space-5);
+  padding: var(--cds-inset);
   box-shadow: var(--cds-shadow);
 }
 
@@ -296,11 +296,11 @@
   box-shadow: none;
 }
 
-.cds-surface--dark > :is(h3, h4) {
+.cds-surface--dark :is(h2, h3, h4) {
   color: var(--cds-on-dark);
 }
 
-.cds-surface--dark > p,
+.cds-surface--dark :is(p, .cds-meta),
 .cds-surface--dark li {
   color: var(--cds-on-dark-muted);
 }

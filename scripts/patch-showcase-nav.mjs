@@ -13,24 +13,24 @@ const walk = [
   ["colors.html", "Color"],
   ["typography.html", "Type"],
   ["layout.html", "Layout"],
-  ["sections.html", "Sections"],
+  ["components.html", "Pieces"],
+  ["sections.html", "Pages"],
   ["the-site.html", "The site"],
 ];
 
 const more = [
-  ["components.html", "Pieces"],
   ["media-kit.html", "Assets"],
-  ["design-md.html", "Contract"],
+  ["design-md.html", "Design.md"],
 ];
 
 const pagerNext = {
   "index.html": ["colors.html", "Color"],
   "colors.html": ["typography.html", "Type"],
   "typography.html": ["layout.html", "Layout"],
-  "layout.html": ["sections.html", "Sections"],
+  "layout.html": ["components.html", "Pieces"],
+  "components.html": ["sections.html", "Pages"],
   "sections.html": ["the-site.html", "The site"],
-  "components.html": ["design-md.html", "Contract"],
-  "media-kit.html": ["colors.html", "Color"],
+  "media-kit.html": ["design-md.html", "Design.md"],
   "design-md.html": ["the-site.html", "The site"],
   "customize.html": ["index.html", "Start"],
 };
@@ -39,10 +39,10 @@ const pagerPrev = {
   "colors.html": ["index.html", "Start"],
   "typography.html": ["colors.html", "Color"],
   "layout.html": ["typography.html", "Type"],
-  "sections.html": ["layout.html", "Layout"],
-  "components.html": ["sections.html", "Sections"],
+  "components.html": ["layout.html", "Layout"],
+  "sections.html": ["components.html", "Pieces"],
   "media-kit.html": ["index.html", "Start"],
-  "design-md.html": ["components.html", "Pieces"],
+  "design-md.html": ["media-kit.html", "Assets"],
   "customize.html": ["index.html", "Start"],
 };
 
@@ -59,7 +59,7 @@ function navHtml(current) {
   return `        <nav class="kit-nav" aria-label="What the system does">
 ${links(walk, current)}
         </nav>
-        <nav class="kit-nav kit-nav--more" aria-label="Builder pages">
+        <nav class="kit-nav kit-nav--more" aria-label="More">
 ${links(more, current)}
         </nav>`;
 }

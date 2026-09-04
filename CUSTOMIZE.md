@@ -47,10 +47,13 @@ Do you already have a palette?
   if you know them: primary, primary hover/deep, accent (must contrast with
   primary), page background, body text, optional success / warning / danger.
   Soft fills can be derived if you only have the solid brand colours.
+  If primary is warm, playful, or not a colour you would put on an alert,
+  also give `info` and `info-soft` — a cool hue. Otherwise customize aliases
+  `info` to `primary`.
 - **No.** Tell the agent the vibe (for example "calm cool tech" or "warm
   editorial") and one must-use colour if you have it. It will propose a light
   palette that keeps accent contrasting with primary and keeps warning/danger
-  separate from the brand accent.
+  separate from the brand accent. Ask whether primary is also informational.
 
 ## 4. Fonts
 
@@ -78,6 +81,12 @@ Ask the agent to:
 4. Wire the new mark into the reference pages / favicon as needed.
 5. Run customize again after prose edits, then open the reference site and
    confirm Colors, Typography, and the sidebar name look right.
+6. Walk Color, then The Site, then stop. On Color: the accessibility matrix
+   must show the primary button passing AA at rest (`primary` + `on-primary`)
+   and on hover (`primary-deep` + `on-primary`) — 4.5:1, not AA Large. On
+   The Site: proof and split washes stay on the 60rem column; the dark
+   callout is readable. Logo is a separate pass.
 
 Done when `placeholder` is false, the sidebar shows your name, chips match your
-palette, and `DESIGN.md` reads like your brand — not the demo.
+palette, the Color matrix and The Site walk pass, and `DESIGN.md` reads like
+your brand — not the demo.

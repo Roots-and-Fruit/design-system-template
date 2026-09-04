@@ -16,7 +16,7 @@
  * Zero install. Do not hand-edit the generated files.
  */
 
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -810,6 +810,12 @@ function main() {
   }
   copyFileSync(markSrc, join(root, "wordpress/cds/assets/mark.svg"));
   console.log("  copied assets/mark.svg → wordpress/cds/assets/mark.svg");
+
+  const mediaSrc = join(root, "assets", "media");
+  if (existsSync(mediaSrc)) {
+    cpSync(mediaSrc, join(root, "wordpress/cds/assets/media"), { recursive: true });
+    console.log("  copied assets/media → wordpress/cds/assets/media");
+  }
 
   validateChromeParts();
 

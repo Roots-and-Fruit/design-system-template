@@ -27,18 +27,18 @@
           </a>
           <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-                <nav class="kit-nav" aria-label="What the system does">
+                                <nav class="kit-nav" aria-label="What the system does">
           <a href="index.html">Start</a>
           <a href="colors.html" aria-current="page">Color</a>
           <a href="typography.html">Type</a>
           <a href="layout.html">Layout</a>
-          <a href="sections.html">Sections</a>
+          <a href="components.html">Pieces</a>
+          <a href="sections.html">Pages</a>
           <a href="the-site.html">The site</a>
         </nav>
-        <nav class="kit-nav kit-nav--more" aria-label="Builder pages">
-          <a href="components.html">Pieces</a>
+        <nav class="kit-nav kit-nav--more" aria-label="More">
           <a href="media-kit.html">Assets</a>
-          <a href="design-md.html">Contract</a>
+          <a href="design-md.html">Design.md</a>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -76,7 +76,7 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head">
-            <p class="cds-meta">Step 2 of 6</p>
+            <p class="cds-meta">Step 2 of 7</p>
             <h1>Color</h1>
             <p class="cds-lede">
               Roles first. The page wash, ink, and one primary carry almost
@@ -218,16 +218,17 @@
               <span style="background: var(--cds-primary-4)"></span>
               <span style="background: var(--cds-primary-5)"></span>
             </div>
-            <p class="kit-caption">--cds-primary-1 â€¦ --cds-primary-5</p>
+            <p class="kit-caption">--cds-primary-1 … --cds-primary-5</p>
           </section>
 
           <section class="kit-section">
             <h2>Pairing rules</h2>
             <div class="cds-alert cds-alert--warning">
               <strong>Contrast is a gate, not a preference</strong>
-              Body text needs WCAG AA (4.5:1). Display sizes may use AA Large
-              (3:1). Text on a filled surface uses its paired
-              <code>on-*</code> token. Recheck contrast if you change a fill.
+              Body text and button labels need WCAG AA (4.5:1). AA Large (3:1)
+              is for display sizes only (≥18pt / 14pt bold). Text on a filled
+              surface uses its paired <code>on-*</code> token. Recheck the
+              matrix if you change a fill.
             </div>
             <div class="cds-table-wrap">
               <table class="cds-table">
@@ -264,7 +265,38 @@
             </div>
           </section>
 
-                    <nav class="kit-pager" aria-label="Pagination">
+          <section class="kit-section">
+            <h2>Accessibility matrix</h2>
+            <p class="cds-prose">
+              Rows are backgrounds. Columns are text colours. Each cell is the
+              live pair plus its WCAG 2 ratio. Ratios are computed from the
+              <code>--cds-*</code> tokens on this page, so a customize run
+              updates the grid. Look at <code>on-primary</code> on
+              <code>primary</code> and <code>primary-deep</code> — that is the
+              primary button at rest and on hover.
+            </p>
+            <div class="kit-a11y-legend" aria-hidden="true">
+              <span><i data-level="aaa"></i> AAA ≥ 7:1</span>
+              <span><i data-level="aa"></i> AA ≥ 4.5:1</span>
+              <span><i data-level="large"></i> AA large only ≥ 3:1</span>
+              <span><i data-level="fail"></i> Fail</span>
+            </div>
+            <div class="kit-a11y-wrap">
+              <table class="kit-a11y" id="kit-a11y-matrix">
+                <caption class="kit-visually-hidden">
+                  Contrast ratios for design kit color tokens
+                </caption>
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p class="kit-caption">
+              Prefer AAA or AA for body copy, labels, and buttons. AA large is
+              headings and oversized stats only. Fail means pick another pair.
+            </p>
+          </section>
+
+                                        <nav class="kit-pager" aria-label="Pagination">
             <a href="index.html">&larr; Start</a>
             <a href="typography.html">Next: Type &rarr;</a>
           </nav>
@@ -272,5 +304,6 @@
       </main>
     </div>
       <script src="js/kit-swatches.js"></script>
+      <script src="js/kit-a11y.js"></script>
   </body>
 </html>

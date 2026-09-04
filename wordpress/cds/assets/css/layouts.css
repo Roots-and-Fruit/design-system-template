@@ -1,6 +1,6 @@
 /* Design System Template — layout primitives
    ---------------------------------------------------------------------------
-   Five composable primitives instead of a breakpoint for every block. The
+   Six composable primitives instead of a breakpoint for every block. The
    approach follows the intrinsic-layout ideas in Every Layout (Pickering &
    Bell): suggest sizes, compose with `gap`, let content decide when to wrap.
 
@@ -8,6 +8,9 @@
    --------------------------------------------------------------------------- */
 
 /* —— Stack: vertical rhythm owned by gap ——————————————————————————— */
+/* One gap. Use this when every child is the same kind of thing (stats,
+   demo boxes, a list of cards). Mixed copy (eyebrow + title + lede +
+   action) belongs in `.cds-copy`. */
 .cds-stack {
   display: flex;
   flex-direction: column;
@@ -29,6 +32,41 @@
 
 .cds-stack--lg {
   --cds-stack-space: var(--cds-space-7);
+}
+
+/* —— Copy: proximity, not one gap ————————————————————————————————— */
+/* Mixed marketing column: eyebrow, title, lede, action, optional meta.
+   Related bits sit closer. A new job (the button) gets more air.
+   That is Gestalt proximity — not vertical justification. */
+.cds-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.cds-copy > * {
+  margin-block: 0;
+}
+
+.cds-copy > * + * {
+  margin-block-start: var(--cds-space-5);
+}
+
+.cds-copy > :is(.cds-pill, .is-style-cds-pill, .cds-meta) + :is(h1, h2, h3, h4, .wp-block-heading) {
+  margin-block-start: var(--cds-space-3);
+}
+
+.cds-copy > :is(h1, h2, h3, h4, .wp-block-heading) + :is(.cds-lede, p, .wp-block-paragraph) {
+  margin-block-start: var(--cds-space-3);
+}
+
+.cds-copy > :is(.cds-lede, p, .wp-block-paragraph, h1, h2, h3, h4, .wp-block-heading) + :is(.cds-cluster, .cds-btn, .wp-block-buttons) {
+  margin-block-start: var(--cds-space-6);
+}
+
+.cds-copy > :is(.cds-cluster, .cds-btn, .wp-block-buttons) + :is(.cds-cluster, .cds-meta, .wp-block-group) {
+  margin-block-start: var(--cds-space-4);
 }
 
 /* —— Center: measured reading column ——————————————————————————————— */
@@ -107,8 +145,8 @@
 .cds-split {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: var(--cds-split-space, var(--cds-space-6));
+  align-items: start;
+  gap: var(--cds-split-space, var(--cds-space-7));
 }
 
 .cds-split > * {

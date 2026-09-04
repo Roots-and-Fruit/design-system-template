@@ -4,8 +4,8 @@ name: Example Brand
 description: >-
   Core design system contract for Example Brand. Normative for marketing pages, product UI, dashboards, and admin chrome. This file is a template: replace the values and the brand-specific prose with your own, keep the token names, and prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.
 colors:
-  primary: "#0891b2"
-  primary-deep: "#0e7490"
+  primary: "#0e7490"
+  primary-deep: "#155e75"
   primary-soft: "#cffafe"
   accent: "#e11d48"
   accent-soft: "#ffe4e6"
@@ -26,7 +26,7 @@ colors:
   warning-soft: "#ffedd5"
   danger: "#dc2626"
   danger-soft: "#fee2e2"
-  info: "#0891b2"
+  info: "#0e7490"
   info-soft: "#cffafe"
   surface-dark: "#0f172a"
   on-primary: "#ffffff"
@@ -270,7 +270,8 @@ for voice, sans for clarity.
 This file is normative. Agents and generators must read it before choosing
 colour, type, radius, or components, and must map values to the CSS custom
 properties in `css/tokens.css` (`--cds-*`) rather than inventing parallel ones.
-The human reference site starts at `index.html`, with one page per section.
+The human reference site starts at `index.html` and walks Color → Type →
+Layout → Pieces → Pages → The site.
 
 Brand feel (replace with yours):
 - Calm, structured, legible; depth stays quiet
@@ -282,6 +283,16 @@ Surfaces this system must serve equally well:
 2. Product UI (boards, forms, dashboards)
 3. Compact admin or plugin chrome
 4. Documents and reports
+
+## How this system is built
+
+Three layers, in order. The reference walk follows them.
+
+1. **Design tokens** — primitive, semantic, and component. Color and type are this layer. See Token layers.
+2. **Every Layout** — intrinsic primitives in `css/layouts.css` (Stack, Cluster, Center, Grid, Split). Mixed marketing copy uses `.cds-copy` (Gestalt proximity), not an even stack. See Layout.
+3. **Compose** — Pieces are those tokens on those primitives. Pages are Pieces composed into landing jobs. The site is one page from that list.
+
+Walk: Start → Color → Type → Layout → Pieces → Pages → The site. Do not treat Pieces and Pages as two catalogs. A control’s look lives under Components; a page job may include that control.
 
 ## Token layers
 
@@ -377,12 +388,15 @@ Rules:
 - Semantic colours describe state; do not borrow `danger` or `warning` for brand
   emphasis, and do not alias `accent` to `warning`
 - Check WCAG AA (4.5:1) for body text and AA Large (3:1) for display sizes
-  before shipping any text-on-colour pair
+  before shipping any text-on-colour pair. The Color page has a live
+  accessibility matrix scored from these tokens; button labels need AA, not
+  AA Large. Include hover (`primary-deep` + `on-primary`)
 - The `primary-1`…`primary-5` ramp is for charts, illustrations, and
   progressive emphasis, not random decoration
 - `info` ships as an alias of `primary` because the demo primary reads
-  informational. If your primary is warm or playful, give `info` its own cool
-  hue in `tokens.css`
+  informational. If your primary is warm or playful, set `info` and
+  `info-soft` in `brand.json` and run customize. Do not hand-edit the
+  `@@brand` region.
 
 ## Typography
 
@@ -429,7 +443,9 @@ Rules:
 ## Layout
 
 Composable primitives beat a breakpoint for every block. The approach follows
-the intrinsic-layout ideas in *Every Layout* (Pickering & Bell).
+the intrinsic-layout ideas in *Every Layout* (Pickering & Bell). **Proximity**
+(Gestalt): things that belong together sit closer than things that do not.
+A uniform gap is not proximity. It is a list.
 
 Axioms:
 - **Measure:** no reading line exceeds `--cds-measure`. Flow text is capped;
@@ -440,12 +456,15 @@ Axioms:
   Steps 5 to 8 multiply by the ratio; steps 1 to 3 are chrome-only.
 - **Boxes:** global `border-box`, logical properties, and `content-box` on
   reading columns so `ch` measures text rather than text plus padding.
+- **Inset:** framed modules (`.cds-surface`, specimen frames) pad with
+  `--cds-inset` (step 6). Do not sit copy against the inner edge.
 
 Primitives in `css/layouts.css`:
 
 | Class | Job |
 | --- | --- |
-| `.cds-stack` | Vertical rhythm owned by `gap`. Variants `--sm`, `--md`, `--lg` |
+| `.cds-stack` | Even vertical gap. Only when every child is the same kind of thing (stats, tiles). Variants `--sm`, `--md`, `--lg` |
+| `.cds-copy` | Mixed marketing column. Eyebrow hugs the title; title hugs the lede; the button gets more air; proof meta tucks under the action |
 | `.cds-center` | Centred reading column at `--cds-measure`, optional `--gutter` |
 | `.cds-cluster` | Wrapping horizontal group for buttons, pills, tags |
 | `.cds-grid` | Auto-fitting tiles that wrap at `--cds-grid-min`, no media query |
@@ -457,25 +476,26 @@ Hierarchy:
 - One job per section: a heading, a short supporting line, then content
 - Space major blocks with `.cds-stack` or steps 5 to 7
 - Do not mix ad-hoc child margins with a parent `.cds-stack` gap
+- Hero, Split, CTA, and Dark band copy columns use `.cds-copy`, not a bare `.cds-stack`
 - `--cds-max` may wrap shells and specimen grids; paragraphs still obey measure
 
-## Sections
+## Pages
 
-Marketing pages are stacks of these jobs. Specimens: `sections.html`. WordPress
-projects the same names as patterns in `wordpress/cds/patterns/`. Do not invent
-a ninth section. A path chooser is a three-tile card grid. Header and footer
-are template parts, not sections.
+Marketing pages are stacks of these jobs, composed from Components (Pieces in
+the walk). Specimens: `sections.html`. WordPress projects the same names as
+patterns in `wordpress/cds/patterns/`. Do not invent a ninth job. A path chooser
+is a three-tile card grid. Header and footer are template parts, not page jobs.
 
 | Section | Job | Wash | CTA | Not |
 | --- | --- | --- | --- | --- |
-| Hero | Pill, display title, lede, one primary. Optional proof cluster. Media on the right via `.cds-split`. A text stack is still legal | `paper` | One primary | A whole page, a Split section (wrong wash) |
+| Hero | Pill, display title, lede, one primary. Optional proof cluster. Media on the right via `.cds-split`. Copy column is `.cds-copy`. A text stack without media is still legal | `paper` | One primary | A whole page, a Split section (wrong wash), a hero in a bare `.cds-stack` |
 | Proof | Three or five stats, centered in even tracks, or a logo cluster. No leftover tile | `paper-deep` (viewport wash; numbers sit on `wide`) | None | A feature grid, four tiles wrapping to three, five auto-fitting to four-plus-one, left-aligned stats |
 | Card grid | Three paired fills in `.cds-grid` (surface, `primary-soft` tint, dark). Title, one line, optional meta and a link | `paper` | Outline or text link, not a second primary | A dashboard, three identical whites |
 | Split | Copy plus media via `.cds-split` (WordPress: `core/columns`) | `paper-deep` (viewport wash; split sits on `wide`) | One primary, optional | A blog layout |
 | Quote | One attribution. Surface or a row | `paper` | None | A reviews carousel |
 | Dark band | Callout strip. `on-dark` title | `surface-dark` (viewport wash; copy on the measure) | One accent max | A second theme |
 | CTA | Short `display-sm` plus one button | `panel` | Primary or accent, not both | Two buttons fighting |
-| Alert | Status note. Tone is the fill | soft status or `primary-soft` | None | A hero |
+| Alert | One status note on a landing. Look and tones live under Components (`.cds-alert`). Never a hero | soft status or `primary-soft` | None | A hero, a restated alert system |
 
 Page recipes compose sections. `landing` is hero, optional proof, and one card
 grid or split. The hero holds the primary. Use the CTA section when the page
@@ -515,7 +535,7 @@ never remove it.
 
 ## Components
 
-Class names live in `css/components.css`, all prefixed `cds-`.
+Pieces in the reference walk. Class names live in `css/components.css`, all prefixed `cds-`.
 
 **Buttons**
 - `button-primary` (`.cds-btn--primary`): the main action. One per section.
@@ -596,9 +616,11 @@ Class names live in `css/components.css`, all prefixed `cds-`.
 - Check contrast for body text before shipping
 - Reuse `css/cds.css` (or tokens plus components) instead of new one-off CSS
 - Add a token when you need a new value
-- Compose marketing pages from the section catalog, not from a new layout
+- Compose marketing pages from the page jobs, not from a new layout
+- Put mixed copy (eyebrow, title, lede, action) in `.cds-copy`. Use `.cds-stack` when every child is the same kind of thing
 
 **Don't**
+- Don't use one even stack gap for a hero, split, or CTA copy column
 - Don't invent hex values, font stacks, or spacing that bypass the tokens
 - Don't make the accent a theme colour or a page background
 - Don't ship more than one primary button, or more than one accent CTA, per view
@@ -632,8 +654,10 @@ When generating or editing UI for this brand:
    work: the system has not been customised yet.
 9. For a WordPress theme, follow [`WORDPRESS.md`](WORDPRESS.md). Do not invent
    palette slugs, picker unlocks, or recipes the compiler does not emit.
-10. Marketing pages start from the section catalog above. Compose those jobs.
-    Do not invent a layout, a card class, or a ninth section. Do not wrap
+10. Marketing pages start from the page jobs above. Compose those jobs.
+    Hero, Split, CTA, and Dark band copy columns use `.cds-copy`. Do not put
+    mixed copy in a bare `.cds-stack`.     Do not invent a layout, a card class, or
+    a ninth page job. Do not wrap
     `post-content` in a second constrained group. Do not leave a leftover tile.
     Do not mix `content` and `wide` on one landing. Proof stats are centered.
     Proof is three or five even tracks, never a leftover tile. Marketing hero is
