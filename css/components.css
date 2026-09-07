@@ -310,6 +310,12 @@
   color: var(--cds-primary-deep);
 }
 
+.cds-surface--dark .cds-btn--primary:hover:not(:disabled),
+.cds-surface--dark .cds-btn--primary:focus-visible {
+  background: var(--cds-primary-soft);
+  color: var(--cds-primary-deep);
+}
+
 .cds-surface--dark .cds-btn--outline {
   color: var(--cds-on-dark);
   border-color: var(--cds-on-dark);
@@ -433,7 +439,13 @@
 }
 
 /* —— Details / disclosure ————————————————————————————————————————— */
+/* Frame is the column, not the summary. `100%` of a shrink-wrapped flex
+   parent is circular — size from `--cds-max` and let a definite track clamp. */
 .cds-details {
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: var(--cds-max);
+  min-inline-size: 0;
   background: var(--cds-surface);
   border: 1px solid var(--cds-rule);
   border-radius: var(--cds-radius);
@@ -445,6 +457,7 @@
   gap: var(--cds-space-2);
   margin: 0;
   padding: 0.7rem 1rem;
+  min-inline-size: 0;
   font-size: var(--cds-text-sm);
   font-weight: var(--cds-weight-semibold);
   line-height: var(--cds-leading-ui);
@@ -490,9 +503,12 @@
 .cds-details > :not(summary) {
   margin: 0;
   padding: 0.7rem 1rem 1rem;
+  min-inline-size: 0;
+  max-inline-size: 100%;
   color: var(--cds-ink);
   font-size: var(--cds-text-sm);
   line-height: var(--cds-leading-body);
+  overflow-wrap: break-word;
 }
 
 /* —— Code block ———————————————————————————————————————————————————— */

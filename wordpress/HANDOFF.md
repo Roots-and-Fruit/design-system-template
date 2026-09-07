@@ -17,22 +17,27 @@ WordPress is a **projection** of this kit. The kit is the system. A brand pack
   off the marketing palette.
 - Recipes in the inserter: section jobs (`cds/hero`, `cds/proof`,
   `cds/card-grid`, `cds/split`, `cds/quote`, `cds/dark-band`, `cds/cta`,
-  `cds/alert`) and page recipes (`cds/article`, `cds/landing`). Landing is a
+  `cds/alert`) and page recipes (`cds/article`, `cds/landing`, `cds/pricing`). Landing is a
   stack of sections. Button styles: secondary / outline / accent / ghost.
-  Group styles: surface / tint / panel / dark. Columns style: split.
+  Group Styles are paint only (surface / tint / panel / dark). Copy, Cluster,
+  Switcher, Sidebar, Center, Box sit in the Group sidebar (Arrangement) so a
+  background can share the Group. Image styles: Frame / Original.
+  Two-up marketing is Switcher, not Columns. Walk: Pieces is the Core allowlist
+  (`/pieces/`). Sections is the stacked catalog (`/sections/`).
 - Token layers (primitive → semantic → component) live in `DESIGN.md`.
 - Layout / elevation / focus are YAML on `DESIGN.md`. Customize does not own them.
 - Visual check: `npm run test:wp`. Layout locks, not screenshots: identity,
-  blank Core defaults, catalog wash vs `wide` column, two-track hero with pill,
-  five centered proof tracks, card-grid fills + AA contrast + tint/dark outline hover, dark-band paint. `sync-theme` runs this when the probe is up
+  blank Core defaults, paragraph measure in `ch`, catalog wash vs `wide` column, two-track Switcher hero with pill,
+  five centered proof tracks, card-grid fills + AA contrast + tint/dark outline hover, dark-band paint,
+  layout walk (Copy proximity, Switcher, Sidebar, Frame ratio, even Box inset), last wash flush to footer on `/the-site/`, article frame + rail, articles list, offer canvas, pricing canvas, details column width. `sync-theme` runs this when the probe is up
   (`--skip-test` to copy only).
 - Page / single / front templates: `main` is default flow. Constrained layout
   lives on `post-content` (and a title wrapper). `alignfull` washes can reach
   the viewport. Do not wrap `post-content` in a second constrained Group.
 - The kit **Sections** page is the catalog (`sections.html`). WordPress
-  projects the same jobs as patterns. The probe stacks them on `/cds-catalog/`.
+  projects the same jobs as patterns. The walk stacks them on `/sections/`.
   Proof is five centered stats on `wide` inside a full-bleed wash. Hero is a
-  split: pill, title, lede, one primary, proof cluster, media. Card grid
+  Switcher: pill, title, lede, one primary, proof cluster, media. Card grid
   uses three paired fills (surface, tint, dark); Playwright checks AA and that
   tint/dark outline hover is not the tile colour. Layout probe
   `/cds-layout/` stacks those jobs like a marketing home (hero, proof, product
@@ -95,8 +100,9 @@ What “feels branded” means here — a basic marketing shell, not a homepage:
 - **Header:** logo + title + tagline + a short `core/navigation`. Kit tokens
   (ink, measure, space, a hairline `rule` or quiet paper-deep band). Readable
   as Example Brand in one glance.
-- **Footer:** more than a muted title repeat. Logo or name, tagline or one
-  quiet line, enough structure to feel finished. Still native identity blocks.
+- **Footer:** brand cluster plus social links underneath, then three labeled
+  columns (Product, Explore, Legal) including Privacy and Terms. Still native
+  identity blocks — no hardcoded brand name.
 
 Options considered: port the kit sidebar; bake strings into the parts; leave
 chrome for a later brand pack.
@@ -113,10 +119,10 @@ cannot rebrand without editing the parts.
 ## Next (generic kit only)
 
 Showcase walk is live on the kit HTML and the probe (Start → Color → Type →
-Layout → Sections → The site). Header nav is that walk, not a page-list dump.
+Layout → Pieces → Sections → The site). Header nav is that walk, not a page-list dump.
 
-1. **Match kit specimens.** Side-by-side: `sections.html` vs `/cds-catalog/`,
-   and `components.html` vs Core blocks. Same radius, button padding, ink.
+1. **Match kit specimens.** Side-by-side: `sections.html` vs `/sections/`,
+   and `components.html` vs `/pieces/`. Same radius, button padding, ink.
    Fix the theme, not the kit.
 2. **Author rules in the editor.** Style Book + a one-screen note. `WORDPRESS.md`
    is for agents; editors will not read it.
@@ -153,3 +159,43 @@ npm run test:wp
 Pass `--skip-test` to copy only.
 
 Probe dest and Studio notes are hub-only: `HUB-CONTEXT.md` (gitignored).
+
+## Phase 1 — Article frame (2026-09-07)
+
+**Shipped.** `single.html` uses `.cds-article-frame` (content first, `aside` last). Part `sidebar-post` is a panel + “Key takeaways” list of three (shell, not post meta). Pattern `cds/article` is body + CTA only. Probe post: `/sample-essay/` (category Essay). `page_for_posts` is still `0`. Playwright: `wordpress/e2e/article.spec.js`. Compiler lists `sidebar-post` in `theme.json`.
+
+**Audit.** No JS for sticky. No extra enqueue. Layout walk Sidebar specimen unchanged. Dropped unused `THIRD_PARTY_BLOCK_SELECTOR`. Three CSS exceptions on the frame are load-bearing, not decoration: (1) skip the 60rem `cqi` start pin, (2) `post-title` full width so constrained layout cannot centre a shrink-wrapped heading, (3) zero `post-content` inline padding (`has-global-padding` is 24px and the hero Copy group does not have it). Do not delete those to “simplify.”
+
+**What we learned.** Group style Sidebar is the wrong object (first child is the side). Nested `constrained` inside a column that is already narrower than `--cds-max` auto-centres shrink-wrapped titles. `getComputedStyle` resolves `ch` to px — lock measure the same way as the blank page. Phase 2 must not put `.cds-article-frame` on the archive. Archive is a **one-column list**, not card-grid, not Sidebar.
+
+**Next.** `home.html` Query Loop + Posts page `articles`. Click through to `/sample-essay/`; do not re-assert rail geometry.
+
+## Phase 2 — Articles index (2026-09-07)
+
+**Shipped.** `home.html` and `index.html` share the same Query Loop (terms, h2 title link, date, excerpt + Read more). Posts page `/articles/` is empty content; `page_for_posts` is that page. `cds_query_title_posts_page` fills Core `query-title` on `is_home()` (Core leaves it empty because the posts page is not an archive). Playwright: `wordpress/e2e/archive.spec.js`.
+
+**Audit.** Two template files because WP hierarchy (`home` vs `index`), not a nested pattern (those render empty in post content on this probe). No `.cds-article-frame` on the list. One-column gap is `--cds-section` on `.wp-block-post-template`. Filter is small and only runs on the posts page.
+
+**What we learned.** `core/query-title` does not print the Posts page title without a render filter. Phase 3 must not assign Offer to `page.html` (that template prints `post-title` and landing already has an `h1`).
+
+## Phase 3 — Offer canvas (2026-09-07)
+
+**Shipped.** `page-the-site.html` is now `page-canvas.html` (no `post-title`, `main` margin-top 0). The site and Offer both use it. `/offer/` is inlined `cds/landing` (hero + proof + card-grid). Compiler registers custom template **Canvas**. Playwright: `wordpress/e2e/offer.spec.js`. `/the-site/` flush still passes.
+
+**Audit.** No twin `page-offer.html`. Landing nested `wp:pattern` refs are inlined in the seed (same probe rule as The site). Default `page.html` still prints a title — that is correct for Color / Type / Layout / Sections.
+
+**What we learned.** One title-hidden canvas is enough for landing jobs. Assign the template in meta; do not rely on `page-{slug}.html` auto-match unless the page slug is the template name.
+
+**Nav (2026-09-07).** Header walk is Start, Color, Type, Layout, Pieces, Sections, The site. **The site** is a submenu: Offer, Pricing, Articles, then **A measured essay** under Articles. Labels come from post titles. Seed writes nested `cds_showcase_nav`; `cds_navigation_item_markup` emits `navigation-submenu`. Playwright: `wordpress/e2e/nav.spec.js`.
+
+## Article hero above the rail (2026-09-07)
+
+**Shipped.** Title, byline, and excerpt sit in `.cds-article-hero` (paper-deep wash, flush under the header, `space-7` padding, rule border). Inner column is 60rem. Featured image as the wash is a post sidebar checkbox (`cds_hero_featured`), off by default. `.cds-article-frame` is only body + sticky rail. Excerpt uses lede type. Author avatar uses the kit mark until a real photo loads. Playwright: `wordpress/e2e/article.spec.js` (sticky lock is the inset, not a 400px delta).
+
+**Next.** Out of this plan. Research CPT, LCF takeaways, and extra singles stay parked.
+
+## Pricing canvas (2026-09-07)
+
+**Shipped.** `/pricing/` is inlined `cds/pricing` on `page-canvas`. Three plan cards (Start / Team / Studio), Best Offer on Team, one primary, guarantee, nested proof, a short validator, six `core/details`. Not a ninth section. Playwright: `wordpress/e2e/pricing.spec.js`.
+
+**Audit.** No `page-pricing.html`. No Columns. No second primary (`cds/cta` stays off this page). Seed inlines `cds/proof`. Nav: Pricing sits under The site, after Offer. FAQ details use `.wp-block-details + .wp-block-details` stack gap on the front (editor already spaces `.wp-block` wrappers). Do not enable `settings.spacing.blockGap` until the Best Offer pill and last-wash flush are accounted for.

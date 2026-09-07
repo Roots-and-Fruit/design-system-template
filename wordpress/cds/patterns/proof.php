@@ -13,8 +13,8 @@
 	<div class="wp-block-group cds-grid--five cds-grid--center has-text-align-center">
 		<!-- wp:group {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"body-lg"} -->
-			<h3 class="wp-block-heading has-text-align-center has-body-lg-font-size">100k</h3>
+			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"display-sm"} -->
+			<h3 class="wp-block-heading has-text-align-center has-display-sm-font-size">100k</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"align":"center","fontSize":"meta","textColor":"ink-muted"} -->
@@ -25,8 +25,8 @@
 
 		<!-- wp:group {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"body-lg"} -->
-			<h3 class="wp-block-heading has-text-align-center has-body-lg-font-size">4.9</h3>
+			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"display-sm"} -->
+			<h3 class="wp-block-heading has-text-align-center has-display-sm-font-size">4.9</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"align":"center","fontSize":"meta","textColor":"ink-muted"} -->
@@ -37,8 +37,8 @@
 
 		<!-- wp:group {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"body-lg"} -->
-			<h3 class="wp-block-heading has-text-align-center has-body-lg-font-size">14</h3>
+			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"display-sm"} -->
+			<h3 class="wp-block-heading has-text-align-center has-display-sm-font-size">14</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"align":"center","fontSize":"meta","textColor":"ink-muted"} -->
@@ -49,8 +49,8 @@
 
 		<!-- wp:group {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"body-lg"} -->
-			<h3 class="wp-block-heading has-text-align-center has-body-lg-font-size">40</h3>
+			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"display-sm"} -->
+			<h3 class="wp-block-heading has-text-align-center has-display-sm-font-size">40</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"align":"center","fontSize":"meta","textColor":"ink-muted"} -->
@@ -61,8 +61,8 @@
 
 		<!-- wp:group {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group">
-			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"body-lg"} -->
-			<h3 class="wp-block-heading has-text-align-center has-body-lg-font-size">8</h3>
+			<!-- wp:heading {"textAlign":"center","level":3,"fontSize":"display-sm"} -->
+			<h3 class="wp-block-heading has-text-align-center has-display-sm-font-size">8</h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"align":"center","fontSize":"meta","textColor":"ink-muted"} -->

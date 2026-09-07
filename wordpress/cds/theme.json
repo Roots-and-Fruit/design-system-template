@@ -280,7 +280,7 @@
       ]
     },
     "layout": {
-      "contentSize": "40rem",
+      "contentSize": "60rem",
       "wideSize": "60rem"
     },
     "custom": {
@@ -313,7 +313,7 @@
       },
       "layout": {
         "measure": "62ch",
-        "content-size": "40rem",
+        "content-size": "60rem",
         "wide-size": "60rem"
       },
       "button": {
@@ -546,6 +546,11 @@
           "blockGap": "var:preset|spacing|space-5"
         }
       },
+      "core/image": {
+        "border": {
+          "radius": "var:preset|border-radius|lg"
+        }
+      },
       "core/columns": {
         "spacing": {
           "blockGap": "var:preset|spacing|space-5"
@@ -647,6 +652,15 @@
       }
     }
   },
+  "customTemplates": [
+    {
+      "name": "page-canvas",
+      "title": "Canvas",
+      "postTypes": [
+        "page"
+      ]
+    }
+  ],
   "templateParts": [
     {
       "name": "header",
@@ -657,6 +671,11 @@
       "name": "footer",
       "title": "Footer",
       "area": "footer"
+    },
+    {
+      "name": "sidebar-post",
+      "title": "Post rail",
+      "area": "uncategorized"
     }
   ]
 }

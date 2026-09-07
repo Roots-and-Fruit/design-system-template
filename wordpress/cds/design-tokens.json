@@ -98,7 +98,7 @@
       "id": "cds/layout-content-size",
       "label": "Content size",
       "type": "spacing",
-      "default": "40rem",
+      "default": "60rem",
       "scope": "global",
       "custom_key": "cdsLayoutContentSize"
     },

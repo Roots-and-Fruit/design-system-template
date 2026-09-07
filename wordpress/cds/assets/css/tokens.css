@@ -91,6 +91,10 @@
   --cds-tracking-display: -0.015em;
   --cds-tracking-meta: 0.06em;
   --cds-measure: 62ch;
+  --cds-frame: 4 / 3;
+  --cds-split-min: 18rem;
+  --cds-sidebar-side: 16rem;
+  --cds-sidebar-min: 50%;
 
   /* —— Space —— */
   --cds-ratio: 1.5;
@@ -103,6 +107,13 @@
   --cds-space-7: calc(var(--cds-space-6) * var(--cds-ratio));
   --cds-space-8: calc(var(--cds-space-7) * var(--cds-ratio));
   --cds-gutter: var(--cds-space-5);
+
+  /* Gap jobs — DESIGN.md layout.cluster / stack / grid / section / split */
+  --cds-cluster: var(--cds-space-3);
+  --cds-stack: var(--cds-space-5);
+  --cds-grid: var(--cds-space-5);
+  --cds-section: var(--cds-space-6);
+  --cds-split: var(--cds-space-7);
 
   /* —— Depth —— */
   --cds-shadow: 0 2px 14px rgba(15, 23, 42, 0.06);

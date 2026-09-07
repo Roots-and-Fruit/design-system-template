@@ -30,8 +30,8 @@ $cds_media_split  = esc_url( get_theme_file_uri( 'assets/media/split.jpg' ) );
 	<div class="wp-block-group">
 		<!-- wp:group {"className":"is-style-cds-surface","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group is-style-cds-surface">
-			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_card_1; ?>" alt="" width="480" height="300"/></figure>
+			<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"is-style-cds-frame"} -->
+			<figure class="wp-block-image size-full is-style-cds-frame"><img src="<?php echo $cds_media_card_1; ?>" alt=""/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3} -->
@@ -54,8 +54,8 @@ $cds_media_split  = esc_url( get_theme_file_uri( 'assets/media/split.jpg' ) );
 
 		<!-- wp:group {"className":"is-style-cds-tint","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group is-style-cds-tint">
-			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_card_2; ?>" alt="" width="480" height="300"/></figure>
+			<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"is-style-cds-frame"} -->
+			<figure class="wp-block-image size-full is-style-cds-frame"><img src="<?php echo $cds_media_card_2; ?>" alt=""/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3} -->
@@ -78,8 +78,8 @@ $cds_media_split  = esc_url( get_theme_file_uri( 'assets/media/split.jpg' ) );
 
 		<!-- wp:group {"className":"is-style-cds-dark","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group is-style-cds-dark">
-			<!-- wp:image {"width":"480px","height":"300px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_card_3; ?>" alt="" width="480" height="300"/></figure>
+			<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"is-style-cds-frame"} -->
+			<figure class="wp-block-image size-full is-style-cds-frame"><img src="<?php echo $cds_media_card_3; ?>" alt=""/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3} -->
@@ -108,10 +108,10 @@ $cds_media_split  = esc_url( get_theme_file_uri( 'assets/media/split.jpg' ) );
 
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|space-6","bottom":"var:preset|spacing|space-6"}}},"backgroundColor":"paper-deep","layout":{"type":"constrained","contentSize":"60rem"}} -->
 <div class="wp-block-group alignfull has-paper-deep-background-color has-background" style="padding-top:var(--wp--preset--spacing--space-6);padding-bottom:var(--wp--preset--spacing--space-6)">
-	<!-- wp:columns {"verticalAlignment":"center","className":"is-style-cds-split"} -->
-	<div class="wp-block-columns are-vertically-aligned-center is-style-cds-split">
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
+	<!-- wp:group {"className":"is-style-cds-switcher","layout":{"type":"default"}} -->
+	<div class="wp-block-group is-style-cds-switcher">
+		<!-- wp:group {"className":"is-style-cds-copy","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+		<div class="wp-block-group is-style-cds-copy">
 			<!-- wp:heading {"level":2,"fontSize":"display-sm"} -->
 			<h2 class="wp-block-heading has-display-sm-font-size">Get the whole toolkit</h2>
 			<!-- /wp:heading -->
@@ -128,17 +128,17 @@ $cds_media_split  = esc_url( get_theme_file_uri( 'assets/media/split.jpg' ) );
 			</div>
 			<!-- /wp:buttons -->
 		</div>
-		<!-- /wp:column -->
+		<!-- /wp:group -->
 
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
-			<!-- wp:image {"width":"800px","height":"600px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_split; ?>" alt="Water and late-day light" width="800" height="600"/></figure>
+		<!-- wp:group {"layout":{"type":"default"}} -->
+		<div class="wp-block-group">
+			<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"is-style-cds-frame"} -->
+			<figure class="wp-block-image size-full is-style-cds-frame"><img src="<?php echo $cds_media_split; ?>" alt="Water and late-day light"/></figure>
 			<!-- /wp:image -->
 		</div>
-		<!-- /wp:column -->
+		<!-- /wp:group -->
 	</div>
-	<!-- /wp:columns -->
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 

@@ -25,7 +25,7 @@ npm run test:wp
 
 Contract: [`../WORDPRESS.md`](../WORDPRESS.md). `DESIGN.md` and `css/tokens.css` stay the source of truth. WordPress is a projection.
 
-Authors start from **CDS sections** in the inserter (`cds/hero`, `cds/proof`, `cds/card-grid`, `cds/split`, `cds/quote`, `cds/dark-band`, `cds/cta`, `cds/alert`). Page recipes: `cds/article`, `cds/landing` (a stack). Button styles: secondary, outline, accent, ghost. Group styles: surface, tint, panel, dark. Paragraph style: pill. Columns style: split.
+Authors start from **CDS sections** in the inserter (`cds/hero`, `cds/proof`, `cds/card-grid`, `cds/split`, `cds/quote`, `cds/dark-band`, `cds/cta`, `cds/alert`). Page recipes: `cds/article`, `cds/landing` (a stack). Button styles: secondary, outline, accent, ghost. Group layout styles: Copy, Cluster, Switcher, Sidebar, Center, Box. Group paint styles: surface, tint, panel, dark. Paragraph style: pill. Image styles: Frame, Original. Two-up marketing is Switcher, not Columns.
 
 ## Decision: literals in the projection
 

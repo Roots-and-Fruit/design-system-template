@@ -104,9 +104,10 @@ Edit in this order so the pieces stay in sync:
 ## Job D: WordPress projection
 
 The kit is the system. WordPress is a generated theme, not a second design
-system. Open [`WORDPRESS.md`](WORDPRESS.md), then
+system. Open [`WORDPRESS.md`](WORDPRESS.md) (**Choose a layer** first), then
 [`wordpress/HANDOFF.md`](wordpress/HANDOFF.md) (what is done, what is next,
-hard stops). Do not start from the hub draft under `website/agent/docs/`.
+hard stops). Inventory of slugs: [`WORDPRESS-THEME-MAP.md`](WORDPRESS-THEME-MAP.md).
+Do not start from the hub draft under `website/agent/docs/`.
 
 ## Boundaries
 

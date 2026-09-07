@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Editor styles so the canvas tracks the same kit files as the front.
  */
 function cds_setup() {
+	add_theme_support( 'post-thumbnails' );
 	add_editor_style(
 		array(
 			'assets/css/fonts.css',
@@ -29,17 +30,48 @@ function cds_setup() {
 add_action( 'after_setup_theme', 'cds_setup' );
 
 /**
+ * Opt-in: use the featured image as the article hero wash.
+ * Default is paper-deep, no photo.
+ */
+function cds_register_hero_featured_meta() {
+	register_post_meta(
+		'post',
+		'cds_hero_featured',
+		array(
+			'type'              => 'boolean',
+			'single'            => true,
+			'default'           => false,
+			'show_in_rest'      => true,
+			'auth_callback'     => static function () {
+				return current_user_can( 'edit_posts' );
+			},
+			'sanitize_callback' => 'rest_sanitize_boolean',
+		)
+	);
+}
+add_action( 'init', 'cds_register_hero_featured_meta' );
+
+/**
  * Front-end kit CSS. Skip base.css — theme.json owns element styles.
  */
 function cds_enqueue_styles() {
 	$version = wp_get_theme()->get( 'Version' );
 	$base    = get_theme_file_uri( 'assets/css/' );
+	$block_css = get_theme_file_path( 'assets/css/block-styles.css' );
+	$block_ver = filemtime( $block_css ) ? (string) filemtime( $block_css ) : $version;
 
 	wp_enqueue_style( 'cds-fonts', $base . 'fonts.css', array(), $version );
 	wp_enqueue_style( 'cds-tokens', $base . 'tokens.css', array( 'cds-fonts' ), $version );
 	wp_enqueue_style( 'cds-layouts', $base . 'layouts.css', array( 'cds-tokens' ), $version );
 	wp_enqueue_style( 'cds-components', $base . 'components.css', array( 'cds-tokens' ), $version );
-	wp_enqueue_style( 'cds-block-styles', $base . 'block-styles.css', array( 'cds-tokens' ), $version );
+	wp_enqueue_style( 'cds-block-styles', $base . 'block-styles.css', array( 'cds-tokens' ), $block_ver );
+
+	wp_register_script( 'cds-avatar', false, array(), $version, true );
+	wp_enqueue_script( 'cds-avatar' );
+	wp_add_inline_script(
+		'cds-avatar',
+		'(function(){document.querySelectorAll("img[data-cds-avatar]").forEach(function(img){var url=img.getAttribute("data-cds-avatar");if(!url)return;var probe=new Image();probe.onload=function(){img.src=url;};probe.src=url;});})();'
+	);
 }
 add_action( 'wp_enqueue_scripts', 'cds_enqueue_styles' );
 
@@ -162,6 +194,8 @@ function cds_register_block_styles() {
 		);
 	}
 
+	// Paint only. Copy / Switcher / Sidebar and the other layout jobs are
+	// classes + the editor "How it sits" panel so a fill can sit on the same Group.
 	$groups = array(
 		'cds-surface' => __( 'Surface', 'cds' ),
 		'cds-tint'    => __( 'Tint', 'cds' ),
@@ -187,14 +221,44 @@ function cds_register_block_styles() {
 	);
 
 	register_block_style(
-		'core/columns',
+		'core/image',
 		array(
-			'name'  => 'cds-split',
-			'label' => __( 'Split', 'cds' ),
+			'name'  => 'cds-frame',
+			'label' => __( 'Frame', 'cds' ),
+		)
+	);
+
+	register_block_style(
+		'core/image',
+		array(
+			'name'  => 'cds-original',
+			'label' => __( 'Original', 'cds' ),
 		)
 	);
 }
 add_action( 'init', 'cds_register_block_styles', 5 );
+
+/**
+ * Editor: pick Copy / Switcher / … without using a block style slot.
+ */
+function cds_enqueue_editor_assets() {
+	$path    = get_theme_file_path( 'assets/js/group-layout.js' );
+	$version = filemtime( $path ) ? (string) filemtime( $path ) : wp_get_theme()->get( 'Version' );
+	wp_enqueue_script(
+		'cds-group-layout',
+		get_theme_file_uri( 'assets/js/group-layout.js' ),
+		array(
+			'wp-hooks',
+			'wp-element',
+			'wp-block-editor',
+			'wp-components',
+			'wp-i18n',
+		),
+		$version,
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'cds_enqueue_editor_assets' );
 
 /**
  * Feed design-tokens.json to the unpublished / MU-plugin registry.
@@ -233,8 +297,56 @@ function cds_register_design_tokens() {
 add_action( 'init', 'cds_register_design_tokens', 20 );
 
 /**
+ * One showcase nav node as a Core navigation-link or navigation-submenu.
+ *
+ * @param array $item { id, label, children?: array }.
+ * @return string Block markup, or empty if the target is missing.
+ */
+function cds_navigation_item_markup( $item ) {
+	if ( empty( $item['id'] ) || empty( $item['label'] ) ) {
+		return '';
+	}
+	$id   = (int) $item['id'];
+	$post = get_post( $id );
+	if ( ! $post || 'publish' !== $post->post_status ) {
+		return '';
+	}
+	$type = get_post_type( $id );
+	if ( ! in_array( $type, array( 'page', 'post' ), true ) ) {
+		return '';
+	}
+
+	$attrs = wp_json_encode(
+		array(
+			'label' => $item['label'],
+			'type'  => $type,
+			'id'    => $id,
+			'url'   => get_permalink( $id ),
+			'kind'  => 'post-type',
+		)
+	);
+
+	$inner = '';
+	if ( ! empty( $item['children'] ) && is_array( $item['children'] ) ) {
+		foreach ( $item['children'] as $child ) {
+			$inner .= cds_navigation_item_markup( $child );
+		}
+	}
+
+	if ( '' !== $inner ) {
+		return sprintf(
+			"<!-- wp:navigation-submenu %s -->\n%s<!-- /wp:navigation-submenu -->\n",
+			$attrs,
+			$inner
+		);
+	}
+
+	return sprintf( "<!-- wp:navigation-link %s /-->\n", $attrs );
+}
+
+/**
  * Header Navigation is empty in the template so this fallback can own the walk.
- * Probe seed writes cds_showcase_nav. Until then, Core's page-list fallback stays.
+ * Probe seed writes cds_showcase_nav (nested). Until then, Core's page-list fallback stays.
  *
  * @param array|null $fallback Parsed fallback blocks.
  * @return array|null
@@ -247,20 +359,7 @@ function cds_navigation_showcase_fallback( $fallback ) {
 
 	$markup = '';
 	foreach ( $pages as $item ) {
-		if ( empty( $item['id'] ) || empty( $item['label'] ) ) {
-			continue;
-		}
-		$id   = (int) $item['id'];
-		$post = get_post( $id );
-		if ( ! $post || 'publish' !== $post->post_status ) {
-			continue;
-		}
-		$markup .= sprintf(
-			'<!-- wp:navigation-link {"label":%s,"type":"page","id":%d,"url":%s,"kind":"post-type"} /-->' . "\n",
-			wp_json_encode( $item['label'] ),
-			$id,
-			wp_json_encode( get_permalink( $id ) )
-		);
+		$markup .= cds_navigation_item_markup( $item );
 	}
 
 	if ( '' === $markup ) {
@@ -280,4 +379,196 @@ function cds_navigation_showcase_fallback( $fallback ) {
 	return $parsed;
 }
 add_filter( 'block_core_navigation_render_fallback', 'cds_navigation_showcase_fallback' );
+
+/**
+ * Missing Gravatars 404 instead of showing the mystery-person default.
+ *
+ * @param array $args Avatar data.
+ * @return array
+ */
+function cds_avatar_default_404( $args ) {
+	$args['default'] = '404';
+	return $args;
+}
+add_filter( 'pre_get_avatar_data', 'cds_avatar_default_404' );
+
+/**
+ * Print the kit mark first. Same-origin uploads stay as-is.
+ * A remote URL (Gravatar) is probed in the browser; if it loads, it replaces the mark.
+ *
+ * @param string $avatar      HTML img.
+ * @param mixed  $id_or_email Unused.
+ * @param int    $size        Unused.
+ * @param string $default     Unused.
+ * @param string $alt         Unused.
+ * @param array  $args        Avatar args; url is the resolved src.
+ * @return string
+ */
+function cds_avatar_placeholder_html( $avatar, $id_or_email, $size, $default, $alt, $args ) {
+	unset( $id_or_email, $size, $default, $alt );
+	if ( ! is_string( $avatar ) || ! str_contains( $avatar, '<img' ) ) {
+		return $avatar;
+	}
+	$mark   = get_theme_file_uri( 'assets/mark.svg' );
+	$remote = isset( $args['url'] ) ? (string) $args['url'] : '';
+	if ( $remote === '' || str_contains( $remote, $mark ) ) {
+		return $avatar;
+	}
+	$home_host   = wp_parse_url( home_url(), PHP_URL_HOST );
+	$remote_host = wp_parse_url( $remote, PHP_URL_HOST );
+	if ( $home_host && $remote_host && strcasecmp( (string) $home_host, (string) $remote_host ) === 0 ) {
+		return $avatar;
+	}
+	$avatar = preg_replace( '/\s+srcset=("|\')(.*?)\\1/i', '', $avatar );
+	$avatar = preg_replace( '/\s+sizes=("|\')(.*?)\\1/i', '', $avatar );
+	$avatar = preg_replace(
+		'/src=("|\')(.*?)\\1/i',
+		'src=$1' . esc_url( $mark ) . '$1 data-cds-avatar=$1' . esc_url( $remote ) . '$1',
+		$avatar,
+		1
+	);
+	return $avatar;
+}
+add_filter( 'get_avatar', 'cds_avatar_placeholder_html', 10, 6 );
+
+/**
+ * Core query-title is empty on the Posts page (`is_home()` is not an archive).
+ * Use the Posts page title so the template does not hardcode "Articles".
+ *
+ * @param string $content Rendered block HTML.
+ * @param array  $block   Parsed block.
+ * @return string
+ */
+function cds_query_title_posts_page( $content, $block ) {
+	if ( ( $block['blockName'] ?? '' ) !== 'core/query-title' ) {
+		return $content;
+	}
+	if ( ! is_home() || is_front_page() ) {
+		return $content;
+	}
+	$page_id = (int) get_option( 'page_for_posts' );
+	if ( $page_id < 1 ) {
+		return $content;
+	}
+	$title = get_the_title( $page_id );
+	if ( $title === '' ) {
+		return $content;
+	}
+	$level = isset( $block['attrs']['level'] ) ? (int) $block['attrs']['level'] : 1;
+	if ( $level < 1 || $level > 6 ) {
+		$level = 1;
+	}
+	$tag = 'h' . $level;
+	return sprintf(
+		'<%1$s class="wp-block-query-title">%2$s</%1$s>',
+		$tag,
+		esc_html( $title )
+	);
+}
+add_filter( 'render_block', 'cds_query_title_posts_page', 10, 2 );
+
+/**
+ * @param int $post_id Post ID.
+ * @return bool
+ */
+function cds_post_uses_featured_hero( $post_id ) {
+	$post_id = (int) $post_id;
+	if ( $post_id < 1 ) {
+		return false;
+	}
+	if ( ! get_post_thumbnail_id( $post_id ) ) {
+		return false;
+	}
+	return (bool) get_post_meta( $post_id, 'cds_hero_featured', true );
+}
+
+/**
+ * Sidebar checkbox under Featured image: use that photo as the hero wash.
+ */
+function cds_hero_featured_meta_box() {
+	add_meta_box(
+		'cds-hero-featured',
+		'Hero background',
+		'cds_hero_featured_meta_box_html',
+		'post',
+		'side',
+		'default'
+	);
+}
+add_action( 'add_meta_boxes', 'cds_hero_featured_meta_box' );
+
+/**
+ * @param WP_Post $post Post.
+ */
+function cds_hero_featured_meta_box_html( $post ) {
+	wp_nonce_field( 'cds_hero_featured', 'cds_hero_featured_nonce' );
+	$on = (bool) get_post_meta( $post->ID, 'cds_hero_featured', true );
+	echo '<p>';
+	echo '<label><input type="checkbox" name="cds_hero_featured" value="1"' . checked( $on, true, false ) . '> Use the featured image as the hero background</label>';
+	echo '</p>';
+	echo '<p class="description">Off is a paper wash. On needs a featured image.</p>';
+}
+
+/**
+ * @param int $post_id Post ID.
+ */
+function cds_hero_featured_save( $post_id ) {
+	if ( ! isset( $_POST['cds_hero_featured_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cds_hero_featured_nonce'] ) ), 'cds_hero_featured' ) ) {
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+	$on = ! empty( $_POST['cds_hero_featured'] );
+	update_post_meta( $post_id, 'cds_hero_featured', $on );
+}
+add_action( 'save_post_post', 'cds_hero_featured_save' );
+
+/**
+ * When the setting is on, paint the featured image on the article hero.
+ *
+ * @param string $content Rendered HTML.
+ * @param array  $block   Parsed block.
+ * @return string
+ */
+function cds_article_hero_featured_background( $content, $block ) {
+	if ( ( $block['blockName'] ?? '' ) !== 'core/group' ) {
+		return $content;
+	}
+	$class = $block['attrs']['className'] ?? '';
+	if ( ! str_contains( $class, 'cds-article-hero' ) ) {
+		return $content;
+	}
+	if ( ! is_singular( 'post' ) ) {
+		return $content;
+	}
+	$post_id = get_the_ID();
+	if ( ! cds_post_uses_featured_hero( $post_id ) ) {
+		return $content;
+	}
+	$url = get_the_post_thumbnail_url( $post_id, 'full' );
+	if ( ! $url ) {
+		return $content;
+	}
+	$content = preg_replace(
+		'/class="([^"]*cds-article-hero[^"]*)"/',
+		'class="$1 has-cds-featured-hero"',
+		$content,
+		1
+	);
+	$var = '--cds-hero-image:url(' . esc_url( $url ) . ')';
+	if ( preg_match( '/<div[^>]*cds-article-hero[^>]*style="/', $content ) ) {
+		$content = preg_replace(
+			'/(<div[^>]*cds-article-hero[^>]*style=")/',
+			'$1' . $var . ';',
+			$content,
+			1
+		);
+	}
+	return $content;
+}
+add_filter( 'render_block', 'cds_article_hero_featured_background', 10, 2 );
 

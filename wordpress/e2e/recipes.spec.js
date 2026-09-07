@@ -71,4 +71,26 @@ test.describe("CDS recipes", () => {
     expect(paint.btnBg).toBe("rgb(225, 29, 72)");
     expect(paint.btnRadius).toBeGreaterThanOrEqual(999);
   });
+
+  test("last dark wash on The site meets the footer", async ({ page }) => {
+    const response = await page.goto("/the-site/");
+    expect(response, "Studio probe must be running").toBeTruthy();
+    expect(response.ok(), `GET /the-site/ → ${response.status()}`).toBeTruthy();
+
+    const gap = await page.evaluate(() => {
+      const washes = document.querySelectorAll(
+        ".wp-block-post-content > .alignfull.is-style-cds-dark"
+      );
+      const last = washes[washes.length - 1];
+      const footer = document.querySelector("footer");
+      if (!last || !footer) return { missing: true, stripe: 0 };
+      return {
+        missing: false,
+        stripe: footer.getBoundingClientRect().top - last.getBoundingClientRect().bottom,
+      };
+    });
+
+    expect(gap.missing, "dark band and footer present").toBe(false);
+    expect(Math.abs(gap.stripe), "no paper stripe between last wash and footer").toBeLessThanOrEqual(2);
+  });
 });

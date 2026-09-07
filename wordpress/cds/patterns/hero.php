@@ -10,10 +10,10 @@ $cds_media_hero = esc_url( get_theme_file_uri( 'assets/media/hero.jpg' ) );
 ?>
 <!-- wp:group {"align":"wide","className":"cds-hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|space-7","bottom":"var:preset|spacing|space-6"}}},"layout":{"type":"constrained","contentSize":"60rem"}} -->
 <div class="wp-block-group alignwide cds-hero" style="padding-top:var(--wp--preset--spacing--space-7);padding-bottom:var(--wp--preset--spacing--space-6)">
-	<!-- wp:columns {"verticalAlignment":"center","className":"is-style-cds-split"} -->
-	<div class="wp-block-columns are-vertically-aligned-center is-style-cds-split">
-		<!-- wp:column {"verticalAlignment":"center","className":"cds-copy","style":{"spacing":{"blockGap":"0"}}} -->
-		<div class="wp-block-column is-vertically-aligned-center cds-copy">
+	<!-- wp:group {"className":"is-style-cds-switcher","layout":{"type":"default"}} -->
+	<div class="wp-block-group is-style-cds-switcher">
+		<!-- wp:group {"className":"is-style-cds-copy","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+		<div class="wp-block-group is-style-cds-copy">
 			<!-- wp:paragraph {"className":"is-style-cds-pill"} -->
 			<p class="is-style-cds-pill">Trusted by teams like yours</p>
 			<!-- /wp:paragraph -->
@@ -34,8 +34,8 @@ $cds_media_hero = esc_url( get_theme_file_uri( 'assets/media/hero.jpg' ) );
 			</div>
 			<!-- /wp:buttons -->
 
-			<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
-			<div class="wp-block-group">
+			<!-- wp:group {"className":"is-style-cds-cluster","layout":{"type":"flex","flexWrap":"wrap"}} -->
+			<div class="wp-block-group is-style-cds-cluster">
 				<!-- wp:paragraph {"fontSize":"meta","textColor":"ink-muted"} -->
 				<p class="has-ink-muted-color has-text-color has-meta-font-size">4.9 average rating</p>
 				<!-- /wp:paragraph -->
@@ -46,16 +46,16 @@ $cds_media_hero = esc_url( get_theme_file_uri( 'assets/media/hero.jpg' ) );
 			</div>
 			<!-- /wp:group -->
 		</div>
-		<!-- /wp:column -->
+		<!-- /wp:group -->
 
-		<!-- wp:column {"verticalAlignment":"center"} -->
-		<div class="wp-block-column is-vertically-aligned-center">
-			<!-- wp:image {"width":"800px","height":"600px","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo $cds_media_hero; ?>" alt="Mountain landscape" width="800" height="600"/></figure>
+		<!-- wp:group {"layout":{"type":"default"}} -->
+		<div class="wp-block-group">
+			<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"is-style-cds-frame"} -->
+			<figure class="wp-block-image size-full is-style-cds-frame"><img src="<?php echo $cds_media_hero; ?>" alt="Mountain landscape"/></figure>
 			<!-- /wp:image -->
 		</div>
-		<!-- /wp:column -->
+		<!-- /wp:group -->
 	</div>
-	<!-- /wp:columns -->
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->

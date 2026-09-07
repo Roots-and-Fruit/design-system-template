@@ -4,9 +4,9 @@ test.describe("CDS allowlist", () => {
   test("details and table use kit frames, not Core defaults", async ({
     page,
   }) => {
-    const response = await page.goto("/cds-allowlist/");
+    const response = await page.goto("/pieces/");
     expect(response, "Studio probe must be running").toBeTruthy();
-    expect(response.ok(), `GET /cds-allowlist/ → ${response.status()}`).toBeTruthy();
+    expect(response.ok(), `GET /pieces/ → ${response.status()}`).toBeTruthy();
 
     const paint = await page.evaluate(() => {
       const details = document.querySelector(".wp-block-details");
@@ -43,5 +43,22 @@ test.describe("CDS allowlist", () => {
     expect(paint.thBg).toBe("rgb(248, 250, 252)");
     expect(paint.tdBorderLeft).toBe("0px");
     expect(paint.tdColor).toBe("rgb(100, 116, 139)");
+
+    const widths = await page.evaluate(() => {
+      const details = document.querySelector(".wp-block-details");
+      if (!details) return null;
+      details.open = false;
+      const closed = details.getBoundingClientRect().width;
+      details.open = true;
+      const open = details.getBoundingClientRect().width;
+      details.open = false;
+      return { closed, open };
+    });
+    expect(widths, "allowlist has a details block").toBeTruthy();
+    expect(widths.closed, "details fills the column, not the summary").toBeGreaterThan(640);
+    expect(
+      Math.abs(widths.open - widths.closed),
+      "details stays the column width when opened",
+    ).toBeLessThan(1);
   });
 });

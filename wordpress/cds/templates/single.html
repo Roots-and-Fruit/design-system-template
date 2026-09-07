@@ -1,15 +1,32 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"var:preset|spacing|space-6","bottom":"var:preset|spacing|space-6"}}},"layout":{"type":"default"}} -->
-<main class="wp-block-group" style="margin-top:var(--wp--preset--spacing--space-6);margin-bottom:var(--wp--preset--spacing--space-6)">
-	<!-- wp:group {"layout":{"type":"constrained"}} -->
-	<div class="wp-block-group">
-		<!-- wp:post-title {"level":1} /-->
-		<!-- wp:post-date /-->
+<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"}}},"layout":{"type":"default"}} -->
+<main class="wp-block-group" style="margin-top:0">
+	<!-- wp:group {"align":"full","className":"cds-article-hero","style":{"spacing":{"margin":{"top":"0","bottom":"var:preset|spacing|space-6"},"padding":{"top":"var:preset|spacing|space-7","bottom":"var:preset|spacing|space-7"}},"border":{"bottom":{"color":"var:custom|rule","width":"1px","style":"solid"}}},"layout":{"type":"constrained","contentSize":"60rem"}} -->
+	<div class="wp-block-group alignfull cds-article-hero" style="border-bottom-color:var(--wp--custom--rule);border-bottom-style:solid;border-bottom-width:1px;margin-top:0;margin-bottom:var(--wp--preset--spacing--space-6);padding-top:var(--wp--preset--spacing--space-7);padding-bottom:var(--wp--preset--spacing--space-7)">
+		<!-- wp:group {"className":"is-style-cds-copy","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"default"}} -->
+		<div class="wp-block-group is-style-cds-copy">
+			<!-- wp:post-terms {"term":"category"} /-->
+			<!-- wp:post-title {"level":1} /-->
+			<!-- wp:group {"className":"is-style-cds-cluster","layout":{"type":"flex","flexWrap":"wrap"}} -->
+			<div class="wp-block-group is-style-cds-cluster">
+				<!-- wp:avatar {"size":48} /-->
+				<!-- wp:post-author-name /-->
+				<!-- wp:post-date /-->
+			</div>
+			<!-- /wp:group -->
+			<!-- wp:post-excerpt {"moreText":""} /-->
+		</div>
+		<!-- /wp:group -->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:post-content {"style":{"spacing":{"blockGap":"var:preset|spacing|space-6"}},"layout":{"type":"constrained"}} /-->
+	<!-- wp:group {"className":"cds-article-frame","layout":{"type":"default"}} -->
+	<div class="wp-block-group cds-article-frame">
+		<!-- wp:post-content {"style":{"spacing":{"blockGap":"var:preset|spacing|space-6"}},"layout":{"type":"constrained"}} /-->
+		<!-- wp:template-part {"slug":"sidebar-post","tagName":"aside"} /-->
+	</div>
+	<!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 

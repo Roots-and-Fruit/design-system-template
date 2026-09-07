@@ -1,8 +1,11 @@
 /* Design System Template — layout primitives
    ---------------------------------------------------------------------------
-   Six composable primitives instead of a breakpoint for every block. The
+   Composable primitives instead of a breakpoint for every block. The
    approach follows the intrinsic-layout ideas in Every Layout (Pickering &
    Bell): suggest sizes, compose with `gap`, let content decide when to wrap.
+
+   WordPress block styles use the same names as `is-style-cds-*`. Keep the
+   kit classes so HTML specimens and forks do not rename.
 
    Prefer composing these over writing one-off margin stacks.
    --------------------------------------------------------------------------- */
@@ -15,7 +18,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: var(--cds-stack-space, var(--cds-space-5));
+  gap: var(--cds-stack-space, var(--cds-stack));
 }
 
 .cds-stack > * {
@@ -27,51 +30,59 @@
 }
 
 .cds-stack--md {
-  --cds-stack-space: var(--cds-space-5);
+  --cds-stack-space: var(--cds-stack);
 }
 
 .cds-stack--lg {
-  --cds-stack-space: var(--cds-space-7);
+  --cds-stack-space: var(--cds-split);
 }
 
 /* —— Copy: proximity, not one gap ————————————————————————————————— */
 /* Mixed marketing column: eyebrow, title, lede, action, optional meta.
    Related bits sit closer. A new job (the button) gets more air.
    That is Gestalt proximity — not vertical justification. */
-.cds-copy {
+:is(.cds-copy, .is-style-cds-copy) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
 }
 
-.cds-copy > * {
+:is(.cds-copy, .is-style-cds-copy) > * {
   margin-block: 0;
 }
 
-.cds-copy > * + * {
+:is(.cds-copy, .is-style-cds-copy) > * + * {
   margin-block-start: var(--cds-space-5);
 }
 
-.cds-copy > :is(.cds-pill, .is-style-cds-pill, .cds-meta) + :is(h1, h2, h3, h4, .wp-block-heading) {
+:is(.cds-copy, .is-style-cds-copy) > :is(.cds-pill, .is-style-cds-pill, .cds-meta) + :is(h1, h2, h3, h4, .wp-block-heading) {
   margin-block-start: var(--cds-space-3);
 }
 
-.cds-copy > :is(h1, h2, h3, h4, .wp-block-heading) + :is(.cds-lede, p, .wp-block-paragraph) {
+:is(.cds-copy, .is-style-cds-copy) > :is(h1, h2, h3, h4, .wp-block-heading) + :is(.cds-lede, p, .wp-block-paragraph) {
   margin-block-start: var(--cds-space-3);
 }
 
-.cds-copy > :is(.cds-lede, p, .wp-block-paragraph, h1, h2, h3, h4, .wp-block-heading) + :is(.cds-cluster, .cds-btn, .wp-block-buttons) {
+:is(.cds-copy, .is-style-cds-copy) > :is(.cds-lede, p, .wp-block-paragraph, h1, h2, h3, h4, .wp-block-heading) + :is(.cds-cluster, .is-style-cds-cluster, .cds-btn, .wp-block-buttons) {
   margin-block-start: var(--cds-space-6);
 }
 
-.cds-copy > :is(.cds-cluster, .cds-btn, .wp-block-buttons) + :is(.cds-cluster, .cds-meta, .wp-block-group) {
+:is(.cds-copy, .is-style-cds-copy) > :is(.cds-cluster, .is-style-cds-cluster, .cds-btn, .wp-block-buttons) + :is(.cds-cluster, .is-style-cds-cluster, .cds-meta, .wp-block-group) {
   margin-block-start: var(--cds-space-4);
+}
+
+/* —— Box: even inset, or none —————————————————————————————————————— */
+/* Padding reaches into the box. Asymmetrical padding is sibling spacing
+   (use Stack gap). Paint (surface, tint, panel, dark) sits on a Box. */
+:is(.cds-box, .is-style-cds-box) {
+  box-sizing: border-box;
+  padding: var(--cds-inset);
 }
 
 /* —— Center: measured reading column ——————————————————————————————— */
 /* content-box so the `ch` measure describes text, not text + padding. */
-.cds-center {
+:is(.cds-center, .is-style-cds-center) {
   box-sizing: content-box;
   max-inline-size: var(--cds-measure);
   margin-inline: auto;
@@ -83,18 +94,20 @@
 }
 
 /* —— Cluster: wrapping horizontal group ————————————————————————————— */
-.cds-cluster {
+:is(.cds-cluster, .is-style-cds-cluster) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--cds-cluster-space, var(--cds-space-3));
+  gap: var(--cds-cluster-space, var(--cds-cluster));
 }
 
-.cds-cluster--center {
+.cds-cluster--center,
+.is-style-cds-cluster.cds-cluster--center {
   justify-content: center;
 }
 
-.cds-cluster--between {
+.cds-cluster--between,
+.is-style-cds-cluster.cds-cluster--between {
   justify-content: space-between;
 }
 
@@ -102,7 +115,7 @@
 /* Tiles grow to fill the row and wrap when they cannot hold --cds-grid-min. */
 .cds-grid {
   display: grid;
-  gap: var(--cds-grid-space, var(--cds-space-5));
+  gap: var(--cds-grid-space, var(--cds-grid));
   grid-template-columns: repeat(auto-fit, minmax(min(var(--cds-grid-min, 16rem), 100%), 1fr));
 }
 
@@ -121,7 +134,8 @@
   text-align: center;
 }
 
-/* Five even tracks on wide. Do not auto-fit: five wrapping to four-plus-one is a leftover tile. */
+/* Five even tracks on wide. Named exception: auto-fit five into
+   four-plus-one is a leftover tile. One breakpoint is the override. */
 .cds-grid--five {
   display: grid;
   gap: var(--cds-grid-space, var(--cds-space-3));
@@ -140,24 +154,57 @@
   }
 }
 
-/* —— Split: two tracks that wrap ——————————————————————————————————— */
-/* Each child grows. When a track cannot hold --cds-split-min, it wraps. */
-.cds-split {
+/* —— Split / Switcher: two equal tracks that wrap —————————————————— */
+/* Each child grows. When a track cannot hold --cds-split-min, it wraps.
+   This is Every Layout's Switcher. The kit class stays `.cds-split`. */
+:is(.cds-split, .cds-switcher, .is-style-cds-switcher) {
   display: flex;
   flex-wrap: wrap;
   align-items: start;
-  gap: var(--cds-split-space, var(--cds-space-7));
+  gap: var(--cds-split-space, var(--cds-split));
 }
 
-.cds-split > * {
+:is(.cds-split, .cds-switcher, .is-style-cds-switcher) > * {
   flex-grow: 1;
   flex-basis: var(--cds-split-min, 18rem);
   min-inline-size: min(100%, var(--cds-split-min, 18rem));
 }
 
-.cds-split img {
+:is(.cds-split, .cds-switcher, .is-style-cds-switcher) img {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: var(--cds-radius-lg);
+}
+
+/* —— Sidebar: one fixed track plus a fluid one ————————————————————— */
+/* Side stays --cds-sidebar-side while adjacent. Both wrap to full width
+   when the content track cannot hold --cds-sidebar-min. */
+:is(.cds-sidebar, .is-style-cds-sidebar) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: var(--cds-sidebar-space, var(--cds-split));
+}
+
+:is(.cds-sidebar, .is-style-cds-sidebar) > :first-child {
+  flex-grow: 1;
+  flex-basis: var(--cds-sidebar-side, 16rem);
+}
+
+:is(.cds-sidebar, .is-style-cds-sidebar) > :last-child {
+  flex-grow: 999;
+  flex-basis: 0;
+  min-inline-size: min(100%, var(--cds-sidebar-min, 50%));
+}
+
+/* —— Frame: media holds a ratio without prescribed px —————————————— */
+:is(.cds-frame, .is-style-cds-frame) img,
+img.cds-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--cds-frame, 4 / 3);
+  object-fit: cover;
   border-radius: var(--cds-radius-lg);
 }

@@ -1,26 +1,30 @@
 # WordPress theme map — DESIGN.md → FSE
 
-**Contract:** [`WORDPRESS.md`](WORDPRESS.md) is normative. This file is the layer sketch (presets vs custom vs CSS, block defaults). Values come from `DESIGN.md` front matter and `css/tokens.css` (`--cds-*`).
+**Contract:** [`WORDPRESS.md`](WORDPRESS.md) is normative — start at **Choose a layer**. This file is the inventory (which slug landed in which bucket). Values come from `DESIGN.md` front matter and `css/tokens.css` (`--cds-*`).
 
 **Assumptions**
 
-- Custom design-token UI for FSE ships in the theme or a companion plugin (per [gutenberg#76509](https://github.com/WordPress/gutenberg/issues/76509)), without waiting for Core.
-- `DESIGN.md` remains normative. `theme.json` is a WordPress projection. `--cds-*` stays the CSS SoR; WP presets may alias into it or be generated beside it. Preset slugs are **semantic** names (`paper`, `ink`, `primary`, `accent`) — see `DESIGN.md` → Token layers. Hue names stay on primitives.
+- Custom design-token UI for FSE ships in the theme or a companion plugin (per [gutenberg#76509](https://github.com/WordPress/gutenberg/issues/76509)), without waiting for Core. Probe uses the MU-plugin `register_design_token()`; do not install the Gutenberg plugin.
+- `DESIGN.md` remains normative. `theme.json` is a WordPress projection. `--cds-*` stays the CSS SoR. Preset slugs are **semantic** names (`paper`, `ink`, `primary`, `accent`). Hue names stay on primitives.
 - Core blocks get purposeful defaults so a blank page already speaks the system.
+
+Do not invent a new projection layer because a Site Editor panel exists. Layout content/wide *is* `contentSize` / `wideSize`. Measure, gap jobs, and kit primitives are not extra Layout fields.
 
 ---
 
 ## 1. Projection layers
 
+Same five homes as *Choose a layer*. A–E here are the implementation names.
+
 | Layer | Role | Editable in FSE? |
 | --- | --- | --- |
 | A. WordPress presets | `settings.color.palette`, `fontFamilies`, `fontSizes`, `spacingSizes`, `border.radiusSizes`, `shadow.presets` | Yes (Global Styles) |
-| B. Custom tokens + UI metadata | `settings.custom` + `customTokenDefinitions` / `register_design_token()` | Yes (via theme/plugin extensibility) |
-| C. Structural CSS only | Enqueued `--cds-*` (measure, ratio, tracking, chart ramp, etc.) | No (developer / sync only) |
+| B. Custom tokens + UI metadata | `settings.custom` + `register_design_token()` | Yes (custom-token UI, not the paint picker) |
+| C. Structural CSS | Enqueued `--cds-*` (measure, ratio, tracking, chart ramp, primitive gaps) | No (developer / sync only) |
 | D. Block & element defaults | `styles.elements`, `styles.blocks` | Overrides via Global Styles |
-| E. Patterns / style variations | Optional later | Pattern picker / style book |
+| E. Patterns / block styles | Section jobs; opt-in primitives (Switcher, Copy, Frame) | Pattern inserter / block style |
 
-Sync direction: `brand.json` → `tokens.css` + `DESIGN.md` front matter (`npm run customize`) → `wordpress/theme.json` + `wordpress/design-tokens.json` (`npm run compile:wordpress`; customize already runs it). Do not hand-maintain three palettes.
+Sync direction: `brand.json` → `tokens.css` + `DESIGN.md` front matter (`npm run customize`) → `wordpress/theme.json` + `wordpress/design-tokens.json` (`npm run compile:wordpress`; customize already runs it). Do not hand-maintain three palettes. Do not hand-edit generated `theme.json`.
 
 ---
 
@@ -120,18 +124,27 @@ Numeric YAML keys are awkward as WP slugs; always prefix `space-`. Set `defaultS
 | `lg` | `lg` |
 | `pill` | `pill` |
 
-### 2.5 Layout shell → Layer B (gaps in DESIGN.md YAML)
+### 2.5 Layout shell → Layer B (sizes) + Layer C (gap jobs)
 
-These exist in kit CSS / prose but **not** as first-class DESIGN.md front-matter groups. Expose as custom FSE tokens and/or propose adding them to the template later.
+`contentSize` / `wideSize` stay Layer B (dimensions, not space-scale steps). Gap jobs live in DESIGN.md `layout:` as aliases of `spacing.*`. They are **not** extra spacing presets and **not** Layer B custom tokens.
 
-| Token key | Type | Default source | Gap? |
+| Token key | Type | Default source | WP projection |
 | --- | --- | --- | --- |
-| `layout.contentSize` | dimension | derive from `--cds-measure` ≈ `62ch` → rem fallback e.g. `40rem` | YAML has no `layout.contentSize` |
-| `layout.wideSize` | dimension | e.g. `72rem` / kit shell max | Not in DESIGN.md front matter |
-| `layout.measure` | dimension | `--cds-measure` (`62ch`) | Structural; may stay Layer C |
-| `layout.contentMax` | dimension | tool column if present | Kit has measure; product columns are prose-only today |
+| `layout.contentSize` | dimension | `layout.content-size` / `--cds-max` (60rem) | `theme.json` `settings.layout.contentSize` (Layer B) |
+| `layout.wideSize` | dimension | `layout.wide-size` / `--cds-max` (60rem) | `theme.json` `settings.layout.wideSize` (Layer B) |
+| `layout.measure` | dimension | `--cds-measure` (`62ch`) | Layer C `block-styles.css` |
+| `layout.gutter` | spacing step | `{spacing.5}` | Root inline padding |
+| `layout.inset` | spacing step | `{spacing.6}` | `--cds-inset`; surface padding |
+| `layout.cluster` | spacing step | `{spacing.3}` | `core/buttons` `blockGap`; `--cds-cluster` |
+| `layout.stack` | spacing step | `{spacing.5}` | Root + `core/group` `blockGap`; `--cds-stack` |
+| `layout.grid` | spacing step | `{spacing.5}` | `--cds-grid` on `.cds-grid` and Core `is-layout-grid` |
+| `layout.section` | spacing step | `{spacing.6}` | `core/post-content` `blockGap`; `--cds-section`; `main` `margin-block-end` (0 when last child is an `alignfull` wash) |
+| Article rail | template | `--cds-sidebar-side` + `--cds-split` | `single.html`: `.cds-article-hero` (paper-deep; featured photo via `cds_hero_featured`) above `.cds-article-frame`; part `sidebar-post`. |
+| Title-hidden landing | template | — | `page-canvas.html`. Hide `post-title`; `main` margin-top 0. The site, Offer, and Pricing share it. |
+| Posts page title | PHP filter | — | `cds_query_title_posts_page` fills `core/query-title` on the Posts page. |
+| `layout.split` | spacing step | `{spacing.7}` | `--cds-split` on Switcher / Sidebar / Stack `--lg` |
 
-`theme.json` `settings.layout.contentSize` / `wideSize` should be filled from Layer B defaults so Core alignment works even before custom UI exists.
+If grid should diverge from stack, change the YAML step. Do not add `cds/layout-grid` to the custom-token registry.
 
 ### 2.6 Elevation → Layer A (shadow presets) + Layer B
 
@@ -178,8 +191,7 @@ Component entries in DESIGN.md are **not** WordPress blocks. Project them as:
 | `button.padding-inline` | spacing | parse `padding` |
 | `input.radius` | border-radius | `rounded.sm` |
 | `surface.radius` | border-radius | `rounded.md` |
-| `surface.padding` | spacing | `1.5rem` / `space-5` |
-| `section.gap` | spacing | `space-5` or `space-6` |
+| `surface.padding` | spacing | `layout.inset` / `--cds-inset` |
 
 ---
 
@@ -196,8 +208,8 @@ Defaults use `var:preset|…` / `var:custom|…` so they track the token map. Na
 | `typography.fontFamily` | `body` |
 | `typography.fontSize` | `body-md` |
 | `typography.lineHeight` | custom `lineHeight.body` |
-| `spacing.blockGap` | `space-5` |
-| `spacing.padding` (root) | inline `space-5` (or kit gutter); block `0` |
+| `spacing.blockGap` | `layout.stack` (`space-5`) |
+| `spacing.padding` (root) | inline `layout.gutter`; block `0` |
 
 ### 3.2 Elements (`styles.elements`)
 
@@ -244,7 +256,7 @@ These are the blocks that make the design language feel authoritative on day one
 | `core/post-date` / `post-terms` | `meta` / muted | |
 | `core/query-pagination` | button-like links using surface/panel | |
 | `core/search` | input tokens (radius sm, surface bg) | |
-| `core/details` | summary weight emphasis | Disclosure language if kit adds later |
+| `core/details` | summary weight emphasis; column width open or closed (`--cds-max`, `cqi` so a flex parent cannot shrink-wrap) | Kit `.cds-details` |
 
 ### 3.4 Blocks — second wave
 
@@ -256,7 +268,7 @@ These are the blocks that make the design language feel authoritative on day one
 | --- | --- |
 | Alert variants | Patterns (Group + heading + paragraph) or a small block later |
 | Pills / chips | Patterns or button styles |
-| Stack / Copy / Center / Cluster / Grid / Split / Prose | Theme CSS classes (`.cds-stack`, `.cds-copy`, `.cds-split`, etc.) and/or Group layout + patterns. Split → `core/columns` style `cds-split`. Mixed copy columns use `.cds-copy` with `blockGap: 0`. |
+| Stack / Copy / Center / Cluster / Grid / Split / Sidebar / Frame / Box / Prose | Theme CSS classes. Group **Styles** are paint only (`cds-surface` … `cds-dark`). Copy / Switcher / … are `cds-copy` classes from the editor Arrangement panel (saved `is-style-cds-copy` still works). Split → `.cds-switcher` (kit `.cds-split`). Do not map Split to `core/columns`. |
 | Form controls beyond Search | Plugin form CSS consuming `--cds-*` |
 
 ---
@@ -281,42 +293,37 @@ Suggested Global Styles grouping for the custom UI (matches your issue mockups):
 
 ## 5. Gaps this exercise surfaces (generic kit / DESIGN.md)
 
-Worth filling in the design-kit template over time. None block a v1 theme if Layer B/C carries defaults.
+`layout` and `elevation` YAML exist. Choose a layer before adding more.
 
-| Gap | Why it matters for FSE | Suggested template addition |
+| Gap | Why it matters for FSE | Status |
 | --- | --- | --- |
-| No `layout` front-matter group | `contentSize` / `wideSize` / measure are required for Core alignments | `layout.contentSize`, `layout.wideSize`, `layout.measure` |
-| Typography composites vs WP splits | Agents must invent slug maps | Document the WP slug table in DESIGN.md or a `wordpress.md` (this file) |
-| No `shadow` / elevation tokens | Shadow presets are guesswork | `elevation.sm` / `md` in YAML |
-| No font-file / `fontFace` metadata | theme.json needs urls or theme must enqueue `fonts.css` only | Optional `fonts:` map or keep CSS-only loading |
-| Component `padding` is a free string | Hard to split into block/inline tokens | Prefer `{spacing.5}` references or `paddingBlock` / `paddingInline` |
-| Spacing keys `1`…`8` | Invalid/awkward as bare WP slugs | Prefer `space-1`… in YAML long-term; map with prefix for now |
-| Accent vs button styles | Core only ships fill + outline | Theme must register block styles for secondary / accent / ghost |
-| Alerts / pills | Alert = group fill. Pill = paragraph style `cds-pill` |
-| Hover / focus / selection | Only partly in components (`button-*-hover`) | Explicit `focus.ring` token; `:focus-visible` in theme CSS |
-| Style variations / dark | `surface-dark` exists; no variation file | Optional `styles/dark.json` later |
-| Gradient / duotone | Kit avoids them; WP defaults are loud | Keep disabled; no gap unless a fork wants them |
-| Form ecosystem | `input` component ≠ Fluent/GF markup | Companion CSS partial in theme plugin |
+| Typography composites vs WP splits | Agents must not invent slug maps | Documented in this file §2.2 and `WORDPRESS.md` |
+| Component `padding` is a free string | Hard to split into block/inline tokens | Prefer `{spacing.n}` or `paddingBlock` / `paddingInline` |
+| Spacing keys `1`…`8` | Awkward as bare WP slugs | Mapped as `space-1`…; keep YAML numeric |
+| Style variations / dark | `surface-dark` is a wash, not a theme | No `styles/dark.json`. Dark band is a pattern |
+| Gradient / duotone | Kit avoids them; WP defaults are loud | Keep disabled |
+| Form ecosystem | `input` component ≠ Fluent/GF markup | Companion CSS later; Search uses input tokens |
 
 ---
 
 ## 6. Minimal build order
 
-1. Theme skeleton (block theme) + enqueue `cds.css` / fonts.
+1. Theme skeleton (block theme) + enqueue kit CSS / fonts (skip `base.css`).
 2. Generate Layer A presets from DESIGN.md / tokens.css.
 3. Set §3.1–3.3 defaults so Core looks like the kit with no patterns yet.
-4. Ship custom-token registry (Layer B) in theme or functionality plugin; wire FSE UI.
-5. Button + Group block styles and the five `cds-*` recipes — in `wordpress/cds/` (`patterns/`, `assets/css/block-styles.css`).
-6. Compiler: `scripts/compile-wordpress.mjs` emits `wordpress/theme.json` + `wordpress/design-tokens.json`. Customize runs it.
+4. Ship custom-token registry (Layer B); wire FSE UI when the probe has `register_design_token()`.
+5. Button + Group + Image block styles and section patterns — in `wordpress/cds/`.
+6. Compiler: `scripts/compile-wordpress.mjs` emits `theme.json` + `design-tokens.json`. Customize runs it.
 
 ---
 
 ## 7. Open decisions
 
-1. **Alias vs duplicate:** Should `--wp--preset--color--primary` be a literal hex copy of `--cds-primary`, or `var(--cds-primary)`? Alias keeps one SoR; some hosts/tools resolve presets more reliably as literals.
-2. **Where extensibility lives:** Theme-only vs must-use functionality plugin (cleaner if the token UI should survive theme swaps).
+1. **Alias vs duplicate:** Should `--wp--preset--color--primary` be a literal hex copy of `--cds-primary`, or `var(--cds-primary)`? Compiler currently writes literals. Alias keeps one SoR; some hosts resolve presets more reliably as literals.
+2. **Where extensibility lives:** Theme-only vs must-use functionality plugin (cleaner if the token UI should survive theme swaps). Probe: MU-plugin + theme `design-tokens.json`.
 3. **Palette size:** Full soft/deep set in the picker vs a short “author” palette + Layer B for the rest.
-4. **Whether to extend DESIGN.md YAML** with `layout` and `elevation` before or after the first theme ship.
+
+Do not reopen “should layout YAML exist.” It does. New kit facts go through *Choose a layer*.
 
 ---
 

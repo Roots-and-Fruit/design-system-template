@@ -254,10 +254,15 @@ components:
     typography: "{typography.code}"
 layout:
   measure: 62ch
-  content-size: 40rem
+  content-size: 60rem
   wide-size: 60rem
   gutter: "{spacing.5}"
   inset: "{spacing.6}"
+  cluster: "{spacing.3}"
+  stack: "{spacing.5}"
+  grid: "{spacing.5}"
+  section: "{spacing.6}"
+  split: "{spacing.7}"
 elevation:
   sm: "0 2px 14px rgba(15, 23, 42, 0.06)"
   md: "0 10px 32px rgba(15, 23, 42, 0.1)"
@@ -298,7 +303,7 @@ Surfaces this system must serve equally well:
 Three layers, in order. The reference walk follows them.
 
 1. **Design tokens** — primitive, semantic, and component. Color and type are this layer. See Token layers.
-2. **Every Layout** — intrinsic primitives in `css/layouts.css` (Stack, Cluster, Center, Grid, Split) plus Copy. Mixed marketing copy uses `.cds-copy` (Gestalt proximity), not an even stack. See Layout.
+2. **Every Layout** — intrinsic primitives in `css/layouts.css` (Stack, Cluster, Center, Grid, Split/Switcher, Sidebar, Frame, Box) plus Copy. Mixed marketing copy uses `.cds-copy` (Gestalt proximity), not an even stack. See Layout.
 3. **Compose** — Pieces are those tokens on those primitives. Pages are Pieces composed into landing jobs. The site is one page from that list.
 
 Walk: Start → Color → Type → Layout → Pieces → Pages → The site. Assets and Design.md sit under that walk. Do not treat Pieces and Pages as two catalogs. A control’s look lives under Components; a page job may include that control.
@@ -322,7 +327,13 @@ YAML names in this file are not always the CSS custom-property names. Map them b
 | `elevation.sm` / `elevation.md` | `--cds-shadow` / `--cds-shadow-md` |
 | `focus.ring` | `--cds-focus` |
 | `layout.wide-size` | `--cds-max` |
+| `layout.gutter` | `--cds-gutter` (equals `--cds-space-5`) |
 | `layout.inset` | `--cds-inset` (equals `--cds-space-6`) |
+| `layout.cluster` | `--cds-cluster` (equals `--cds-space-3`) |
+| `layout.stack` | `--cds-stack` (equals `--cds-space-5`) |
+| `layout.grid` | `--cds-grid` (equals `--cds-space-5`) |
+| `layout.section` | `--cds-section` (equals `--cds-space-6`) |
+| `layout.split` | `--cds-split` (equals `--cds-space-7`) |
 | `layout.content-size` | WordPress `theme.json` `contentSize` only. Not a `--cds-*` variable |
 
 `ink-deep` is a rank of ink, not a colour. Do not use `secondary` or `tertiary` as colour names — they collide with `button-secondary`. Muted text is `ink-muted`. A rare second punch is `accent`.
@@ -332,8 +343,19 @@ YAML names in this file are not always the CSS custom-property names. Map them b
 WordPress is a projection of this file, not a second system. The contract is
 [`WORDPRESS.md`](WORDPRESS.md). The compiler writes `wordpress/cds/`. Keep the
 `layout`, `elevation`, and `focus` front-matter groups — customize does not
-own them. `layout.content-size` (40rem) is the article `contentSize`. Landing
-columns use `wide-size` / `--cds-max` (60rem). Neither is a reading `ch`.
+own them. Default pages use the same shell as the header: `content-size` and
+`wide-size` are both 60rem (`--cds-max`). Reading width is `measure` (`ch`)
+on flow text, not a narrower `contentSize`. A 40rem main track is for a
+sidebar template later.
+
+Gap jobs (`cluster`, `stack`, `grid`, `section`, `split`) are names on the
+existing `spacing` scale, not new spacing presets and not Layer B custom
+tokens. See *Choose a layer*. `space-1`…`space-8` stay the picker. The
+compiler sets Core `blockGap` defaults from those jobs (`buttons` ← cluster,
+`group` and root ← stack, `post-content` ← section). Kit primitives and Core
+grid read the `--cds-*` aliases in CSS. Do not add a second gap picker. If a
+job should breathe more, change the YAML step (5 → 6, or 6 → 7), not a
+one-off margin.
 
 ## Make it yours
 
@@ -487,14 +509,15 @@ the intrinsic-layout ideas in *Every Layout* (Pickering & Bell). **Proximity**
 A uniform gap is not proximity. It is a list.
 
 Axioms:
-- **Measure:** no reading line exceeds `--cds-measure`. Flow text is capped;
-  structural shells are not.
-- **Suggestion over prescription:** prefer `max-inline-size`, `min-block-size`,
-  `gap`, and `flex-basis` over fixed `width` and `height`.
+- **Measure:** no reading line exceeds `--cds-measure`. Seed that on flow text (paragraphs, lists, quotes), in `ch`, not as a class authors must remember. Flow text is capped; structural shells are not. The cap is start-aligned in the shell (same left edge as the title). `.cds-center` is the style that centres a measure column. WordPress does this in `block-styles.css`.
+- **Suggestion over prescription:** prefer `max-inline-size`, `min-block-size`, `gap`, and `flex-basis` over fixed `width` and `height`.
 - **One space ratio:** `--cds-ratio` (1.5) seeds space from `1rem` (step 4).
-  Steps 5 to 8 multiply by the ratio; steps 1 to 3 are chrome-only.
+  Steps 5 to 8 multiply by the ratio; steps 1 to 3 are chrome-only. Gap
+  *jobs* (`layout.cluster` / `stack` / `grid` / `section` / `split`) point at
+  those steps. They are not a second scale. One primitive, one gap; row and
+  column are the same number unless a later job splits them.
 - **Boxes:** global `border-box`, logical properties, and `content-box` on
-  reading columns so `ch` measures text rather than text plus padding.
+  reading columns so `ch` measures text rather than text plus padding. A Box has even inset on all sides, or none. Asymmetrical padding is sibling spacing (use Stack gap).
 - **Inset:** framed modules (`.cds-surface`, specimen frames) pad with
   `--cds-inset` (step 6). Do not sit copy against the inner edge.
 
@@ -503,22 +526,42 @@ Primitives in `css/layouts.css`:
 | Class | Job |
 | --- | --- |
 | `.cds-stack` | Even vertical gap. Only when every child is the same kind of thing (stats, tiles). Variants `--sm`, `--md`, `--lg` |
-| `.cds-copy` | Mixed marketing column. Eyebrow hugs the title; title hugs the lede; the button gets more air; proof meta tucks under the action |
-| `.cds-center` | Centred reading column at `--cds-measure`. `.cds-center--gutter` adds `--cds-space-5` inline padding |
-| `.cds-cluster` | Wrapping horizontal group for buttons, pills, tags. `--center` and `--between` for alignment |
+| `.cds-copy` | Mixed marketing column. Eyebrow hugs the title; title hugs the lede; the button gets more air; proof meta tucks under the action. WordPress: Group style Copy |
+| `.cds-box` | Even inset on all sides. Paint (surface, tint, panel, dark) sits on this. WordPress: Group style Box, or a Group with a background |
+| `.cds-center` | Centred reading column at `--cds-measure`. `.cds-center--gutter` adds `--cds-space-5` inline padding. WordPress: Group style Center |
+| `.cds-cluster` | Wrapping horizontal group for buttons, pills, tags. `--center` and `--between` for alignment. WordPress: Group style Cluster |
 | `.cds-grid` | Auto-fitting tiles that wrap at `--cds-grid-min`, no media query. `--tight` uses a smaller min and gap |
 | `.cds-grid--center` | Center each tile in its track. Proof stats. Not cards. |
-| `.cds-grid--five` | Five even tracks. Proof. Stacks to one column when the row cannot hold five. Not auto-fit. |
-| `.cds-split` | Two tracks that wrap. Copy plus media. `align-items: start`. No breakpoint soup |
+| `.cds-grid--five` | Five even tracks. Proof. Named exception: stacks to one column when the row cannot hold five. Not auto-fit (a leftover tile is worse than one breakpoint) |
+| `.cds-split` | Switcher. Two equal tracks that wrap at `--cds-split-min`. WordPress: Group style Switcher. Do not use `core/columns` |
+| `.cds-sidebar` | One fixed track plus a fluid one. Wraps when the content track cannot hold `--cds-sidebar-min`. WordPress: Group style Sidebar. First child is the side. Do not use this class for a post with a complementary rail |
+| `.cds-frame` | Media holds `--cds-frame` (4 / 3) with `object-fit: cover`. Do not prescribe px width and height. WordPress: Image style Frame. Original is for marks and logos |
+
+Gap jobs (aliases of `spacing.*`; one `gap`, not separate row/column tokens):
+
+| YAML | Step today | Job |
+| --- | --- | --- |
+| `cluster` | 3 | Buttons, pills, tags. Tight chrome. |
+| `stack` | 5 | Like items in a column. Default Stack. WordPress `core/group` `blockGap`. |
+| `grid` | 5 | Like items in a wrap. Default Grid. Same step as stack until tiles need more air than inset. |
+| `section` | 6 | Between page jobs (intro → grid → band). WordPress `post-content` `blockGap`. Same step as inset, so a row of cards does not breathe more than the padding inside a card. |
+| `split` | 7 | Copy vs media (Switcher), Sidebar, Stack `--lg`. A bigger thought than tile vs tile. |
+
+Do not invent 28px. If tiles feel tighter than their own inset, bump `grid` to 6 (match inset) or 7 (treat the row as a section). If page rows feel tight, bump `section` to 7. Copy stays proximity, not these jobs.
 
 Hierarchy:
 - One job per section: a heading, a short supporting line, then content
-- Space major blocks with `.cds-stack` or steps 5 to 7
+- Space major blocks with `layout.section` or `layout.split` / Stack `--lg`
 - Do not mix ad-hoc child margins with a parent `.cds-stack` gap
 - Hero, Split, CTA, and Dark band copy columns use `.cds-copy`, not a bare `.cds-stack`
+- WordPress two-up marketing uses Group style Switcher (`.cds-split`). Do not use `core/columns` for that job
 - `--cds-max` may wrap shells and specimen grids; paragraphs still obey measure
-- `layout.content-size` is the WordPress article column (40rem). Do not look
-  for `--cds-content-size` in CSS
+- `layout.content-size` is the WordPress page shell (`contentSize`). It matches
+  `wide-size` / `--cds-max` (60rem) so default blocks line up with the header.
+  Do not look for `--cds-content-size` in CSS. A post with a complementary
+  rail is the WordPress `single` template: `.cds-article-hero` (title and
+  excerpt above) then `.cds-article-frame` (body first, rail second,
+  `--cds-sidebar-side` / `--cds-split`). That is not Group style Sidebar.
 
 ## Pages
 
@@ -529,10 +572,10 @@ is a three-tile card grid. Header and footer are template parts, not page jobs.
 
 | Section | Job | Wash | CTA | Not |
 | --- | --- | --- | --- | --- |
-| Hero | Pill, display title, lede, one primary. Optional proof cluster. Media on the right via `.cds-split`. Copy column is `.cds-copy`. A text stack without media is still legal | `paper` | One primary | A whole page, a Split section (wrong wash), a hero in a bare `.cds-stack` |
+| Hero | Pill, display title, lede, one primary. Optional proof cluster. Media on the right via `.cds-split` (Switcher). Copy column is `.cds-copy`. A text stack without media is still legal | `paper` | One primary | A whole page, a Split section (wrong wash), a hero in a bare `.cds-stack`, a hero built from `core/columns` |
 | Proof | Three or five stats, centered in even tracks, or a logo cluster. No leftover tile | `paper-deep` (viewport wash; numbers sit on `wide`) | None | A feature grid, four tiles wrapping to three, five auto-fitting to four-plus-one, left-aligned stats |
 | Card grid | Three paired fills in `.cds-grid` (surface, `primary-soft` tint, dark). Title, one line, optional meta and a link | `paper` | Outline or text link, not a second primary | A dashboard, three identical whites |
-| Split | Copy plus media via `.cds-split` (WordPress: `core/columns`) | `paper-deep` (viewport wash; split sits on `wide`) | One primary, optional | A blog layout |
+| Split | Copy plus media via `.cds-split` (WordPress: Group style Switcher) | `paper-deep` (viewport wash; split sits on `wide`) | One primary, optional | A blog layout, `core/columns` |
 | Quote | One attribution. Compose `.cds-surface` plus `.cds-lede` plus `.cds-meta`. There is no `.cds-quote` class | `paper` | None | A reviews carousel, a blockquote restyle |
 | Dark band | Callout strip. `on-dark` title | `surface-dark` (viewport wash; copy on the measure) | One accent max | A second theme |
 | CTA | Short `display-sm` plus one button | `panel` | Primary or accent, not both | Two buttons fighting |
@@ -541,16 +584,23 @@ is a three-tile card grid. Header and footer are template parts, not page jobs.
 Page recipes compose sections. `landing` is hero, optional proof, and one card
 grid or split. The hero holds the primary. Use the CTA section when the page
 has no hero button. `article` is measured prose on paper, not this catalog.
+`pricing` is three plans, a guarantee, proof, a short validator, and FAQ. It
+is a page recipe, not a ninth section.
 
 If a request needs a section that is not in this table, say so and compose from
 what is here. Do not add a class or a pattern to cover a one-off.
 
 Washes (`paper-deep`, `surface-dark`) are viewport bands. Inner marketing
 copy sits on `wide` (the same column as the header). Article prose stays on
-the measure / `content`. Do not wrap `post-content` in a second constrained
-group; `alignfull` cannot escape it. Do not mix `content` and `wide` on one
-landing. Do not leave a leftover tile in a proof strip or card grid. Three
-items, three tracks. Five items, five tracks (`.cds-grid--five`). Four items only as two by two or four across on `wide`. Do not auto-fit five into four-plus-one.
+the measure / `content`. A wash that is the last thing on the page flushes
+to the footer (or the next wash). `layout.section` is for unlike siblings —
+a last card vs the footer — not a paper stripe between two full-bleed bands.
+WordPress does this in `block-styles.css`. Do not wrap `post-content` in a
+second constrained group; `alignfull` cannot escape it. Do not mix `content`
+and `wide` on one landing. Do not leave a leftover tile in a proof strip or
+card grid. Three items, three tracks. Five items, five tracks
+(`.cds-grid--five`). Four items only as two by two or four across on `wide`.
+Do not auto-fit five into four-plus-one.
 
 ## Elevation & depth
 
@@ -588,6 +638,8 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
   `on-primary`. On `surface-dark`, rest is `on-dark` outline; hover fills
   `surface` with a `primary-deep` label (same pairing as the dark primary
   button). Hover fill must read as a different colour from the tile.
+  On `surface-dark`, the primary itself is inverted (`surface` + `primary-deep`);
+  hover fills `primary-soft` so it is not the same as rest.
 - `button-accent` (`.cds-btn--accent`): at most one high-stakes CTA per view
   (Buy, Book, Submit final). Use `on-accent` for the label. Hover deepens the
   fill so a light label keeps its contrast.
@@ -648,6 +700,8 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
 
 **Details**
 - `.cds-details` is a disclosure, not a card stack. Same frame as the table
+- Open and closed are the same width: the column (`--cds-max`), not the
+  summary and not the answer. `min-inline-size: 0`. A narrower track may clamp.
 - Summary is the control: label weight, `ink-deep`, a kit chevron (not the
   browser triangle). Open state paints the summary `panel-soft` and a hairline
 - Body copy inside stays `ink`. Do not nest a second surface
@@ -717,7 +771,8 @@ When generating or editing UI for this brand:
     `post-content` in a second constrained group. Do not leave a leftover tile.
     Do not mix `content` and `wide` on one landing. Proof stats are centered.
     Proof is three or five even tracks, never a leftover tile. Marketing hero is
-    a split: pill, title, lede, one primary, optional proof cluster, media.
-    Card-grid tiles use three paired fills. Body and outline labels must meet
+    a Switcher: pill, title, lede, one primary, optional proof cluster, media.
+    Do not build two-up marketing with `core/columns`. Image photos use Frame.
+    Marks and logos use Original. Card-grid tiles use three paired fills. Body and outline labels must meet
     WCAG AA against the tile. Outline hover on tint and dark must fill a colour
     that is not the tile. Do not ship three identical whites.

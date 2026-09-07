@@ -30,8 +30,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
 const outDir = join(root, "wordpress");
 
-/** Fallback when DESIGN.md has no layout.content-size yet. */
-const CONTENT_SIZE = "40rem";
+/** Fallback when DESIGN.md has no layout.content-size yet. Same as wide / --cds-max. */
+const CONTENT_SIZE = "60rem";
 
 const HUE_SLUG = /^(green|cream|orange|cyan|rose|blue|brown|navy|slate|yellow|red|purple|pink|teal|moss|neutral|secondary|tertiary)(-|$)/i;
 
@@ -428,7 +428,14 @@ function buildRegistry(customValues) {
   }));
 }
 
-function buildStyles() {
+function layoutSpacingPreset(design, key, fallbackStep) {
+  const yaml = design.layout?.[key];
+  const match = String(yaml ?? "").match(/\{spacing\.(\d+)\}/);
+  const step = match ? match[1] : String(fallbackStep);
+  return preset("spacing", `space-${step}`);
+}
+
+function buildStyles(design) {
   return {
     color: {
       background: preset("color", "paper"),
@@ -440,12 +447,12 @@ function buildStyles() {
       lineHeight: custom("line-height|body"),
     },
     spacing: {
-      blockGap: preset("spacing", "space-5"),
+      blockGap: layoutSpacingPreset(design, "stack", 5),
       padding: {
         top: "0",
         bottom: "0",
-        left: preset("spacing", "space-5"),
-        right: preset("spacing", "space-5"),
+        left: layoutSpacingPreset(design, "gutter", 5),
+        right: layoutSpacingPreset(design, "gutter", 5),
       },
     },
     elements: {
@@ -582,13 +589,16 @@ function buildStyles() {
         color: { background: custom("rule") },
       },
       "core/buttons": {
-        spacing: { blockGap: preset("spacing", "space-3") },
+        spacing: { blockGap: layoutSpacingPreset(design, "cluster", 3) },
       },
       "core/post-content": {
-        spacing: { blockGap: preset("spacing", "space-6") },
+        spacing: { blockGap: layoutSpacingPreset(design, "section", 6) },
       },
       "core/group": {
-        spacing: { blockGap: preset("spacing", "space-5") },
+        spacing: { blockGap: layoutSpacingPreset(design, "stack", 5) },
+      },
+      "core/image": {
+        border: { radius: preset("border-radius", "lg") },
       },
       "core/columns": {
         spacing: { blockGap: preset("spacing", "space-5") },
@@ -694,10 +704,14 @@ function buildThemeJson({ design, tokens, customValues }) {
       },
       custom: customValues,
     },
-    styles: buildStyles(),
+    styles: buildStyles(design),
+    customTemplates: [
+      { name: "page-canvas", title: "Canvas", postTypes: ["page"] },
+    ],
     templateParts: [
       { name: "header", title: "Header", area: "header" },
       { name: "footer", title: "Footer", area: "footer" },
+      { name: "sidebar-post", title: "Post rail", area: "uncategorized" },
     ],
   };
 }
@@ -754,7 +768,15 @@ function validateChromeParts() {
       errors.push(`parts/header.html missing ${needle}`);
     }
   }
-  for (const needle of ["wp:site-logo", "wp:site-title", "wp:site-tagline", "cds-identity"]) {
+  for (const needle of [
+    "wp:site-logo",
+    "wp:site-title",
+    "wp:site-tagline",
+    "cds-identity",
+    "wp:social-links",
+    "/privacy/",
+    "/terms/",
+  ]) {
     if (!footer.includes(needle)) {
       errors.push(`parts/footer.html missing ${needle}`);
     }

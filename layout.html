@@ -79,10 +79,11 @@
             <p class="cds-meta">Step 4 of 7</p>
             <h1>Layout</h1>
             <p class="cds-lede">
-              Five composable primitives plus Copy, one space ratio, and a measure axiom.
-              Compose these instead of writing bespoke margin stacks or a
-              breakpoint for every block. Next, Pieces put these on controls.
-              Then <a href="sections.html">Pages</a> compose a landing.
+              Composable primitives plus Copy, one space ratio, and a measure axiom
+              seeded on flow text. Compose these instead of writing bespoke
+              margin stacks or a breakpoint for every block. Next, Pieces put
+              these on controls. Then <a href="sections.html">Pages</a> compose a
+              landing.
             </p>
           </header>
 
@@ -175,7 +176,7 @@
                   <div class="kit-demo-box">Tile</div>
                   <div class="kit-demo-box">Tile</div>
                 </div>
-                <p class="kit-caption">.cds-grid · wraps at --cds-grid-min · --center for stats · --five for five even tracks</p>
+                <p class="kit-caption">.cds-grid · wraps at --cds-grid-min · --center for stats · --five is a named exception (leftover tile)</p>
               </div>
 
               <div class="kit-block">
@@ -197,7 +198,34 @@
                   <div class="kit-demo-box">Copy</div>
                   <div class="kit-demo-box">Media</div>
                 </div>
-                <p class="kit-caption">.cds-split · wraps at --cds-split-min</p>
+                <p class="kit-caption">.cds-split · Switcher · wraps at --cds-split-min · WordPress Group style Switcher</p>
+              </div>
+
+              <div class="kit-block">
+                <h3>Sidebar</h3>
+                <div class="kit-specimen cds-sidebar" style="--cds-sidebar-side: 6rem; --cds-sidebar-min: 50%">
+                  <div class="kit-demo-box">Side</div>
+                  <div class="kit-demo-box">Content takes the rest, then wraps</div>
+                </div>
+                <p class="kit-caption">.cds-sidebar · one fixed track, one fluid</p>
+              </div>
+
+              <div class="kit-block">
+                <h3>Frame</h3>
+                <div class="kit-specimen">
+                  <img class="cds-frame" src="assets/media/hero.jpg" alt="" width="400" height="300" />
+                </div>
+                <p class="kit-caption">.cds-frame · aspect-ratio --cds-frame · not prescribed px</p>
+              </div>
+
+              <div class="kit-block">
+                <h3>Box</h3>
+                <div class="kit-specimen kit-specimen--soft">
+                  <div class="cds-box" style="background: var(--cds-surface); border: 1px solid var(--cds-rule); border-radius: var(--cds-radius)">
+                    <p style="margin: 0; font-size: var(--cds-text-sm)">Even inset on all sides. Gap still owns sibling space.</p>
+                  </div>
+                </div>
+                <p class="kit-caption">.cds-box · --cds-inset · or none</p>
               </div>
             </div>
           </section>

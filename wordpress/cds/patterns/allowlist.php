@@ -215,7 +215,7 @@
 <details class="wp-block-details">
 	<summary>What is this row for?</summary>
 	<!-- wp:paragraph -->
-	<p>Disclosure. Summary is the control. The answer stays in the kit type.</p>
+		<p>Disclosure. Summary is the control. The answer stays in the kit type, inside the same frame as the table, and it must wrap in that column instead of stretching the page when this panel opens.</p>
 	<!-- /wp:paragraph -->
 </details>
 <!-- /wp:details -->
@@ -275,3 +275,11 @@
 <pre class="wp-block-preformatted">A preformatted block.
 Keeps line breaks.</pre>
 <!-- /wp:preformatted -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+	<!-- wp:button {"className":"is-style-cds-outline"} -->
+	<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button" href="/sections/">Next: Sections</a></div>
+	<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
