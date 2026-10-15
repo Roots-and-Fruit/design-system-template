@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title data-brand-title="Pieces">Pieces — Example Brand Design System</title>
+    <title data-brand-title="Components">Components — Example Brand Design System</title>
     <meta
       name="description"
-      content="Controls built from tokens and layout primitives: buttons, surfaces, alerts, pills, forms, tables, and code."
+      content="Atoms, molecules, and organisms: inputs, data, navigation, and feedback, built from the kit tokens."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -17,28 +17,90 @@
       <aside class="kit-sidebar">
         <div class="kit-sidebar__brand">
           <a class="kit-brand" href="index.html">
-            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
-              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
-              <circle cx="23" cy="23" r="9" />
-              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
-              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
-            </svg>
-            <span data-brand="name">Example Brand</span>
+            <img src="assets/mark.svg" alt="" width="52" height="52" />
+            <span class="kit-brand__copy">
+              <span class="kit-brand__name" data-brand="name">Example Brand</span>
+              <span class="kit-sidebar__subtitle" data-brand="tagline">Design system</span>
+            </span>
           </a>
-          <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-                                <nav class="kit-nav" aria-label="What the system does">
-          <a href="index.html">Start</a>
-          <a href="colors.html">Color</a>
-          <a href="typography.html">Type</a>
-          <a href="layout.html">Layout</a>
-          <a href="components.html" aria-current="page">Pieces</a>
-          <a href="sections.html">Pages</a>
-          <a href="the-site.html">The site</a>
-        </nav>
-        <nav class="kit-nav kit-nav--more" aria-label="More">
-          <a href="media-kit.html">Assets</a>
-          <a href="design-md.html">Design.md</a>
+                                <nav class="kit-nav" aria-label="Catalog">
+                <div class="kit-nav__group">
+          <a class="kit-nav__page" href="index.html">Overview</a>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Brand &amp; assets</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="media-kit.html#media-kit">Media Kit</a>
+            <a href="media-kit.html#logos">Logos &amp; icons</a>
+            <a href="media-kit.html#illustrations">Illustrations</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Tokens</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="colors.html">Color</a>
+            <a href="typography.html">Typography</a>
+            <a href="font-pairs.html">Font pairs</a>
+            <a href="layout.html#space">Space &amp; shape</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group is-open">
+          <button class="kit-nav__toggle" type="button" aria-expanded="true">
+            <span>Components</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="components.html#inputs">Inputs &amp; controls</a>
+            <a href="components.html#data">Data &amp; display</a>
+            <a href="components.html#navigation">Navigation</a>
+            <a href="components.html#feedback">Feedback &amp; overlays</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Patterns &amp; layout</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="layout.html#primitives">Primitives</a>
+            <a href="layout.html#proximity">Proximity</a>
+            <a href="sections.html#patterns">Content patterns</a>
+            <a href="sections.html#offers">Service offers</a>
+            <a href="sections.html#pages">Page jobs</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Showcase</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="showcase.html#landing">Landing</a>
+            <a href="showcase.html#plugin">Plugin page</a>
+            <a href="showcase.html#article">Article</a>
+            <a href="showcase.html#tool">Tool</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <a class="kit-nav__page" href="design-md.html">DESIGN.md</a>
+        </div>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -76,18 +138,19 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head">
-            <p class="cds-meta">Step 5 of 7</p>
-            <h1>Pieces</h1>
+            <p class="cds-meta">Components</p>
+            <h1>Controls, data, navigation, and feedback</h1>
             <p class="cds-lede">
-              Tokens on layout primitives, not a second library. Buttons, surfaces,
-              alerts, forms, tables: the same <code>--cds-*</code> values you just
-              walked. Next, <a href="sections.html">Pages</a> compose these into
-              landing jobs.
+              The same <code>--cds-*</code> values as the rest of the kit.
+              Inputs are atoms. Data and navigation are molecules. Feedback is the organism layer.
+              <a href="sections.html">Patterns &amp; layout</a> compose these into page jobs.
             </p>
           </header>
 
-          <section class="kit-section">
-            <h2>Buttons</h2>
+          <section class="kit-section" id="inputs">
+            <p class="cds-meta">Atoms</p>
+            <h2>Inputs &amp; controls</h2>
+            <h3>Buttons &amp; links</h3>
             <div class="kit-specimen cds-cluster">
               <button type="button" class="cds-btn cds-btn--primary">Primary</button>
               <button type="button" class="cds-btn cds-btn--secondary">Secondary</button>
@@ -125,10 +188,97 @@
                 </tbody>
               </table>
             </div>
+            <h3>App chrome</h3>
+            <p class="cds-prose">
+              Use these inside a tool. The filled one marks the current view or the in-app action.
+              Keep them off marketing heroes. The marketing primary stays <code>.cds-btn--primary</code>.
+            </p>
+            <div class="kit-specimen cds-cluster">
+              <button type="button" class="cds-btn cds-btn--app-quiet">Overview</button>
+              <button type="button" class="cds-btn cds-btn--app" aria-current="page">Board</button>
+              <button type="button" class="cds-btn cds-btn--app-quiet">Settings</button>
+              <button type="button" class="cds-btn cds-btn--app">Save view</button>
+            </div>
+            <h3>Forms</h3>
+            <div class="kit-specimen cds-stack cds-stack--md" style="max-inline-size: var(--cds-measure)">
+              <div class="cds-field">
+                <label for="demo-name">Full name</label>
+                <input class="cds-input" id="demo-name" type="text" placeholder="Ada Lovelace" />
+                <span class="cds-hint">Labels above, hints below.</span>
+              </div>
+              <div class="cds-field cds-field--error">
+                <label for="demo-email">Email</label>
+                <input class="cds-input" id="demo-email" type="email" value="ada@" aria-invalid="true" aria-describedby="demo-email-error" />
+                <span class="cds-error" id="demo-email-error">Enter a full email address.</span>
+              </div>
+              <div class="cds-field">
+                <label for="demo-plan">Role</label>
+                <select class="cds-select cds-select--filter" id="demo-plan">
+                  <option>Designer</option>
+                  <option>Developer</option>
+                  <option>Marketing</option>
+                </select>
+              </div>
+              <div class="cds-field">
+                <label for="demo-notes">Notes</label>
+                <textarea class="cds-textarea" id="demo-notes" placeholder="Short context"></textarea>
+              </div>
+              <div class="cds-field">
+                <label for="demo-qty">Quantity</label>
+                <div class="cds-number">
+                  <button type="button" class="cds-number__step" data-cds-step="-1" aria-label="Decrease quantity">−</button>
+                  <input class="cds-input" id="demo-qty" type="number" value="2" min="1" max="12" />
+                  <button type="button" class="cds-number__step" data-cds-step="1" aria-label="Increase quantity">+</button>
+                </div>
+              </div>
+              <div class="cds-field">
+                <label for="demo-pace">Pace <output class="cds-slider__value" for="demo-pace">40</output></label>
+                <input class="cds-slider" id="demo-pace" type="range" min="0" max="100" value="40" />
+              </div>
+              <label class="cds-check">
+                <input type="checkbox" checked />
+                <span>Send me the occasional product update.</span>
+              </label>
+              <fieldset class="cds-stack cds-stack--sm" style="border: 0; padding: 0; margin: 0">
+                <legend>Preference</legend>
+                <label class="cds-check"><input type="radio" name="pref" checked /> <span>Quiet paper</span></label>
+                <label class="cds-check"><input type="radio" name="pref" /> <span>High-contrast ink</span></label>
+              </fieldset>
+              <label class="cds-toggle">
+                <input class="cds-toggle__input" type="checkbox" checked />
+                <span class="cds-toggle__track" aria-hidden="true"></span>
+                <span class="cds-toggle__state" data-enabled="On" data-disabled="Off">On</span>
+                <span class="cds-toggle__note">Only signed-in accounts may use the connection.</span>
+              </label>
+              <div class="cds-cluster">
+                <button type="button" class="cds-btn cds-btn--primary">Save</button>
+                <button type="button" class="cds-btn cds-btn--ghost">Cancel</button>
+              </div>
+            </div>
+            <p class="kit-caption">Errors carry a message, never colour alone</p>
+            <h3 id="search">Search</h3>
+            <p class="cds-prose">The label stays above the field. The button sits on the same row as the input. Topic chips are ordinary links.</p>
+            <form class="cds-search" role="search">
+              <div class="cds-field">
+                <label for="demo-search">Search</label>
+                <div class="cds-search__row">
+                  <input class="cds-input" id="demo-search" type="search" name="s" placeholder="What are you looking for?" />
+                  <button type="button" class="cds-btn cds-btn--primary">Search</button>
+                </div>
+              </div>
+            </form>
+            <div class="cds-cluster">
+              <span class="cds-meta">Topics</span>
+              <a class="cds-pill" href="#search">Notes</a>
+              <a class="cds-pill" href="#search">Proof</a>
+              <a class="cds-pill" href="#search">Type</a>
+            </div>
           </section>
 
-          <section class="kit-section">
-            <h2>Surfaces</h2>
+          <section class="kit-section" id="data">
+            <p class="cds-meta">Molecules</p>
+            <h2>Data &amp; display</h2>
+            <h3>Surfaces</h3>
             <div class="cds-grid" style="--cds-grid-min: 17rem">
               <div class="cds-surface">
                 <h3>Surface</h3>
@@ -158,89 +308,38 @@
               Do not wrap every block in a shadowed card. If everything is
               lifted, nothing reads as important.
             </p>
-          </section>
-
-          <section class="kit-section" id="alerts">
-            <h2>Alerts</h2>
-            <div class="kit-specimen cds-stack cds-stack--sm">
-              <div class="cds-alert cds-alert--info">
-                <strong>Info</strong>
-                Neutral context for something the reader should know.
-              </div>
-              <div class="cds-alert cds-alert--success">
-                <strong>Success</strong>
-                The action completed. Say what changed, not just that it worked.
-              </div>
-              <div class="cds-alert cds-alert--warning">
-                <strong>Warning</strong>
-                Something needs attention before it becomes a problem.
-              </div>
-              <div class="cds-alert cds-alert--danger">
-                <strong>Danger</strong>
-                It failed or it destroys data. Pair with a way out.
-              </div>
-              <div class="cds-alert cds-alert--note">
-                <strong>Note</strong>
-                Guidance rather than status: a how-to aside that sits in the flow
-                of a document.
-              </div>
+            <h3 id="card">Card</h3>
+            <p class="cds-prose">One title, one body, and an action in the footer. A surface stays the looser box.</p>
+            <article class="cds-card">
+              <p class="cds-meta">Note</p>
+              <h3 class="cds-card__title">A short note</h3>
+              <p>The pattern stays in the editor. The page reads from that same pattern.</p>
+              <footer class="cds-card__foot">
+                <button type="button" class="cds-btn cds-btn--outline cds-btn--sm">Open</button>
+              </footer>
+            </article>
+            <h3 id="divider">Divider</h3>
+            <hr class="cds-divider" />
+            <div class="cds-cluster">
+              <span>Notes</span>
+              <hr class="cds-divider cds-divider--vertical" />
+              <span>Sources</span>
             </div>
-          </section>
-
-          <section class="kit-section">
-            <h2>Pills and progress</h2>
+            <h3 id="badge">Badge</h3>
+            <p class="cds-prose">A badge carries a count or a status dot. A pill carries a short label.</p>
             <div class="kit-specimen cds-cluster">
-              <span class="cds-pill">Default</span>
-              <span class="cds-pill cds-pill--active">Selected</span>
-              <span class="cds-pill cds-pill--success">Live</span>
-              <span class="cds-pill cds-pill--warning">Review</span>
-              <span class="cds-pill cds-pill--danger">Blocked</span>
-              <span class="cds-spinner" role="status" aria-label="Loading"></span>
-              <span class="cds-progress"><span style="inline-size: 62%"></span></span>
+              <span class="cds-badge-host">Inbox <span class="cds-badge">3</span></span>
+              <span class="cds-badge cds-badge--danger">2</span>
+              <span class="cds-badge-host">Online <span class="cds-badge cds-badge--dot" role="img" aria-label="Online"></span></span>
             </div>
-            <p class="cds-prose">
-              Pills carry compact status; alerts carry full sentences. Use the
-              spinner while a wait is indeterminate and the progress bar only
-              when the percentage is real.
-            </p>
-          </section>
-
-          <section class="kit-section">
-            <h2>Forms</h2>
-            <div class="kit-specimen cds-grid" style="--cds-grid-min: 15rem">
-              <div class="cds-field">
-                <label for="demo-name">Full name</label>
-                <input class="cds-input" id="demo-name" type="text" placeholder="Ada Lovelace" />
-                <span class="cds-hint">Labels above, hints below.</span>
-              </div>
-              <div class="cds-field">
-                <label for="demo-plan">Plan</label>
-                <select class="cds-select" id="demo-plan">
-                  <option>Starter</option>
-                  <option>Team</option>
-                </select>
-                <span class="cds-hint">Native controls, brand focus ring.</span>
-              </div>
-              <div class="cds-field cds-field--error">
-                <label for="demo-email">Email</label>
-                <input class="cds-input" id="demo-email" type="email" value="ada@" aria-describedby="demo-email-error" />
-                <span class="cds-error" id="demo-email-error">Enter a full email address.</span>
-              </div>
-              <div class="cds-field">
-                <label for="demo-notes">Notes</label>
-                <textarea class="cds-textarea" id="demo-notes" placeholder="Anything we should know?"></textarea>
-              </div>
-              <label class="cds-check">
-                <input type="checkbox" checked />
-                <span>Send me the occasional product update.</span>
-              </label>
+            <h3 id="avatar">Avatar</h3>
+            <div class="kit-specimen cds-cluster">
+              <span class="cds-avatar" role="img" aria-label="Jordan Lee">JL</span>
+              <img class="cds-avatar" src="assets/mark.svg" alt="" width="44" height="44" />
             </div>
-            <p class="kit-caption">Errors carry a message, never colour alone</p>
-          </section>
-
-          <section class="kit-section">
-            <h2>Data and code</h2>
-            <div class="cds-stack">
+            <h3 id="time">Relative time</h3>
+            <p class="cds-prose">The visible phrase is relative. The datetime attribute keeps the absolute moment.</p>
+            <p><time class="cds-time" datetime="2026-10-14T10:00:00Z">3 hours ago</time></p>
             <div class="cds-table-wrap">
               <table class="cds-table">
                 <thead>
@@ -257,28 +356,134 @@
                 </tbody>
               </table>
             </div>
-            <details class="cds-details">
-              <summary>What is this row for?</summary>
-              <p>Disclosure. Summary is the control. The answer stays in the kit type, inside the same frame as the table, and it must wrap in that column instead of stretching the page when this panel opens.</p>
-            </details>
-            </div>
-            <pre class="cds-code"><code>.hero {
+            <div class="cds-code-window">
+              <div class="cds-code-window__chrome">
+                <div class="cds-code-window__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <button type="button" class="cds-code-window__copy" data-cds-copy aria-label="Copy code">Copy</button>
+              </div>
+              <pre class="cds-code"><code>.hero {
   background: var(--cds-paper);
   padding-block: var(--cds-space-8);
 }</code></pre>
+              <span class="cds-code-window__lang">CSS</span>
+            </div>
             <p class="cds-prose">
-              Inline <code>code</code> stays quiet so it reads inside a sentence.
-              Block code soft-wraps, because a snippet should never hide content
-              behind a horizontal scrollbar.
+              Quiet inline <code>code</code> for terms in a sentence.
+              Outlined <span class="cds-inline-label">SKILL.md</span> for a named object.
+              The window keeps the copy control and the language label.
             </p>
           </section>
 
-                                        <nav class="kit-pager" aria-label="Pagination">
+          <section class="kit-section" id="navigation">
+            <p class="cds-meta">Molecules</p>
+            <h2>Navigation</h2>
+            <p class="cds-lede">A trail back to the parent, a primary row, and a way through a long list.</p>
+            <h3>Breadcrumb</h3>
+            <nav aria-label="Breadcrumb">
+              <ol class="cds-breadcrumb">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="components.html">Components</a></li>
+                <li><span aria-current="page">Navigation</span></li>
+              </ol>
+            </nav>
+            <h3>Primary nav</h3>
+            <p class="cds-prose">Uppercase links. The panel fill rises on hover. The current page uses the paper fill. The bar that holds this row is site chrome.</p>
+            <nav class="cds-nav" aria-label="Primary">
+              <a href="#navigation" aria-current="page">Services</a>
+              <a href="#navigation">Work</a>
+              <a href="#navigation">Articles</a>
+              <a href="#navigation">About</a>
+            </nav>
+            <h3>Pagination</h3>
+            <nav class="cds-pagination" aria-label="Pagination">
+              <button type="button" class="cds-btn cds-btn--ghost cds-btn--sm">Previous</button>
+              <button type="button" class="cds-btn cds-btn--outline cds-btn--sm">1</button>
+              <button type="button" class="cds-btn cds-btn--primary cds-btn--sm" aria-current="page">2</button>
+              <button type="button" class="cds-btn cds-btn--outline cds-btn--sm">3</button>
+              <button type="button" class="cds-btn cds-btn--ghost cds-btn--sm">Next</button>
+            </nav>
+            <h3>Icon link</h3>
+            <div class="cds-cluster">
+              <a class="cds-icon-link" href="#navigation" aria-label="Share">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+              </a>
+            </div>
+          </section>
+
+          <section class="kit-section" id="feedback">
+            <p class="cds-meta">Organisms</p>
+            <h2>Feedback &amp; overlays</h2>
+            <div class="kit-specimen cds-cluster">
+              <span class="cds-pill">Default</span>
+              <span class="cds-pill cds-pill--active">Selected</span>
+              <span class="cds-pill cds-pill--success">Live</span>
+              <span class="cds-pill cds-pill--warning">Review</span>
+              <span class="cds-pill cds-pill--danger">Blocked</span>
+              <span class="cds-spinner" role="status" aria-label="Loading"></span>
+              <span class="cds-progress"><span style="inline-size: 62%"></span></span>
+            </div>
+            <div class="kit-specimen cds-stack cds-stack--sm">
+              <div class="cds-alert cds-alert--info"><strong>Info</strong> Neutral context for something the reader should know.</div>
+              <div class="cds-alert cds-alert--success"><strong>Success</strong> The action completed. Say what changed.</div>
+              <div class="cds-alert cds-alert--warning"><strong>Warning</strong> Something needs attention before it becomes a problem.</div>
+              <div class="cds-alert cds-alert--danger"><strong>Danger</strong> It failed or it destroys data. Pair with a way out.</div>
+              <div class="cds-alert cds-alert--note"><strong>Note</strong> Guidance rather than status.</div>
+            </div>
+            <h3>Skeleton</h3>
+            <div class="cds-skeleton-card" aria-hidden="true">
+              <span class="cds-skeleton cds-skeleton--avatar"></span>
+              <span class="cds-skeleton cds-skeleton--line"></span>
+              <span class="cds-skeleton cds-skeleton--line cds-skeleton--short"></span>
+            </div>
+            <h3>Tooltip</h3>
+            <div style="padding-bottom: 3rem">
+              <span class="cds-tooltip">
+                <button type="button" class="cds-btn cds-btn--outline cds-btn--sm" aria-describedby="tip-measure">Measure</button>
+                <span class="cds-tooltip__bubble" id="tip-measure" role="tooltip">Hold the prose to the measure.</span>
+              </span>
+            </div>
+            <h3>Dialog</h3>
+            <button type="button" class="cds-btn cds-btn--primary" data-cds-dialog-open="cds-dialog-demo">Leave this draft</button>
+            <dialog class="cds-dialog" id="cds-dialog-demo" aria-labelledby="cds-dialog-demo-title">
+              <form method="dialog">
+                <h3 id="cds-dialog-demo-title">Leave this draft</h3>
+                <p>The draft stays on this computer.</p>
+                <div class="cds-cluster">
+                  <button type="submit" class="cds-btn cds-btn--ghost" value="cancel">Keep editing</button>
+                  <button type="submit" class="cds-btn cds-btn--primary" value="leave">Leave draft</button>
+                </div>
+              </form>
+            </dialog>
+            <h3>Toast</h3>
+            <div class="cds-toast-stage">
+              <button type="button" class="cds-btn cds-btn--secondary" data-cds-toast="Saved. The draft is on this computer.">Show a toast</button>
+              <div class="cds-toast" role="status" hidden>
+                <p>Saved. The draft is on this computer.</p>
+                <button type="button" class="cds-toast__close cds-btn cds-btn--ghost cds-btn--sm">Dismiss</button>
+              </div>
+            </div>
+            <p class="cds-meta">Molecule</p>
+            <h3>Disclosure</h3>
+            <div class="cds-stack cds-stack--sm" style="max-inline-size: 36rem">
+              <details class="cds-details">
+                <summary>Context</summary>
+                <p>Facts that support the task but should not lead the page.</p>
+              </details>
+              <details class="cds-details" open>
+                <summary>Sources</summary>
+                <p>Optional paths. Never a substitute for putting the gist in the open.</p>
+              </details>
+            </div>
+          </section>
+
+          <nav class="kit-pager" aria-label="Pagination">
             <a href="layout.html">&larr; Layout</a>
-            <a href="sections.html">Next: Pages &rarr;</a>
+            <a href="sections.html">Next: Patterns &rarr;</a>
           </nav>
         </div>
       </main>
     </div>
+    <script src="js/kit-widgets.js"></script>
+      <script src="js/kit-nav.js"></script>
   </body>
 </html>

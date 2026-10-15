@@ -72,6 +72,28 @@
   margin-block-start: var(--cds-space-4);
 }
 
+:is(.cds-copy, .is-style-cds-copy) > :is(h1, h2, h3, h4, .wp-block-heading) + .cds-byline {
+  margin-block-start: var(--cds-space-2);
+}
+
+:is(.cds-copy, .is-style-cds-copy) > :is(.cds-lede, p, .wp-block-paragraph) + .cds-display {
+  margin-block-start: var(--cds-space-6);
+}
+
+:is(.cds-copy, .is-style-cds-copy) > .cds-display + .cds-meta {
+  margin-block-start: var(--cds-space-2);
+}
+
+:is(.cds-copy, .is-style-cds-copy) > .cds-byline + :is(.cds-lede, p, .wp-block-paragraph) {
+  margin-block-start: var(--cds-space-6);
+}
+
+.cds-byline {
+  margin: 0;
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+}
+
 /* —— Box: even inset, or none —————————————————————————————————————— */
 /* Padding reaches into the box. Asymmetrical padding is sibling spacing
    (use Stack gap). Paint (surface, tint, panel, dark) sits on a Box. */
@@ -207,4 +229,124 @@ img.cds-frame {
   aspect-ratio: var(--cds-frame, 4 / 3);
   object-fit: cover;
   border-radius: var(--cds-radius-lg);
+}
+
+img.cds-frame.cds-frame--square,
+.cds-frame--square {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+img.cds-frame.cds-frame--wide,
+.cds-frame--wide {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+img.cds-frame.cds-frame--round,
+.cds-frame--round {
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  max-inline-size: 18rem;
+}
+
+img.cds-frame.cds-frame--fit,
+.cds-frame--fit {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: var(--cds-panel-soft);
+  border: 1px solid var(--cds-rule);
+}
+
+.cds-figure {
+  margin: 0;
+}
+
+.cds-caption {
+  margin-block-start: var(--cds-space-3);
+}
+
+.cds-caption__name {
+  margin: 0;
+  font-family: var(--cds-font-display);
+  font-weight: var(--cds-weight-bold);
+  color: var(--cds-ink-deep);
+}
+
+.cds-caption__role {
+  margin: 0;
+  font-size: var(--cds-text-sm);
+  color: var(--cds-ink-muted);
+}
+
+.cds-figure--compact .cds-caption__name {
+  font-size: var(--cds-text-md);
+}
+
+.cds-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cds-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cds-grid--sym {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cds-grid--sym > * {
+  flex: 1 1 calc(33.333% - var(--cds-grid, var(--cds-space-5)));
+  max-inline-size: calc(33.333% - var(--cds-space-3));
+  min-inline-size: min(100%, 14rem);
+}
+
+.cds-split--shot > .cds-copy {
+  flex-basis: 28rem;
+  flex-grow: 0;
+  max-inline-size: min(28rem, var(--cds-measure));
+}
+
+.cds-split--shot > :not(.cds-copy) {
+  flex-basis: 0;
+  flex-grow: 1;
+  min-inline-size: 12rem;
+}
+
+.cds-wash {
+  background: var(--cds-paper-deep);
+  padding-block: var(--cds-space-6);
+}
+
+.cds-wash--panel {
+  background: var(--cds-panel);
+}
+
+.cds-wash--dark {
+  background: var(--cds-surface-dark);
+  color: var(--cds-on-dark);
+}
+
+.cds-wash--dark :is(h1, h2, h3, h4) {
+  color: var(--cds-on-dark);
+}
+
+.cds-wash--dark :is(p, .cds-meta) {
+  color: var(--cds-on-dark-muted);
+}
+
+.cds-wash__inner {
+  max-inline-size: var(--cds-max);
+  margin-inline: auto;
+  padding-inline: var(--cds-gutter);
+}
+
+@media (max-width: 40rem) {
+  .cds-grid--two,
+  .cds-grid--three {
+    grid-template-columns: 1fr;
+  }
 }

@@ -17,7 +17,7 @@ colors:
   panel-soft: "#f8fafc"
   ink: "#1e293b"
   ink-deep: "#0f172a"
-  ink-muted: "#64748b"
+  ink-muted: "#475569"
   ink-soft: "#94a3b8"
   rule: "rgba(15, 23, 42, 0.12)"
   success: "#059669"
@@ -284,8 +284,7 @@ for voice, sans for clarity.
 This file is normative. Agents and generators must read it before choosing
 colour, type, radius, or components, and must map values to the CSS custom
 properties in `css/tokens.css` (`--cds-*`) rather than inventing parallel ones.
-The human reference site starts at `index.html` and walks Color → Type →
-Layout → Pieces → Pages → The site. Assets and Design.md sit under that walk.
+The human reference site starts at `index.html`. The sidebar groups are Overview, Brand & assets, Tokens, Components, Patterns & layout, Showcase, and DESIGN.md. Those names are the catalog. They are not folders.
 
 Brand feel (replace with yours):
 - Calm, structured, legible; depth stays quiet
@@ -304,9 +303,9 @@ Three layers, in order. The reference walk follows them.
 
 1. **Design tokens** — primitive, semantic, and component. Color and type are this layer. See Token layers.
 2. **Every Layout** — intrinsic primitives in `css/layouts.css` (Stack, Cluster, Center, Grid, Split/Switcher, Sidebar, Frame, Box) plus Copy. Mixed marketing copy uses `.cds-copy` (Gestalt proximity), not an even stack. See Layout.
-3. **Compose** — Pieces are those tokens on those primitives. Pages are Pieces composed into landing jobs. The site is one page from that list.
+3. **Compose** — Components put tokens on the primitives. Patterns and the eight page jobs compose those components. Showcase is four pages from that list.
 
-Walk: Start → Color → Type → Layout → Pieces → Pages → The site. Assets and Design.md sit under that walk. Do not treat Pieces and Pages as two catalogs. A control’s look lives under Components; a page job may include that control.
+Catalog: Overview, Brand & assets, Tokens, Components, Patterns & layout, Showcase, DESIGN.md. Atoms, molecules, organisms, and pages are labels on those groups. Do not treat them as folders.
 
 ## Token layers
 
@@ -430,15 +429,23 @@ Rules:
 - Text on a filled surface uses its paired `on-*` token: `on-primary` on primary
   fills, `on-accent` on accent fills, `on-dark` on `surface-dark`. Recheck AA
   whenever you change an accent hue
+- Check WCAG AA (4.5:1) for body text and AA Large (3:1) for display sizes
+  before shipping any text-on-colour pair. The compile gate is the promised
+  pairs in `scripts/contrast.mjs` (body size, 4.5:1): `on-primary` on `primary`
+  and `primary-deep`, `on-accent` on `accent`, `on-dark` on `surface-dark`,
+  `ink` on `paper`, `surface`, and `primary-soft`, `primary-deep` on
+  `primary-soft`, and `ink-muted` on `paper`, `paper-deep`, `surface`, and
+  `panel`. The Color page matrix is the picture of every pair, including pairs
+  that should fail. It is not the gate. Button labels need AA, not AA Large.
+  Include hover (`primary-deep` + `on-primary`)
+- Every `img` has an `alt` attribute. Empty `alt` means decorative: the mark
+  beside the site title, an icon, or a thumbnail whose link text already names
+  it. An informative photo gets a description. Do not leave the attribute off
 - Soft brand fills use `primary-soft` with `ink` (not `ink-muted`). Solid
   `primary` plus `on-primary` is for buttons, not card bodies, in this demo
 - Never promote `accent` into a second theme colour or a large background fill
 - Semantic colours describe state; do not borrow `danger` or `warning` for brand
   emphasis, and do not alias `accent` to `warning`
-- Check WCAG AA (4.5:1) for body text and AA Large (3:1) for display sizes
-  before shipping any text-on-colour pair. The Color page has a live
-  accessibility matrix scored from these tokens; button labels need AA, not
-  AA Large. Include hover (`primary-deep` + `on-primary`)
 - The `primary-1`…`primary-5` ramp is for charts, illustrations, and
   progressive emphasis, not random decoration. `--cds-primary-4` aliases
   `primary`. `--cds-chart-1`…`4` alias `primary`, `accent`, `success`, and
@@ -542,9 +549,9 @@ Gap jobs (aliases of `spacing.*`; one `gap`, not separate row/column tokens):
 | YAML | Step today | Job |
 | --- | --- | --- |
 | `cluster` | 3 | Buttons, pills, tags. Tight chrome. |
-| `stack` | 5 | Like items in a column. Default Stack. WordPress `core/group` `blockGap`. |
+| `stack` | 5 | Like items in a column. Default Stack. WordPress `core/group` and `core/post-content` `blockGap`. |
 | `grid` | 5 | Like items in a wrap. Default Grid. Same step as stack until tiles need more air than inset. |
-| `section` | 6 | Between page jobs (intro → grid → band). WordPress `post-content` `blockGap`. Same step as inset, so a row of cards does not breathe more than the padding inside a card. |
+| `section` | 6 | Between page jobs (intro → grid → band). WordPress: the extra space between consecutive groups in post content, on top of the prose step. Same step as inset, so a row of cards does not breathe more than the padding inside a card. |
 | `split` | 7 | Copy vs media (Switcher), Sidebar, Stack `--lg`. A bigger thought than tile vs tile. |
 
 Do not invent 28px. If tiles feel tighter than their own inset, bump `grid` to 6 (match inset) or 7 (treat the row as a section). If page rows feel tight, bump `section` to 7. Copy stays proximity, not these jobs.
@@ -570,13 +577,21 @@ the walk). Specimens: `sections.html`. WordPress projects the same names as
 patterns in `wordpress/cds/patterns/`. Do not invent a ninth job. A path chooser
 is a three-tile card grid. Header and footer are template parts, not page jobs.
 
+Pieces sit inside a job. Icon, icon row, cover, play control, corner badge,
+logo row, chip, product card, category tile, stacked form, inline form, and
+reel. A reel (`.cds-reel`) is a horizontal scroll-snap row for the three
+carousel-shaped layouts. It is not a slider library, and it does not replace
+the review grid. A footer with a call to action is an inserter pattern. It
+does not replace `parts/footer.html`. Icons are mask classes (`.cds-icon`)
+pointing at `assets/icons/`. Do not put SVG in post content.
+
 | Section | Job | Wash | CTA | Not |
 | --- | --- | --- | --- | --- |
 | Hero | Pill, display title, lede, one primary. Optional proof cluster. Media on the right via `.cds-split` (Switcher). Copy column is `.cds-copy`. A text stack without media is still legal | `paper` | One primary | A whole page, a Split section (wrong wash), a hero in a bare `.cds-stack`, a hero built from `core/columns` |
 | Proof | Three or five stats, centered in even tracks, or a logo cluster. No leftover tile | `paper-deep` (viewport wash; numbers sit on `wide`) | None | A feature grid, four tiles wrapping to three, five auto-fitting to four-plus-one, left-aligned stats |
 | Card grid | Three paired fills in `.cds-grid` (surface, `primary-soft` tint, dark). Title, one line, optional meta and a link | `paper` | Outline or text link, not a second primary | A dashboard, three identical whites |
 | Split | Copy plus media via `.cds-split` (WordPress: Group style Switcher) | `paper-deep` (viewport wash; split sits on `wide`) | One primary, optional | A blog layout, `core/columns` |
-| Quote | One attribution. Compose `.cds-surface` plus `.cds-lede` plus `.cds-meta`. There is no `.cds-quote` class | `paper` | None | A reviews carousel, a blockquote restyle |
+| Quote | `.cds-quote`. Words, a mark, and a person. Photo and role are optional. A row of reviews is `.cds-review` in `.cds-grid--three`. A document passage is `.cds-cite` | `paper` | None | A reviews carousel |
 | Dark band | Callout strip. `on-dark` title | `surface-dark` (viewport wash; copy on the measure) | One accent max | A second theme |
 | CTA | Short `display-sm` plus one button | `panel` | Primary or accent, not both | Two buttons fighting |
 | Alert | One status note on a landing. Look and tones live under Components (`.cds-alert`). Never a hero | soft status or `primary-soft` | None | A hero, a restated alert system |
@@ -626,7 +641,7 @@ never remove it.
 
 ## Components
 
-Pieces in the reference walk. Class names live in `css/components.css`, all prefixed `cds-`.
+Pieces in the catalog (Components). Class names live in `css/components.css` and `css/layouts.css`, all prefixed `cds-`.
 
 **Buttons**
 - `button-primary` (`.cds-btn--primary`): the main action. One per section.
@@ -711,6 +726,17 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
 - Block `.cds-code` has a `rule` border, soft-wraps, and never hides content
   behind a scrollbar
 
+**Content patterns**
+- `.cds-post`: articles index card. Image, category, title, one line, date. The featured story stays a split.
+- `.cds-facts`: label and value rows. Optional `.cds-facts__title` for a download card. Omit it for case-study meta.
+- `.cds-stats` / `.cds-stat`: four display figures in a row, including on `surface-dark`. The paper proof job stays the five-up grid.
+- `.cds-episode`: square cover, kicker, title, one play link.
+- `.cds-step`: a mark (step number or year) and the write-up. One row covers “how it works” and a short timeline.
+- `.cds-person`: square slot, name, role. A photo when there is a portrait. The avatar fills the slot until then.
+- `.cds-shots`: one lead photo and two smaller ones.
+- `.cds-bento`: three cells, then two that share the next row. A plain card grid does not use this.
+- `.cds-search`: label, field, and button on one control. Topic chips are links.
+
 **Brand assets**
 - Marks live in `assets/`. Use the wordmark when naming the brand and the icon
   for favicons, avatars, and tight badges
@@ -732,6 +758,7 @@ Pieces in the reference walk. Class names live in `css/components.css`, all pref
 **Don't**
 - Don't use one even stack gap for a hero, split, or CTA copy column
 - Don't invent hex values, font stacks, or spacing that bypass the tokens
+- Don't add a `<style>` block or a new class when `layouts.css` or `components.css` already names the object. Compose those classes. New CSS is only for behavior the kit has no object for. A specimen may set `font-family` inline, because that family is the content.
 - Don't make the accent a theme colour or a page background
 - Don't ship more than one primary button, or more than one accent CTA, per view
 - Don't use pure black or pure white as the default page wash
@@ -757,17 +784,14 @@ When generating or editing UI for this brand:
 5. Self-check after UI work: correct page wash, display family on titles, one
    primary action, accent used at most once, focus rings intact.
 6. Use the mark files in `assets/`; never regenerate a lookalike.
-7. Patterns not covered here (modals, tabs, toasts, dark mode) are out of scope
-   until they are added. Improvise with existing tokens and keep the same
-   constraints instead of inventing a new visual language.
+7. Dialogs, toasts, tabs, quotes, reviews, offers, and galleries are in this file. Use those classes. Dark mode stays out until it is tokenised here.
 8. If this file still reads "Example Brand", say so before generating brand
    work: the system has not been customised yet.
 9. For a WordPress theme, follow [`WORDPRESS.md`](WORDPRESS.md). Do not invent
    palette slugs, picker unlocks, or recipes the compiler does not emit.
 10. Marketing pages start from the page jobs above. Compose those jobs.
     Hero, Split, CTA, and Dark band copy columns use `.cds-copy`. Do not put
-    mixed copy in a bare `.cds-stack`. Do not invent a layout, a card class, or
-    a ninth page job. Do not wrap
+    mixed copy in a bare `.cds-stack`. A card is `.cds-card`. A service offer is `.cds-offer`. Do not invent a ninth page job. Do not wrap
     `post-content` in a second constrained group. Do not leave a leftover tile.
     Do not mix `content` and `wide` on one landing. Proof stats are centered.
     Proof is three or five even tracks, never a leftover tile. Marketing hero is
@@ -776,3 +800,7 @@ When generating or editing UI for this brand:
     Marks and logos use Original. Card-grid tiles use three paired fills. Body and outline labels must meet
     WCAG AA against the tile. Outline hover on tint and dark must fill a colour
     that is not the tile. Do not ship three identical whites.
+11. Before writing CSS, search `layouts.css` and `components.css`. Use the class
+    that already does the job. A page `<style>` block that restates a grid, a
+    stack, a card, a pill, or a type size is a miss. New CSS is only for
+    behavior the kit has no object for. A specimen may set `font-family` inline.

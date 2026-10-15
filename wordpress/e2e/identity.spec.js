@@ -130,6 +130,20 @@ test.describe("CDS identity chrome", () => {
       expect(privacy?.ok(), "GET /privacy/").toBeTruthy();
       const terms = await page.goto("/terms/");
       expect(terms?.ok(), "GET /terms/").toBeTruthy();
+
+      const prose = await page.evaluate(() => {
+        const root = document.querySelector(".wp-block-post-content");
+        const ps = [...(root?.querySelectorAll(":scope > p") || [])];
+        if (!root || ps.length < 2) return null;
+        const gap = ps[1].getBoundingClientRect().top - ps[0].getBoundingClientRect().bottom;
+        return { gap, rowGap: parseFloat(getComputedStyle(root).rowGap) };
+      });
+      expect(prose, "terms has two paragraphs").not.toBeNull();
+      expect(prose.rowGap, "post content uses the prose step").toBeLessThan(28);
+      expect(
+        Math.abs(prose.gap - prose.rowGap),
+        "paragraph margin does not stack on the gap",
+      ).toBeLessThan(2);
     });
   });
 });

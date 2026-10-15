@@ -9,14 +9,15 @@
  *   wordpress/cds/design-tokens.json Layer B registry
  *   wordpress/cds/assets/css/        copied kit CSS (no base.css)
  *   wordpress/cds/assets/mark.svg    kit mark (Site Logo fallback)
- *   wordpress/cds/brand-defaults.json name + tagline for first-run identity
+ *   wordpress/cds/brand-defaults.json name, slug, description, tagline
+ *   wordpress/cds/style.css          Theme Name + Description from brand.json
  *   wordpress/theme.json             same JSON, for copy-only use
  *
  * DESIGN.md stays the source of truth. Re-run after customize or token edits.
  * Zero install. Do not hand-edit the generated files.
  */
 
-import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -25,6 +26,15 @@ import {
   resolveInlineRefs,
   resolveTokenRef,
 } from "./lib/parse-yaml-map.mjs";
+import { checkPairs, PROMISED_PAIRS } from "./contrast.mjs";
+import { missingAltInKit } from "./a11y-source.mjs";
+import { writePatterns } from "./write-patterns.mjs";
+import {
+  fontPairsForBrand,
+  pairCatalogRecord,
+  pairStyleVariation,
+  stackCss,
+} from "./font-pairs.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -150,17 +160,60 @@ function loadSources() {
   return { design, tokens };
 }
 
+function oneLine(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/\*\//g, "")
+    .trim();
+}
+
+/** Install folder. "Example Brand" → example-brand. Pattern slugs stay cds/. */
+function themeSlug(name) {
+  const slug = oneLine(name)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  if (!/^[a-z][a-z0-9-]*$/.test(slug)) {
+    throw new Error(`Brand name "${name}" cannot become a theme folder slug.`);
+  }
+  return slug;
+}
+
 function loadBrandDefaults(design) {
   let name = design.name || "Example Brand";
   let tagline = "";
+  let description = "";
   try {
     const brand = JSON.parse(read("brand.json"));
     if (brand.name) name = brand.name;
     if (brand.tagline) tagline = brand.tagline;
+    if (brand.description) description = oneLine(brand.description);
   } catch {
     // DESIGN.md name is enough for a missing or broken brand.json
   }
-  return { name, tagline, mark: "assets/mark.svg" };
+  if (!description) description = `${name} block theme.`;
+  return {
+    name,
+    slug: themeSlug(name),
+    description,
+    tagline,
+    mark: "assets/mark.svg",
+  };
+}
+
+/** Theme Name and Description follow brand.json. A later sync must not put CDS back. */
+function stampStyleHeader(defaults) {
+  const rel = "wordpress/cds/style.css";
+  let css = read(rel);
+  if (!/^Theme Name:/m.test(css) || !/^Description:/m.test(css)) {
+    throw new Error(`${rel} is missing Theme Name or Description.`);
+  }
+  css = css.replace(/^Theme Name:.*$/m, `Theme Name: ${defaults.name}`);
+  css = css.replace(/^Description:.*$/m, `Description: ${defaults.description}`);
+  writeFileSync(join(root, rel), css, "utf8");
+  console.log(`  stamped style.css → ${defaults.name} (install as ${defaults.slug})`);
 }
 
 function color(design, tokens, slug) {
@@ -591,8 +644,12 @@ function buildStyles(design) {
       "core/buttons": {
         spacing: { blockGap: layoutSpacingPreset(design, "cluster", 3) },
       },
+      // Prose step, same as the root block gap and .cds-prose. Section gap is
+      // the space between consecutive groups (hero, proof, cards), applied in
+      // block-styles.css. Putting section here is what doubled up with the
+      // browser paragraph margin on Terms, Privacy, and articles.
       "core/post-content": {
-        spacing: { blockGap: layoutSpacingPreset(design, "section", 6) },
+        spacing: { blockGap: layoutSpacingPreset(design, "stack", 5) },
       },
       "core/group": {
         spacing: { blockGap: layoutSpacingPreset(design, "stack", 5) },
@@ -662,6 +719,80 @@ function buildStyles(design) {
   };
 }
 
+function buildBlockStyleVariations() {
+  const filledPadding = {
+    top: preset("spacing", "space-6"),
+    right: preset("spacing", "space-6"),
+    bottom: preset("spacing", "space-6"),
+    left: preset("spacing", "space-6"),
+  };
+  const inkOnLight = { text: preset("color", "ink") };
+  const cardBorder = {
+    color: custom("rule"),
+    radius: preset("border-radius", "md"),
+    style: "solid",
+    width: "1px",
+  };
+  const buttonBorder = {
+    radius: custom("button|radius"),
+    style: "solid",
+    width: "1.5px",
+  };
+
+  function groupStyle(slug, title, background, text) {
+    return {
+      file: `${slug}.json`,
+      data: {
+        $schema: "https://schemas.wp.org/trunk/theme.json",
+        version: 3,
+        slug,
+        title,
+        blockTypes: ["core/group"],
+        styles: {
+          border: slug === "cds-surface" ? cardBorder : { radius: preset("border-radius", "md") },
+          color: { background, text },
+          shadow: slug === "cds-surface" || slug === "cds-tint" ? preset("shadow", "sm") : "none",
+          spacing: { padding: filledPadding },
+        },
+      },
+    };
+  }
+
+  function buttonStyle(slug, title, background, text, hoverBackground) {
+    return {
+      file: `${slug}.json`,
+      data: {
+        $schema: "https://schemas.wp.org/trunk/theme.json",
+        version: 3,
+        slug,
+        title,
+        blockTypes: ["core/button"],
+        styles: {
+          border: {
+            ...buttonBorder,
+            color: slug === "outline" ? preset("color", "primary-deep") : "transparent",
+          },
+          color: { background, text },
+          ":hover": {
+            color: { background: hoverBackground, text },
+          },
+        },
+      },
+    };
+  }
+
+  return [
+    groupStyle("cds-surface", "Surface", preset("color", "surface"), inkOnLight.text),
+    groupStyle("cds-tint", "Tint", preset("color", "primary-soft"), inkOnLight.text),
+    groupStyle("cds-panel", "Panel", preset("color", "panel"), inkOnLight.text),
+    groupStyle("cds-dark", "Dark", preset("color", "surface-dark"), custom("on|dark")),
+    buttonStyle("cds-secondary", "Secondary", preset("color", "panel"), preset("color", "ink"), preset("color", "panel-deep")),
+    buttonStyle("cds-outline", "Outline", "transparent", preset("color", "primary-deep"), preset("color", "primary-soft")),
+    buttonStyle("cds-accent", "Accent", preset("color", "accent"), custom("on|accent"), "color-mix(in srgb, var(--wp--preset--color--accent) 82%, black)"),
+    buttonStyle("cds-ghost", "Ghost", "transparent", preset("color", "ink-muted"), preset("color", "primary-soft")),
+  ];
+}
+
 function buildThemeJson({ design, tokens, customValues }) {
   const wideSize = customValues.layout["wide-size"];
   return {
@@ -690,6 +821,8 @@ function buildThemeJson({ design, tokens, customValues }) {
         defaultSpacingSizes: false,
         spacingSizes: buildSpacing(design),
         units: ["px", "rem", "em", "%", "ch"],
+        // blockGap stays unset. Turning it on ignores the stack/section split
+        // and the blocks that hide a first child.
       },
       border: {
         radiusSizes: buildRadii(design),
@@ -748,6 +881,25 @@ function validate(theme, registry) {
   if (theme.settings.typography.fluid !== false) {
     errors.push("typography.fluid must be false");
   }
+  if (Object.prototype.hasOwnProperty.call(theme.settings.spacing, "blockGap")) {
+    errors.push("settings.spacing.blockGap must stay unset");
+  }
+  const rootGap = theme.styles?.spacing?.blockGap;
+  const postGap = theme.styles?.blocks?.["core/post-content"]?.spacing?.blockGap;
+  const groupGap = theme.styles?.blocks?.["core/group"]?.spacing?.blockGap;
+  if (!postGap || postGap !== rootGap || postGap !== groupGap) {
+    errors.push("post-content and group gaps must match the root stack gap");
+  }
+  const palette = {};
+  for (const item of theme.settings.color.palette) {
+    palette[item.slug] = item.color;
+  }
+  for (const token of registry) {
+    if (token.id === "cds/on-primary") palette["on-primary"] = token.default;
+    if (token.id === "cds/on-accent") palette["on-accent"] = token.default;
+    if (token.id === "cds/on-dark") palette["on-dark"] = token.default;
+  }
+  errors.push(...checkPairs(palette, PROMISED_PAIRS));
   if (errors.length) {
     throw new Error(`compile-wordpress checks failed:\n- ${errors.join("\n- ")}`);
   }
@@ -781,9 +933,62 @@ function validateChromeParts() {
       errors.push(`parts/footer.html missing ${needle}`);
     }
   }
+  errors.push(...missingAltInKit(root));
   if (errors.length) {
     throw new Error(`compile-wordpress chrome checks failed:\n- ${errors.join("\n- ")}`);
   }
+}
+
+function bridgeWordpressFontTokens() {
+  const rel = "wordpress/cds/assets/css/tokens.css";
+  let css = read(rel);
+  const map = [
+    ["--cds-font-display", "var(--wp--preset--font-family--display)"],
+    ["--cds-font-body", "var(--wp--preset--font-family--body)"],
+    ["--cds-font-mono", "var(--wp--preset--font-family--mono)"],
+    ["--cds-weight-regular", "var(--wp--custom--font-weight--regular)"],
+    ["--cds-weight-semibold", "var(--wp--custom--font-weight--emphasis)"],
+    ["--cds-weight-bold", "var(--wp--custom--font-weight--bold)"],
+  ];
+  for (const [name, value] of map) {
+    const pattern = new RegExp(`(${name}:\\s*)[^;]+;`);
+    if (!pattern.test(css)) {
+      throw new Error(`${rel} is missing ${name}`);
+    }
+    css = css.replace(pattern, `$1${value};`);
+  }
+  writeFileSync(join(root, rel), css, "utf8");
+  console.log(`  bridged font tokens in ${rel}`);
+}
+
+function writeFontPairs(theme) {
+  const brand = JSON.parse(read("brand.json"));
+  const entries = fontPairsForBrand(brand.fonts || {});
+  const mono = theme.settings.typography.fontFamilies.find((item) => item.slug === "mono");
+  if (!mono?.fontFamily) throw new Error("theme.json is missing the mono font family");
+
+  const stylesDir = join(root, "wordpress/cds/styles");
+  mkdirSync(stylesDir, { recursive: true });
+  for (const name of readdirSync(stylesDir)) {
+    if (name.startsWith("pair-") && name.endsWith(".json")) {
+      unlinkSync(join(stylesDir, name));
+    }
+  }
+
+  const catalog = [];
+  for (const entry of entries) {
+    const displayStack = quoteStack(stackCss(entry.display));
+    const bodyStack = quoteStack(stackCss(entry.body));
+    const variation = pairStyleVariation(entry, displayStack, bodyStack, mono.fontFamily);
+    writeJson(`wordpress/cds/styles/${variation.file}`, variation.data);
+    catalog.push(pairCatalogRecord(entry, displayStack, bodyStack));
+  }
+
+  writeJson("wordpress/cds/font-pairs.json", {
+    $comment:
+      "Generated from scripts/font-pairs.mjs. PHP enqueues cssUrl when the active display and body stacks match. Do not edit.",
+    pairs: catalog,
+  });
 }
 
 function main() {
@@ -811,20 +1016,28 @@ function main() {
   writeJson("wordpress/design-tokens.json", registryFile);
   writeJson("wordpress/cds/theme.json", theme);
   writeJson("wordpress/cds/design-tokens.json", registryFile);
+  for (const variation of buildBlockStyleVariations()) {
+    writeJson(`wordpress/cds/styles/block/${variation.file}`, variation.data);
+  }
 
   const defaults = loadBrandDefaults(design);
   writeJson("wordpress/cds/brand-defaults.json", {
     $comment:
-      "Generated from brand.json. Theme seeds Site Title / Tagline on first run, and when those options still match the last seed. Do not edit.",
+      "Generated from brand.json. Theme seeds Site Title / Tagline on first run, and when those options still match the last seed. slug is the install folder. Do not edit.",
     name: defaults.name,
+    slug: defaults.slug,
+    description: defaults.description,
     tagline: defaults.tagline,
     mark: defaults.mark,
   });
+  stampStyleHeader(defaults);
 
   for (const file of ["fonts.css", "tokens.css", "layouts.css", "components.css"]) {
     copyFileSync(join(root, "css", file), join(root, "wordpress/cds/assets/css", file));
     console.log(`  copied css/${file} → wordpress/cds/assets/css/${file}`);
   }
+  bridgeWordpressFontTokens();
+  writeFontPairs(theme);
 
   const markSrc = join(root, "assets", "mark.svg");
   if (!existsSync(markSrc)) {
@@ -839,6 +1052,19 @@ function main() {
     console.log("  copied assets/media → wordpress/cds/assets/media");
   }
 
+  const iconsSrc = join(root, "assets", "icons");
+  if (!existsSync(iconsSrc)) {
+    throw new Error("Missing assets/icons (mask glyphs for .cds-icon).");
+  }
+  cpSync(iconsSrc, join(root, "wordpress/cds/assets/icons"), { recursive: true });
+  console.log("  copied assets/icons → wordpress/cds/assets/icons");
+
+  const widgetsDest = join(root, "wordpress/cds/assets/js");
+  mkdirSync(widgetsDest, { recursive: true });
+  copyFileSync(join(root, "js/kit-widgets.js"), join(widgetsDest, "kit-widgets.js"));
+  console.log("  copied js/kit-widgets.js → wordpress/cds/assets/js/kit-widgets.js");
+
+  writePatterns(root);
   validateChromeParts();
 
   console.log(

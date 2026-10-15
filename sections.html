@@ -6,7 +6,7 @@
     <title data-brand-title="Pages">Pages — Example Brand Design System</title>
     <meta
       name="description"
-      content="Landing jobs composed from Pieces: hero, proof, card grid, split, quote, dark band, CTA, and alert."
+      content="Content patterns, service offers, and the eight page jobs."
     />
     <link rel="icon" href="assets/mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/cds.css" />
@@ -17,28 +17,90 @@
       <aside class="kit-sidebar">
         <div class="kit-sidebar__brand">
           <a class="kit-brand" href="index.html">
-            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
-              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
-              <circle cx="23" cy="23" r="9" />
-              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
-              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
-            </svg>
-            <span data-brand="name">Example Brand</span>
+            <img src="assets/mark.svg" alt="" width="52" height="52" />
+            <span class="kit-brand__copy">
+              <span class="kit-brand__name" data-brand="name">Example Brand</span>
+              <span class="kit-sidebar__subtitle" data-brand="tagline">Design system</span>
+            </span>
           </a>
-          <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-                                <nav class="kit-nav" aria-label="What the system does">
-          <a href="index.html">Start</a>
-          <a href="colors.html">Color</a>
-          <a href="typography.html">Type</a>
-          <a href="layout.html">Layout</a>
-          <a href="components.html">Pieces</a>
-          <a href="sections.html" aria-current="page">Pages</a>
-          <a href="the-site.html">The site</a>
-        </nav>
-        <nav class="kit-nav kit-nav--more" aria-label="More">
-          <a href="media-kit.html">Assets</a>
-          <a href="design-md.html">Design.md</a>
+                                <nav class="kit-nav" aria-label="Catalog">
+                <div class="kit-nav__group">
+          <a class="kit-nav__page" href="index.html">Overview</a>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Brand &amp; assets</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="media-kit.html#media-kit">Media Kit</a>
+            <a href="media-kit.html#logos">Logos &amp; icons</a>
+            <a href="media-kit.html#illustrations">Illustrations</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Tokens</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="colors.html">Color</a>
+            <a href="typography.html">Typography</a>
+            <a href="font-pairs.html">Font pairs</a>
+            <a href="layout.html#space">Space &amp; shape</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Components</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="components.html#inputs">Inputs &amp; controls</a>
+            <a href="components.html#data">Data &amp; display</a>
+            <a href="components.html#navigation">Navigation</a>
+            <a href="components.html#feedback">Feedback &amp; overlays</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group is-open">
+          <button class="kit-nav__toggle" type="button" aria-expanded="true">
+            <span>Patterns &amp; layout</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="layout.html#primitives">Primitives</a>
+            <a href="layout.html#proximity">Proximity</a>
+            <a href="sections.html#patterns">Content patterns</a>
+            <a href="sections.html#offers">Service offers</a>
+            <a href="sections.html#pages">Page jobs</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Showcase</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="showcase.html#landing">Landing</a>
+            <a href="showcase.html#plugin">Plugin page</a>
+            <a href="showcase.html#article">Article</a>
+            <a href="showcase.html#tool">Tool</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <a class="kit-nav__page" href="design-md.html">DESIGN.md</a>
+        </div>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -76,16 +138,360 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head">
-            <p class="cds-meta">Step 6 of 7</p>
-            <h1>Pages</h1>
+            <p class="cds-meta">Patterns &amp; layout</p>
+            <h1>Patterns, offers, and page jobs</h1>
             <p class="cds-lede">
-              Eight jobs, composed from Pieces. A hero is Copy, Cluster, and Split
-              (Switcher), not a new component. Do not invent a ninth. Next is the page.
+              Primitives live on <a href="layout.html#primitives">Layout</a>.
+              These are the organisms and the eight jobs. Do not invent a ninth.
+              A full page is the <a href="showcase.html">showcase</a>.
             </p>
           </header>
 
-          <section class="kit-section" id="hero">
-            <h2>Hero</h2>
+          <section class="kit-section" id="patterns">
+            <p class="cds-meta">Organisms</p>
+            <h2>Content patterns</h2>
+            <p class="cds-lede">Patterns an author drops in as one unit. Fills are classes on the same pattern.</p>
+
+            <h3>Folder tabs</h3>
+            <div class="cds-tabs" style="max-inline-size: 40rem">
+              <div class="cds-tabs__list" role="tablist" aria-label="Settings sections">
+                <button type="button" class="cds-tabs__tab is-current" role="tab" data-cds-tab="agents" aria-selected="true">
+                  <span class="cds-tabs__dot" aria-hidden="true"></span>Agents
+                </button>
+                <button type="button" class="cds-tabs__tab" role="tab" data-cds-tab="settings" aria-selected="false" tabindex="-1">
+                  <span class="cds-tabs__dot" aria-hidden="true"></span>Settings
+                </button>
+                <button type="button" class="cds-tabs__tab" role="tab" data-cds-tab="activity" aria-selected="false" tabindex="-1">
+                  <span class="cds-tabs__dot" aria-hidden="true"></span>Activity
+                </button>
+              </div>
+              <div class="cds-tabs__panel" role="tabpanel" data-cds-panel="agents"><p style="margin:0">The list of connected accounts.</p></div>
+              <div class="cds-tabs__panel" role="tabpanel" data-cds-panel="settings" hidden><p style="margin:0">Limits for the whole workspace.</p></div>
+              <div class="cds-tabs__panel" role="tabpanel" data-cds-panel="activity" hidden><p style="margin:0">A log of recent changes.</p></div>
+            </div>
+
+            <h3>Key takeaways</h3>
+            <aside class="cds-takeaways" style="max-inline-size: 28rem">
+              <h3 class="cds-takeaways__title">Key takeaways</h3>
+              <ol>
+                <li>Lead with one clear action the reader can take this week.</li>
+                <li>Name the constraint before you name the tactic.</li>
+                <li>Keep the list short enough to scan without scrolling twice.</li>
+              </ol>
+            </aside>
+
+            <h3>Citation</h3>
+            <p class="cds-prose">A passage from a document. A person stays a quote.</p>
+            <blockquote class="cds-cite">
+              <p>The column is the measure. The heading inherits that length.</p>
+              <cite>Layout notes</cite>
+            </blockquote>
+
+            <h3>Gallery</h3>
+            <div class="cds-gallery" style="max-inline-size: 40rem">
+              <figure class="cds-gallery__stage">
+                <div class="cds-gallery__head">
+                  <p class="cds-gallery__name">Places</p>
+                </div>
+                <div class="cds-gallery__view">
+                  <button type="button" class="cds-gallery__float" data-cds-gallery="prev" aria-label="Previous">
+                    <span class="cds-icon cds-icon--arrow" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="cds-gallery__open" data-cds-gallery="open" aria-label="Open the picture">
+                    <img class="cds-gallery__img" alt="" src="assets/media/card-1.jpg" width="800" height="600" />
+                  </button>
+                  <button type="button" class="cds-gallery__float cds-gallery__float--next" data-cds-gallery="next" aria-label="Next">
+                    <span class="cds-icon cds-icon--arrow" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <figcaption class="cds-gallery__bar">
+                  <span class="cds-gallery__count"></span>
+                  <span class="cds-gallery__caption"></span>
+                  <button type="button" class="cds-btn cds-btn--outline cds-btn--sm" data-cds-gallery="open">Open</button>
+                </figcaption>
+              </figure>
+              <div class="cds-gallery__strip">
+                <button type="button" class="cds-gallery__thumb" aria-current="true"><img src="assets/media/card-1.jpg" alt="A path through trees" width="800" height="600" /></button>
+                <button type="button" class="cds-gallery__thumb"><img src="assets/media/card-2.jpg" alt="A valley in the afternoon" width="800" height="600" /></button>
+                <button type="button" class="cds-gallery__thumb"><img src="assets/media/card-3.jpg" alt="A city after rain" width="800" height="600" /></button>
+              </div>
+              <dialog class="cds-gallery__dialog">
+                <img alt="" />
+                <p class="cds-gallery__dialog-caption"></p>
+                <form method="dialog"><button class="cds-btn cds-btn--ghost cds-btn--sm">Close</button></form>
+              </dialog>
+            </div>
+
+            <h3 id="post">Post card</h3>
+            <p class="cds-prose">Image, category, title, one line, date. The articles index repeats this. The featured story stays a split.</p>
+            <div class="cds-grid" style="--cds-grid-min: 16rem">
+              <article class="cds-post">
+                <img class="cds-post__media" src="assets/media/card-1.jpg" alt="A path through trees" width="800" height="600" />
+                <p class="cds-meta">Notes</p>
+                <h3 class="cds-post__title"><a href="#post">A named offer, written down</a></h3>
+                <p>Say what the work is, who it is for, and what they leave with.</p>
+                <p class="cds-meta">April 17, 2026</p>
+              </article>
+              <article class="cds-post">
+                <img class="cds-post__media" src="assets/media/card-2.jpg" alt="A green valley under cloud" width="800" height="600" />
+                <p class="cds-meta">Proof</p>
+                <h3 class="cds-post__title"><a href="#post">A number you can check</a></h3>
+                <p>The metric sits on the page. It is not a slide in a deck.</p>
+                <p class="cds-meta">April 2, 2026</p>
+              </article>
+            </div>
+
+            <h3 id="facts">Fact list</h3>
+            <p class="cds-prose">Label on the left, value on the right. A title bar is the download card. Leave the title off for case-study meta.</p>
+            <div class="cds-cluster" style="align-items: start">
+              <div class="cds-facts">
+                <p class="cds-facts__title">Theme details</p>
+                <dl>
+                  <div><dt>Downloads</dt><dd>12</dd></div>
+                  <div><dt>Version</dt><dd>1.4</dd></div>
+                  <div><dt>Rating</dt><dd>4.9</dd></div>
+                  <div><dt>File size</dt><dd>2 MB</dd></div>
+                </dl>
+              </div>
+              <dl class="cds-facts">
+                <div><dt>Client</dt><dd>Northwind</dd></div>
+                <div><dt>Date</dt><dd>May 2026</dd></div>
+                <div><dt>Services</dt><dd>Brand, type</dd></div>
+                <div><dt>Visit</dt><dd><a href="#facts">example.com</a></dd></div>
+              </dl>
+            </div>
+
+            <h3 id="stats">Stat row</h3>
+            <p class="cds-prose">Four display figures. The paper proof grid on this page stays five, centered, and smaller. This row is the dark band.</p>
+            <div class="cds-surface cds-surface--dark">
+              <div class="cds-stats">
+                <div class="cds-stat">
+                  <p class="cds-stat__value">140+</p>
+                  <p class="cds-meta">Projects</p>
+                </div>
+                <div class="cds-stat">
+                  <p class="cds-stat__value">98%</p>
+                  <p class="cds-meta">Kept</p>
+                </div>
+                <div class="cds-stat">
+                  <p class="cds-stat__value">12</p>
+                  <p class="cds-meta">Years</p>
+                </div>
+                <div class="cds-stat">
+                  <p class="cds-stat__value">4</p>
+                  <p class="cds-meta">People</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 id="episode">Episode row</h3>
+            <p class="cds-prose">A square cover, a kicker, a title, and one play button. A show page stacks these.</p>
+            <div class="cds-episodes">
+              <article class="cds-episode">
+                <img class="cds-episode__thumb" src="assets/media/hero.jpg" alt="" width="320" height="320" />
+                <div>
+                  <p class="cds-meta cds-episode__kicker">Episode 20 · 45 min</p>
+                  <h3 class="cds-episode__title">The offer, said out loud</h3>
+                  <p>What the work is, who it is for, and what they leave with.</p>
+                  <a class="cds-btn cds-btn--primary cds-btn--sm cds-episode__play" href="#episode"><span class="cds-icon cds-icon--play" aria-hidden="true"></span>Play</a>
+                </div>
+              </article>
+              <article class="cds-episode">
+                <img class="cds-episode__thumb" src="assets/media/split.jpg" alt="" width="320" height="320" />
+                <div>
+                  <p class="cds-meta cds-episode__kicker">Episode 19 · 42 min</p>
+                  <h3 class="cds-episode__title">A number you can count</h3>
+                  <p>The figure on the page, and the notes that match it.</p>
+                  <a class="cds-btn cds-btn--primary cds-btn--sm cds-episode__play" href="#episode"><span class="cds-icon cds-icon--play" aria-hidden="true"></span>Play</a>
+                </div>
+              </article>
+            </div>
+
+            <h3 id="steps">Steps</h3>
+            <p class="cds-prose">A mark on the left, the write-up on the right. The mark is a step number or a year. Same row.</p>
+            <ol class="cds-steps">
+              <li class="cds-step">
+                <p class="cds-step__mark">01</p>
+                <div>
+                  <h3 class="cds-step__title">Book a conversation</h3>
+                  <p>One call to name the offer and the number you are watching.</p>
+                </div>
+              </li>
+              <li class="cds-step">
+                <p class="cds-step__mark">02</p>
+                <div>
+                  <h3 class="cds-step__title">Write the page</h3>
+                  <p>The work, who it is for, and what they leave with. One paragraph is enough.</p>
+                </div>
+              </li>
+              <li class="cds-step">
+                <p class="cds-step__mark">03</p>
+                <div>
+                  <h3 class="cds-step__title">Put the number where they can see it</h3>
+                  <p>It stays on the page. It does not move into a deck.</p>
+                </div>
+              </li>
+            </ol>
+            <ol class="cds-steps">
+              <li class="cds-step">
+                <p class="cds-step__mark">2024</p>
+                <div>
+                  <p>Started with one offer and a single page.</p>
+                </div>
+              </li>
+              <li class="cds-step">
+                <p class="cds-step__mark">2026</p>
+                <div>
+                  <p>The number is on the page, and the notes match it.</p>
+                </div>
+              </li>
+            </ol>
+
+            <h3 id="people">People</h3>
+            <p class="cds-prose">A square slot, a name, a role. Use a photo when you have a portrait. The avatar fills the slot until then. The cluster is one lead picture and two smaller ones.</p>
+            <div class="cds-grid" style="--cds-grid-min: 12rem">
+              <article class="cds-person">
+                <span class="cds-avatar" role="img" aria-label="Jordan Lee">JL</span>
+                <h3 class="cds-person__name">Jordan Lee</h3>
+                <p class="cds-person__role">Notes</p>
+              </article>
+              <article class="cds-person">
+                <span class="cds-avatar" role="img" aria-label="Alex Kim">AK</span>
+                <h3 class="cds-person__name">Alex Kim</h3>
+                <p class="cds-person__role">Proof</p>
+              </article>
+              <article class="cds-person">
+                <span class="cds-avatar" role="img" aria-label="Mina Cole">MC</span>
+                <h3 class="cds-person__name">Mina Cole</h3>
+                <p class="cds-person__role">Type</p>
+              </article>
+            </div>
+            <div class="cds-shots">
+              <img class="cds-shots__lead" src="assets/media/hero.jpg" alt="A ridge in warm light" width="960" height="720" />
+              <div class="cds-shots__side">
+                <img src="assets/media/card-1.jpg" alt="A path through trees" width="640" height="360" />
+                <img src="assets/media/card-3.jpg" alt="A city street at sunrise" width="640" height="360" />
+              </div>
+            </div>
+
+            <h3 id="bento">Bento</h3>
+            <p class="cds-prose">Three equal cells, then two that share the row. A plain card grid does not need this.</p>
+            <div class="cds-bento">
+              <article class="cds-card">
+                <h3 class="cds-card__title">The offer</h3>
+                <p>Name the work, the person, and what they leave with.</p>
+                <img src="assets/media/card-1.jpg" alt="" width="640" height="360" />
+              </article>
+              <article class="cds-card">
+                <h3 class="cds-card__title">The number</h3>
+                <p>A figure they can check without another tool.</p>
+                <img src="assets/media/card-2.jpg" alt="" width="640" height="360" />
+              </article>
+              <article class="cds-card">
+                <h3 class="cds-card__title">The next step</h3>
+                <p>One action. The page says what it is.</p>
+                <img src="assets/media/card-3.jpg" alt="" width="640" height="360" />
+              </article>
+              <article class="cds-card cds-bento__wide">
+                <h3 class="cds-card__title">The notes</h3>
+                <p>What happened between the calls, written where the next person can find it.</p>
+                <img src="assets/media/split.jpg" alt="" width="960" height="540" />
+              </article>
+              <article class="cds-card cds-bento__wide">
+                <h3 class="cds-card__title">The room</h3>
+                <p>The same work, shown. No second system for the pictures.</p>
+                <img src="assets/media/hero.jpg" alt="" width="960" height="540" />
+              </article>
+            </div>
+          </section>
+
+          <section class="kit-section" id="offers">
+            <h2>Service offers</h2>
+            <p class="cds-lede">One engagement, the width of the column. White, panel, and dark. The quote band uses the deep panel, quieter than the soft primary. A stack of these is not a ninth page job.</p>
+            <div class="cds-stack cds-stack--lg">
+              <article class="cds-offer">
+                <div class="cds-offer__main">
+                  <p class="cds-offer__eyebrow">For a founder working alone</p>
+                  <div class="cds-offer__copy">
+                    <h3 class="cds-offer__title">Working sessions</h3>
+                    <p class="cds-offer__lede">A sounding board and a clear next step, for someone building without a team.</p>
+                    <ul>
+                      <li>Weekly sessions for six weeks</li>
+                      <li>Notes between calls</li>
+                    </ul>
+                  </div>
+                  <div class="cds-offer__price">
+                    <p class="cds-offer__amount">€1,200</p>
+                    <p class="cds-offer__cadence">Flat rate · six weeks</p>
+                    <button type="button" class="cds-btn cds-btn--primary cds-btn--sm">Book a call</button>
+                  </div>
+                </div>
+                <div class="cds-offer__band">
+                  <img class="cds-offer__portrait" src="assets/mark.svg" alt="" width="72" height="72" />
+                  <div>
+                    <p class="cds-offer__quote">The work moved in the weeks between the calls.</p>
+                    <p class="cds-offer__by"><span class="cds-offer__name">A founder</span> Studio</p>
+                  </div>
+                </div>
+              </article>
+              <article class="cds-offer cds-offer--panel">
+                <div class="cds-offer__main">
+                  <p class="cds-offer__eyebrow">For a small team</p>
+                  <div class="cds-offer__copy">
+                    <h3 class="cds-offer__title">Team sessions</h3>
+                    <p class="cds-offer__lede">Strategy with the team, and one shippable piece between meetings.</p>
+                    <ul>
+                      <li>Two working sessions a month</li>
+                      <li>A shared channel</li>
+                    </ul>
+                  </div>
+                  <div class="cds-offer__price">
+                    <p class="cds-offer__amount">€2,000</p>
+                    <p class="cds-offer__cadence">Twice a month</p>
+                    <button type="button" class="cds-btn cds-btn--primary cds-btn--sm">Book a call</button>
+                  </div>
+                </div>
+                <div class="cds-offer__band">
+                  <img class="cds-offer__portrait" src="assets/mark.svg" alt="" width="72" height="72" />
+                  <div>
+                    <p class="cds-offer__quote">We left knowing what to build next.</p>
+                    <p class="cds-offer__by"><span class="cds-offer__name">A product lead</span> Studio</p>
+                  </div>
+                </div>
+              </article>
+              <article class="cds-offer cds-offer--dark">
+                <div class="cds-offer__main">
+                  <p class="cds-offer__eyebrow">For a team ready to execute</p>
+                  <div class="cds-offer__copy">
+                    <h3 class="cds-offer__title">Embedded lead</h3>
+                    <p class="cds-offer__lede">Hands-on leadership, one lever at a time, with a cap on concurrent clients.</p>
+                    <ul>
+                      <li>Embedded with the team</li>
+                      <li>Time-boxed</li>
+                    </ul>
+                  </div>
+                  <div class="cds-offer__price">
+                    <p class="cds-offer__amount">From €4,200</p>
+                    <p class="cds-offer__cadence">1, 3, or 6 months</p>
+                    <button type="button" class="cds-btn cds-btn--primary cds-btn--sm">Book a call</button>
+                  </div>
+                </div>
+                <div class="cds-offer__band">
+                  <img class="cds-offer__portrait" src="assets/mark.svg" alt="" width="72" height="72" />
+                  <div>
+                    <p class="cds-offer__quote">They fit the team and brought a different read.</p>
+                    <p class="cds-offer__by"><span class="cds-offer__name">A founder</span> Studio</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="kit-section" id="pages">
+            <p class="cds-meta">Pages</p>
+            <h2>Page jobs</h2>
+            <p class="cds-lede">Eight landing jobs. A hero is Copy plus Split, not a new component.</p>
+            <h3 id="hero">Hero</h3>
             <p class="cds-prose">Pill, display title, lede, one primary, a small proof cluster, media on the right. Paper. Copy column is .cds-copy (proximity, not an even stack). A column without media is still legal. Not a page.</p>
             <div class="kit-specimen">
               <div class="cds-split">
@@ -177,10 +583,45 @@
 
           <section class="kit-section" id="quote">
             <h2>Quote</h2>
-            <p class="cds-prose">One attribution. Surface or a row. Not a reviews carousel.</p>
-            <div class="cds-surface cds-stack cds-stack--sm">
-              <p class="cds-lede">The setup was straightforward. When we needed a related fix, the team answered immediately.</p>
-              <p class="cds-meta">Store owner</p>
+            <p class="cds-prose">Words, a mark, and a person. Leave the photo out, the title out, or both, and the row closes up. A document passage is <code>.cds-cite</code>. A row of reviews is <code>.cds-review</code>.</p>
+            <div class="cds-grid cds-grid--two">
+              <figure class="cds-quote">
+                <blockquote>
+                  <p>The setup was straightforward. When we needed a related fix, the team answered immediately.</p>
+                </blockquote>
+                <figcaption class="cds-quote__who">
+                  <span class="cds-quote__id"><span class="cds-quote__name">A store owner</span></span>
+                </figcaption>
+              </figure>
+              <figure class="cds-quote">
+                <blockquote>
+                  <p>The work moved in the weeks between the calls.</p>
+                </blockquote>
+                <figcaption class="cds-quote__who">
+                  <span class="cds-avatar cds-quote__avatar" role="img" aria-label="Alex Kim">AK</span>
+                  <span class="cds-quote__id"><span class="cds-quote__name">Alex Kim</span><span class="cds-quote__role">Proof</span></span>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="cds-grid cds-grid--three" style="margin-block-start: var(--cds-space-5)">
+              <article class="cds-review">
+                <p class="cds-review__rating"><span class="cds-review__stars" aria-hidden="true"><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star"></span></span><span class="cds-review__score">4 out of 5</span></p>
+                <h3 class="cds-review__title">Clear and quick</h3>
+                <p class="cds-review__body">We shipped the page from the jobs on this catalog. No second theme.</p>
+                <footer class="cds-review__by"><span class="cds-review__name">Alex Kim</span><time class="cds-review__date" datetime="2026-01-20">January 20, 2026</time></footer>
+              </article>
+              <article class="cds-review">
+                <p class="cds-review__rating"><span class="cds-review__stars" aria-hidden="true"><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span></span><span class="cds-review__score">5 out of 5</span></p>
+                <h3 class="cds-review__title">Easy to hand off</h3>
+                <p class="cds-review__body">The contract named the pieces, so the next screen stayed on brand.</p>
+                <footer class="cds-review__by"><span class="cds-review__name">Sam Ortiz</span><time class="cds-review__date" datetime="2026-02-02">February 2, 2026</time></footer>
+              </article>
+              <article class="cds-review">
+                <p class="cds-review__rating"><span class="cds-review__stars" aria-hidden="true"><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star cds-review__star--on"></span><span class="cds-review__star"></span></span><span class="cds-review__score">4 out of 5</span></p>
+                <h3 class="cds-review__title">One accent, used once</h3>
+                <p class="cds-review__body">The call to action stayed rare. The rest of the page stayed quiet.</p>
+                <footer class="cds-review__by"><span class="cds-review__name">Riley Chen</span><time class="cds-review__date" datetime="2026-03-11">March 11, 2026</time></footer>
+              </article>
             </div>
           </section>
 
@@ -210,7 +651,7 @@
 
           <section class="kit-section" id="alert">
             <h2>Alert</h2>
-            <p class="cds-prose">One status note on a landing. Tones and look live on <a href="components.html#alerts">Pieces</a>. Never a hero.</p>
+            <p class="cds-prose">One status note on a landing. Tones and look live on <a href="components.html#feedback">Feedback</a>. Never a hero.</p>
             <div class="cds-alert cds-alert--info">
               <strong>Heads up.</strong>
               This is a status note, not a hero. Swap the fill if the tone changes.
@@ -240,11 +681,13 @@
           </section>
 
                                         <nav class="kit-pager" aria-label="Pagination">
-            <a href="components.html">&larr; Pieces</a>
+            <a href="components.html">&larr; Components</a>
             <a href="the-site.html">Next: The site &rarr;</a>
           </nav>
         </div>
       </main>
     </div>
+    <script src="js/kit-widgets.js"></script>
+      <script src="js/kit-nav.js"></script>
   </body>
 </html>

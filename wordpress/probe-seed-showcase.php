@@ -1,7 +1,7 @@
 <?php
 /**
  * Probe-only: publish the showcase walk and point the header nav at it.
- * Keep /cds-catalog/ /cds-blank/ /cds-allowlist/ /cds-layout/ published but unlisted.
+ * Keep /cds-catalog/ /cds-blank/ /cds-allowlist/ /cds-layout/ /kit-parts/ published but unlisted.
  *
  * studio wp --path "C:\Users\reach\Studio\rf-static-probe" eval-file this-file
  */
@@ -9,8 +9,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$cds_permalinks = (string) get_option( 'permalink_structure' );
+if ( '/%postname%/' !== $cds_permalinks ) {
+	$shown   = '' === $cds_permalinks ? '(plain)' : $cds_permalinks;
+	$message = "Permalink structure is {$shown}. Set it to /%postname%/ and flush rewrites, then seed again.";
+	if ( class_exists( 'WP_CLI' ) ) {
+		WP_CLI::error( $message );
+	}
+	fwrite( STDERR, $message . PHP_EOL );
+	exit( 1 );
+}
+
 if ( method_exists( wp_get_theme(), 'delete_pattern_cache' ) ) {
 	wp_get_theme()->delete_pattern_cache();
+}
+
+/**
+ * Showcase HTML uses %%CDS_THEME%%. Point it at this theme's folder.
+ *
+ * @param string $content Block HTML.
+ * @return string
+ */
+function cds_probe_localize_theme_urls( $content ) {
+	$path = wp_parse_url( get_stylesheet_directory_uri(), PHP_URL_PATH );
+	if ( ! is_string( $path ) || '' === $path ) {
+		return $content;
+	}
+	return str_replace( '%%CDS_THEME%%', untrailingslashit( $path ), $content );
 }
 
 /**
@@ -50,7 +75,7 @@ function cds_probe_put_page( $slug, $title, $content ) {
 		'post_title'   => $title,
 		'post_name'    => $slug,
 		'post_status'  => 'publish',
-		'post_content' => $content,
+		'post_content' => cds_probe_localize_theme_urls( $content ),
 	);
 	if ( $page ) {
 		$payload['ID'] = $page->ID;
@@ -66,16 +91,80 @@ function cds_probe_put_page( $slug, $title, $content ) {
 }
 
 /**
+ * Attachment for a theme media file. Reused across seeds.
+ *
+ * @param string $filename File under assets/media.
+ * @return int
+ */
+function cds_probe_theme_image( $filename ) {
+	$existing = get_posts(
+		array(
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => 1,
+			'meta_key'       => '_cds_theme_media',
+			'meta_value'     => $filename,
+		)
+	);
+	if ( $existing ) {
+		return (int) $existing[0]->ID;
+	}
+	$path = get_theme_file_path( 'assets/media/' . $filename );
+	if ( ! is_readable( $path ) ) {
+		fwrite( STDERR, "Missing theme image {$filename}\n" );
+		return 0;
+	}
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	$bits = wp_upload_bits( $filename, null, file_get_contents( $path ) );
+	if ( ! empty( $bits['error'] ) ) {
+		fwrite( STDERR, $bits['error'] . PHP_EOL );
+		return 0;
+	}
+	$filetype = wp_check_filetype( $filename );
+	$id       = wp_insert_attachment(
+		array(
+			'post_mime_type' => $filetype['type'],
+			'post_title'     => sanitize_file_name( pathinfo( $filename, PATHINFO_FILENAME ) ),
+			'post_status'    => 'inherit',
+		),
+		$bits['file']
+	);
+	if ( is_wp_error( $id ) ) {
+		fwrite( STDERR, $id->get_error_message() . PHP_EOL );
+		return 0;
+	}
+	wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $bits['file'] ) );
+	update_post_meta( $id, '_cds_theme_media', $filename );
+	return (int) $id;
+}
+
+function cds_probe_term( $name ) {
+	$term = term_exists( $name, 'category' );
+	if ( ! $term ) {
+		$created = wp_insert_term( $name, 'category' );
+		if ( is_wp_error( $created ) ) {
+			fwrite( STDERR, $created->get_error_message() . PHP_EOL );
+			exit( 1 );
+		}
+		return (int) $created['term_id'];
+	}
+	return (int) ( is_array( $term ) ? $term['term_id'] : $term );
+}
+
+/**
  * Publish or update a probe post.
  *
  * @param string $slug     Post slug.
  * @param string $title    Title.
- * @param string $excerpt  Excerpt (template lede). Must not match the first body paragraph.
+ * @param string $excerpt  Excerpt. Must not match the first body paragraph.
  * @param string $content  Block HTML.
  * @param int    $term_id  Category term ID.
+ * @param string $image    Theme media filename, or empty to clear the thumbnail.
+ * @param string $date     Local post date, or empty to leave it.
  * @return int
  */
-function cds_probe_put_post( $slug, $title, $excerpt, $content, $term_id ) {
+function cds_probe_put_post( $slug, $title, $excerpt, $content, $term_id, $image = '', $date = '' ) {
 	$found = get_posts(
 		array(
 			'name'           => $slug,
@@ -90,9 +179,13 @@ function cds_probe_put_post( $slug, $title, $excerpt, $content, $term_id ) {
 		'post_name'    => $slug,
 		'post_excerpt' => $excerpt,
 		'post_status'  => 'publish',
-		'post_content' => $content,
+		'post_content' => cds_probe_localize_theme_urls( $content ),
 		'post_author'  => 1,
 	);
+	if ( $date ) {
+		$payload['post_date']     = $date;
+		$payload['post_date_gmt'] = get_gmt_from_date( $date );
+	}
 	if ( $found ) {
 		$payload['ID'] = $found[0]->ID;
 		$id            = wp_update_post( $payload, true );
@@ -106,7 +199,14 @@ function cds_probe_put_post( $slug, $title, $excerpt, $content, $term_id ) {
 	if ( $term_id ) {
 		wp_set_object_terms( (int) $id, array( (int) $term_id ), 'category' );
 	}
-	delete_post_thumbnail( (int) $id );
+	if ( $image ) {
+		$thumb = cds_probe_theme_image( $image );
+		if ( $thumb ) {
+			set_post_thumbnail( (int) $id, $thumb );
+		}
+	} else {
+		delete_post_thumbnail( (int) $id );
+	}
 	return (int) $id;
 }
 
@@ -117,6 +217,7 @@ $section_slugs = array(
 	'cds/card-grid',
 	'cds/split',
 	'cds/quote',
+	'cds/quote-portrait',
 	'cds/dark-band',
 	'cds/cta',
 	'cds/alert',
@@ -172,6 +273,7 @@ $pages = array(
 		'front'    => false,
 		'template' => 'page-canvas',
 		'order'    => 6,
+		'nav'      => false,
 	),
 	array(
 		'slug'     => 'the-site',
@@ -213,7 +315,7 @@ foreach ( $pages as $spec ) {
 		'post_title'   => $spec['title'],
 		'post_name'    => $spec['slug'],
 		'post_status'  => 'publish',
-		'post_content' => $content,
+		'post_content' => cds_probe_localize_theme_urls( $content ),
 		'menu_order'   => $spec['order'],
 	);
 
@@ -235,7 +337,9 @@ foreach ( $pages as $spec ) {
 		delete_post_meta( $id, '_wp_page_template' );
 	}
 
-	$nav_ids[ $spec['slug'] ] = (int) $id;
+	if ( ! array_key_exists( 'nav', $spec ) || $spec['nav'] ) {
+		$nav_ids[ $spec['slug'] ] = (int) $id;
+	}
 
 	if ( ! empty( $spec['front'] ) ) {
 		$front_id = (int) $id;
@@ -271,9 +375,246 @@ $sample_id      = cds_probe_put_post(
 	'A measured essay',
 	$sample_excerpt,
 	$article['content'],
-	$essay_term_id
+	$essay_term_id,
+	'card-3.jpg',
+	'2026-03-20 09:00:00'
 );
 echo 'sample-essay id=' . $sample_id . ' url=' . get_permalink( $sample_id ) . PHP_EOL;
+
+$note_shot = esc_url( get_theme_file_uri( 'assets/media/shot-offer.jpg' ) );
+$note_body = <<<HTML
+<!-- wp:paragraph -->
+<p>Say what the work is, who it is for, and what they leave with. The title and the excerpt stay in the template. The body is the offer itself, written so someone who missed the call can still use it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Name the person, the work, and the thing they hold at the end. One paragraph is enough for the promise. The rest of the page shows the pieces that make the promise checkable.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">What they said</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A quote here is from the buyer, not from the author. It sits on the measure, under the claim it supports.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"tagName":"figure","className":"cds-quote","layout":{"type":"default"}} -->
+<figure class="wp-block-group cds-quote">
+	<!-- wp:quote -->
+	<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+	<p>We knew the price, the person, and what we would have on Friday.</p>
+	<!-- /wp:paragraph --></blockquote>
+	<!-- /wp:quote -->
+
+	<!-- wp:group {"tagName":"figcaption","className":"cds-quote__who","layout":{"type":"default"}} -->
+	<figcaption class="wp-block-group cds-quote__who">
+		<!-- wp:group {"className":"cds-quote__id","layout":{"type":"default"}} -->
+		<div class="wp-block-group cds-quote__id">
+			<!-- wp:paragraph {"className":"cds-quote__name"} -->
+			<p class="cds-quote__name">A store owner</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"cds-quote__role"} -->
+			<p class="cds-quote__role">Retail</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+	</figcaption>
+	<!-- /wp:group -->
+</figure>
+<!-- /wp:group -->
+
+<!-- wp:paragraph -->
+<p>The citation under that is the note from the call. It is a source. It does not get a portrait.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote {"className":"cds-cite"} -->
+<blockquote class="wp-block-quote cds-cite"><!-- wp:paragraph -->
+<p>Price named on the call. Delivery is one page and one file. No second workshop.</p>
+<!-- /wp:paragraph --><cite>Call notes, 2 April 2026</cite></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:group {"className":"cds-takeaways","layout":{"type":"default"}} -->
+<div class="wp-block-group cds-takeaways">
+	<!-- wp:heading {"level":3,"className":"cds-takeaways__title"} -->
+	<h3 class="wp-block-heading cds-takeaways__title">How to write it</h3>
+	<!-- /wp:heading -->
+
+	<!-- wp:list {"ordered":true} -->
+	<ol class="wp-block-list"><!-- wp:list-item -->
+	<li>Name the person in the first sentence.</li>
+	<!-- /wp:list-item -->
+
+	<!-- wp:list-item -->
+	<li>Name the work in the second.</li>
+	<!-- /wp:list-item -->
+
+	<!-- wp:list-item -->
+	<li>Name what they leave with, and stop.</li>
+	<!-- /wp:list-item --></ol>
+	<!-- /wp:list -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph -->
+<p>The screenshot is Wide. The words around it stay on the measure. Wide is wider than this column and stops before the rail.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"wide","sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image alignwide"><img src="{$note_shot}" alt="An offer card with a price and one button"/><figcaption class="wp-element-caption">The offer as a card. One price, one button.</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">In, and out</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The table is Wide for the same reason. Three columns of short words still need a row that does not wrap into a stack.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table {"align":"wide"} -->
+<figure class="wp-block-table alignwide"><table><thead><tr><th></th><th>In the offer</th><th>Left out</th></tr></thead><tbody><tr><td>Person</td><td>The store owner</td><td>A general audience</td></tr><tr><td>Work</td><td>One page</td><td>A second workshop</td></tr><tr><td>Leaves with</td><td>The page and the file</td><td>A slide deck</td></tr><tr><td>Price</td><td>Named once</td><td>A range</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+HTML;
+$note_id = cds_probe_put_post(
+	'named-offer',
+	'A named offer, written down',
+	'The offer, in one paragraph, for someone who was not on the call.',
+	$note_body,
+	cds_probe_term( 'Notes' ),
+	'card-1.jpg',
+	'2026-04-17 09:00:00'
+);
+
+$proof_body = <<<'HTML'
+<!-- wp:paragraph -->
+<p>The metric sits on the page. It is not a slide in a deck. The title and the excerpt stay in the template. This page is the figure, the source, and the way to check it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Eighteen is the number. Six is the set it came from. Four is how many of those six a reader can verify without another tool.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">The figure</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The infographic is Wide. The three counts are the same numbers as the table under it. Read the figure first, then the rows.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"align":"wide","className":"cds-surface cds-surface--dark","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide cds-surface cds-surface--dark">
+	<!-- wp:group {"className":"cds-stats","layout":{"type":"default"}} -->
+	<div class="wp-block-group cds-stats" style="grid-template-columns:repeat(3, minmax(0, 1fr))">
+		<!-- wp:group {"className":"cds-stat","layout":{"type":"default"}} -->
+		<div class="wp-block-group cds-stat">
+			<!-- wp:paragraph {"className":"cds-stat__value"} -->
+			<p class="cds-stat__value">18</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"cds-meta"} -->
+			<p class="cds-meta">Pages in the set</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+		<!-- wp:group {"className":"cds-stat","layout":{"type":"default"}} -->
+		<div class="wp-block-group cds-stat">
+			<!-- wp:paragraph {"className":"cds-stat__value"} -->
+			<p class="cds-stat__value">6</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"cds-meta"} -->
+			<p class="cds-meta">You can open</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+		<!-- wp:group {"className":"cds-stat","layout":{"type":"default"}} -->
+		<div class="wp-block-group cds-stat">
+			<!-- wp:paragraph {"className":"cds-stat__value"} -->
+			<p class="cds-stat__value">4</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"cds-meta"} -->
+			<p class="cds-meta">With a source</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:quote {"className":"cds-cite"} -->
+<blockquote class="wp-block-quote cds-cite"><!-- wp:paragraph -->
+<p>Counted on 2 April. The six are the pages already published. The four are the ones with a source line.</p>
+<!-- /wp:paragraph --><cite>Count sheet, 2 April 2026</cite></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">The rows</h2>
+<!-- /wp:heading -->
+
+<!-- wp:table {"align":"wide"} -->
+<figure class="wp-block-table alignwide"><table><thead><tr><th>Count</th><th>What it is</th><th>How to check</th></tr></thead><tbody><tr><td>18</td><td>Pages in the set</td><td>The archive</td></tr><tr><td>6</td><td>Pages you can open</td><td>Each one has a link</td></tr><tr><td>4</td><td>Pages with a source line</td><td>Look under the quote</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:group {"className":"cds-takeaways","layout":{"type":"default"}} -->
+<div class="wp-block-group cds-takeaways">
+	<!-- wp:heading {"level":3,"className":"cds-takeaways__title"} -->
+	<h3 class="wp-block-heading cds-takeaways__title">Check it in order</h3>
+	<!-- /wp:heading -->
+
+	<!-- wp:list {"ordered":true} -->
+	<ol class="wp-block-list"><!-- wp:list-item -->
+	<li>Open the archive and count the pages.</li>
+	<!-- /wp:list-item -->
+
+	<!-- wp:list-item -->
+	<li>Open the six that link through.</li>
+	<!-- /wp:list-item -->
+
+	<!-- wp:list-item -->
+	<li>Mark the four that name a source under the quote.</li>
+	<!-- /wp:list-item --></ol>
+	<!-- /wp:list -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"tagName":"figure","className":"cds-quote","layout":{"type":"default"}} -->
+<figure class="wp-block-group cds-quote">
+	<!-- wp:quote -->
+	<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+	<p>If the number is not on the page, it is not a number we can use.</p>
+	<!-- /wp:paragraph --></blockquote>
+	<!-- /wp:quote -->
+
+	<!-- wp:group {"tagName":"figcaption","className":"cds-quote__who","layout":{"type":"default"}} -->
+	<figcaption class="wp-block-group cds-quote__who">
+		<!-- wp:html -->
+		<span class="cds-avatar cds-quote__avatar" role="img" aria-label="Alex Kim">AK</span>
+		<!-- /wp:html -->
+		<!-- wp:group {"className":"cds-quote__id","layout":{"type":"default"}} -->
+		<div class="wp-block-group cds-quote__id">
+			<!-- wp:paragraph {"className":"cds-quote__name"} -->
+			<p class="cds-quote__name">Alex Kim</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"cds-quote__role"} -->
+			<p class="cds-quote__role">Proof</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+	</figcaption>
+	<!-- /wp:group -->
+</figure>
+<!-- /wp:group -->
+HTML;
+$proof_id = cds_probe_put_post(
+	'number-check',
+	'A number you can check',
+	'The figure, and the note that says where it came from.',
+	$proof_body,
+	cds_probe_term( 'Proof' ),
+	'card-2.jpg',
+	'2026-04-02 09:00:00'
+);
 
 $articles_id = cds_probe_put_page( 'articles', 'Articles', '' );
 update_option( 'page_for_posts', $articles_id );
@@ -289,6 +630,27 @@ if ( $old_home && (int) $old_home->ID !== $front_id ) {
 	);
 	echo 'old home drafted id=' . (int) $old_home->ID . PHP_EOL;
 }
+
+$blank = <<<'HTML'
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Blank Core</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This page is a blank Core heading, a long paragraph, and the default button. No section recipe. The paragraph has to be long enough to reach the reading measure so a fresh site can prove the compiler's block defaults: display type on the heading, body type on the copy, and a primary pill button. It stays on the page template so the post title and the paragraph share a left edge.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons">
+	<!-- wp:button -->
+	<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Continue</a></div>
+	<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+HTML;
+
+$blank_id = cds_probe_put_page( 'cds-blank', 'Blank', $blank );
+echo 'cds-blank id=' . $blank_id . ' url=' . get_permalink( $blank_id ) . PHP_EOL;
 
 $catalog = WP_Block_Patterns_Registry::get_instance()->get_registered( 'cds/catalog' );
 if ( $catalog && ! empty( $catalog['content'] ) ) {
@@ -364,6 +726,60 @@ echo 'privacy id=' . $privacy_id . ' url=' . get_permalink( $privacy_id ) . PHP_
 $terms_id = cds_probe_put_page( 'terms', 'Terms', $legal_terms );
 echo 'terms id=' . $terms_id . ' url=' . get_permalink( $terms_id ) . PHP_EOL;
 
+$studio_pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( 'cds/layout-studio' );
+if ( ! $studio_pattern || empty( $studio_pattern['content'] ) ) {
+	fwrite( STDERR, "cds/layout-studio is not registered.\n" );
+	exit( 1 );
+}
+$studio_id = cds_probe_put_page( 'studio', 'Studio', $studio_pattern['content'] );
+update_post_meta( $studio_id, '_wp_page_template', 'page-canvas' );
+echo 'studio id=' . $studio_id . ' url=' . get_permalink( $studio_id ) . PHP_EOL;
+
+$shop_pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( 'cds/layout-shop' );
+if ( ! $shop_pattern || empty( $shop_pattern['content'] ) ) {
+	fwrite( STDERR, "cds/layout-shop is not registered.\n" );
+	exit( 1 );
+}
+$shop_id = cds_probe_put_page( 'shop', 'Shop', $shop_pattern['content'] );
+update_post_meta( $shop_id, '_wp_page_template', 'page-canvas' );
+echo 'shop id=' . $shop_id . ' url=' . get_permalink( $shop_id ) . PHP_EOL;
+
+$stories_pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( 'cds/layout-stories' );
+if ( ! $stories_pattern || empty( $stories_pattern['content'] ) ) {
+	fwrite( STDERR, "cds/layout-stories is not registered.\n" );
+	exit( 1 );
+}
+$stories_id = cds_probe_put_page( 'stories', 'Stories', $stories_pattern['content'] );
+update_post_meta( $stories_id, '_wp_page_template', 'page-canvas' );
+echo 'stories id=' . $stories_id . ' url=' . get_permalink( $stories_id ) . PHP_EOL;
+
+$example_pages = array(
+	array( 'case-study', 'Case study', 'cds/layout-case' ),
+	array( 'show', 'Show', 'cds/layout-show' ),
+	array( 'download', 'Download', 'cds/layout-download' ),
+);
+$example_ids = array();
+foreach ( $example_pages as $example ) {
+	$pattern = WP_Block_Patterns_Registry::get_instance()->get_registered( $example[2] );
+	if ( ! $pattern || empty( $pattern['content'] ) ) {
+		fwrite( STDERR, $example[2] . " is not registered.\n" );
+		exit( 1 );
+	}
+	$example_id = cds_probe_put_page( $example[0], $example[1], $pattern['content'] );
+	update_post_meta( $example_id, '_wp_page_template', 'page-canvas' );
+	$example_ids[ $example[0] ] = $example_id;
+	echo $example[0] . ' id=' . $example_id . ' url=' . get_permalink( $example_id ) . PHP_EOL;
+}
+
+$parts = WP_Block_Patterns_Registry::get_instance()->get_registered( 'cds/parts' );
+if ( $parts && ! empty( $parts['content'] ) ) {
+	$kid = cds_probe_put_page( 'kit-parts', 'Kit parts', $parts['content'] );
+	echo 'kit-parts id=' . $kid . ' url=' . get_permalink( $kid ) . PHP_EOL;
+} else {
+	fwrite( STDERR, "cds/parts is not registered.\n" );
+	exit( 1 );
+}
+
 $nav = array();
 foreach ( $pages as $spec ) {
 	$slug = $spec['slug'];
@@ -385,9 +801,41 @@ foreach ( $pages as $spec ) {
 				'id'    => $pid,
 			),
 			array(
+				'label' => get_the_title( $studio_id ),
+				'id'    => $studio_id,
+			),
+			array(
+				'label' => get_the_title( $shop_id ),
+				'id'    => $shop_id,
+			),
+			array(
+				'label' => get_the_title( $stories_id ),
+				'id'    => $stories_id,
+			),
+			array(
+				'label' => get_the_title( $example_ids['case-study'] ),
+				'id'    => $example_ids['case-study'],
+			),
+			array(
+				'label' => get_the_title( $example_ids['show'] ),
+				'id'    => $example_ids['show'],
+			),
+			array(
+				'label' => get_the_title( $example_ids['download'] ),
+				'id'    => $example_ids['download'],
+			),
+			array(
 				'label'    => get_the_title( $articles_id ),
 				'id'       => $articles_id,
 				'children' => array(
+					array(
+						'label' => get_the_title( $note_id ),
+						'id'    => $note_id,
+					),
+					array(
+						'label' => get_the_title( $proof_id ),
+						'id'    => $proof_id,
+					),
 					array(
 						'label' => get_the_title( $sample_id ),
 						'id'    => $sample_id,

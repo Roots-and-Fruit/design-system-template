@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Trench Slab + General Sans",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Display",
+          "fontFamily": "\"Trench Slab\", Georgia, \"Times New Roman\", serif"
+        },
+        {
+          "slug": "body",
+          "name": "Body",
+          "fontFamily": "\"General Sans\", system-ui, sans-serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Mono",
+          "fontFamily": "\"JetBrains Mono\", ui-monospace, Consolas, monospace"
+        }
+      ]
+    },
+    "custom": {
+      "font-weight": {
+        "regular": "400",
+        "emphasis": "600",
+        "bold": "500"
+      }
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontWeight": "400"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      }
+    }
+  }
+}

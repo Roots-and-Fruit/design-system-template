@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Khand + Hind",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Display",
+          "fontFamily": "\"Khand\", system-ui, sans-serif"
+        },
+        {
+          "slug": "body",
+          "name": "Body",
+          "fontFamily": "\"Hind\", system-ui, sans-serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Mono",
+          "fontFamily": "\"JetBrains Mono\", ui-monospace, Consolas, monospace"
+        }
+      ]
+    },
+    "custom": {
+      "font-weight": {
+        "regular": "400",
+        "emphasis": "600",
+        "bold": "700"
+      }
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontWeight": "400"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      }
+    }
+  }
+}

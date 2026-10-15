@@ -24,6 +24,7 @@ function cds_setup() {
 			'assets/css/layouts.css',
 			'assets/css/components.css',
 			'assets/css/block-styles.css',
+			'assets/css/site-chrome.css',
 		)
 	);
 }
@@ -61,19 +62,133 @@ function cds_enqueue_styles() {
 	$block_ver = filemtime( $block_css ) ? (string) filemtime( $block_css ) : $version;
 
 	wp_enqueue_style( 'cds-fonts', $base . 'fonts.css', array(), $version );
-	wp_enqueue_style( 'cds-tokens', $base . 'tokens.css', array( 'cds-fonts' ), $version );
+	cds_enqueue_font_pair();
+	$token_deps = array( 'cds-fonts' );
+	if ( wp_style_is( 'cds-font-pair', 'enqueued' ) ) {
+		$token_deps[] = 'cds-font-pair';
+	}
+	wp_enqueue_style( 'cds-tokens', $base . 'tokens.css', $token_deps, $version );
 	wp_enqueue_style( 'cds-layouts', $base . 'layouts.css', array( 'cds-tokens' ), $version );
 	wp_enqueue_style( 'cds-components', $base . 'components.css', array( 'cds-tokens' ), $version );
 	wp_enqueue_style( 'cds-block-styles', $base . 'block-styles.css', array( 'cds-tokens' ), $block_ver );
+	$chrome_css = get_theme_file_path( 'assets/css/site-chrome.css' );
+	$chrome_ver = filemtime( $chrome_css ) ? (string) filemtime( $chrome_css ) : $version;
+	wp_enqueue_style( 'cds-site-chrome', $base . 'site-chrome.css', array( 'cds-block-styles' ), $chrome_ver );
 
-	wp_register_script( 'cds-avatar', false, array(), $version, true );
-	wp_enqueue_script( 'cds-avatar' );
-	wp_add_inline_script(
-		'cds-avatar',
-		'(function(){document.querySelectorAll("img[data-cds-avatar]").forEach(function(img){var url=img.getAttribute("data-cds-avatar");if(!url)return;var probe=new Image();probe.onload=function(){img.src=url;};probe.src=url;});})();'
-	);
+	$widgets = get_theme_file_path( 'assets/js/kit-widgets.js' );
+	if ( file_exists( $widgets ) ) {
+		wp_enqueue_script(
+			'cds-kit-widgets',
+			get_theme_file_uri( 'assets/js/kit-widgets.js' ),
+			array(),
+			(string) filemtime( $widgets ),
+			true
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'cds_enqueue_styles' );
+add_action( 'enqueue_block_assets', 'cds_enqueue_font_pair' );
+
+/**
+ * Compare font stacks without quote or whitespace differences.
+ *
+ * @param string $stack CSS font-family list.
+ * @return string
+ */
+function cds_font_stack_key( $stack ) {
+	$stack = strtolower( html_entity_decode( (string) $stack, ENT_QUOTES ) );
+	$stack = str_replace( array( '"', "'", '\\' ), '', $stack );
+	$stack = preg_replace( '/\s+/', ' ', $stack );
+	return trim( $stack );
+}
+
+/**
+ * Resolved fontFamily for a role slug, preferring the user origin.
+ *
+ * @param array  $raw  Merged theme.json.
+ * @param string $slug display, body, or mono.
+ * @return string
+ */
+function cds_font_family_value( $raw, $slug ) {
+	$families = $raw['settings']['typography']['fontFamilies'] ?? array();
+	$lists    = array();
+	if ( isset( $families['custom'] ) || isset( $families['theme'] ) || isset( $families['default'] ) ) {
+		foreach ( array( 'custom', 'theme', 'default' ) as $origin ) {
+			if ( ! empty( $families[ $origin ] ) && is_array( $families[ $origin ] ) ) {
+				$lists[] = $families[ $origin ];
+			}
+		}
+	} elseif ( is_array( $families ) ) {
+		$lists[] = $families;
+	}
+
+	foreach ( $lists as $list ) {
+		foreach ( $list as $family ) {
+			if ( ! is_array( $family ) ) {
+				continue;
+			}
+			if ( ( $family['slug'] ?? '' ) === $slug && ! empty( $family['fontFamily'] ) ) {
+				return (string) $family['fontFamily'];
+			}
+		}
+	}
+	return '';
+}
+
+/**
+ * Fontshare pair whose display and body stacks match the merged theme.
+ *
+ * @return array<string,mixed>|null
+ */
+function cds_active_font_pair() {
+	static $resolved = false;
+	static $pair     = null;
+	if ( $resolved ) {
+		return $pair;
+	}
+	$resolved = true;
+
+	$path = get_theme_file_path( 'font-pairs.json' );
+	if ( ! is_readable( $path ) || ! class_exists( 'WP_Theme_JSON_Resolver' ) ) {
+		return null;
+	}
+	$data = json_decode( (string) file_get_contents( $path ), true );
+	if ( empty( $data['pairs'] ) || ! is_array( $data['pairs'] ) ) {
+		return null;
+	}
+
+	$raw     = WP_Theme_JSON_Resolver::get_merged_data()->get_raw_data();
+	$display = cds_font_stack_key( cds_font_family_value( $raw, 'display' ) );
+	$body    = cds_font_stack_key( cds_font_family_value( $raw, 'body' ) );
+	if ( '' === $display || '' === $body ) {
+		return null;
+	}
+
+	foreach ( $data['pairs'] as $candidate ) {
+		if ( empty( $candidate['cssUrl'] ) || empty( $candidate['display'] ) || empty( $candidate['body'] ) ) {
+			continue;
+		}
+		if (
+			cds_font_stack_key( $candidate['display'] ) === $display &&
+			cds_font_stack_key( $candidate['body'] ) === $body
+		) {
+			$pair = $candidate;
+			return $pair;
+		}
+	}
+	return null;
+}
+
+/**
+ * Load the active Fontshare pair. No-op for the default brand faces.
+ */
+function cds_enqueue_font_pair() {
+	$pair = cds_active_font_pair();
+	if ( ! $pair ) {
+		return;
+	}
+	wp_enqueue_style( 'cds-font-pair', $pair['cssUrl'], array(), null );
+}
 
 /**
  * Let CSS size the Site Logo. Core prints width/height attributes (and
@@ -173,44 +288,23 @@ add_filter( 'render_block_core/site-logo', 'cds_render_site_logo_fallback' );
  * Recipe category + button / Group styles.
  */
 function cds_register_block_styles() {
+	$defaults = cds_brand_defaults();
+	$label    = ( $defaults && '' !== $defaults['name'] )
+		? sprintf(
+			/* translators: %s: brand name from brand-defaults.json. */
+			__( '%s sections', 'cds' ),
+			$defaults['name']
+		)
+		: __( 'CDS sections', 'cds' );
+
 	register_block_pattern_category(
 		'cds',
-		array( 'label' => __( 'CDS sections', 'cds' ) )
+		array( 'label' => $label )
 	);
 
-	$buttons = array(
-		'cds-secondary' => __( 'Secondary', 'cds' ),
-		'cds-outline'   => __( 'Outline', 'cds' ),
-		'cds-accent'    => __( 'Accent', 'cds' ),
-		'cds-ghost'     => __( 'Ghost', 'cds' ),
-	);
-	foreach ( $buttons as $name => $label ) {
-		register_block_style(
-			'core/button',
-			array(
-				'name'  => $name,
-				'label' => $label,
-			)
-		);
-	}
-
-	// Paint only. Copy / Switcher / Sidebar and the other layout jobs are
-	// classes + the editor "How it sits" panel so a fill can sit on the same Group.
-	$groups = array(
-		'cds-surface' => __( 'Surface', 'cds' ),
-		'cds-tint'    => __( 'Tint', 'cds' ),
-		'cds-panel'   => __( 'Panel', 'cds' ),
-		'cds-dark'    => __( 'Dark', 'cds' ),
-	);
-	foreach ( $groups as $name => $label ) {
-		register_block_style(
-			'core/group',
-			array(
-				'name'  => $name,
-				'label' => $label,
-			)
-		);
-	}
+	// Paint styles (surface, tint, panel, dark, and the button variants) live in
+	// styles/block/*.json. Do not register those slugs here. WordPress would add
+	// a second class (is-style-…--2) and the paint would miss.
 
 	register_block_style(
 		'core/paragraph',
@@ -237,6 +331,28 @@ function cds_register_block_styles() {
 	);
 }
 add_action( 'init', 'cds_register_block_styles', 5 );
+
+/**
+ * New pages start with the page hero. Existing pages are unchanged.
+ *
+ * @param string  $content Default post content.
+ * @param WP_Post $post    Post being created.
+ */
+function cds_default_page_content( $content, $post ) {
+	if ( ! $post instanceof WP_Post || 'page' !== $post->post_type ) {
+		return $content;
+	}
+	if ( '' !== trim( (string) $content ) ) {
+		return $content;
+	}
+	$path = get_theme_file_path( 'patterns/page-hero.php' );
+	if ( ! is_readable( $path ) ) {
+		return $content;
+	}
+	$markup = strstr( (string) file_get_contents( $path ), '<!--' );
+	return is_string( $markup ) ? trim( $markup ) : $content;
+}
+add_filter( 'default_content', 'cds_default_page_content', 10, 2 );
 
 /**
  * Editor: pick Copy / Switcher / … without using a block style slot.
@@ -381,20 +497,8 @@ function cds_navigation_showcase_fallback( $fallback ) {
 add_filter( 'block_core_navigation_render_fallback', 'cds_navigation_showcase_fallback' );
 
 /**
- * Missing Gravatars 404 instead of showing the mystery-person default.
- *
- * @param array $args Avatar data.
- * @return array
- */
-function cds_avatar_default_404( $args ) {
-	$args['default'] = '404';
-	return $args;
-}
-add_filter( 'pre_get_avatar_data', 'cds_avatar_default_404' );
-
-/**
- * Print the kit mark first. Same-origin uploads stay as-is.
- * A remote URL (Gravatar) is probed in the browser; if it loads, it replaces the mark.
+ * A same-origin profile photo stays. A remote avatar (Gravatar) is swapped
+ * for the kit mark so the page does not request it.
  *
  * @param string $avatar      HTML img.
  * @param mixed  $id_or_email Unused.
@@ -423,7 +527,7 @@ function cds_avatar_placeholder_html( $avatar, $id_or_email, $size, $default, $a
 	$avatar = preg_replace( '/\s+sizes=("|\')(.*?)\\1/i', '', $avatar );
 	$avatar = preg_replace(
 		'/src=("|\')(.*?)\\1/i',
-		'src=$1' . esc_url( $mark ) . '$1 data-cds-avatar=$1' . esc_url( $remote ) . '$1',
+		'src=$1' . esc_url( $mark ) . '$1',
 		$avatar,
 		1
 	);
@@ -571,4 +675,62 @@ function cds_article_hero_featured_background( $content, $block ) {
 	return $content;
 }
 add_filter( 'render_block', 'cds_article_hero_featured_background', 10, 2 );
+
+/**
+ * Forms, dialogs, and icon spans in saved patterns.
+ * Admins have unfiltered HTML. This is for every other editor.
+ *
+ * @param array<string, array<string, bool>> $tags    Allowed tags.
+ * @param string                              $context Kses context.
+ * @return array<string, array<string, bool>>
+ */
+function cds_kses_kit_html( $tags, $context ) {
+	if ( 'post' !== $context ) {
+		return $tags;
+	}
+	$tags['form']     = array(
+		'class'  => true,
+		'action' => true,
+		'method' => true,
+	);
+	$tags['label']    = array(
+		'class' => true,
+		'for'   => true,
+	);
+	$tags['input']    = array(
+		'class'        => true,
+		'id'           => true,
+		'type'         => true,
+		'name'         => true,
+		'placeholder'  => true,
+		'required'     => true,
+		'value'        => true,
+		'autocomplete' => true,
+	);
+	$tags['textarea'] = array(
+		'class'       => true,
+		'id'          => true,
+		'name'        => true,
+		'placeholder' => true,
+		'rows'        => true,
+	);
+	$tags['button']   = array(
+		'class' => true,
+		'type'  => true,
+	);
+	$tags['dialog']   = array(
+		'class'           => true,
+		'id'              => true,
+		'aria-labelledby' => true,
+	);
+	if ( isset( $tags['a'] ) ) {
+		$tags['a']['data-cds-dialog-open'] = true;
+		$tags['a']['aria-label']           = true;
+	}
+	if ( isset( $tags['span'] ) ) {
+		$tags['span']['aria-hidden'] = true;
+	}
+	return $tags;
+}
+add_filter( 'wp_kses_allowed_html', 'cds_kses_kit_html', 10, 2 );
 

@@ -17,28 +17,90 @@
       <aside class="kit-sidebar">
         <div class="kit-sidebar__brand">
           <a class="kit-brand" href="index.html">
-            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor">
-              <rect x="2" y="2" width="60" height="60" rx="15" opacity="0.1" />
-              <circle cx="23" cy="23" r="9" />
-              <rect x="34" y="14" width="18" height="18" rx="4" opacity="0.55" />
-              <path d="M32 35 L43 51 H21 Z" opacity="0.75" />
-            </svg>
-            <span data-brand="name">Example Brand</span>
+            <img src="assets/mark.svg" alt="" width="52" height="52" />
+            <span class="kit-brand__copy">
+              <span class="kit-brand__name" data-brand="name">Example Brand</span>
+              <span class="kit-sidebar__subtitle" data-brand="tagline">Design system</span>
+            </span>
           </a>
-          <p class="kit-sidebar__subtitle" data-brand="tagline">Design system</p>
         </div>
-                                <nav class="kit-nav" aria-label="What the system does">
-          <a href="index.html">Start</a>
-          <a href="colors.html">Color</a>
-          <a href="typography.html">Type</a>
-          <a href="layout.html" aria-current="page">Layout</a>
-          <a href="components.html">Pieces</a>
-          <a href="sections.html">Pages</a>
-          <a href="the-site.html">The site</a>
-        </nav>
-        <nav class="kit-nav kit-nav--more" aria-label="More">
-          <a href="media-kit.html">Assets</a>
-          <a href="design-md.html">Design.md</a>
+                                <nav class="kit-nav" aria-label="Catalog">
+                <div class="kit-nav__group">
+          <a class="kit-nav__page" href="index.html">Overview</a>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Brand &amp; assets</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="media-kit.html#media-kit">Media Kit</a>
+            <a href="media-kit.html#logos">Logos &amp; icons</a>
+            <a href="media-kit.html#illustrations">Illustrations</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Tokens</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="colors.html">Color</a>
+            <a href="typography.html">Typography</a>
+            <a href="font-pairs.html">Font pairs</a>
+            <a href="layout.html#space">Space &amp; shape</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Components</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="components.html#inputs">Inputs &amp; controls</a>
+            <a href="components.html#data">Data &amp; display</a>
+            <a href="components.html#navigation">Navigation</a>
+            <a href="components.html#feedback">Feedback &amp; overlays</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group is-open">
+          <button class="kit-nav__toggle" type="button" aria-expanded="true">
+            <span>Patterns &amp; layout</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="layout.html#primitives">Primitives</a>
+            <a href="layout.html#proximity">Proximity</a>
+            <a href="sections.html#patterns">Content patterns</a>
+            <a href="sections.html#offers">Service offers</a>
+            <a href="sections.html#pages">Page jobs</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <button class="kit-nav__toggle" type="button" aria-expanded="false">
+            <span>Showcase</span>
+            <svg class="kit-nav__arrow" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M4.25 2.25 8 6 4.25 9.75" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="kit-nav__sub">
+            <div class="kit-nav__sub-inner">
+<a href="showcase.html#landing">Landing</a>
+            <a href="showcase.html#plugin">Plugin page</a>
+            <a href="showcase.html#article">Article</a>
+            <a href="showcase.html#tool">Tool</a>
+            </div>
+          </div>
+        </div>
+        <div class="kit-nav__group">
+          <a class="kit-nav__page" href="design-md.html">DESIGN.md</a>
+        </div>
         </nav>
         <a class="kit-yours" href="customize.html">
           <!-- Lucide palette -->
@@ -76,13 +138,13 @@
       <main class="kit-main">
         <div class="kit-main__inner cds-stack cds-stack--lg">
           <header class="kit-page-head">
-            <p class="cds-meta">Step 4 of 7</p>
+            <p class="cds-meta">Patterns &amp; layout</p>
             <h1>Layout</h1>
             <p class="cds-lede">
               Composable primitives plus Copy, one space ratio, and a measure axiom
               seeded on flow text. Compose these instead of writing bespoke
-              margin stacks or a breakpoint for every block. Next, Pieces put
-              these on controls. Then <a href="sections.html">Pages</a> compose a
+              margin stacks or a breakpoint for every block. Components put
+              these on controls. Then <a href="sections.html">page jobs</a> compose a
               landing.
             </p>
           </header>
@@ -128,7 +190,7 @@
             </p>
           </section>
 
-          <section class="kit-section">
+          <section class="kit-section" id="primitives">
             <h2>Primitives</h2>
             <div class="cds-grid" style="--cds-grid-min: 20rem">
               <div class="kit-block">
@@ -230,8 +292,44 @@
             </div>
           </section>
 
-          <section class="kit-section">
-            <h2>Space scale</h2>
+          <section class="kit-section" id="proximity">
+            <h2>Proximity</h2>
+            <p class="cds-lede">Inside one piece, the label sits with the title, and the title sits with the first line. The action takes a step. A byline between the title and the lede tucks in. The excerpt after that byline takes the same step as an action.</p>
+            <div class="cds-copy" style="max-inline-size: 28rem">
+              <span class="cds-pill">Label</span>
+              <h3>Title sits with the label</h3>
+              <p class="cds-byline">A credit line</p>
+              <p class="cds-lede">The first line stays with the title, and steps away from the credit.</p>
+              <div class="cds-cluster">
+                <button type="button" class="cds-btn cds-btn--primary">Action</button>
+              </div>
+            </div>
+            <h3>Wash and frame</h3>
+            <p class="cds-prose">A wash is a stripe. Copy sits in <code>.cds-wash__inner</code> on the header column. <code>.cds-frame--fit</code> shows the whole image. Square and wide crops step the caption down with <code>.cds-figure--compact</code>.</p>
+            <div class="cds-wash">
+              <div class="cds-wash__inner cds-grid cds-grid--center">
+                <div class="cds-stack cds-stack--sm"><h3>60+</h3><p class="cds-meta">Templates</p></div>
+                <div class="cds-stack cds-stack--sm"><h3>8</h3><p class="cds-meta">Page jobs</p></div>
+                <div class="cds-stack cds-stack--sm"><h3>1</h3><p class="cds-meta">Accent</p></div>
+              </div>
+            </div>
+            <div class="cds-grid cds-grid--three" style="margin-block-start: var(--cds-space-5)">
+              <figure class="cds-figure">
+                <img class="cds-frame cds-frame--fit" src="assets/illustrations/scene.svg" alt="Placeholder illustration." />
+                <figcaption class="cds-caption"><p class="cds-caption__name">Fit</p><p class="cds-caption__role">The image keeps its own ratio.</p></figcaption>
+              </figure>
+              <figure class="cds-figure cds-figure--compact">
+                <img class="cds-frame cds-frame--square" src="assets/illustrations/scene.svg" alt="" />
+                <figcaption class="cds-caption"><p class="cds-caption__name">Square</p><p class="cds-caption__role">1:1 crop.</p></figcaption>
+              </figure>
+              <figure class="cds-figure cds-figure--compact">
+                <img class="cds-frame cds-frame--wide" src="assets/illustrations/scene.svg" alt="" />
+                <figcaption class="cds-caption"><p class="cds-caption__name">Wide</p><p class="cds-caption__role">16:9 crop.</p></figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="kit-section" id="space">
             <div class="cds-table-wrap">
               <table class="cds-table">
                 <thead>
@@ -300,10 +398,11 @@
 
                                         <nav class="kit-pager" aria-label="Pagination">
             <a href="typography.html">&larr; Type</a>
-            <a href="components.html">Next: Pieces &rarr;</a>
+            <a href="components.html">Next: Components &rarr;</a>
           </nav>
         </div>
       </main>
     </div>
+      <script src="js/kit-nav.js"></script>
   </body>
 </html>

@@ -13,6 +13,15 @@ job you are doing first.
 Most fork work is **Job B**. Do not skip the customize script and hand-edit
 generated regions.
 
+## Compose first
+
+This applies to every job. Search `css/layouts.css` and `css/components.css`
+before writing a rule, and use the class that is already there. A `<style>`
+block in an HTML page is a miss when that class exists. New CSS goes in those
+files, and in `DESIGN.md`, only when the kit has no object for the behavior.
+`css/kit.css` is reference chrome, not a second component library. A specimen
+may set `font-family` inline. The family is the content.
+
 ## Job A: building UI with this system
 
 1. Read `DESIGN.md` before choosing colour, type, radius, spacing, or a
@@ -64,9 +73,7 @@ node scripts/apply-brand.mjs
    (sidebar mark is inlined per page; favicon points at `assets/mark.svg`).
 6. **Run `npm run customize` again** after prose edits. Confirm the sidebar
    name, Colors chips, and Typography families match the brand.
-7. **Post-customize walk.** Color: accessibility matrix — primary button rest
-   and hover both pass AA (4.5:1). The Site: washes sit on `wide`, callout
-   type is readable on dark. Stop. Logo is a separate pass.
+7. **Post-customize walk.** Customize already failed if a promised contrast pair misses 4.5:1. The Color matrix is for seeing the rest of the grid. The Site: washes sit on `wide`, callout type is readable on dark. Stop. Logo is a separate pass.
 
 Human-facing entry: `customize.html` ("Make it your own") with a copy-paste
 prompt. Procedural detail: this Job B + `CUSTOMIZE.md`.
@@ -98,7 +105,7 @@ Edit in this order so the pieces stay in sync:
 5. Run `npm run customize` or `npm run sync:design-md`. After token or contract
    changes that WordPress should see, run `npm run compile:wordpress` (customize
    already does this). The thin theme lives in `wordpress/cds/`. Copy it with
-   `node scripts/sync-theme.mjs --dest <wp-content/themes/cds>`. After a visual
+   `node scripts/sync-theme.mjs --dest <wp-content/themes/<slug>>`. `<slug>` is `brand-defaults.json` after compile (Example Brand installs as `example-brand`; a `cds` dest is retargeted). After a visual
    change, run `npm run test:wp` against a live site (`CDS_WP_BASE_URL`).
 
 ## Job D: WordPress projection

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "slug": "cds-surface",
+  "title": "Surface",
+  "blockTypes": [
+    "core/group"
+  ],
+  "styles": {
+    "border": {
+      "color": "var:custom|rule",
+      "radius": "var:preset|border-radius|md",
+      "style": "solid",
+      "width": "1px"
+    },
+    "color": {
+      "background": "var:preset|color|surface",
+      "text": "var:preset|color|ink"
+    },
+    "shadow": "var:preset|shadow|sm",
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|space-6",
+        "right": "var:preset|spacing|space-6",
+        "bottom": "var:preset|spacing|space-6",
+        "left": "var:preset|spacing|space-6"
+      }
+    }
+  }
+}

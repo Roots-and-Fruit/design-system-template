@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "slug": "cds-tint",
+  "title": "Tint",
+  "blockTypes": [
+    "core/group"
+  ],
+  "styles": {
+    "border": {
+      "radius": "var:preset|border-radius|md"
+    },
+    "color": {
+      "background": "var:preset|color|primary-soft",
+      "text": "var:preset|color|ink"
+    },
+    "shadow": "var:preset|shadow|sm",
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|space-6",
+        "right": "var:preset|spacing|space-6",
+        "bottom": "var:preset|spacing|space-6",
+        "left": "var:preset|spacing|space-6"
+      }
+    }
+  }
+}

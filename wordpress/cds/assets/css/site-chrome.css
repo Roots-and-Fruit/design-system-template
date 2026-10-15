@@ -1,0 +1,17 @@
+/* Theme rules WordPress cannot say in theme.json.
+   Header, footer, and the article frame stay in block-styles.css.
+   This file registers the reading measure as a length, and keeps a kit
+   button class on the wrapper from drawing a second ring. */
+
+@property --cds-measure {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+/* Kit classes sit on the wrapper. The visible control is the inner link. */
+.wp-block-button.cds-btn {
+  border: 0;
+  background: transparent;
+  padding: 0;
+}

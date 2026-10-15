@@ -1,6 +1,7 @@
 /**
  * Live WCAG 2 contrast matrix on Color. Reads computed --cds-* values so a
  * fork's brand.json shows up without hardcoding hex.
+ * The pair list in scripts/contrast.mjs is the gate. This grid is the picture.
  */
 (function () {
   var table = document.getElementById("kit-a11y-matrix");

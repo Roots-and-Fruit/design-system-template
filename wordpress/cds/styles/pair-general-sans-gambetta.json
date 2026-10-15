@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "General Sans + Gambetta",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Display",
+          "fontFamily": "\"General Sans\", system-ui, sans-serif"
+        },
+        {
+          "slug": "body",
+          "name": "Body",
+          "fontFamily": "\"Gambetta\", Georgia, \"Times New Roman\", serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Mono",
+          "fontFamily": "\"JetBrains Mono\", ui-monospace, Consolas, monospace"
+        }
+      ]
+    },
+    "custom": {
+      "font-weight": {
+        "regular": "400",
+        "emphasis": "600",
+        "bold": "600"
+      }
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontWeight": "400"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontWeight": "600"
+        }
+      }
+    }
+  }
+}

@@ -23,7 +23,8 @@ WordPress is a **projection** of this kit. The kit is the system. A brand pack
   Switcher, Sidebar, Center, Box sit in the Group sidebar (Arrangement) so a
   background can share the Group. Image styles: Frame / Original.
   Two-up marketing is Switcher, not Columns. Walk: Pieces is the Core allowlist
-  (`/pieces/`). Sections is the stacked catalog (`/sections/`).
+  (`/pieces/`). The stacked catalog stays at `/sections/` for the pattern test
+  and is not a header item. The site pages show those sections in a layout.
 - Token layers (primitive → semantic → component) live in `DESIGN.md`.
 - Layout / elevation / focus are YAML on `DESIGN.md`. Customize does not own them.
 - Visual check: `npm run test:wp`. Layout locks, not screenshots: identity,
@@ -35,7 +36,8 @@ WordPress is a **projection** of this kit. The kit is the system. A brand pack
   lives on `post-content` (and a title wrapper). `alignfull` washes can reach
   the viewport. Do not wrap `post-content` in a second constrained Group.
 - The kit **Sections** page is the catalog (`sections.html`). WordPress
-  projects the same jobs as patterns. The walk stacks them on `/sections/`.
+  projects the same jobs as patterns. `/sections/` stays published and unlisted
+  so the catalog test has a URL. It is not in the header walk.
   Proof is five centered stats on `wide` inside a full-bleed wash. Hero is a
   Switcher: pill, title, lede, one primary, proof cluster, media. Card grid
   uses three paired fills (surface, tint, dark); Playwright checks AA and that
@@ -119,7 +121,8 @@ cannot rebrand without editing the parts.
 ## Next (generic kit only)
 
 Showcase walk is live on the kit HTML and the probe (Start → Color → Type →
-Layout → Pieces → Sections → The site). Header nav is that walk, not a page-list dump.
+Layout → Pieces → The site). Header nav is that walk, not a page-list dump.
+`/sections/` is the unlisted catalog.
 
 1. **Match kit specimens.** Side-by-side: `sections.html` vs `/sections/`,
    and `components.html` vs `/pieces/`. Same radius, button padding, ink.
@@ -132,7 +135,7 @@ Re-seed the probe walk: `studio wp --path <probe> eval-file wordpress/probe-seed
 
 ## Hard stops
 
-- Do not read or copy `company-docs/brand/` (`--rf-*`, Knile, cream, atmosphere)
+- Do not read or copy `company-docs/brand-next/` (`--rf-*`, Knile, cream, atmosphere)
   into this theme.
 - Do not invent hue picker slugs (`green`, `cream`, `orange`) or colour names
   `secondary` / `tertiary`.
@@ -151,7 +154,7 @@ Re-seed the probe walk: `studio wp --path <probe> eval-file wordpress/probe-seed
 
 ```bash
 npm run compile:wordpress
-node scripts/sync-theme.mjs --dest "<wp-content/themes/cds>"
+node scripts/sync-theme.mjs --dest "<wp-content/themes/<slug>>"
 npm run test:wp
 ```
 
@@ -199,3 +202,25 @@ Probe dest and Studio notes are hub-only: `HUB-CONTEXT.md` (gitignored).
 **Shipped.** `/pricing/` is inlined `cds/pricing` on `page-canvas`. Three plan cards (Start / Team / Studio), Best Offer on Team, one primary, guarantee, nested proof, a short validator, six `core/details`. Not a ninth section. Playwright: `wordpress/e2e/pricing.spec.js`.
 
 **Audit.** No `page-pricing.html`. No Columns. No second primary (`cds/cta` stays off this page). Seed inlines `cds/proof`. Nav: Pricing sits under The site, after Offer. FAQ details use `.wp-block-details + .wp-block-details` stack gap on the front (editor already spaces `.wp-block` wrappers). Do not enable `settings.spacing.blockGap` until the Best Offer pill and last-wash flush are accounted for.
+
+## Walk without a Sections item (2026-10-14)
+
+**Decision.** Header walk is Start, Color, Type, Layout, Pieces, The site. `/sections/` stays published with `nav => false` so `catalog.spec.js` still has a URL. Patterns stay in the inserter. Pieces links on to The site. Footer Explore drops Sections.
+
+The site pages already show the sections in a layout. A top-level Sections item opened on the same hero as Offer, so the two pages looked like the same layout.
+
+**Article body.** Post content uses the prose step (`--cds-stack` / space-5), from the compiler and from `.wp-block-post-content`. The compiler used to write section (space-6) onto `core/post-content`. That gap stacked on the browser’s paragraph margin, so Terms, Privacy, and articles broke at about 72px. Consecutive groups still sum to the section step. Do not put section back on post content, and do not enable `settings.spacing.blockGap` to fix prose.
+
+Headings in that column are start-aligned. Core constrained layout sets `margin-inline: auto`, which centers a heading that is only as wide as its line. The rail title sits on the panel’s inset. Zero the browser heading margin inside the aside, or the display size’s `0.83em` stacks on `--cds-inset`.
+
+## Pieces for the pattern audit (2026-10-14)
+
+**Decision.** Project the pieces the Ollie sample could not build from Core alone: icon (mask, `assets/icons/`), icon row, cover, play control, corner badge, logo row, chip, product card, category tile, stacked form, inline form, reel, and a footer call-to-action pattern. Badge, avatar, field, stars, price, dialog, card, and icon-link were already in `components.css`. The compiler now writes them as patterns from `scripts/pattern-pieces.mjs`.
+
+**Choice.** Local SVG masks, not a runtime icon service. Post content cannot keep inline SVG. `cds/footer-cta` is an inserter pattern. `parts/footer.html` stays the live footer. Reel is scroll-snap for the carousel-shaped layouts. The review grid stays the default. No ninth page job. `/kit-parts/` is published and unlisted.
+
+**Reversibility.** Two-way. Delete the generated patterns and the CSS block, then compile. Do not turn `settings.spacing.blockGap` on. Do not put the section step back on post content.
+
+## Site layouts from the pattern audit (2026-10-14)
+
+**Shipped.** Three canvas pages under The site: `/studio/`, `/shop/`, `/stories/`. Patterns `cds/layout-studio`, `cds/layout-shop`, `cds/layout-stories` are hand-owned. Studio is alternating rows, a FAQ, and a contact form. Shop is a cover, category tiles, and a product grid. Stories is one cover, icon cards, a video dialog, and a reel. Shop does not take an order. Stories does not use a slider. The site footer is still `parts/footer.html`.

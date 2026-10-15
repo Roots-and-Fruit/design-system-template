@@ -11,13 +11,13 @@ npm run compile:wordpress
 | File | What it is |
 | --- | --- |
 | `cds/` | Thin block theme. `theme.json` and `assets/css/` are generated. |
-| `cds/brand-defaults.json` | Name + tagline from `brand.json`. Theme seeds Site Identity. |
+| `cds/brand-defaults.json` | Name, install slug, description, and tagline from `brand.json`. Theme seeds Site Identity. The inserter category is “{name} sections”. |
 | `cds/assets/mark.svg` | Kit mark. Site Logo fallback when none is uploaded. |
 | `theme.json` | Same presets, for copy-only use. |
 | `design-tokens.json` | Layer B registry for `register_design_token()`. |
 
 ```bash
-node scripts/sync-theme.mjs --dest "C:/path/to/wp-content/themes/cds"
+node scripts/sync-theme.mjs --dest "C:/path/to/wp-content/themes/<slug>"
 npm run test:wp
 ```
 
@@ -25,7 +25,7 @@ npm run test:wp
 
 Contract: [`../WORDPRESS.md`](../WORDPRESS.md). `DESIGN.md` and `css/tokens.css` stay the source of truth. WordPress is a projection.
 
-Authors start from **CDS sections** in the inserter (`cds/hero`, `cds/proof`, `cds/card-grid`, `cds/split`, `cds/quote`, `cds/dark-band`, `cds/cta`, `cds/alert`). Page recipes: `cds/article`, `cds/landing` (a stack). Button styles: secondary, outline, accent, ghost. Group layout styles: Copy, Cluster, Switcher, Sidebar, Center, Box. Group paint styles: surface, tint, panel, dark. Paragraph style: pill. Image styles: Frame, Original. Two-up marketing is Switcher, not Columns.
+Authors start from the brand’s section group in the inserter (`cds/hero`, `cds/proof`, `cds/card-grid`, `cds/split`, `cds/quote`, `cds/dark-band`, `cds/cta`, `cds/alert`). The group label is the brand name plus “sections”. Pattern slugs stay `cds/`. Page recipes: `cds/article`, `cds/landing` (a stack). Button styles: secondary, outline, accent, ghost. Group layout styles: Copy, Cluster, Switcher, Sidebar, Center, Box. Group paint styles: surface, tint, panel, dark. Paragraph style: pill. Image styles: Frame, Original. Two-up marketing is Switcher, not Columns.
 
 ## Decision: literals in the projection
 

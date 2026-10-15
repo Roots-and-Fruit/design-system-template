@@ -13,6 +13,7 @@
 <!-- wp:pattern {"slug":"cds/card-grid"} /-->
 <!-- wp:pattern {"slug":"cds/split"} /-->
 <!-- wp:pattern {"slug":"cds/quote"} /-->
+<!-- wp:pattern {"slug":"cds/quote-portrait"} /-->
 <!-- wp:pattern {"slug":"cds/dark-band"} /-->
 <!-- wp:pattern {"slug":"cds/cta"} /-->
 <!-- wp:pattern {"slug":"cds/alert"} /-->

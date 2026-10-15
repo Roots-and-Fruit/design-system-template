@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "slug": "cds-dark",
+  "title": "Dark",
+  "blockTypes": [
+    "core/group"
+  ],
+  "styles": {
+    "border": {
+      "radius": "var:preset|border-radius|md"
+    },
+    "color": {
+      "background": "var:preset|color|surface-dark",
+      "text": "var:custom|on|dark"
+    },
+    "shadow": "none",
+    "spacing": {
+      "padding": {
+        "top": "var:preset|spacing|space-6",
+        "right": "var:preset|spacing|space-6",
+        "bottom": "var:preset|spacing|space-6",
+        "left": "var:preset|spacing|space-6"
+      }
+    }
+  }
+}

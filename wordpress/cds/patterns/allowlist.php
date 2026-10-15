@@ -6,6 +6,7 @@
  * Description: Specimen of allowed Core marketing blocks. Not a recipe.
  * Viewport Width: 960
  */
+$cds_media_mark = esc_url( get_theme_file_uri( 'assets/mark.svg' ) );
 ?>
 <!-- wp:paragraph -->
 <p>Allowed Core for marketing. No recipes on this page. If these blocks already look like the kit, the theme is doing its job.</p>
@@ -86,7 +87,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
-<figure class="wp-block-image size-full"><img src="/wp-content/themes/cds/assets/mark.svg" alt="Kit mark"/><figcaption class="wp-element-caption">Kit mark. Captions use muted ink.</figcaption></figure>
+<figure class="wp-block-image size-full"><img src="<?php echo $cds_media_mark; ?>" alt="Kit mark"/><figcaption class="wp-element-caption">Kit mark. Captions use muted ink.</figcaption></figure>
 <!-- /wp:image -->
 
 <!-- wp:separator -->
@@ -279,7 +280,7 @@ Keeps line breaks.</pre>
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
 	<!-- wp:button {"className":"is-style-cds-outline"} -->
-	<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button" href="/sections/">Next: Sections</a></div>
+	<div class="wp-block-button is-style-cds-outline"><a class="wp-block-button__link wp-element-button" href="/the-site/">Next: The site</a></div>
 	<!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->

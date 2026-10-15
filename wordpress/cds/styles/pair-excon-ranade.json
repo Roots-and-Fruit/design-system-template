@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Excon + Ranade",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Display",
+          "fontFamily": "\"Excon\", system-ui, sans-serif"
+        },
+        {
+          "slug": "body",
+          "name": "Body",
+          "fontFamily": "\"Ranade\", system-ui, sans-serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Mono",
+          "fontFamily": "\"JetBrains Mono\", ui-monospace, Consolas, monospace"
+        }
+      ]
+    },
+    "custom": {
+      "font-weight": {
+        "regular": "400",
+        "emphasis": "700",
+        "bold": "500"
+      }
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontWeight": "400"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontWeight": "500"
+        }
+      }
+    }
+  }
+}

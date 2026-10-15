@@ -60,12 +60,6 @@ a:hover {
   color: var(--cds-primary-deep);
 }
 
-/* Never remove focus affordances. Restyle them instead. */
-:focus-visible {
-  outline: none;
-  box-shadow: var(--cds-focus);
-}
-
 hr {
   border: 0;
   border-top: 1px solid var(--cds-rule);

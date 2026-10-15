@@ -1,0 +1,125 @@
+{
+  "$comment": "Generated from scripts/font-pairs.mjs. PHP enqueues cssUrl when the active display and body stacks match. Do not edit.",
+  "pairs": [
+    {
+      "id": "amulya-synonym",
+      "title": "Amulya + Synonym",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=amulya@700&f[]=synonym@400,600&display=swap",
+      "display": "\"Amulya\", system-ui, sans-serif",
+      "body": "\"Synonym\", system-ui, sans-serif",
+      "displayWeight": "700",
+      "bodyWeight": "400",
+      "emphasisWeight": "600"
+    },
+    {
+      "id": "chubbo-supreme",
+      "title": "Chubbo + Supreme",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=chubbo@700&f[]=supreme@400,700&display=swap",
+      "display": "\"Chubbo\", system-ui, sans-serif",
+      "body": "\"Supreme\", system-ui, sans-serif",
+      "displayWeight": "700",
+      "bodyWeight": "400",
+      "emphasisWeight": "700"
+    },
+    {
+      "id": "bebas-nunito",
+      "title": "Bebas Neue + Nunito",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=bebas-neue@400&f[]=nunito@400,600&display=swap",
+      "display": "\"Bebas Neue\", system-ui, sans-serif",
+      "body": "\"Nunito\", system-ui, sans-serif",
+      "displayWeight": "400",
+      "bodyWeight": "400",
+      "emphasisWeight": "600"
+    },
+    {
+      "id": "excon-ranade",
+      "title": "Excon + Ranade",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=excon@500&f[]=ranade@400,700&display=swap",
+      "display": "\"Excon\", system-ui, sans-serif",
+      "body": "\"Ranade\", system-ui, sans-serif",
+      "displayWeight": "500",
+      "bodyWeight": "400",
+      "emphasisWeight": "700"
+    },
+    {
+      "id": "tanker-bespoke-serif",
+      "title": "Tanker + Bespoke Serif",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=bespoke-serif@400,700&display=swap",
+      "display": "\"Tanker\", system-ui, sans-serif",
+      "body": "\"Bespoke Serif\", Georgia, \"Times New Roman\", serif",
+      "displayWeight": "400",
+      "bodyWeight": "400",
+      "emphasisWeight": "700"
+    },
+    {
+      "id": "bespoke-stencil-supreme",
+      "title": "Bespoke Stencil + Supreme",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=bespoke-stencil@700&f[]=supreme@400,700&display=swap",
+      "display": "\"Bespoke Stencil\", system-ui, sans-serif",
+      "body": "\"Supreme\", system-ui, sans-serif",
+      "displayWeight": "700",
+      "bodyWeight": "400",
+      "emphasisWeight": "700"
+    },
+    {
+      "id": "trench-slab-general-sans",
+      "title": "Trench Slab + General Sans",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=trench-slab@500&f[]=general-sans@400,600&display=swap",
+      "display": "\"Trench Slab\", Georgia, \"Times New Roman\", serif",
+      "body": "\"General Sans\", system-ui, sans-serif",
+      "displayWeight": "500",
+      "bodyWeight": "400",
+      "emphasisWeight": "600"
+    },
+    {
+      "id": "general-sans-gambetta",
+      "title": "General Sans + Gambetta",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=general-sans@600&f[]=gambetta@400,600&display=swap",
+      "display": "\"General Sans\", system-ui, sans-serif",
+      "body": "\"Gambetta\", Georgia, \"Times New Roman\", serif",
+      "displayWeight": "600",
+      "bodyWeight": "400",
+      "emphasisWeight": "600"
+    },
+    {
+      "id": "array-khand",
+      "title": "Array + Khand",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=array@400&f[]=khand@400,600&display=swap",
+      "display": "\"Array\", system-ui, sans-serif",
+      "body": "\"Khand\", system-ui, sans-serif",
+      "displayWeight": "400",
+      "bodyWeight": "400",
+      "emphasisWeight": "600"
+    },
+    {
+      "id": "pilcrow-hind",
+      "title": "Pilcrow Rounded + Hind",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=pilcrow-rounded@600&f[]=hind@400,600&display=swap",
+      "display": "\"Pilcrow Rounded\", system-ui, sans-serif",
+      "body": "\"Hind\", system-ui, sans-serif",
+      "displayWeight": "600",
+      "bodyWeight": "400",
+      "emphasisWeight": "600"
+    },
+    {
+      "id": "khand-hind",
+      "title": "Khand + Hind",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=khand@700&f[]=hind@400,600&display=swap",
+      "display": "\"Khand\", system-ui, sans-serif",
+      "body": "\"Hind\", system-ui, sans-serif",
+      "displayWeight": "700",
+      "bodyWeight": "400",
+      "emphasisWeight": "600"
+    },
+    {
+      "id": "general-sans",
+      "title": "General Sans + General Sans",
+      "cssUrl": "https://api.fontshare.com/v2/css?f[]=general-sans@400,600,700&display=swap",
+      "display": "\"General Sans\", system-ui, sans-serif",
+      "body": "\"General Sans\", system-ui, sans-serif",
+      "displayWeight": "600",
+      "bodyWeight": "400",
+      "emphasisWeight": "700"
+    }
+  ]
+}

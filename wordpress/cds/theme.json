@@ -50,7 +50,7 @@
         {
           "slug": "ink-muted",
           "name": "Ink muted",
-          "color": "#64748b"
+          "color": "#475569"
         },
         {
           "slug": "primary",
@@ -538,7 +538,7 @@
       },
       "core/post-content": {
         "spacing": {
-          "blockGap": "var:preset|spacing|space-6"
+          "blockGap": "var:preset|spacing|space-5"
         }
       },
       "core/group": {

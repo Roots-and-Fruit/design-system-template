@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.describe("CDS showcase nav", () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test("walk stays top-level; The site nests Offer, Pricing, Articles, and the essay", async ({
+  test("walk stays top-level; The site nests the example pages and the essay", async ({
     page,
   }) => {
     const response = await page.goto("/");
@@ -19,7 +19,6 @@ test.describe("CDS showcase nav", () => {
       "Type",
       "Layout",
       "Pieces",
-      "Sections",
       "The site",
     ]);
 
@@ -38,8 +37,16 @@ test.describe("CDS showcase nav", () => {
     const essayLink = siteItem.locator('a[href*="/sample-essay/"]');
     await expect(offerLink).toHaveCount(1);
     await expect(pricingLink).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/studio/"]')).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/shop/"]')).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/stories/"]')).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/case-study/"]')).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/show/"]')).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/download/"]')).toHaveCount(1);
     await expect(articlesLink).toHaveCount(1);
     await expect(essayLink).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/named-offer/"]')).toHaveCount(1);
+    await expect(siteItem.locator('a[href*="/number-check/"]')).toHaveCount(1);
 
     const articlesItem = siteItem.locator(
       ":scope > .wp-block-navigation__submenu-container > .wp-block-navigation-submenu",
@@ -49,6 +56,8 @@ test.describe("CDS showcase nav", () => {
       /\/articles\/?$/,
     );
     await expect(articlesItem.locator('a[href*="/sample-essay/"]')).toHaveCount(1);
+    await expect(articlesItem.locator('a[href*="/named-offer/"]')).toHaveCount(1);
+    await expect(articlesItem.locator('a[href*="/number-check/"]')).toHaveCount(1);
 
     await siteItem.hover();
     await offerLink.click();

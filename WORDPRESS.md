@@ -1,6 +1,8 @@
 # WordPress contract
 
-`DESIGN.md` is the source of truth. `theme.json` is a projection. This file
+`DESIGN.md` is the source of truth. `theme.json` is a projection. Compose the
+kit classes. Do not restyle them in a template or a page style block. New CSS
+is only for an object Core and the kit both lack. This file
 names the facts a compiler needs so it does not invent slugs, pickers, or
 recipes.
 
@@ -153,6 +155,8 @@ keeps section gap. Pricing is three plan cards at 1280, Best Offer in the
 middle, one primary, six `core/details`. A details block is the column width
 open or closed. Do not treat HTTP 200 as “it looks right.”
 
+**Headings.** The page or post title is the only `h1`. The next heading in the content is an `h2`.
+
 Spacing slugs: `space-1` … `space-8`. Fluid type is off.
 
 ---
@@ -170,12 +174,19 @@ Composites stay in `DESIGN.md`. WP gets families + sizes + optics.
 
 Family *files* are a brand pack. Do not commit licensed WOFF2s.
 
+Fontshare pairs are a catalog in `scripts/font-pairs.mjs`. `brand.json` `fonts.pairs` is the allowlist. The compiler writes one theme style variation per id (`styles/pair-*.json`) and `font-pairs.json` for the enqueue. `fonts.pair`, when set, is the default display and body after customize. Roles stay `display`, `body`, and `mono`. A pair fills the first two.
+
+The compiled theme points `--cds-font-display`, `--cds-font-body`, `--cds-font-mono`, and the three weight tokens at the WordPress presets, so a Styles choice restyles kit CSS. Faces load from the Fontshare CSS API when the active display and body stacks match a pair. The kit reference site keeps the real stacks in `css/tokens.css`.
+
 ---
 
 ## Recipes
 
-Authors start from sections. Pages compose them. Markup: `wordpress/cds/patterns/`.
-Specimens in the kit: `sections.html`.
+Organism patterns are generated from `scripts/block-snippets.mjs` on compile: `cds/quote`, `cds/quote-portrait`, `cds/review`, `cds/card`, `cds/offer`, `cds/takeaways`, and `cds/page-hero`. Pieces in `scripts/pattern-pieces.mjs` compile the same way: icon card, icon list, cover, video card, logo row, product grid, category tiles, contact form, subscribe, avatars, icon links, reel, and `cds/footer-cta`. `scripts/pattern-organisms.mjs` adds the later kit organisms: folder tabs, gallery, post cards, fact list, stat row, episode row, steps, people, photo cluster, bento, and search. `cds/parts` stacks every piece. The probe page is `/kit-parts/`, published and unlisted. A new empty page is seeded with the page hero. Panel and dark offers are classes on `cds/offer`, not extra patterns. The eight section jobs stay hand-owned in `wordpress/cds/patterns/`. Specimens in the kit: `sections.html` and `components.html`. `cds/footer-cta` does not replace `parts/footer.html`.
+
+Tabs, gallery, facts, and steps are one Custom HTML block. Core has no honest object, and `kit-widgets.js` binds that markup. Post cards, the stat row, episodes, people, the photo cluster, and bento are Groups, so the words stay editable. Their grid has to be restated in `block-styles.css`: Core’s flow layout is a column, and it beats a single kit class. These are pieces inside a section. They are not page jobs.
+
+Page recipes under The site: `cds/landing` (Offer), `cds/pricing`, `cds/layout-studio`, `cds/layout-shop`, `cds/layout-stories`, `cds/layout-case`, `cds/layout-show`, and `cds/layout-download`. Studio, Shop, and Stories are compositions of the pieces. Case study, Show, and Download are compositions of the later organisms (gallery, facts, steps, stats, people, episodes, bento). Shop is a poster, not a cart. Stories uses one cover and a reel, not a slider. The posts index is `home.html`: query title, then post cards with a featured image.
 
 ### Sections
 
@@ -185,7 +196,7 @@ Specimens in the kit: `sections.html`.
 | `cds/proof` | Five centered stats on wide, inside a full-bleed paper-deep wash. Three-up is also legal. No leftover tile. |
 | `cds/card-grid` | Three paired fills (surface, tint, dark). Title, one line, optional outline link. |
 | `cds/split` | Copy plus media. Kit `.cds-split`; WordPress Group style Switcher. |
-| `cds/quote` | One attribution on a surface. Not a carousel. |
+| `cds/quote` | Words, a mark, and a person (`.cds-quote`). A row of reviews is `.cds-review`. Not a carousel. |
 | `cds/dark-band` | Callout strip. `on-dark` title. One accent button max. Not a page. |
 | `cds/cta` | Short `display-sm` + one button (primary or accent, not both) |
 | `cds/alert` | Status note. Never a hero. Tone is the group fill. |
@@ -197,6 +208,9 @@ Specimens in the kit: `sections.html`.
 | `cds/article` | Measured prose → one CTA. Title, excerpt, and takeaways live in the `single` template. Paper. |
 | `cds/landing` | Hero, proof, card grid. One primary, on the hero. Assign `page-canvas` so the hero is the only `h1`. |
 | `cds/pricing` | Three plans (middle Best Offer, one primary), guarantee, proof, a short validator, FAQ. Assign `page-canvas`. Not a ninth section job. |
+| `cds/layout-case` | One engagement. Facts, a gallery, steps, a stat row, people, a quote. Assign `page-canvas`. |
+| `cds/layout-show` | A title, stacked episodes, and a subscribe band. Assign `page-canvas`. |
+| `cds/layout-download` | Peachy Plugin. Plugin facts, a feature bento, install steps, a changelog, and an FAQ. Assign `page-canvas`. |
 
 `cds/catalog` stacks every section for the probe. Walk `/sections/` is that
 stack (Canvas, so the hero `h1` is the only title). Walk `/pieces/` is the
@@ -204,9 +218,7 @@ Core allowlist (quote, table, details, buttons, code). `cds/layout-home` is a
 homepage composition probe (same jobs, Inserter off). Inserter stays off for
 catalog and layout-home.
 
-Button styles: `cds-secondary`, `cds-outline`, `cds-accent`, `cds-ghost`.
-Group **Styles** (paint only): `cds-surface`, `cds-tint`, `cds-panel`,
-`cds-dark`. Group **layout** (Copy, Cluster, Switcher, Sidebar, Center, Box)
+Button styles and Group paint live in `wordpress/cds/styles/block/*.json` (`cds-secondary`, `cds-outline`, `cds-accent`, `cds-ghost`, `cds-surface`, `cds-tint`, `cds-panel`, `cds-dark`). Do not also register those slugs in PHP. Group **layout** (Copy, Cluster, Switcher, Sidebar, Center, Box)
 is a class (`cds-copy`, …) picked from the Arrangement sidebar so a
 background (Surface, Tint, Panel, Dark) and an arrangement can share one Group. Saved `is-style-cds-copy` still paints;
 selecting that Group in the editor rewrites it to `cds-copy`. Nested groups

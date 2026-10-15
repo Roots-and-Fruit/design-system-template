@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "slug": "cds-accent",
+  "title": "Accent",
+  "blockTypes": [
+    "core/button"
+  ],
+  "styles": {
+    "border": {
+      "radius": "var:custom|button|radius",
+      "style": "solid",
+      "width": "1.5px",
+      "color": "transparent"
+    },
+    "color": {
+      "background": "var:preset|color|accent",
+      "text": "var:custom|on|accent"
+    },
+    ":hover": {
+      "color": {
+        "background": "color-mix(in srgb, var(--wp--preset--color--accent) 82%, black)",
+        "text": "var:custom|on|accent"
+      }
+    }
+  }
+}

@@ -39,7 +39,9 @@ test.describe("CDS article frame", () => {
           return el.complete && el.naturalWidth > 0 ? src : "";
         }),
       )
-      .toMatch(/mark\.svg|gravatar|uploads/);
+      .toMatch(/mark\.svg|uploads/);
+    await expect(avatar).toHaveAttribute("src", /mark\.svg|uploads/);
+    expect(await avatar.evaluate((el) => el.outerHTML)).not.toMatch(/gravatar/i);
 
     const aside = page.locator("aside");
     await expect(aside).toBeVisible();
@@ -55,8 +57,11 @@ test.describe("CDS article frame", () => {
       const hero = document.querySelector(".cds-article-hero");
       const header = document.querySelector("header");
       const frame = document.querySelector(".cds-article-frame");
-      const p = document.querySelector(".wp-block-post-content > p");
-      const content = document.querySelector(".cds-article-frame > :first-child");
+        const p = document.querySelector(".wp-block-post-content > p");
+        const h2 = document.querySelector(".wp-block-post-content > h2");
+        const railPanel = document.querySelector("aside .is-style-cds-panel");
+        const railTitle = document.querySelector("aside h2");
+        const content = document.querySelector(".cds-article-frame > :first-child");
       const rail = document.querySelector("aside");
       const cta = document.querySelector(
         ".wp-block-post-content > .is-style-cds-panel:last-child",
@@ -68,6 +73,12 @@ test.describe("CDS article frame", () => {
         thumbs: document.querySelectorAll("main img.wp-post-image").length,
         pWidth: p ? p.getBoundingClientRect().width : 0,
         pLeft: p ? p.getBoundingClientRect().left : 0,
+        h2Left: h2 ? h2.getBoundingClientRect().left : 0,
+        railTitleInset:
+          railTitle && railPanel
+            ? railTitle.getBoundingClientRect().top - railPanel.getBoundingClientRect().top
+            : 0,
+        railPadTop: railPanel ? parseFloat(getComputedStyle(railPanel).paddingTop) : 0,
         titleLeft: title ? title.getBoundingClientRect().left : 0,
         titleBottom: title ? title.getBoundingClientRect().bottom : 0,
         excerptBottom: excerpt ? excerpt.getBoundingClientRect().bottom : 0,
@@ -89,6 +100,8 @@ test.describe("CDS article frame", () => {
         railPos: rail ? getComputedStyle(rail).position : "",
         railTop: rail ? rail.getBoundingClientRect().top : 0,
         hasCta: Boolean(cta),
+        ctaWidth: cta ? cta.getBoundingClientRect().width : 0,
+        contentWidth: content ? content.getBoundingClientRect().width : 0,
         mainMarginEnd: mainStyles ? parseFloat(mainStyles.marginBlockEnd) : 0,
         footerGap: footer && main ? footer.getBoundingClientRect().top - main.getBoundingClientRect().bottom : 0,
       };
@@ -100,6 +113,14 @@ test.describe("CDS article frame", () => {
     expect(
       Math.abs(geometry.pLeft - geometry.titleLeft),
       "measure starts with the title",
+    ).toBeLessThan(2);
+    expect(
+      Math.abs(geometry.h2Left - geometry.pLeft),
+      "heading starts with the measure",
+    ).toBeLessThan(2);
+    expect(
+      Math.abs(geometry.railTitleInset - geometry.railPadTop),
+      "rail title sits on the panel padding",
     ).toBeLessThan(2);
     expect(geometry.heroBg, "default hero is not a photo").not.toMatch(/hero\.jpg|wp-content\/uploads/);
     expect(geometry.heroBgColor, "default hero is paper-deep").toMatch(/226,\s*232,\s*240/);
@@ -131,6 +152,13 @@ test.describe("CDS article frame", () => {
     );
     expect(geometry.railPos, "aside is sticky").toBe("sticky");
     expect(geometry.hasCta, "last content block is the CTA panel").toBe(true);
+    expect(
+      Math.abs(geometry.ctaWidth - geometry.contentWidth),
+      "CTA fills the column",
+    ).toBeLessThan(2);
+    await expect(
+      page.locator(".wp-block-post-content > .is-style-cds-panel p"),
+    ).toHaveText("Continue opens the next page in the walk.");
     expect(geometry.mainMarginEnd, "section gap on main").toBeGreaterThan(8);
     expect(geometry.footerGap, "CTA does not flush to the footer").toBeGreaterThan(8);
 

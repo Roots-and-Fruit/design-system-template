@@ -6,6 +6,7 @@
  * Description: Copy plus media. Maps the kit .cds-split primitive to a Switcher Group.
  * Viewport Width: 960
  */
+$cds_media_mark = esc_url( get_theme_file_uri( 'assets/mark.svg' ) );
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|space-6","bottom":"var:preset|spacing|space-6"}}},"backgroundColor":"paper-deep","layout":{"type":"constrained","contentSize":"60rem"}} -->
 <div class="wp-block-group alignfull has-paper-deep-background-color has-background" style="padding-top:var(--wp--preset--spacing--space-6);padding-bottom:var(--wp--preset--spacing--space-6)">
@@ -34,7 +35,7 @@
 		<!-- wp:group {"layout":{"type":"default"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"sizeSlug":"full","linkDestination":"none","className":"is-style-cds-original"} -->
-			<figure class="wp-block-image size-full is-style-cds-original"><img src="/wp-content/themes/cds/assets/mark.svg" alt="Kit mark"/></figure>
+			<figure class="wp-block-image size-full is-style-cds-original"><img src="<?php echo $cds_media_mark; ?>" alt="Kit mark"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:group -->

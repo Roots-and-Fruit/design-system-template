@@ -4,7 +4,7 @@ import { countThirdPartyBlocks } from "./helpers.js";
 test.describe("CDS articles index", () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test("posts page is a one-column list that opens the sample essay", async ({
+  test("posts page is a card row that opens the sample essay", async ({
     page,
   }) => {
     const response = await page.goto("/articles/");
@@ -38,11 +38,16 @@ test.describe("CDS articles index", () => {
       };
     });
 
-    expect(list.count, "at least the sample post").toBeGreaterThanOrEqual(1);
-    for (const left of list.lefts) {
-      expect(Math.abs(left - list.firstLeft), "one column").toBeLessThanOrEqual(2);
-    }
-    expect(list.thumbs, "no thumbnails in the list").toBe(0);
+    expect(list.count, "three sample posts").toBe(3);
+    const tops = await page.locator(".wp-block-post").evaluateAll((nodes) =>
+      nodes.map((node) => Math.round(node.getBoundingClientRect().top)),
+    );
+    const widths = await page.locator(".wp-block-post").evaluateAll((nodes) =>
+      nodes.map((node) => Math.round(node.getBoundingClientRect().width)),
+    );
+    expect(Math.max(...tops) - Math.min(...tops), "one row").toBeLessThanOrEqual(2);
+    expect(Math.max(...widths) - Math.min(...widths), "equal cards").toBeLessThanOrEqual(4);
+    expect(list.thumbs, "each card has a photo").toBe(3);
     expect(list.lastAlignFull, "list is not a wash").toBe(false);
     expect(list.footerGap, "section gap to footer").toBeGreaterThan(8);
 
@@ -54,7 +59,7 @@ test.describe("CDS articles index", () => {
     await expect(sample.locator(".wp-block-post-excerpt")).toBeVisible();
     await expect(sample.getByRole("link", { name: /read more/i })).toBeVisible();
 
-    await sample.getByRole("link", { name: "A measured essay" }).click();
+    await sample.locator(".wp-block-post-title a").click();
     await expect(page).toHaveURL(/sample-essay/);
     await expect(page.locator("h1")).toHaveText("A measured essay");
     await expect(page.locator("aside")).toBeVisible();

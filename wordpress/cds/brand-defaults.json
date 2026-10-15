@@ -1,6 +1,8 @@
 {
-  "$comment": "Generated from brand.json. Theme seeds Site Title / Tagline on first run, and when those options still match the last seed. Do not edit.",
+  "$comment": "Generated from brand.json. Theme seeds Site Title / Tagline on first run, and when those options still match the last seed. slug is the install folder. Do not edit.",
   "name": "Example Brand",
+  "slug": "example-brand",
+  "description": "Core design system contract for Example Brand. Normative for marketing pages, product UI, dashboards, and admin chrome. This file is a template: replace the values and the brand-specific prose with your own, keep the token names, and prefer the CSS custom properties in css/tokens.css (--cds-*) when implementing.",
   "tagline": "Design system",
   "mark": "assets/mark.svg"
 }

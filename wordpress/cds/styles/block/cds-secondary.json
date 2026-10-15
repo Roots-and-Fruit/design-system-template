@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "slug": "cds-secondary",
+  "title": "Secondary",
+  "blockTypes": [
+    "core/button"
+  ],
+  "styles": {
+    "border": {
+      "radius": "var:custom|button|radius",
+      "style": "solid",
+      "width": "1.5px",
+      "color": "transparent"
+    },
+    "color": {
+      "background": "var:preset|color|panel",
+      "text": "var:preset|color|ink"
+    },
+    ":hover": {
+      "color": {
+        "background": "var:preset|color|panel-deep",
+        "text": "var:preset|color|ink"
+      }
+    }
+  }
+}

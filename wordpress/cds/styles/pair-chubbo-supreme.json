@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Chubbo + Supreme",
+  "settings": {
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "display",
+          "name": "Display",
+          "fontFamily": "\"Chubbo\", system-ui, sans-serif"
+        },
+        {
+          "slug": "body",
+          "name": "Body",
+          "fontFamily": "\"Supreme\", system-ui, sans-serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Mono",
+          "fontFamily": "\"JetBrains Mono\", ui-monospace, Consolas, monospace"
+        }
+      ]
+    },
+    "custom": {
+      "font-weight": {
+        "regular": "400",
+        "emphasis": "700",
+        "bold": "700"
+      }
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontWeight": "400"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontWeight": "700"
+        }
+      }
+    }
+  }
+}

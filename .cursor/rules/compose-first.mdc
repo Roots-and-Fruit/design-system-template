@@ -1,0 +1,14 @@
+---
+description: Compose existing kit classes before writing CSS
+alwaysApply: true
+---
+
+# Compose the kit
+
+Search `css/layouts.css` and `css/components.css` before writing a rule. Use the class that already does the job.
+
+A `<style>` block in an HTML page is a miss when that class exists. New CSS goes in those files, and in `DESIGN.md`, only when the kit has no object for the behavior. `css/kit.css` is reference chrome, not a second component library.
+
+A specimen may set `font-family` inline. The family is the content.
+
+WordPress is a projection of the kit. Do not restyle kit classes in a template.

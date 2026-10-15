@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "slug": "cds-outline",
+  "title": "Outline",
+  "blockTypes": [
+    "core/button"
+  ],
+  "styles": {
+    "border": {
+      "radius": "var:custom|button|radius",
+      "style": "solid",
+      "width": "1.5px",
+      "color": "transparent"
+    },
+    "color": {
+      "background": "transparent",
+      "text": "var:preset|color|primary-deep"
+    },
+    ":hover": {
+      "color": {
+        "background": "var:preset|color|primary-soft",
+        "text": "var:preset|color|primary-deep"
+      }
+    }
+  }
+}

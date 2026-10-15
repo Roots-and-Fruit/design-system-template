@@ -126,9 +126,7 @@
 
 /* —— Sidebar contents —— */
 .kit-sidebar__brand {
-  display: flex;
-  flex-direction: column;
-  gap: var(--cds-space-1);
+  display: block;
 }
 
 .kit-brand {
@@ -138,14 +136,25 @@
   text-decoration: none;
 }
 
-.kit-brand svg {
-  inline-size: 2rem;
-  block-size: 2rem;
+.kit-brand__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-inline-size: 0;
+}
+
+.kit-brand svg,
+.kit-brand img {
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
   flex: none;
+}
+
+.kit-brand svg {
   color: var(--cds-primary);
 }
 
-.kit-brand span {
+.kit-brand__name {
   font-family: var(--cds-heading-font);
   font-size: var(--cds-text-lg);
   font-weight: var(--cds-weight-bold);
@@ -156,10 +165,10 @@
 
 .kit-sidebar__subtitle {
   margin: 0;
-  padding-inline-start: calc(2rem + var(--cds-space-3));
   font-size: 0.625rem;
   font-weight: var(--cds-weight-bold);
   letter-spacing: var(--cds-tracking-meta);
+  line-height: 1.2;
   text-transform: uppercase;
   color: var(--cds-ink-soft);
 }
@@ -167,24 +176,90 @@
 .kit-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-  counter-reset: kit-step;
+  gap: var(--cds-space-3);
 }
 
-.kit-nav:not(.kit-nav--more) a {
+.kit-nav__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.kit-nav__page {
+  font-weight: var(--cds-weight-bold);
+}
+
+.kit-nav a,
+.kit-nav__toggle {
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  color: var(--cds-ink-muted);
+  text-decoration: none;
+  padding: var(--cds-space-2) var(--cds-space-3);
+  border-radius: var(--cds-radius-sm);
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.kit-nav__toggle {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--cds-space-2);
+  inline-size: 100%;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  line-height: inherit;
+  text-align: start;
+  cursor: pointer;
 }
 
-.kit-nav:not(.kit-nav--more) a::before {
-  counter-increment: kit-step;
-  content: counter(kit-step);
+.kit-nav a:hover,
+.kit-nav__toggle:hover {
+  color: var(--cds-primary-deep);
+  background: var(--cds-primary-soft);
+}
+
+.kit-nav__arrow {
+  inline-size: 0.7rem;
+  block-size: 0.7rem;
   flex: none;
-  inline-size: 1.25rem;
-  font-variant-numeric: tabular-nums;
-  font-size: 0.75em;
-  opacity: 0.7;
+  transition: transform 0.18s ease;
+}
+
+.kit-nav__group.is-open > .kit-nav__toggle .kit-nav__arrow {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kit-nav__sub,
+  .kit-nav__arrow {
+    transition: none;
+  }
+}
+
+.kit-nav__sub {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s ease;
+}
+
+.kit-nav__group.is-open > .kit-nav__sub {
+  grid-template-rows: 1fr;
+}
+
+.kit-nav__sub-inner {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 0;
+  overflow: hidden;
+  padding-inline-start: var(--cds-space-3);
+}
+
+.kit-nav__sub a {
+  font-size: var(--cds-text-sm);
+  font-weight: var(--cds-weight-semibold);
+  padding-block: var(--cds-space-1);
 }
 
 .kit-nav--more {
@@ -204,22 +279,8 @@
   color: var(--cds-ink-muted);
 }
 
-.kit-nav a {
-  font-size: var(--cds-text-sm);
-  font-weight: var(--cds-weight-semibold);
-  color: var(--cds-ink-muted);
-  text-decoration: none;
-  padding: var(--cds-space-2) var(--cds-space-3);
-  border-radius: var(--cds-radius-sm);
-  transition: background 0.12s ease, color 0.12s ease;
-}
-
-.kit-nav a:hover {
-  color: var(--cds-primary-deep);
-  background: var(--cds-primary-soft);
-}
-
-.kit-nav a[aria-current="page"] {
+.kit-nav a[aria-current="page"],
+.kit-nav a[aria-current="location"] {
   color: var(--cds-primary-deep);
   background: var(--cds-primary-soft);
   font-weight: var(--cds-weight-bold);
@@ -351,17 +412,26 @@
     white-space: nowrap;
   }
 
-  .kit-nav {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: var(--cds-space-1);
-    padding-block-end: 0.15rem;
+  .kit-sidebar {
+    flex-wrap: wrap;
   }
 
-  .kit-nav a {
-    white-space: nowrap;
+  .kit-nav {
+    flex: 1 0 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: visible;
+    gap: var(--cds-space-3);
+    padding-block-end: 0;
+  }
+
+  .kit-nav__group {
     flex: 0 0 auto;
+  }
+
+  .kit-nav a,
+  .kit-nav__toggle {
+    white-space: nowrap;
   }
 }
 
@@ -984,3 +1054,16 @@
   font-size: var(--cds-text-sm);
   color: var(--cds-ink-muted);
 }
+
+/* System CSS points icon masks at ../icons, which is correct once the
+   compiler puts CSS and icons side by side in the theme. Opening this
+   reference site as a file blocks those SVG requests, so the masks are
+   inlined here. The files in assets/icons stay the source for the theme. */
+.cds-icon--users { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%223%22%2F%3E%20%3Cpath%20d%3D%22M3%2019c.7-2.6%202.6-4%205-4s4.3%201.4%205%204%22%2F%3E%20%3Ccircle%20cx%3D%2216.5%22%20cy%3D%229%22%20r%3D%222.2%22%2F%3E%20%3Cpath%20d%3D%22M14%2019c.3-1.8%201.4-3%202.8-3%201.1%200%202%20.6%202.5%201.6%22%2F%3E%20%3C%2Fsvg%3E"); }
+.cds-icon--chart { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cpath%20d%3D%22M4%2019V5%22%2F%3E%20%3Cpath%20d%3D%22M4%2019h16%22%2F%3E%20%3Cpath%20d%3D%22M8%2015l3.2-4%202.8%202.2L19%208%22%2F%3E%20%3C%2Fsvg%3E"); }
+.cds-icon--tag { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cpath%20d%3D%22M3%2012V4h8l10%2010-8%208z%22%2F%3E%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%221.2%22%20fill%3D%22%23000%22%20stroke%3D%22none%22%2F%3E%20%3C%2Fsvg%3E"); }
+.cds-icon--play { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%20%3Cpath%20fill%3D%22%23000%22%20d%3D%22M7%204.5v15L20.5%2012z%22%2F%3E%20%3C%2Fsvg%3E"); }
+.cds-icon--truck { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cpath%20d%3D%22M3%208h11v8H3z%22%2F%3E%20%3Cpath%20d%3D%22M14%2011h4l3%203v2h-7%22%2F%3E%20%3Ccircle%20cx%3D%227%22%20cy%3D%2218%22%20r%3D%221.6%22%2F%3E%20%3Ccircle%20cx%3D%2217%22%20cy%3D%2218%22%20r%3D%221.6%22%2F%3E%20%3C%2Fsvg%3E"); }
+.cds-icon--arrow { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%20%3Cpath%20fill%3D%22%23000%22%20d%3D%22M2%208.5h8V3L22%2012%2010%2021v-5.5H2z%22%2F%3E%20%3C%2Fsvg%3E"); }
+.cds-icon--mail { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Crect%20x%3D%223%22%20y%3D%225%22%20width%3D%2218%22%20height%3D%2214%22%20rx%3D%222%22%2F%3E%20%3Cpath%20d%3D%22M3%207l9%206%209-6%22%2F%3E%20%3C%2Fsvg%3E"); }
+.cds-icon--check { --cds-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%20%3Cpath%20d%3D%22M5%2012.5l4.2%204.2L19%207.5%22%2F%3E%20%3C%2Fsvg%3E"); }

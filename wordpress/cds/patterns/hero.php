@@ -22,12 +22,12 @@ $cds_media_hero = esc_url( get_theme_file_uri( 'assets/media/hero.jpg' ) );
 			<h1 class="wp-block-heading has-display-xl-font-size">A system you can hand to an agent</h1>
 			<!-- /wp:heading -->
 
-			<!-- wp:paragraph {"fontSize":"body-lg"} -->
-			<p class="has-body-lg-font-size">Colors, type, and a few sections. Authors compose. They do not design.</p>
+			<!-- wp:paragraph {"className":"cds-lede","fontSize":"body-lg"} -->
+			<p class="cds-lede has-body-lg-font-size">Colors, type, and a few sections. Authors compose. They do not design.</p>
 			<!-- /wp:paragraph -->
 
-			<!-- wp:buttons -->
-			<div class="wp-block-buttons">
+			<!-- wp:buttons {"className":"cds-cluster"} -->
+			<div class="wp-block-buttons cds-cluster">
 				<!-- wp:button -->
 				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">See how it works</a></div>
 				<!-- /wp:button -->
