@@ -41,7 +41,11 @@ may set `font-family` inline. The family is the content.
 ## Job B: customize a fork for a real brand
 
 When the user says anything like "Walk me through this project's customization
-checklist" or "make this my brand", this job is active.
+checklist" or "make this my brand", this job is active. If they also ask you
+to clone or pull the template, do that before the interview:
+`git clone https://github.com/Roots-and-Fruit/design-system-template.git`
+into a new folder, or `git pull` on `main` when that checkout already exists.
+Continue only inside that folder.
 
 1. **Open `CUSTOMIZE.md`.** It is the bare-minimum interview. Walk the human
    through it top to bottom (logos → name/feel → colours → fonts → optional

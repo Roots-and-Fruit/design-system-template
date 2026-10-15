@@ -152,12 +152,16 @@
               <div class="kit-prompt__chrome" aria-hidden="true">
                 <span></span><span></span><span></span>
               </div>
-              <pre class="cds-code kit-prompt__body"><code>Walk me through this project's customization checklist</code></pre>
+              <pre class="cds-code kit-prompt__body"><code>Clone https://github.com/Roots-and-Fruit/design-system-template.git into a new folder on my machine.
+If you already have that checkout, pull the latest main instead.
+Do the rest of this work only in that folder.
+Then walk me through this project's customization checklist.</code></pre>
             </div>
             <p class="cds-prose">
-              The agent should open <code>CUSTOMIZE.md</code> and
-              <code>AGENTS.md</code> (Job B), interview you for logos, colours,
-              and type, then apply <code>brand.json</code> with
+              The agent clones the GitHub repo first (or pulls <code>main</code>
+              if it is already local), then opens <code>CUSTOMIZE.md</code> and
+              <code>AGENTS.md</code> (Job B), interviews you for logos, colours,
+              and type, and applies <code>brand.json</code> with
               <code>npm run customize</code>.
             </p>
           </section>

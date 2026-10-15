@@ -18,7 +18,10 @@ If you publish with WordPress, that same command compiles a block theme. The edi
 Already sure you want it? [Use this template](https://github.com/Roots-and-Fruit/design-system-template/generate), open the new repo in your agent, and paste this:
 
 ```text
-Walk me through this project's customization checklist
+Clone https://github.com/Roots-and-Fruit/design-system-template.git into a new folder on my machine.
+If you already have that checkout, pull the latest main instead.
+Do the rest of this work only in that folder.
+Then walk me through this project's customization checklist.
 ```
 
 ## What you get out of the fork

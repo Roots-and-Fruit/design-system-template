@@ -1,8 +1,9 @@
 # Customization checklist
 
 Bare minimum to make this kit reflect a real brand. Prefer an agent. Paste the
-prompt from `customize.html` ("Walk me through this project's customization
-checklist") or point the agent at this file and `AGENTS.md` Job B.
+prompt from `customize.html` (clone the GitHub repo, then "Walk me through
+this project's customization checklist") or point the agent at this file and
+`AGENTS.md` Job B.
 
 Work top to bottom. Skip a step only when the answer is genuinely "no / not
 yet." After the interview, the agent applies `brand.json`, runs
